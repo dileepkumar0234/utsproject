@@ -1,0 +1,57 @@
+<div class="content-wrapper">
+   <section class="content-header">
+	  <h1>
+           UnAssigned Service List
+	  </h1>
+	  <ol class="breadcrumb">
+		<?php if(isset($_SESSION['user']['ut_type_name']) && $_SESSION['user']['ut_type_name']!="admin"){?>
+		<li><a href="<?php echo $baseUrl?>/steps-process?id=1"><i class="fa fa-dashboard"></i> Home</a></li>
+		<?php } else {?>
+		<li><a href="<?php echo $baseUrl?>/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+		<?php } ?>
+		<li class="active">UnAssigned Service List</li>
+	  </ol>
+	</section>
+	<section class="content">
+		<div class="row">
+		</div><!-- /.row -->
+		<div class="box">
+			<div class="box-body unAssignedList">
+			 
+			</div><!-- /.box-body -->
+		</div><!-- /.box -->
+	</section>
+</div><!-- /.content-wrapper -->
+<script>
+  $(function () {	
+	$(".unAssignedList").html("Please wait loading.....");
+	$.ajax({
+			type:	'GET',
+			dataType:'json',
+			url: baseUrl+'/unassigned-services?sRch=<?php echo time();?>',
+			success: function(data){			
+			$('.unAssignedList').html('<table id="unAssignedList" class="table table-bordered table-striped"><thead><tr><th>Booking ID</th><th>Name</th><th>Level Type</th><th>Mobile Number</th><th>Date and Time</th><th>Status</th><th>AssignToService</th></tr></thead><tbody></tbody></table>');				
+			var oTable = $('#unAssignedList').dataTable( {
+					aoColumnDefs: [{bSortable: false,
+									aTargets: [ 0 ]
+									}],
+					"bStateSave": false,
+					"bAutoWidth": true,
+					"sRowSelect": "multi",
+					"sPaginationType": "full_numbers",
+					"bProcessing": true,
+					"aaData": data.aaData,
+					"aoColumns": [
+						{ "mData": "bo_track_code" },
+						{ "mData": "u_name" },
+						{ "mData": "u_type" },
+						{ "mData": "u_phone" },
+						{ "mData": "bo_created_at" },
+						{ "mData": "bo_sta_status"},						
+						{ "mData": "action"},						
+					] 
+				});	
+			}
+		});
+  });
+</script>

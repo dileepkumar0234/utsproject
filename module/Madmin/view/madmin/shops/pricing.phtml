@@ -1,0 +1,143 @@
+<?php 
+	if(count($this->offerinfo)!=0){foreach($this->offerinfo as $offer){
+		$of_price=$offer['of_price'];
+		$of_discount=$offer['of_discount'];
+		$of_tax=$offer['of_tax'];
+		$of_total=$offer['of_total'];
+		$of_message=$offer['of_message'];
+	}}else{
+		$of_price='';
+		$of_discount='';
+		$of_tax='';
+		$of_total='';
+		$of_message='';
+	}							
+?>
+<div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+         Pricing
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="<?php echo $baseUrl?>/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Pricing</li>
+          </ol>
+        </section>
+		 <section class="content">
+		<div class="row">
+		 
+		 <div class="col-md-12">
+			<div class="box box-info" style="margin-bottom:0;">
+				<div class="col-md-6">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Pricing</h3>
+                </div>
+                <form class="form-horizontal" id="pricingForm" method="post"  data-fv-message="This value is not valid" class="error_vl"
+					  data-fv-icon-valid="glyphicon glyphicon-ok"
+                      data-fv-icon-invalid="glyphicon glyphicon-remove" onSubmit="addPricing();">
+
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-4 control-label">Token Amount</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" name="of_price" onblur="changePricing();" id="of_price" value="<?php echo $of_price;?>" placeholder="Token Amount" required data-fv-notempty-message="The token amount is required and cannot be empty" data-fv-integer="true" data-fv-integer-message="Token Amount code must be integer"  />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-4 control-label">Tax</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" name="of_tax" onblur="changePricing();" id="of_tax" value="<?php echo $of_tax;?>" placeholder="Tax" data-fv-integer="true" data-fv-integer-message="Tax code must be integer"  />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-4 control-label">Discount</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control"  onblur="changePricing();"  name="of_discount" id="of_discount" value="<?php echo $of_discount;?>" placeholder="Discount" data-fv-integer="true" data-fv-integer-message="Discount must be integer"   />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-4 control-label">Total Fee Amount</label>
+                      <div class="col-sm-6">
+                        <input type="text" readonly class="form-control" name="of_total" id="of_total" value="<?php echo $of_total;?>" placeholder="Total Fee Amount"  />
+                      </div>
+                    </div>
+					
+
+            </div>
+            </div>
+			<div class="col-md-6">
+				 <div class="box-header with-border">
+                  <h3 class="box-title">Offer Message</h3>
+                </div>
+				<div class="box-body">
+				<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-3 control-label">Message</label>
+                      <div class="col-sm-9">
+                        <textarea class="form-control" name="of_message" id="of_message"  placeholder="Message" /><?php echo $of_message;?></textarea>
+                      </div>
+                 </div>
+                 </div>
+			</div>
+				<div class="clearfix"></div>
+            </div>
+			<div class="box-footer" >
+						<a class="btn btn-default" href="<?php echo $baseUrl;?>/dashboard">Cancel</a>
+						<button type="submit"  class="btn btn-info pull-right">Submit</button>
+					</div>
+
+                </form>
+        </div>
+
+		 </section>
+
+</div>
+<script>
+$(document).ready(function() {
+	$('#pricingForm').formValidation().on('success.form.fv', function(e) { 
+		 e.preventDefault();
+	});
+});
+function addPricing(){
+	$('#pricingForm').formValidation() .on('success.form.fv', function(e) { 
+		var of_price    = $("#of_price").val();
+		var of_tax      = $("#of_tax").val();
+		var of_discount = $("#of_discount").val();
+		var of_total    = $("#of_total").val();
+		var of_message     = $("#of_message").val();
+		$.ajax({
+			type		:	'POST',
+			url			:  	baseUrl+'/pricing',
+			dataType	: 	"json",
+			data		:	{of_price:of_price,of_tax:of_tax,of_discount:of_discount,of_total:of_total,of_message:of_message},
+			success: function(data){
+				if(data.output=='success'){
+					 window.location = baseUrl+'/pricing';
+				}
+			}
+		});
+	});
+}
+function changePricing(){
+	var of_pric    = $("#of_price").val();
+	if(of_price!="" ){
+		var of_price=$("#of_price").val();
+	}else{
+		var of_price=0;
+	}
+	var of_ta     = $("#of_tax").val();
+	if(of_ta!=""){
+		var of_tax=$("#of_tax").val();
+	}else{
+		var of_tax=0;
+	}
+	var of_discou = $("#of_discount").val();
+	if(of_discou!=""){
+		var of_discount=$("#of_discount").val();
+	}else{
+		var of_discount=0;
+	}
+	var of_total    = $("#of_total").val();
+	var calculation=parseInt(of_price)+parseInt(of_tax)-parseInt(of_discount);
+	$("#of_total").val(parseInt(calculation));
+}
+</script>

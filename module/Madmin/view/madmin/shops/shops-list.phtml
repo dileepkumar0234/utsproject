@@ -1,0 +1,101 @@
+<div class="content-wrapper">
+   <section class="content-header">
+	  <h1>
+	   Mechanics 
+	  </h1>
+	  <ol class="breadcrumb">
+		<li><a href="<?php echo $baseUrl?>/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li class="active">Mechanics</li>
+	  </ol>
+	</section>
+	<section class="content">
+		<!--<div class="row">
+			<div class="col-md-3 col-sm-6 col-xs-12">
+			  <div class="info-box">
+				<span class="info-box-icon bg-aqua"><i class="ion ion-ios-people-outline"></i></span>
+				<div class="info-box-content">
+				  <span class="info-box-text">&nbsp;</span>                  
+				  <span class="info-box-text"><a href="<?php echo $baseUrl;?>/add-shop">Add New Shop</a></span>
+				  <span class="info-box-number">&nbsp;</span>
+				</div>
+			  </div>
+			</div>			         
+		  </div>-->
+		 <div class="box">
+			<div class="box-body shopList">
+			 
+			</div><!-- /.box-body -->
+		</div><!-- /.box -->
+	</section>
+</div><!-- /.content-wrapper -->
+<script>
+  $(function () {
+	$(".shopList").html("Please wait loading.....");
+	$.ajax({
+			type:	'GET',
+			dataType:'json',
+			url: baseUrl+'/shops?sRch=<?php echo time(); ?>',
+			success: function(data){			
+			$('.shopList').html('<table id="shopLists" class="table table-bordered table-striped"><thead><tr><th>S.ID</th><th>Shop Name</th><th>Submitted By</th><th>Action</th><th>U Status</th></tr></thead><tbody></tbody></table>');				
+			var oTable = $('#shopLists').dataTable( {
+					aoColumnDefs: [{bSortable: false,
+									aTargets: [ 0 ]
+									}],
+					"bStateSave": true,
+					"bAutoWidth": true,
+					"sRowSelect": "multi",
+					"sPaginationType": "full_numbers",
+					"bProcessing": true,
+					"aaData": data.aaData,
+					"aoColumns": [
+						{ "mData": "me_unique_code" },
+						{ "mData": "me_shopname" },
+						{ "mData": "u_name" },
+						{ "mData": "action"},						
+						{ "mData": "status"},						
+					] 
+				});	
+			}
+		});
+  });
+  function deactiveActiveShop(id,status){
+	if(id!=''){
+		if(status==1){
+			var statusMsg = "Are you sure Activate the shop?";
+		}else if(status==0){
+			var statusMsg = "Are you sure Deactivate the shop?";		
+		}
+		var id_status = id+'-'+status;
+		if(confirm(statusMsg)){
+			$.ajax({
+				type		:	'POST',
+				url			:  	baseUrl+'/active-shop',
+				dataType	: 	"json",
+				data		:	{id:id,status:status},
+				success: function(data){
+					if(data.status == 'success'){
+						if(data.state == '1'){
+							var status = 0;
+							var htmlCode = '<a href="javascript:void(0);" id="shop_status'+id+'" name="shop_status'+id+'" onclick="deactiveActiveShop('+id+','+status+')">Active</a>';
+							$("#shop_status_d"+id).html(htmlCode);
+						}else{
+							var status = 1;
+							var htmlCode = '<a href="javascript:void(0);" id="shop_status'+id+'" name="shop_status'+id+'" onclick="deactiveActiveShop('+id+','+status+')">Deactivate</a>';
+							$("#shop_status_d"+id).html(htmlCode);
+						}
+					}
+				}
+			});
+		}
+	}else{
+		window.location = baseUrl+"/shops-list";
+	}
+}
+
+  function editShop(id){
+	window.location = baseUrl+"/edit-shop?id="+id;
+  }
+  function viewShop(id){
+	window.location = baseUrl+"/view-shop?id="+id;
+  }
+</script>

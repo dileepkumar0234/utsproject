@@ -1,0 +1,32 @@
+<?php
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<title>UmpireTaxSolutions</title> 
+<head>	
+	<script src="<?php echo $basePath;?>/js/project/jQuery-2.1.4.min.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/bootstrap.min.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/formValidation.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/bootstrap-datepicker.js"></script>	
+	<script src="<?php echo $basePath;?>/js/project/bootstrap.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/jquery.dataTables.min.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/icheck.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/dataTables.bootstrap.min.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/fastclick.min.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/app.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/jquery.sparkline.min.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/jquery-jvectormap-world-mill-en.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/jquery.slimscroll.min.js"></script>
+	<script src="<?php echo $basePath;?>/js/project/demo.js"></script>	
+	<script src="<?php echo $basePath;?>/js/common/uts.js"></script>	
+</head>
+<body>
+	<?php if(isset($_SESSION['user']) && $_SESSION['user']!="") { include "header.phtml"; } ?>
+	<?php echo $this->content; ?>
+	<?php include "footer.phtml";  ?> 
+	</body> 
+</html>

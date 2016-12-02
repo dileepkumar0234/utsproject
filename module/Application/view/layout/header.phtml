@@ -1,0 +1,107 @@
+<?php
+		$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+		$baseUrl = $header->headerarray['baseUrl'];
+		$basePath = $header->headerarray['basePath'];
+		
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>UTS - Admin</title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="stylesheet" href="<?php echo $basePath; ?>/css/bikeseva-all.css">
+		<script type="text/javascript">var baseUrl="<?php echo $baseUrl;?>";var basePath="<?php echo $basePath;?>";</script>
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+        <header class="main-header">
+           <?php if(isset($_SESSION['user']['ut_type_name']) && $_SESSION['user']['ut_type_name']!="admin"){?>
+			 <a href="<?php echo $baseUrl;?>/steps-process?id=1" class="logo">
+		   <?php } else {?>
+		   <a href="<?php echo $baseUrl;?>/members" class="logo">
+		   <?php } ?>
+            <span class="logo-mini"><b>UT</b>S</span>
+            <span class="logo-lg"><b>UmpireTaxSolutions</b> - <?php echo ucfirst($_SESSION['user']['ut_type_name']);?></span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">   
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="<?php echo $basePath;?>/img/logoblack1.png" class="user-image" alt="User Image">
+                            <span class="hidden-xs"><?php if(isset($_SESSION['user']['userId']) && $_SESSION['user']['userId']!=""){ echo $_SESSION['user']['u_name'].'  ('. ucfirst($_SESSION['user']['ut_type_name']) .')';}?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="<?php echo $basePath;?>/img/logoblack1.png" class="user-image" alt="User Image">
+                                    <p><?php if(isset($_SESSION['user']['userId']) && $_SESSION['user']['userId']!=""){ echo $_SESSION['user']['u_name'];}?>
+                                     </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="<?php echo $baseUrl;?>/edit-profile" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a onClick="session_out();" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="header">Mega Menu</li>
+<?php if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=="1"){?>
+<li class="treeview"><a href="all-users"><i class="fa fa-circle-o"></i> <span>All Records</span></a></li>
+<li class="treeview"><a href="all-assigned-users"><i class="fa fa-circle-o"></i> <span>To be Assigned</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>To be Allocated</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Basic Info Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Scheduling Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Interview Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Documents Upload Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Other Docs Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Preparation Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Synopses Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Payment Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Review Upload Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Review Confirmation Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>E-Filing Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>P-Filing Pending</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>E – Filing Complete</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>P- Filing Docs Sent</span></a></li>
+<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Files Cancelled</span></a></li>
+<?php } ?>
+				</ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+<script>
+function session_out(){
+	if(confirm( "Are you confirm to sign out in this session.")){
+		$.ajax({
+			type		:	'GET',
+			url			:  	baseUrl+'/sign-out',
+			dataType	: 	"json",
+			success: function(data){
+				if(data.output=="success"){
+					window.location = baseUrl+'/';
+				}
+			}
+		});
+	}
+}
+</script>

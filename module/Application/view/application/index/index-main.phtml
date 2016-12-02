@@ -1,0 +1,54 @@
+<?php
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath'];
+?>
+<link rel="stylesheet" href="<?php echo $basePath; ?>/css/bikeseva-all.css">
+<?php if(isset($_SESSION['user']['userId']) && $_SESSION['user']['userId']!=""){?>
+		<script type="text/javascript">
+			var baseUrl = '<?php echo $baseUrl;?>';
+			window.location = baseUrl+"/dashboard";
+		</script>
+<?php } else {?>		
+	<body class="hold-transition login-page">
+		<div class="login-box">
+			<div class="login-logo">
+				<a href="#"><b>BikeSeva</b> Admin</a>
+			</div>
+			<div class="login-box-body">
+				<p class="login-box-msg">Sign in to start your session</p>
+				<form id="adminLogin" name="adminLogin" method="POST" data-fv-message="This value is not valid"
+								  data-fv-icon-valid="glyphicon glyphicon-ok"
+								  data-fv-icon-invalid="glyphicon glyphicon-remove"
+								  data-fv-icon-validating="glyphicon glyphicon-refresh" onSubmit="loginBtnV('adminLogin');">
+					<div class="form-group has-feedback">
+						<input type="email" class="form-control" name="u_email" id="u_email" placeholder="Email" required data-fv-emailaddress-message="The input is not a valid email address"/>
+						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="password" class="form-control" name="u_password" id="u_password" placeholder="Password" required data-fv-notempty-message="The first name is required and cannot be empty"/>
+						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="row">
+						<div class="col-xs-8">
+							<div class="checkbox icheck">
+								<label>
+									<a href="<?php echo $this->baseUrl;?>/forget-password">I forgot my password</a>
+								</label>
+							</div>
+						</div><!--/.col -->					
+						<div class="col-xs-4">
+							<button type="submit" id="aLoginBtn"  name="aLoginBtn" class="btn btn-primary btn-block btn-flat">Login</button>
+						</div><!-- /.col -->
+						<br/><br/><center><span style="color:red;"><?php if(isset($this->status) && $this->status!="") {
+						echo $this->status; }?></span></center>
+					</div>
+				</form>			
+			</div><!-- /.login-box-body -->
+		</div><!-- /.login-box -->	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#adminLogin').formValidation();
+		});
+	</script>
+<?php } ?>

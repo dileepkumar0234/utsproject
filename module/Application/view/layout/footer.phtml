@@ -1,0 +1,22 @@
+<?php
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath'];
+?>
+<script>
+	var baseUrl 	= '<?php echo $baseUrl; ?>';
+	var basePath 	= '<?php echo $basePath; ?>';
+</script>
+<?php if(isset($_SESSION['user']) && $_SESSION['user']!="") {  ?>
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Umpiretaxsolutions</b> 
+    </div>
+    <strong>Copyright &copy; 2014-2015 <a href="https://umpiretaxsolutions.com/">Umpiretaxsolutions</a>.</strong> All rights reserved.
+</footer>
+<link href="<?php echo $basePath; ?>/css/bikeseva-all.css">	
+</div>
+</body>
+</html>
+<?php } ?>
+

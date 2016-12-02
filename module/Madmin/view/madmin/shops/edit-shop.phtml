@@ -1,0 +1,478 @@
+<div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+          Edit Shop
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="<?php echo $baseUrl?>/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="<?php echo $baseUrl?>/shops-list">Mechanics</a></li>
+            <li class="active">Edit Shop</li>
+          </ol>
+        </section>
+		 <section class="content">
+		<div class="row">
+		 
+		 <div class="col-md-12">
+
+			<div class="box box-info">
+
+                <div class="box-header with-border">
+
+                  <h3 class="box-title">Edit Shop</h3>
+
+                </div><!-- /.box-header -->
+
+                <!-- form start -->
+
+                <form class="form-horizontal" id="shopEditForm" method="post" class="form-horizontal" data-fv-message="This value is not valid" class="error_vl"
+					  data-fv-icon-valid="glyphicon glyphicon-ok"
+                      data-fv-icon-invalid="glyphicon glyphicon-remove" onSubmit="editShopData();">
+
+                <div class="box-body">
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Shop Id</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" readonly name="me_unique_code" id="me_unique_code" value="" placeholder="Shop Id"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" name="me_fname" id="me_fname" value="" placeholder="First Name" required data-fv-notempty-message="The first name is required and cannot be empty" />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Last Name</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" name="me_lname" id="me_lname" value="" placeholder="Last Name" required data-fv-notempty-message="The last name is required and cannot be empty" />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Shop Name</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" name="me_shopname" id="me_shopname" value="" placeholder="Shop Name" required data-fv-notempty-message="The shop name is required and cannot be empty" />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Shop Address</label>
+                      <div class="col-sm-4">
+                        <textarea class="form-control" name="me_shopadd" id="me_shopadd"  placeholder="Complete Address" required data-fv-notempty-message="Please enter a shop address"/></textarea>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Area Name</label>
+                      <div class="col-sm-4">
+                        <input class="form-control" type="text" name="me_area" id="me_area" value="" placeholder="Area" required data-fv-notempty-message="The area name is required and cannot be empty" />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Landmark</label>
+                      <div class="col-sm-4">
+                        <input class="form-control" type="text" name="me_landmark" id="me_landmark" value="" placeholder="Land Mark" required data-fv-notempty-message="The landmark is required and cannot be empty"  />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Pin Code</label>
+                      <div class="col-sm-4">
+                       <input class="form-control" type="text" name="me_pcode" id="me_pcode" value="" placeholder="Pincode" required data-fv-notempty-message="The pin code is required and cannot be empty" data-fv-integer="true" data-fv-integer-message="Pin code must be integer" data-fv-stringlength 
+					   data-fv-stringlength-min="6" data-fv-stringlength-message="Pin code must be minimum 6 digits" maxlength="6" />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Primary Contact Number</label>
+                      <div class="col-sm-4">
+                        <input class="form-control" type="text" name="me_mno1" id="me_mno1" value="" placeholder="Phone" required data-fv-notempty-message="Please enter a primary contact number" data-fv-integer="true" data-fv-integer-message="Phone number must be integer" data-fv-stringlength
+						data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be minimum 10 digits"
+						 maxlength="10"/>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Secondary Contact Number</label>
+                      <div class="col-sm-4">
+                        <input class="form-control" type="text" name="me_mno2"  id="me_mno2" value="" placeholder="Phone2" required data-fv-notempty-message="Please enter a secondary contact number" data-fv-integer="true" data-fv-integer-message="Phone number must be integer" data-fv-stringlength 
+						data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be minimum 10 digits"
+						maxlength="10"/>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Owner Has Android Mobile</label>
+                      <div class="col-sm-4">
+                        <input  type="radio" id="me_android" name="me_android"  value="Yes" required data-fv-notempty-message="The Owner Has Android Mobile is required"/>&nbsp;&nbsp;Yes
+					    <input type="radio" id="me_android" name="me_android" value="No" />&nbsp;&nbsp;No
+                      </div>
+                    </div><div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">City Name</label>
+                      <div class="col-sm-4">
+                        <select class="form-control" input name="me_ci_id" id="me_ci_id" data-fv-notempty data-fv-notempty-message="The city name is required">
+							
+						</select>
+                      </div>
+                    </div><div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Experience</label>
+                      <div class="col-sm-4">
+                        <select class="form-control" input name="me_experience" id="me_experience" data-fv-notempty data-fv-notempty-message="The experience is required">
+							<option value="1-3">1-3</option>
+							<option value="4-6">4-6</option>
+							<option value="7-9">7-9</option>
+							<option value="9-12">9-12</option>
+							<option value="12 Above">12 Above</option>
+						</select>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">No of Employees</label>
+                      <div class="col-sm-4">
+                        <select class="form-control"  name="me_no_of_employees" id="me_no_of_employees" data-fv-notempty data-fv-notempty-message="The no of employees is required" >
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option> 
+						<option value="9">9</option>
+						<option value="10">10</option> 
+						</select>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Lat</label>
+                      <div class="col-sm-4">
+                        <input readonly  class="form-control" type="text" name="me_lat" id="me_lat" readonly value="" placeholder="Lat"/>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Lang</label>
+                      <div class="col-sm-4">
+                        <input readonly class="form-control" type="text" name="me_lang" id="me_lang" readonly value="" placeholder="Lang"/>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Special Bikes</label>
+                      <div class="col-sm-4">
+                        <select class="form-control" id="me_sb_id" name="me_sb_id" multiple data-fv-notempty data-fv-notempty-message="The special bikes is required">
+							
+						</select>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Shop Image:</label>
+                      <div class="col-sm-4">
+                        <span id="imageShop"></span>
+                      </div>
+                    </div>	
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Photo of Owner With Shop</label>
+                      <div class="col-sm-4">
+                        <input  type="file" name="me_shop_photo" id="me_shop_photo" >
+						<input type="hidden" id="hid_shop_photo_old" name="hid_shop_photo_old" value="">
+						<input type="hidden" id="hid_shop_photo" name="hid_shop_photo" value="">
+						<span id="shopPhotoError" name="shopPhotoError" style="color:red"></span>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">ID Proof Type</label>
+                      <div class="col-sm-4">
+                        <select class="form-control" input name="me_proof_name" id="me_proof_name" data-fv-notempty data-fv-notempty-message="The ID Proof Type is required">
+							<option value="">None</option>
+							<option value="Aadhar Card">Aadhar Card</option>
+							<option value="Voter Card">Voter ID</option>
+							<option value="Driving licence">Driving Licence</option>                
+							<option value="Ration Card">Ration Card</option>
+							<option value="PAN Card">PAN Card</option>
+							<option value="Others">Others</option>
+						</select>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Shop Id Proof:</label>
+                      <div class="col-sm-4">
+                        <span id="imageShopP"></span>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Shop Id Proof</label>
+                      <div class="col-sm-4">
+                       <input type="file" name="me_proof_photo" id="me_proof_photo"   />
+						<input type="hidden" id="hid_proof_photo_old" name="hid_proof_photo_old" value="">
+						<input type="hidden" id="hid_proof_photo" name="hid_proof_photo" value="">
+						<span id="proofPhotoError" name="proofPhotoError" style="color:red"></span>
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Have Union</label>
+                      <div class="col-sm-4">
+                        <input  type="radio" id="me_have_union"  name="me_have_union" value="Yes" required data-fv-notempty-message="The have union is required" />&nbsp;&nbsp;Yes
+					    <input type="radio" id="me_have_union" name="me_have_union" value="No" />&nbsp;&nbsp;No
+                      </div>
+                    </div>
+                </div>
+				<input type="hidden" id="me_u_id" name="me_u_id" value="<?php if(isset($_SESSION['user']['userId']) && $_SESSION['user']['userId']!=""){ echo $_SESSION['user']['userId']; }?>">
+				<input type="hidden" id="me_id" name="me_id" value="">
+				<div class="box-footer">
+					<a class="btn btn-default" href="<?php echo $baseUrl;?>/shops-list">Cancel</a>
+					<button type="submit"  class="btn btn-info pull-right">Save</button>
+				</div>
+
+                </form>
+
+            </div>
+
+            </div>
+
+        </div>
+
+		 </section>
+
+</div>
+<script>
+$(document).ready(function() {
+$('#shopEditForm').formValidation().on('success.form.fv', function(e) { 
+	e.preventDefault();
+});
+	$.ajax({
+		type		:	'GET',
+		url			:  	baseUrl+'/cities',
+		dataType	: 	"json",
+		success: function(data){
+			var html = '';
+			if(data.output=='success'){
+				$.each( data.cities, function( key, value ) {
+				var array = $(this);
+				  for(var i=0; i<array.length; i++){
+					html +='<option value="'+array[i].ci_id+'">'+array[i].ci_name+'</option>';
+				  }
+				});
+			}else{
+				html = '';
+			}
+			$('#me_ci_id').html(html);
+		}
+	});
+	$.ajax({
+		type		:	'GET',
+		url			:  	baseUrl+'/special-bikes?sRch=<?php echo time();?>',
+		dataType	: 	"json",
+		success: function(data){
+			var html = '';
+			if(data.status=='success'){
+				$.each( data.sBList, function( key, value ) {
+				var array = $(this);
+				  for(var i=0; i<array.length; i++){
+					html +='<option value="'+array[i].sb_id+'">'+array[i].sb_name+'</option>';
+				  }
+				});
+			}else{
+				html = '';
+			}
+			$('#me_sb_id').html(html);
+			
+			//--- update ---
+				var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+				for (var i = 0; i < url.length; i++) {
+					var urlparam = url[i].split('=');
+					if (urlparam[0] == 'id') {
+						var id = urlparam[1];
+					}
+				}
+				$.ajax({
+					type		:	'GET',
+					url			:  	baseUrl+'/status-update/'+id,
+					dataType	: 	"json",
+					success: function(data){
+						if(data.status=='success'){
+							$("#me_unique_code").val(data.shopinfo['me_unique_code']);
+							$("#me_shopname").val(data.shopinfo['me_shopname']);
+							$("#me_shopadd").val(data.shopinfo['me_shopadd']);
+							$("#me_area").val(data.shopinfo['me_area']);
+							$("#me_landmark").val(data.shopinfo['me_landmark']);
+							$("#me_pcode").val(data.shopinfo['me_pcode']);
+							$("#me_fname").val(data.shopinfo['me_fname']);
+							$("#me_lname").val(data.shopinfo['me_lname']);
+							$("#me_mno1").val(data.shopinfo['me_mno1']);
+							$("#me_mno2").val(data.shopinfo['me_mno2']);
+							$("#me_experience").val(data.shopinfo['me_experience']);
+							if(data.shopinfo['me_android']=='Yes'){
+								$('input:radio[name="me_android"][value="Yes"]').prop('checked', true);
+							}else{
+								$('input:radio[name="me_android"][value="No"]').prop('checked', true);
+							}
+							$("#me_no_of_employees").val(data.shopinfo['me_no_of_employees']);
+							$("#me_lat").val(data.shopinfo['me_lat']);
+							$("#me_lang").val(data.shopinfo['me_lang']);
+							if(data.shopinfo['me_have_union']=='Yes'){
+								$('input:radio[name="me_have_union"][value="Yes"]').prop('checked', true);
+							}else{
+								$('input:radio[name="me_have_union"][value="No"]').prop('checked', true);
+							}
+							$("#hid_shop_photo_old").val(data.shopinfo['me_shop_photo']);
+							$("#me_proof_name").val(data.shopinfo['me_proof_name']);
+							$("#hid_proof_photo_old").val(data.shopinfo['me_proof_photo']);
+							$("#me_ci_id").val(data.shopinfo['me_ci_id']);
+							$("#me_id").val(data.shopinfo['me_id']);
+							var imageSUrl = baseUrl+'/shopImages/'+data.shopinfo['me_shop_photo'];
+							var imageSPUrl = baseUrl+'/shopImages/'+data.shopinfo['me_proof_photo'];
+							var imagSrc = '<img src="'+imageSUrl+'" width="50px;" height="50px">';
+							var imagSpSrc = '<img src="'+imageSPUrl+'" width="50px;" height="50px">';
+							$("#imageShop").html(imagSrc);
+							$("#imageShopP").html(imagSpSrc);
+							if(data.shopinfo['me_sb_id']!=''){
+								var str  = data.shopinfo['me_sb_id']
+								var str_array = str.split(',');
+								for(var i=0;i<str_array.length;i++){
+									str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+									$("#me_sb_id option[value='" + str_array[i]  + "']").attr("selected", 1);
+								}
+							}
+						}
+					}
+				});
+		}
+	});
+	
+	   // File uploads
+   $('#me_shop_photo').on('change', function() {
+		var val = $('#me_shop_photo').val();
+		switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+			case 'gif': case 'jpg': case 'png': case 'jpeg':
+				if($("#me_shop_photo").prop("files")[0].size <= 2048000){	
+					$("#loadedImage").show();
+					var file_data = $("#me_shop_photo").prop("files")[0]; 
+					var form_data = new FormData();
+					form_data.append("pre-file", $("#hid_shop_photo").val());
+					form_data.append("type-upload", 2);				
+					form_data.append("upload-name", "shop");				
+					form_data.append("file", file_data) ;
+					var url= baseUrl+'/upload-shop-images';
+					$.ajax({
+						type:'POST',
+						url:   url,
+						dataType: "json",
+						contentType: false,
+						processData: false,
+						enctype: 'multipart/form-data',
+						data:form_data,
+						success: function(result){
+							//$("#loadedImage").hide();
+							$("#shopPhotoError").html("");
+							if(result.output=='success'){
+								$("#hid_shop_photo").val(result.file_name);
+							}else if(result.output=='exe'){
+								$("#me_shop_photo").val("");
+								$("#hid_shop_photo").val("");
+								$("#shopPhotoError").html("Upload image only");
+							}else{
+								$("#me_shop_photo").val("");
+								$("#hid_shop_photo").val("");
+								$("#shopPhotoError").html("Upload Error");
+							}
+						}
+					});	
+				}else{
+					$("#me_shop_photo").val("");
+					$("#hid_shop_photo").val("");
+					$("#shopPhotoError").html("Image size should be below 2MB");
+				}
+				break;
+			default:
+					$("#me_shop_photo").val("");
+					$("#hid_shop_photo").val("");
+					$('#shopPhotoError').html('Please upload image only');
+					break;
+		}					
+	});
+	$('#me_proof_photo').on('change', function() {
+		var val = $('#me_proof_photo').val();
+		switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+			case 'gif': case 'jpg': case 'png': case 'jpeg':
+				if($("#me_proof_photo").prop("files")[0].size <= 2048000){
+					$("#loadedImage1").show();
+					var file_data = $("#me_proof_photo").prop("files")[0]; 
+					var form_data = new FormData();     
+					form_data.append("pre-file", $("#hid_proof_photo").val());		
+					form_data.append("type-upload", 2);
+					form_data.append("upload-name", "id_proof");
+					form_data.append("file", file_data) ;
+					var url= baseUrl+'/upload-shop-images';
+					$.ajax({
+						type:'POST',
+						url:   url,
+						dataType: "json",
+						contentType: false,
+						processData: false,
+						enctype: 'multipart/form-data',
+						data:form_data,
+						success: function(result){
+							$("#loadedImage1").hide();
+							$("#proofPhotoError").html("");
+							if(result.output=='success'){
+								$("#hid_proof_photo").val(result.file_name);
+							}else if(result.output=='exe'){
+								$("#me_proof_photo").val("");
+								$("#hid_proof_photo").val("");
+								$("#proofPhotoError").html("Upload image only");
+							}else{
+								$("#me_proof_photo").val("");
+								$("#hid_proof_photo").val("");
+								$("#proofPhotoError").html("Upload Error");
+							}
+						}
+					});
+				}else{
+					$("#me_proof_photo").val("");
+					$("#hid_proof_photo").val("");
+					$("#proofPhotoError").html("Image size should be below 2MB");
+				}
+				break;
+			default:
+					$("#me_proof_photo").val("");
+					$("#hid_proof_photo").val("");
+					$('#proofPhotoError').html('Please upload image only');
+					break;
+		}
+	});	
+});
+		
+function editShopData(){
+	$('#shopEditForm').formValidation() .on('success.form.fv', function(e) { 
+		e.stopImmediatePropagation();
+		var me_fname    = $("#me_fname").val();
+		var me_lname    = $("#me_lname").val();
+		var me_shopname = $("#me_shopname").val();
+		var me_shopadd  = $("#me_shopadd").val();
+		var me_area     = $("#me_area").val();
+		var me_landmark = $("#me_landmark").val();
+		var me_pcode    = $("#me_pcode").val();
+		var me_mno1     = $("#me_mno1").val();
+		var me_mno2     = $("#me_mno2").val();
+		var me_android  = $("input[name=me_android]:checked").val();
+		var me_experience = $("#me_experience").val();
+		var me_no_of_employees = $("#me_no_of_employees").val();
+		var me_sb_id = $("#me_sb_id").val();
+		var shop_photo_old = $("#hid_shop_photo_old").val();
+		var shop_photo = $("#hid_shop_photo").val();
+		var proof_photo_old = $("#hid_proof_photo_old").val();
+		var proof_photo = $("#hid_proof_photo").val();
+		var me_proof_name = $("#me_proof_name").val();
+		var me_have_union = $("input[name=me_have_union]:checked").val();
+		var me_ci_id = $("#me_ci_id").val();
+		var me_id = $("#me_id").val();
+		var me_u_id    = $("#me_u_id").val();
+		$.ajax({
+			type		:	'POST',
+			url			:  	baseUrl+'/edit-shop',
+			dataType	: 	"json",
+			data		:{me_id:me_id,me_fname:me_fname,me_lname:me_lname,me_shopname:me_shopname,me_shopadd:me_shopadd,me_area:me_area,me_landmark:me_landmark,me_pcode:me_pcode,me_mno1:me_mno1,me_mno2:me_mno2,
+			me_android:me_android,me_experience:me_experience,me_have_union:me_have_union,me_proof_name:me_proof_name,me_shop_photo:shop_photo,me_shop_photo_old:shop_photo_old,me_proof_photo:proof_photo,me_proof_photo_old:proof_photo_old,me_no_of_employees:me_no_of_employees,me_sb_id:me_sb_id,me_ci_id:me_ci_id},
+			success: function(data){
+				$('#indexLoader').html('');
+				if(data.status=='success'){
+					var me_id = data.me_id;
+					window.location = baseUrl+'/shops-list';
+				}
+			}
+		});
+		e.preventDefault();
+	});
+}
+</script>
