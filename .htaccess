@@ -1,6 +1,6 @@
 php_flag display_errors on
 SetEnv APPLICATION_ENV local
-SetEnv ZF2_PATH E:/ZF2/library
+SetEnv ZF2_PATH D:/ZF2/library
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]

@@ -18,8 +18,8 @@ return array(
         'password' => '',
     ),
 	 'urls'                 =>     array(
-        'baseUrl'         =>     'http://localhost/umpire-tax',
-        'basePath'         =>    'http://localhost/umpire-tax/public',
+        'baseUrl'         =>     'http://localhost/utsproject/trunk',
+        'basePath'         =>    'http://localhost/utsproject/trunk/public',
         'imagesUrl'        =>    '#',
     ),
     'service_manager'     =>     array(
