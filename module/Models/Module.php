@@ -28,6 +28,8 @@ use Models\Model\Comments;
 use Models\Model\CommentsTable;
 use Models\Model\Payment;
 use Models\Model\PaymentTable;
+use Models\Model\Employeeinfo;
+use Models\Model\EmployeeinfoTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 class Module
@@ -50,6 +52,7 @@ class Module
     {
         return array(
             'factories' => array(
+				'Models\Model\EmployeeinfoFactory'			=>'Models\Factory\Model\EmployeeinfoTableFactory',
 				'Models\Model\UserFactory'					=>'Models\Factory\Model\UserTableFactory',
 				'Models\Model\ForgetpasswordFactory'		=>'Models\Factory\Model\ForgetpasswordTableFactory',
 				'Models\Model\UserDetailsFactory'			=>'Models\Factory\Model\UserDetailsTableFactory',

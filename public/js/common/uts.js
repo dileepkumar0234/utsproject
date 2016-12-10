@@ -20,3 +20,28 @@ function loginBtnV(jForm){
 		e.preventDefault();	
 	});
 }
+function tabsUserInfo(userId,processStatus,tabType){
+	$('#basicInfoTab').html('<i>Loading...</i>');
+	$.ajax({
+		type	: 'POST',
+		url		: baseUrl+'/tabs-user-info',
+		data	: {userId:userId,processStatus:processStatus,tabType:tabType},
+		success: function(resHtml){
+			if(tabType == 1){
+				$('#basicInfoTab').html(resHtml);
+			}else if(tabType == 2){
+				$('#otherInfoTab').html(resHtml);
+			}else if(tabType == 3){
+				$('#scheduleTab').html(resHtml);
+			}else if(tabType == 4){
+				$('#downloadTab').html(resHtml);
+			}else if(tabType == 5){
+				$('#uploadTab').html(resHtml);
+			}else if(tabType == 6){
+				$('#fileTab').html(resHtml);
+			}else if(tabType == 7){
+				$('#paymentTab').html(resHtml);
+			}
+		}
+	});
+}

@@ -30,8 +30,20 @@ class MadminController extends AbstractActionController
 	
 	}	
 	public function allTabsAction(){
-		// echo "Dileep";exit;
-		
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$ids 		= $this->params()->fromRoute('id', 0);
+		$id 				= explode('-',$ids);
+		$userId				= $id[0];
+		$processStatus		= $id[1];
+		return new ViewModel(array(
+			'basePath'			=>	$basePath,
+			'baseUrl'   		=>  $baseUrl,
+			'userId'   			=>  $userId,
+			'processStatus'   	=>  $processStatus
+		));	
 	}
 	public function checkLoginsModeAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -145,7 +157,7 @@ class MadminController extends AbstractActionController
 					}
 					$data[$i]['file_number']=$bCData->unique_code;
 					$data[$i]['client_name']=$bCData->user_name;
-					$data[$i]['u_email']= $bCData->email;
+					$data[$i]['u_email']= '<a href="'.$baseUrl.'/all-tabs/'.$bCData->user_id.'-'.$bCData->ps_state.'">'.$bCData->email.'</a>';
 					$data[$i]['ssn']= $bCData->ssnitin;
 					$data[$i]['file_status']= $status;
 					$data[$i]['assigned']= $bCData->client_name;
@@ -444,5 +456,102 @@ class MadminController extends AbstractActionController
 		return substr($code, 0, $length);
 		else
 		return $code;
+	}
+	public function tabsUserInfoAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$utsYear 	= $baseUrlArr['utsYear'];
+		$userTable			= $this->getServiceLocator()->get('Models\Model\UserFactory');
+		$employeeinfoTable	= $this->getServiceLocator()->get('Models\Model\EmployeeinfoFactory');
+		$spouseTable		= $this->getServiceLocator()->get('Models\Model\SpouseFactory');
+		$schedulesTable		= $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
+		$uploadPdfsTable	= $this->getServiceLocator()->get('Models\Model\UploadPdfsFactory');
+		$synopsysTable		= $this->getServiceLocator()->get('Models\Model\SynopsysFactory');
+		$userId				= $_POST['userId'];
+		$processStatus		= $_POST['processStatus'];
+		$tabType			= $_POST['tabType'];
+		if($tabType == 1){
+			$userInfo	= $userTable->getUserDataInfo($userId);
+			$view = new ViewModel(array(
+				'basePath'	=>	$basePath,
+				'baseUrl'   =>  $baseUrl,
+				'userInfo'  =>  $userInfo,
+				'tabType'  	=>  $tabType
+			));
+		}else if($tabType == 2){
+			$employeeInfo	= $employeeinfoTable->getData($userId);
+			$spousesInfo	= $spouseTable->getSpousesData($userId);
+			$spouseInfo 	= array();
+			if($spousesInfo->count()){
+				foreach($spousesInfo as $key=>$sp){
+					$spouseInfo[$key][0]['First Name'] 		= $sp->first_name;
+					$spouseInfo[$key][0]['SSN'] 			= $sp->ssn;
+					$spouseInfo[$key][0]['Date Of Birth'] 	= $sp->dob;
+					$spouseInfo[$key][1]['Last Name'] 		= $sp->last_name;
+					$spouseInfo[$key][1]['Occupation'] 		= $sp->occupation;
+					$spouseInfo[$key][1]['Visa Type'] 		= $sp->visa_type;
+				}
+			}
+			$view = new ViewModel(array(
+				'basePath'		=>	$basePath,
+				'baseUrl'   	=>  $baseUrl,
+				'employeeInfo'  =>  $employeeInfo,
+				'spouseInfo'  	=>  $spouseInfo,
+				'tabType'  		=>  $tabType
+			));
+		}else if($tabType == 3){
+			$schedulesInfo	= $schedulesTable->getTotalData($userId);
+			$scheduleInfo 	= array();
+			if($schedulesInfo->count()){
+				foreach($schedulesInfo as $key=>$sc){
+					$scheduleInfo[$key][0]['Schedule Date']  = $sc->schedule_dt;
+					$scheduleInfo[$key][1]['Schedule Time']  = $sc->schedule_period;
+				}
+			}
+			$view = new ViewModel(array(
+				'basePath'		=>	$basePath,
+				'baseUrl'   	=>  $baseUrl,
+				'scheduleInfo'  =>  $scheduleInfo,
+				'tabType'  		=>  $tabType
+			));
+		}else if($tabType == 4){
+			$downloadsInfo	= $uploadPdfsTable->getUserDataInfo($userId,$utsYear);
+			$downloadInfo 	= array();
+			if($downloadsInfo->count()){
+				foreach($downloadsInfo as $key=>$dl){
+					$downloadInfo[$dl->upt_name][$key] = $dl->upload_file;
+				}
+			}
+			$view = new ViewModel(array(
+				'basePath'		=>	$basePath,
+				'baseUrl'   	=>  $baseUrl,
+				'downloadInfo'  =>  $downloadInfo,
+				'tabType'  		=>  $tabType,
+				'userId'  		=>  $userId
+			));
+		}else if($tabType == 5){
+			$taxInfo	= $synopsysTable->getSynopsys($userId);
+			$userInfo	= $userTable->getUserDataInfo($userId);
+			$view = new ViewModel(array(
+				'basePath'		=>	$basePath,
+				'baseUrl'   	=>  $baseUrl,
+				'taxInfo'  		=>  $taxInfo,
+				'tabType'  		=>  $tabType,
+				'userInfo'  	=>  $userInfo,
+				'userId'  		=>  $userId
+			));
+		}
+		return $view->setTerminal(true);
+	}
+	public function uploadTaxFileAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$utsYear 	= $baseUrlArr['utsYear'];
+		echo '<pre>'; print_r($_FILES);
+		echo '<pre>'; print_r($_POST);exit;
 	}
 }

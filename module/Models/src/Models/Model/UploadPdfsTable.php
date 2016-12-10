@@ -86,4 +86,13 @@ class UploadPdfsTable
 		$row=$this->tableGateway->delete(array('(up_user_id IN ('.$up_user_id.'))'));
 		return $row;		
 	}
+	public function getUserDataInfo($user_id,$utsYear){        
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('upload_types', new Expression('upload_types.upt_id=upload_pdfs.upt_id'),array('*'),'left');	
+		$select->where('upload_pdfs.up_user_id="'.$user_id.'"');                                         
+		$select->where('upload_pdfs.current_year="'.$utsYear.'"');                                         
+		$select->where('upload_pdfs.status="1"');                                         
+		$resultSet = $this->tableGateway->selectWith($select);			
+		return $resultSet;
+    }
 }

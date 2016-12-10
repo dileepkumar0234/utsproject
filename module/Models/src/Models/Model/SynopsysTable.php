@@ -32,6 +32,8 @@ class SynopsysTable
 	public function getSynopsys($uid){
 		$select = $this->tableGateway->getSql()->select();
 		$select->where('synopsys_user_id= "'.$uid.'"');
+		$select->where('synopsys_status = "1"');
+		$select->order('synopsys_id DESC');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;			
 	}

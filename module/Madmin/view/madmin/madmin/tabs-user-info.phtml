@@ -1,0 +1,282 @@
+<?php if($this->tabType == 1){?>
+<div class="tabs_tit">
+	<h3>FILE NUMBER:<?php echo $this->userInfo->unique_code; ?></h3>
+</div>
+<div class="tab_con">
+	<div class="col-md-12 und_lin mar_t30">
+		<div class="col-md-6">
+			<table class="table">
+				<tr>
+					<th>First Name</th>
+					<td><?php echo $this->userInfo->first_name; ?></td>
+				</tr>
+				<tr>
+					<th>SSN</th>
+					<td><?php echo $this->userInfo->ssnitin; ?></td>
+				</tr>
+				<tr>
+					<th>Date Of Birth</th>
+					<td><?php echo $this->userInfo->dob; ?></td>
+				</tr>
+				<tr>
+					<th>Dependents</th>
+					<td><?php echo $this->userInfo->dependent; ?></td>
+				</tr>
+				<tr>
+					<th>Mobile</th>
+					<td><?php echo $this->userInfo->phone; ?></td>
+				</tr>
+				<tr>
+					<th>Address</th>
+					<td><?php echo $this->userInfo->address; ?></td>
+				</tr>
+				<tr>
+					<th>Country</th>
+					<td><?php echo $this->userInfo->country_name; ?></td>
+				</tr>
+				<tr>
+					<th>Health Insurance</th>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Current Employer</th>
+					<td><?php echo $this->userInfo->current_emp; ?></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<table class="table">
+				<tr>
+					<th>Last Name</th>
+					<td><?php echo $this->userInfo->last_name; ?></td>
+				</tr>
+				<tr>
+					<th>Occupation</th>
+					<td><?php echo $this->userInfo->occupation; ?></td>
+				</tr>
+				<tr>
+					<th>Filing Status</th>
+					<td><?php echo $this->userInfo->filling_status; ?></td>
+				</tr>
+				<tr>
+					<th>EMail</th>
+					<td><?php echo $this->userInfo->email; ?></td>
+				</tr>
+				<tr>
+					<th>Alternative Number</th>
+					<td><?php echo $this->userInfo->alterphone; ?></td>
+				</tr>
+				<tr>
+					<th>City</th>
+					<td><?php echo $this->userInfo->city_name; ?></td>
+				</tr>
+				<tr>
+					<th>State</th>
+					<td><?php echo $this->userInfo->state_name; ?></td>
+				</tr>
+				<tr>
+					<th>ZIP</th>
+					<td><?php echo $this->userInfo->zip; ?></td>
+				</tr>
+				<tr>
+					<th>Client Location</th>
+					<td><?php echo $this->userInfo->c_location; ?></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<?php } else if($this->tabType == 2){ ?>
+<div class="tabs_tit">
+	<h3>Employee Information:</h3>
+</div>
+<div class="tab_con">
+	<div class="col-md-12 und_lin mar_t30">
+		<div class="col-md-6">
+			<table class="table">
+				<tr>
+					<th>Company Name</th>
+					<td><?php echo $this->employeeInfo->company_name; ?></td>
+				</tr>
+				<tr>
+					<th>Experience</th>
+					<td><?php echo $this->employeeInfo->experience; ?></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<table class="table">
+				<tr>
+					<th>Salary</th>
+					<td><?php echo $this->employeeInfo->salary; ?></td>
+				</tr>
+				<tr>
+					<th>Location</th>
+					<td><?php echo $this->employeeInfo->location; ?></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<br/><br/><br/><br/>
+<div class="tabs_tit">
+	<h3>Spouse Information:</h3>
+</div>
+<?php if(count($this->spouseInfo) != 0){
+	foreach($this->spouseInfo as $sp){
+?>
+<div class="tab_con">
+	<div class="col-md-12 und_lin mar_t30">
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($sp[0] as $key=>$value){ ?>
+				<tr>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($sp[1] as $key=>$value){ ?>
+				<tr>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+	</div>
+</div>
+<?php }}} else if($this->tabType == 3){ ?>
+<?php if(count($this->scheduleInfo) != 0){
+	foreach($this->scheduleInfo as $sc){
+?>
+<div class="tab_con">
+	<div class="col-md-12 und_lin mar_t30">
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($sc[0] as $key=>$value){ ?>
+				<tr>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($sc[1] as $key=>$value){ ?>
+				<tr>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+	</div>
+</div>
+<?php }} else { ?>
+<div class="tabs_tit">
+	<h3>No records found.</h3>
+</div>
+<?php }} else if($this->tabType == 4){
+	if(count($this->downloadInfo) != 0){
+		foreach($this->downloadInfo as $category=>$dl){
+?>
+<h3><?php echo $category; ?>:</h3>
+<div class="tab_con">
+	<div class="col-md-12 und_lin mar_t30">
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($this->downloadInfo[$category] as $value){ ?>
+				<tr>
+					<th><?php echo $value; ?></th>
+					<td><a href="<?php echo $this->baseUrl.'/uploads/'.$this->userId.'/'.$value; ?>" download>Download</a></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+	</div>
+</div>
+<?php }}else{ ?>
+<div class="tabs_tit">
+	<h3>No records found.</h3>
+</div>
+<?php }} else if($this->tabType == 5){ ?>
+<div class="tabs_tit">
+	<h3>FILE NUMBER:<?php echo $this->userInfo->unique_code; ?></h3>
+</div>
+<div>
+<br/>
+	<form method="post">
+	<table>
+		<tr>
+		  <th>Title</th>
+		  <td><input type="text" id="taxTitle" name="taxTitle" required></td>
+		</tr>
+		<tr>
+		  <th>Upload Synopsys</th>
+		  <td><input type="file" id="taxUploadFile" name="taxUploadFile" required></td>
+		</tr>
+	</table>
+	<input type="button" value="upload" onclick="uploadTaxfile(<?php echo $this->userId; ?>);">
+	</form>
+</div>
+<br/><br/>
+<?php if($this->taxInfo->count()){ ?>
+<h3>Previous Tax Summary:</h3>
+<div class="tab_con">
+	<div class="col-md-12 und_lin mar_t30">
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($this->taxInfo as $value){ ?>
+				<tr>
+					<th><?php echo $value->synopsys_title; ?></th>
+					<td><a href="<?php echo $this->baseUrl.'/synopsys/'.$this->userId.'/'.$value->synopsys_file; ?>" download>Download</a></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+	</div>
+</div>
+<?php }else{ ?>
+<div class="tabs_tit">
+	<h3>No records found.</h3>
+</div>
+<?php }} ?>
+<script>
+function uploadTaxfile(userId){
+	alert();
+	var fieldID = "taxUploadFile";
+	var _URL = window.URL || window.webkitURL;
+	var image;
+	var fd = new FormData();
+	switch($('#'+fieldID).val().substring($('#'+fieldID).val().lastIndexOf('.') + 1).toLowerCase()){
+		case 'pdf':
+		image = new Image();
+		image.src = _URL.createObjectURL($('#'+fieldID)[0].files[0]);
+		image.onload = function() {
+			fd.append( fieldID, $('#'+fieldID)[0].files[0]);
+			fd.append( 'title', $('#taxTitle').val());
+			$.ajax({
+				url: baseUrl+'/upload-tax-file',
+				data: fd,
+				processData: false,
+				contentType: false,
+				type: 'POST',
+				cache:	false,
+				success: function(returned){
+					tabsUserInfo(userId,0,5)
+				}
+			});
+		}
+		break;
+		default:
+		$('#'+fieldID).val('');
+		alert('Please upload PDF format');
+		break;
+	}
+}
+</script>

@@ -113,7 +113,7 @@ return array(
                     'route'    => '/all-tabs[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id'     => '[0-9]+',
+                        'id'     => '[0-9_-]+',
                     ),
                     'defaults' => array(
                         'controller' => 'Madmin\Controller\Madmin',
@@ -160,6 +160,34 @@ return array(
                     'defaults' => array(
                         'controller' => 'Madmin\Controller\Madmin',
                         'action'     => 'allUsers',
+                    ),
+                ),
+            ),
+			'tabs-user-info' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/tabs-user-info[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9_-]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'tabsUserInfo',
+                    ),
+                ),
+            ),
+			'upload-tax-file' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/upload-tax-file[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9_-]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'uploadTaxFile',
                     ),
                 ),
             ),

@@ -87,4 +87,11 @@ class SpouseTable
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet->current();		
 	}
+	public function getSpousesData($id){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('s_user_id = "'.$id.'"');
+		$select->where('status = "1"');
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet;		
+	}
 }

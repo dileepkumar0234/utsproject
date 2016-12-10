@@ -1,73 +1,29 @@
 <style>
-.und_lin tr{
-	border-bottom:1px solid #ddd;
-	}		
-	
-	
-		
+	.und_lin tr{
+		border-bottom:1px solid #ddd;
+	}			
 </style>
 <div class="content-wrapper">
 	<div class="container">
-	<div class="tabs_tit">
-		<h2>WELCOME ADMIN!!!</h2>
+		<div class="mar_t30"></div>
+		<ul class="nav nav-pills nav_pill_sty">
+			<li><a data-toggle="pill" href="#basicInfoTab" onclick="tabsUserInfo(<?php echo $this->userId; ?>,<?php echo $this->processStatus; ?>,1);">Basic Info</a></li>
+			<li><a data-toggle="pill" href="#otherInfoTab" onclick="tabsUserInfo(<?php echo $this->userId; ?>,<?php echo $this->processStatus; ?>,2);">Other Info</a></li>
+			<li><a data-toggle="pill" href="#scheduleTab" onclick="tabsUserInfo(<?php echo $this->userId; ?>,<?php echo $this->processStatus; ?>,3);">Schedule Time</a></li>
+			<li><a data-toggle="pill" href="#downloadTab" onclick="tabsUserInfo(<?php echo $this->userId; ?>,<?php echo $this->processStatus; ?>,4);">Download documents</a></li>
+			<li><a data-toggle="pill" href="#uploadTab" onclick="tabsUserInfo(<?php echo $this->userId; ?>,<?php echo $this->processStatus; ?>,5);">Upload documents</a></li>
+			<li><a data-toggle="pill" href="#fileTab" onclick="tabsUserInfo(<?php echo $this->userId; ?>,<?php echo $this->processStatus; ?>,6);">File status</a></li>
+			<li><a data-toggle="pill" href="#paymentTab" onclick="tabsUserInfo(<?php echo $this->userId; ?>,<?php echo $this->processStatus; ?>,7);">Payment Info</a></li>
+		</ul>
+		<div class="tab-content mar_t30">
+			<div id="basicInfoTab" class="tab-pane fade in active"></div>
+			<div id="otherInfoTab" class="tab-pane fade in active"></div>
+			<div id="scheduleTab" class="tab-pane fade in active"></div>
+			<div id="downloadTab" class="tab-pane fade in active"></div>
+			<div id="uploadTab" class="tab-pane fade in active"></div>
+			<div id="fileTab" class="tab-pane fade in active"></div>
+			<div id="paymentTab" class="tab-pane fade in active"></div>
+		</div>
 	</div>
-	<div class="mar_t30"></div>
-  <ul class="nav nav-pills nav_pill_sty">
-    <li class=""><a data-toggle="pill" href="#home">Basic Info</a></li>
-    <li><a data-toggle="pill" href="#menu1">Other Info</a></li>
-    <li><a data-toggle="pill"  href="#menu2">Schedule Time</a></li>
-    <li><a data-toggle="pill"  href="#menu3">Download documents</a></li>
-    <li><a data-toggle="pill"  href="#menu4">Upload documents</a></li>
-    <li><a data-toggle="pill"  href="#menu5">file status</a></li>
-    <li><a data-toggle="pill"  href="#menu6">Payment Info</a></li>
-  </ul>
-  <div class="tab-content mar_t30">
-    <div id="home" class="tab-pane fade in active">
-		<div class="tabs_tit">
-			<h3>FILE NUMBER:UTS0022</h3>
-		</div>
-	<div class="tab_con">
-     
-	  <div class="col-md-12 und_lin mar_t30">
-		<div class="col-md-6">
-			<table class="table">
-				<tr>
-					<th>djfjkasdsfkdsk</th>
-					<td>bayapu</td>
-				</tr>
-				<tr>
-					<th>djfjkasdsfkdsk</th>
-					<td>bayapu</td>
-				</tr>
-			</table>
-		</div>
-		<div class="col-md-6">
-			<table class="table">
-				<tr>
-					<th>djfjkasdsfkdsk</th>
-					<td>bayapu</td>
-				</tr>
-				<tr>
-					<th>djfjkasdsfkdsk</th>
-					<td>bayapu</td>
-				</tr>
-			</table>
-		</div>
-	  </div>
-	</div>
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-      <h3>Menu 3</h3>
-      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-    </div>
-  </div>
 </div>
-</div>
+
