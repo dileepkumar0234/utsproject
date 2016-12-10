@@ -180,4 +180,11 @@ class ProcessingStatusTable
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		
 	}
+	public function getUserProcessState($uid)
+    {	
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('ps_user_id="'.$uid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet->current();		
+	}
 }

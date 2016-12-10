@@ -214,11 +214,11 @@
 	<table>
 		<tr>
 		  <th>Title</th>
-		  <td><input type="text" id="taxTitle" name="taxTitle" required></td>
+		  <td><input type="text" id="taxTitle" name="taxTitle"></td>
 		</tr>
 		<tr>
 		  <th>Upload Synopsys</th>
-		  <td><input type="file" id="taxUploadFile" name="taxUploadFile" required></td>
+		  <td><input type="file" id="taxUploadFile" name="taxUploadFile"></td>
 		</tr>
 	</table>
 	<input type="button" value="upload" onclick="uploadTaxfile(<?php echo $this->userId; ?>);">
@@ -246,30 +246,115 @@
 <div class="tabs_tit">
 	<h3>No records found.</h3>
 </div>
+<?php }} else if($this->tabType == 6){ ?>
+<div>
+<br/>
+	<form method="post">
+	<table>
+		<tr>
+		  <th>File Number</th>
+		  <td><?php echo $this->userInfo->unique_code; ?></td>
+		</tr>
+		<tr>
+		  <th>File Status</th>
+		  <td>
+			<select id="processState" name="processState">
+				<option value="">Select an option</option>
+				<option label="To Be Assigned" value="0">To Be Assigned</option>
+				<option label="Basic Info Pending" value="1">Basic Info Pending</option>
+				<option label="Scheduling Pending" value="2">Scheduling Pending</option>
+				<option label="Interview Pending" value="3">Interview Pending</option>
+				<option label="Docs Upload Pending" value="4">Docs Upload Pending</option>
+				<option label="Other Docs Upload Pending" value="5">Other Docs Upload Pending</option>
+				<option label="Preparation Pending" value="6">Preparation Pending</option>
+				<option label="Synopsys Pending" value="7">Synopsys Pending</option>
+				<option label="Payment Pending" value="8">Payment Pending</option>
+				<option label="Review Pending" value="9">Review Pending</option>
+				<option label="Confirmation Pending" value="10">Confirmation Pending</option>
+				<option label="E-Filing Pending" value="11">E-Filing Pending</option>
+				<option label="Paper-Filing Pending" value="12">Paper-Filing Pending</option>
+				<option label="E-Filing Complete" value="13">E-Filing Complete</option>
+				<option label="Filing Docs Sent" value="14">Filing Docs Sent</option>
+				<option label="Cancel Filing" value="15">Cancel Filing</option>
+			</select>
+		  </td>
+		</tr>
+		<tr>
+		  <th>Comments</th>
+		  <td>
+		  <textarea id="commentClient" name="commentClient"></textarea>
+		  </td>
+		</tr>
+	</table>
+	<input type="button" value="Push to State" onclick="saveComment(<?php echo $this->userId; ?>);">
+	<input type="hidden" id="presentProcessSate" value="<?php echo $this->processInfo->ps_state; ?>">
+	</form>
+</div>
+<br/><br/>
+<?php if($this->commentsInfo->count()){ ?>
+<h3>Comments:</h3>
+<div class="tab_con">
+	<div class="col-md-12 und_lin mar_t30">
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($this->commentsInfo as $value){ ?>
+				<tr>
+					<th><?php echo 'Admin @ '.$value->cmt_created_at; ?></th>
+					<th><?php echo $value->comment; ?></th>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+	</div>
+</div>
+<?php }else{ ?>
+<div class="tabs_tit">
+	<h3>No records found.</h3>
+</div>
 <?php }} ?>
 <script>
-function uploadTaxfile(userId){
-	var _URL = window.URL || window.webkitURL;
-	var fd = new FormData();
-	var fieldID = 'taxUploadFile';
-	switch($('#'+fieldID).val().substring($('#'+fieldID).val().lastIndexOf('.') + 1).toLowerCase()){
-	case 'pdf' : case 'doc': case 'docx':
-		image = new Image();
-		image.src = _URL.createObjectURL($('#'+fieldID)[0].files[0]);
-		var hidVendorId =$('#hidVendorId').val();
-		fd.append( fieldID, $('#'+fieldID)[0].files[0]);
-		fd.append( 'title', $('#taxTitle').val());
-		fd.append( 'userId', userId);
+function saveComment(userId){
+	var processState = $('#processState').val();
+	var commentClient = $('#commentClient').val();
+	if(processState != "" && commentClient != ""){
 		$.ajax({
-			url: baseUrl+'/upload-tax-file',
-			data: fd,
-			processData: false,
-			contentType: false,
+			url: baseUrl+'/push-to-state',
+			data: {userId:userId,processState:processState,commentClient:commentClient},
 			type: 'POST',
 			success: function(){
-				tabsUserInfo(userId,0,5);
+				tabsUserInfo(userId,0,6);
 			}
 		});
+	}else{
+		alert('Please enter comment');
+	}
+}
+function uploadTaxfile(userId){
+	if($('#taxTitle').val() != "" && $('#taxUploadFile').val() != ""){
+		var _URL = window.URL || window.webkitURL;
+		var fd = new FormData();
+		var fieldID = 'taxUploadFile';
+		switch($('#'+fieldID).val().substring($('#'+fieldID).val().lastIndexOf('.') + 1).toLowerCase()){
+		case 'pdf' : case 'doc': case 'docx':
+			image = new Image();
+			image.src = _URL.createObjectURL($('#'+fieldID)[0].files[0]);
+			var hidVendorId =$('#hidVendorId').val();
+			fd.append( fieldID, $('#'+fieldID)[0].files[0]);
+			fd.append( 'title', $('#taxTitle').val());
+			fd.append( 'userId', userId);
+			$.ajax({
+				url: baseUrl+'/upload-tax-file',
+				data: fd,
+				processData: false,
+				contentType: false,
+				type: 'POST',
+				success: function(){
+					tabsUserInfo(userId,0,5);
+				}
+			});
+		}
+	}else{
+		alert('Please fill required fileds');
 	}
 }
 </script>

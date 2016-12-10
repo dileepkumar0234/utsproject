@@ -256,6 +256,20 @@ return array(
                     ),
                 ),
             ),
+			'push-to-state' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/push-to-state[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9_-]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'pushToState',
+                    ),
+                ),
+            ),
 		),
 	),     
     'view_manager' => array(

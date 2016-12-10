@@ -11,6 +11,7 @@ return array(
     ),
 	// Admin Accessing Controllers
     'admin'=> array(
+		'push-to-state',
 		'upload-tax-file',
 		'tabs-user-info',
 		'home',

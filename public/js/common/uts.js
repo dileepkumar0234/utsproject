@@ -39,6 +39,9 @@ function tabsUserInfo(userId,processStatus,tabType){
 				$('#uploadTab').html(resHtml);
 			}else if(tabType == 6){
 				$('#fileTab').html(resHtml);
+				setTimeout(function(){
+					$('#processState').val($('#presentProcessSate').val());
+				},500);
 			}else if(tabType == 7){
 				$('#paymentTab').html(resHtml);
 			}

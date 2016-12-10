@@ -510,12 +510,14 @@ class MadminController extends AbstractActionController
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
 		$utsYear 	= $baseUrlArr['utsYear'];
-		$userTable			= $this->getServiceLocator()->get('Models\Model\UserFactory');
-		$employeeinfoTable	= $this->getServiceLocator()->get('Models\Model\EmployeeinfoFactory');
-		$spouseTable		= $this->getServiceLocator()->get('Models\Model\SpouseFactory');
-		$schedulesTable		= $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
-		$uploadPdfsTable	= $this->getServiceLocator()->get('Models\Model\UploadPdfsFactory');
-		$synopsysTable		= $this->getServiceLocator()->get('Models\Model\SynopsysFactory');
+		$userTable				= $this->getServiceLocator()->get('Models\Model\UserFactory');
+		$employeeinfoTable		= $this->getServiceLocator()->get('Models\Model\EmployeeinfoFactory');
+		$spouseTable			= $this->getServiceLocator()->get('Models\Model\SpouseFactory');
+		$schedulesTable			= $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
+		$uploadPdfsTable		= $this->getServiceLocator()->get('Models\Model\UploadPdfsFactory');
+		$synopsysTable			= $this->getServiceLocator()->get('Models\Model\SynopsysFactory');
+		$commentsTable			= $this->getServiceLocator()->get('Models\Model\CommentsFactory');
+		$processingStatusTable	= $this->getServiceLocator()->get('Models\Model\ProcessingStatusFactory');
 		$userId				= $_POST['userId'];
 		$processStatus		= $_POST['processStatus'];
 		$tabType			= $_POST['tabType'];
@@ -589,6 +591,19 @@ class MadminController extends AbstractActionController
 				'userInfo'  	=>  $userInfo,
 				'userId'  		=>  $userId
 			));
+		}else if($tabType == 6){
+			$commentsInfo	= $commentsTable->getComments($userId);
+			$userInfo		= $userTable->getUserDataInfo($userId);
+			$processInfo	= $processingStatusTable->getUserProcessState($userId);
+			$view = new ViewModel(array(
+				'basePath'		=>	$basePath,
+				'baseUrl'   	=>  $baseUrl,
+				'commentsInfo'  =>  $commentsInfo,
+				'tabType'  		=>  $tabType,
+				'userInfo'  	=>  $userInfo,
+				'userId'  		=>  $userId,
+				'processInfo'  	=>  $processInfo
+			));
 		}
 		return $view->setTerminal(true);
 	}
@@ -613,5 +628,21 @@ class MadminController extends AbstractActionController
 				}
 			}
 		}
+	}
+	public function pushToStateAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$utsYear 	= $baseUrlArr['utsYear'];
+		$user_session 	= new Container('user');
+		$commttedBy 	= $user_session->userId;
+		$commentsTable				= $this->getServiceLocator()->get('Models\Model\CommentsFactory');
+		$processingStatusTable		= $this->getServiceLocator()->get('Models\Model\ProcessingStatusFactory');
+		$processingStatusTable->updateProcess($_POST['userId'],$_POST['processState']);
+		$commentsTable->addComment($_POST['userId'],$commttedBy,$_POST['commentClient']);
+		return new JsonModel(array(					
+			'output' => 1
+		));
 	}
 }
