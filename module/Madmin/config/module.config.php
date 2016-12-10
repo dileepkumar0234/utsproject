@@ -51,6 +51,71 @@ return array(
                     ),
                 ),
             ),
+			//Shedules
+			'schedules' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/schedules[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'schedules',
+                    ),
+                ),
+            ),
+			//End 
+			//referels
+			'referels' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/referels[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'referels',
+                    ),
+                ),
+            ),
+			//End 
+			// get Shedules info
+			'get-schedule-info' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/get-schedule-info[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'getScheduleInfo',
+                    ),
+                ),
+            ),
+			//End 
+			// get Shedules info
+			'get-referels-info' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/get-referels-info[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'getReferelsInfo',
+                    ),
+                ),
+            ),
+			//End 
+			
 			'all-assigned-users' => array(
                 'type'    => 'segment',
                 'options' => array(

@@ -29,6 +29,94 @@ class MadminController extends AbstractActionController
 	{
 	
 	}	
+	public function referelsAction(){
+		$baseUrls   = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl    = $baseUrlArr['baseUrl'];
+		$basePath   = $baseUrlArr['basePath'];
+		$viewModel = new ViewModel(
+			array(
+				'baseUrl'				 	=> $baseUrl,
+				'basePath' 					=> $basePath
+		));
+		return $viewModel;
+	}
+	
+	public function schedulesAction(){
+		$baseUrls   = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl    = $baseUrlArr['baseUrl'];
+		$basePath   = $baseUrlArr['basePath'];
+		$viewModel = new ViewModel(
+			array(
+				'baseUrl'				 	=> $baseUrl,
+				'basePath' 					=> $basePath
+		));
+		return $viewModel;
+	}
+	
+	public function getReferelsInfoAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$refTable = $this->getServiceLocator()->get('Models\Model\RefferalFriendsFactory');
+		$getShedInfo    = $refTable->getRefInfo();
+		// $user_id = $_SESSION['user']['userId'];
+			if(count($getShedInfo) > 0 ){
+				$i = 0;
+				$data = array();
+				foreach($getShedInfo as $shedInfo){
+					if($shedInfo->user_name != ""){
+						$name = $shedInfo->user_name;
+					}else{
+						$name = $shedInfo->rf_on_name;
+					}
+					if($shedInfo->email != ""){
+						$email = $shedInfo->email;
+					}else{
+						$email = $shedInfo->rf_on_email;
+					}
+					$data[$i]['rf_name']= $shedInfo->rf_name;
+					$data[$i]['rf_email']= '<a href="'.$baseUrl.'/all-tabs/'.$shedInfo->user_id.'-'.$shedInfo->ps_state.'">'.$shedInfo->rf_email.'</a>';
+					$data[$i]['re_on_name']= $name;
+					$data[$i]['re_on_email']= '<a href="'.$baseUrl.'/all-tabs/'.$shedInfo->user_id.'-'.$shedInfo->ps_state.'">'.$email.'</a>';
+					$i++;
+				}	
+				$datainfo['aaData'] = $data;	
+			}else{ 
+				$datainfo['aaData'] = array();
+			}
+			echo json_encode($datainfo); exit;
+	}
+	
+	
+	public function getScheduleInfoAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$sheduleTable = $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
+		$getShedInfo    = $sheduleTable->getSheduleInfo();
+		// $user_id = $_SESSION['user']['userId'];
+			if(count($getShedInfo) > 0 ){
+				$i = 0;
+				$data = array();
+				foreach($getShedInfo as $shedInfo){
+					$data[$i]['client_name']=$shedInfo->user_name;
+					$data[$i]['client_email']= '<a href="'.$baseUrl.'/all-tabs/'.$shedInfo->user_id.'-'.$shedInfo->ps_state.'">'.$shedInfo->email.'</a>';
+					$data[$i]['shedule_date']= $shedInfo->schedule_dt;
+					$data[$i]['shedule_period']= $shedInfo->schedule_period;
+					$i++;
+				}	
+				$datainfo['aaData'] = $data;	
+			}else{ 
+				$datainfo['aaData'] = array();
+			}
+			echo json_encode($datainfo); exit;
+	}
+	
+	
 	public function allTabsAction(){
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
@@ -219,7 +307,7 @@ class MadminController extends AbstractActionController
 		));
 		return $viewModel;
 	}	
-	public function toBeAssignedAction(){
+    public function toBeAssignedAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];

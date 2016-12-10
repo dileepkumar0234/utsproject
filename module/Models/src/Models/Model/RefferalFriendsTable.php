@@ -99,4 +99,13 @@ class RefferalFriendsTable
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;	
 	}
+	
+	public function getRefInfo(){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->join('user', new Expression('user.user_id=referral_friends.rf_user_id'),array('*'),'left');
+		$select->join('processing_status', new Expression('referral_friends.rf_user_id = processing_status.ps_user_id'),array('*'),'left');
+		$select->order('referral_friends.rf_id DESC');
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet;	
+	}
 }
