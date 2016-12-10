@@ -16,6 +16,7 @@ return array(
 		'assign-user',
         'members',
         'all-users',
+		'all-tabs',
 		'all-assigned-users',
 		'common-processing',
 		'to-be-assigned',

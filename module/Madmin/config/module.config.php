@@ -107,6 +107,20 @@ return array(
                     ),
                 ),
             ),
+			'all-tabs' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/all-tabs[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'allTabs',
+                    ),
+                ),
+            ),
 			'common-processing' => array(
                 'type'    => 'segment',
                 'options' => array(

@@ -29,6 +29,10 @@ class MadminController extends AbstractActionController
 	{
 	
 	}	
+	public function allTabsAction(){
+		// echo "Dileep";exit;
+		
+	}
 	public function checkLoginsModeAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];

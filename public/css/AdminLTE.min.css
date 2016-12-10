@@ -1,9 +1,44 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
-/*!
- 
- *          Dileep for more information
-!*/
 
+
+/* Dileep for more information */
+
+.nav_col li{
+	color: #fff;
+    font-weight: 600;
+    line-height: 51px;
+    padding: 0 20px;
+}
+.nav_col li:hover{
+	background:#f5f5f5;
+	border-radius:5px;
+	color:#222;
+}
+.tabs_tit{
+		background:#3c8dbc;
+		color:#fff;
+		padding:1px;
+		width:320px;
+		margin-top:40px;
+		text-algin:center
+	}
+	.mar_t30{
+		margin-top:30px;
+	}
+	.nav_pill_sty li a{
+		color:#fff !important;
+	font-weight:600;
+	}
+	.nav_pill_sty li{
+		background:#3c8dbc;
+		color:#fff;
+		padding:4px;
+		border-radius:5px;
+	}
+
+/* Dileep for more information */
+
+ 
 html,
 body {
     min-height: 100%
@@ -2510,9 +2545,9 @@ a:focus {
 .table>tbody>tr>th,
 .table>tfoot>tr>th,
 .table>thead>tr>td,
-.table>tbody>tr>td,
+.table>tbody>tr>td,	
 .table>tfoot>tr>td {
-    border-top: 1px solid #f4f4f4
+    border-top: 1px solid #ddd;
 }
 .table>thead>tr>th {
     border-bottom: 2px solid #f4f4f4

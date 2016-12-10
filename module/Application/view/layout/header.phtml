@@ -30,14 +30,22 @@
                 <span class="sr-only">Toggle navigation</span>
                 </a>
                 <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">   
+                    <ul class="nav navbar-nav nav_col">  
+								<li>All Clients</li>
+								<li>Payments</li>
+								<li>Referrals</li>
+								<li>Schedules</li>
+								<li>Emails</li>					
+								<li>What us to call?</li>					
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<?php echo $basePath;?>/img/logoblack1.png" class="user-image" alt="User Image">
                             <span class="hidden-xs"><?php if(isset($_SESSION['user']['userId']) && $_SESSION['user']['userId']!=""){ echo $_SESSION['user']['u_name'].'  ('. ucfirst($_SESSION['user']['ut_type_name']) .')';}?></span>
                             </a>
+							
                             <ul class="dropdown-menu">
                                 <!-- User image -->
+								
                                 <li class="user-header">
                                     <img src="<?php echo $basePath;?>/img/logoblack1.png" class="user-image" alt="User Image">
                                     <p><?php if(isset($_SESSION['user']['userId']) && $_SESSION['user']['userId']!=""){ echo $_SESSION['user']['u_name'];}?>
