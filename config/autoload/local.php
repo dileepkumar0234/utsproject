@@ -13,7 +13,7 @@
 
 return array(
  'db' => array(
-		'dsn'      => 'mysql:dbname=taxfiler;host=localhost',
+		'dsn'      => 'mysql:dbname=umpiretaxpayer;host=localhost',
         'username' => 'root',
         'password' => '',
     ),
