@@ -17,10 +17,11 @@ return array(
         'username' => 'root',
         'password' => '',
     ),
-	 'urls'                 =>     array(
-        'baseUrl'         =>     'http://localhost/utsproject/trunk',
-        'basePath'         =>    'http://localhost/utsproject/trunk/public',
-        'imagesUrl'        =>    '#',
+	 'urls'              =>     array(
+        'baseUrl'        =>     'http://localhost/utsproject/trunk',
+        'basePath'       =>    'http://localhost/utsproject/trunk/public',
+        'imagesUrl'      =>    '#',
+        'utsYear'        =>    '2015',
     ),
     'service_manager'     =>     array(
         'factories'     =>     array(  
