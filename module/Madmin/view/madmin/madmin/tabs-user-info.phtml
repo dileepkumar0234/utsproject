@@ -234,6 +234,7 @@
 				<?php foreach($this->taxInfo as $value){ ?>
 				<tr>
 					<th><?php echo $value->synopsys_title; ?></th>
+					<th><?php echo $value->synopsys_file; ?></th>
 					<td><a href="<?php echo $this->baseUrl.'/synopsys/'.$this->userId.'/'.$value->synopsys_file; ?>" download>Download</a></td>
 				</tr>
 				<?php } ?>
@@ -248,35 +249,27 @@
 <?php }} ?>
 <script>
 function uploadTaxfile(userId){
-	alert();
-	var fieldID = "taxUploadFile";
 	var _URL = window.URL || window.webkitURL;
-	var image;
 	var fd = new FormData();
+	var fieldID = 'taxUploadFile';
 	switch($('#'+fieldID).val().substring($('#'+fieldID).val().lastIndexOf('.') + 1).toLowerCase()){
-		case 'pdf':
+	case 'pdf' : case 'doc': case 'docx':
 		image = new Image();
 		image.src = _URL.createObjectURL($('#'+fieldID)[0].files[0]);
-		image.onload = function() {
-			fd.append( fieldID, $('#'+fieldID)[0].files[0]);
-			fd.append( 'title', $('#taxTitle').val());
-			$.ajax({
-				url: baseUrl+'/upload-tax-file',
-				data: fd,
-				processData: false,
-				contentType: false,
-				type: 'POST',
-				cache:	false,
-				success: function(returned){
-					tabsUserInfo(userId,0,5)
-				}
-			});
-		}
-		break;
-		default:
-		$('#'+fieldID).val('');
-		alert('Please upload PDF format');
-		break;
+		var hidVendorId =$('#hidVendorId').val();
+		fd.append( fieldID, $('#'+fieldID)[0].files[0]);
+		fd.append( 'title', $('#taxTitle').val());
+		fd.append( 'userId', userId);
+		$.ajax({
+			url: baseUrl+'/upload-tax-file',
+			data: fd,
+			processData: false,
+			contentType: false,
+			type: 'POST',
+			success: function(){
+				tabsUserInfo(userId,0,5);
+			}
+		});
 	}
 }
 </script>

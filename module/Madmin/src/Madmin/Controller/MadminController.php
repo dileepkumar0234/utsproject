@@ -294,16 +294,14 @@ class MadminController extends AbstractActionController
 	}
 	public function allAssignedUsersAction()
 	{
-		$baseUrls   = $this->getServiceLocator()->get('config');
+		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
-		$baseUrl    = $baseUrlArr['baseUrl'];
-		$basePath   = $baseUrlArr['basePath'];
-		$typeId     = $this->params()->fromRoute('id', 0);
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
-				'basePath' 					=> $basePath,
-				'typeId'					=> $typeId
+				'basePath' 					=> $basePath				
 		));
 		return $viewModel;
 	}	
@@ -319,81 +317,42 @@ class MadminController extends AbstractActionController
 		}
 		$processStatusTable = $this->getServiceLocator()->get('Models\Model\ProcessingStatusFactory');
 		$userTable=$this->getServiceLocator()->get('Models\Model\UserFactory');
-		$getAgents = $userTable->getUnListUserList()->toArray();
-		//echo "<pre>"; print_r($getAgents); exit;
+		$getAgents = $userTable->getUnListUserList();
 		$html = '';
 		// $user_id = $_SESSION['user']['userId'];
 		$getData =array();
 		$getData = $processStatusTable->getToassignedData($id);	
-			if(!empty($getData)){
+		if($getData!=""){
+			if(count($getData)>0){
 				$i = 0;
-				$data = array();
 				foreach($getData as $bCData){
 					$user_id = $bCData->user_id;
-					if($bCData->ps_state == 0){
-						$html = "<select id='a_user_id".$user_id."' name='a_user_id".$user_id."' onChange='assignedToUser(".$user_id.",".$id.");'>";
-						$html .= "<option value ='select' >Select</option>";
-						$selected =	"";				
-						foreach($getAgents as $getagent){
-							if($getagent['user_id'] == $bCData->unlists_u_id){
-								$selected = "selected";
-							}else{
-								$selected = "";
-							}
-							$html .="<option value=".$getagent['user_id']." ".$selected.">".ucfirst($getagent['user_name'])."</option>";
-						}
-						$html.="</select>";
-				   }
+					$html = "<select id='a_user_id' name='a_user_id' onChange='assignedToUser(".$user_id.");'>";
+					foreach($getAgents as $getagent){
+						$html.="<option value=".$getagent->user_id.">".ucfirst($getagent->user_name)."</option>";
+					}
+					$html.="</select>";
 					if($bCData->ps_state=='0'){
 						$status = 'To Be Assigned';
-					}else if($bCData->ps_state=='1'){
-						$status = 'Basic';
-					}else if($bCData->ps_state=='2'){
-						$status = 'Scheduling';
-					}else if($bCData->ps_state=='3'){
-						$status = 'Interview';
-					}else if($bCData->ps_state=='4'){
-						$status = 'Doc Pending';
-					}else if($bCData->ps_state=='5'){
-						$status = 'Other Doc';
-					}else if($bCData->ps_state=='6'){
-						$status = 'Preparation';
-					}else if($bCData->ps_state=='7'){
-						$status = 'Synopses';
-					}else if($bCData->ps_state=='8'){
-						$status = 'Payment';
-					}else if($bCData->ps_state=='9'){
-						$status = 'Review Upload';
-					}else if($bCData->ps_state=='10'){
-						$status = 'Review Pending';
-					}else if($bCData->ps_state=='11'){
-						$status = 'E-Filing Pening';
-					}else if($bCData->ps_state=='12'){
-						$status = 'P-Filing Pending';
-					}else if($bCData->ps_state=='13'){
-						$status = 'E-Filing Complete';
-					}else if($bCData->ps_state=='14'){
-						$status = 'E-Filing Doc Sent';
-					}else if($bCData->ps_state=='15'){
-						$status = 'File Cancelled';
 					}
-					$data[$i]['file_number']= '<a href="'.$baseUrl.'/all-tabs/'.$bCData->user_id.'-'.$bCData->ps_state.'">'.$bCData->unique_code.'</a>';
+					$data[$i]['file_number']=$bCData->unique_code;
 					$data[$i]['client_name']=$bCData->user_name;
-					$data[$i]['u_email']= '<a href="'.$baseUrl.'/all-tabs/'.$bCData->user_id.'-'.$bCData->ps_state.'">'.$bCData->email .'</a>';
+					$data[$i]['u_email']= $bCData->email;
 					$data[$i]['ssn']= $bCData->ssnitin;
 					$data[$i]['file_status']= $status;
-					if($bCData->ps_state == 0){
-						$data[$i]['assigned']= $html;
-					}else{
-						$data[$i]['assigned'] = "assigned";
-					}
+					$data[$i]['assigned']= $html;
 					$i++;
 				}	
 				$datainfo['aaData'] = $data;	
+				print_r(json_encode($datainfo));exit;
 			}else{ 
 				$datainfo['aaData'] = array();
+				print_r(json_encode($datainfo));exit;
 			}
-			echo json_encode($datainfo); exit;
+		}else{
+			$datainfo['aaData'] = array();
+			print_r(json_encode($datainfo));exit;
+		}	
 	}
 	public function assignedToUsersAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -639,7 +598,20 @@ class MadminController extends AbstractActionController
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
 		$utsYear 	= $baseUrlArr['utsYear'];
-		echo '<pre>'; print_r($_FILES);
-		echo '<pre>'; print_r($_POST);exit;
+		$synopsysTable		= $this->getServiceLocator()->get('Models\Model\SynopsysFactory');
+		$name 				= $_FILES["taxUploadFile"]["name"];
+		$newfilenamePath 	= "./synopsys/".$_POST['userId']."/".$name;
+		$name 				= $name;
+		$path				= "./synopsys/".$_POST['userId'];
+		if(!is_dir($path)) {
+			if(mkdir($path, 0777, true)){
+				if (move_uploaded_file($_FILES["taxUploadFile"]["tmp_name"], $newfilenamePath)){
+					$synopsysTable->assignSynopsys($_POST['userId'],$name,$_POST['title']);
+					return new JsonModel(array(					
+						'imageName' => 	$name
+					));
+				}
+			}
+		}
 	}
 }
