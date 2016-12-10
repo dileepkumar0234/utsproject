@@ -74,7 +74,6 @@ class UserTable
 		$select->order('user.user_id DESC');
 		$resultSet = $this->tableGateway->selectWith($select);			
 		return $resultSet;
-		
 	}
 	public function getUserListAll(){
 		$select = $this->tableGateway->getSql()->select();

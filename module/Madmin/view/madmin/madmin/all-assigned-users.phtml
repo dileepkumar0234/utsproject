@@ -6,12 +6,74 @@
   <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-           Users 
-          </h1>
+         <?php if(isset($this->typeId) && $this->typeId == 0){ ?>
+		 <h1> Users </h1>
+		 <?php }else if(isset($this->typeId) && $this->typeId == 1){ ?>
+		<h1> Basic Info </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 2){ ?>
+			<h1> Scheduling </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 3){ ?>
+			<h1> Interview </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 4){ ?>
+			<h1> Documents upload </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 5){ ?>
+			<h1> Other Docs </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 6){ ?>
+			<h1> Preparation </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 7){ ?>
+			<h1> Synopses </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 8){ ?>
+			<h1> Payment </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 9){ ?>
+			<h1> Review upload </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 10){ ?>
+			<h1> Review Confirmation </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 11){ ?>
+			<h1> E-Filing Pending </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 13){ ?>
+			<h1> E-Filing Complete </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 12){ ?>
+			<h1> P-Filing Pending </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 14){ ?>
+			<h1> P-Filing Docs </h1>
+		<?php }else if(isset($this->typeId) && $this->typeId == 15){ ?>
+			<h1> Files Cancelled </h1>
+		<?php } ?>
           <ol class="breadcrumb">
-            <li><a href="<?php echo $baseUrl?>/all-assigned-users"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Users</li>
+            <li><a href="<?php echo $baseUrl?>/members"><i class="fa fa-dashboard"></i> Home</a></li>
+		<?php if(isset($this->typeId) && $this->typeId == 0){ ?>
+		    / Users 
+		 <?php }else if(isset($this->typeId) && $this->typeId == 1){ ?>
+			/ Basic Info 
+		<?php }else if(isset($this->typeId) && $this->typeId == 2){ ?>
+			/ Scheduling 
+		<?php }else if(isset($this->typeId) && $this->typeId == 3){ ?>
+			/ Interview 
+		<?php }else if(isset($this->typeId) && $this->typeId == 4){ ?>
+			/ Documents upload 
+		<?php }else if(isset($this->typeId) && $this->typeId == 5){ ?>
+			/ Other Docs 
+		<?php }else if(isset($this->typeId) && $this->typeId == 6){ ?>
+			/ Preparation 
+		<?php }else if(isset($this->typeId) && $this->typeId == 7){ ?>
+			/ Synopses 
+		<?php }else if(isset($this->typeId) && $this->typeId == 8){ ?>
+			/ Payment 
+		<?php }else if(isset($this->typeId) && $this->typeId == 9){ ?>
+			/ Review upload 
+		<?php }else if(isset($this->typeId) && $this->typeId == 10){ ?>
+			/ Review Confirmation 
+		<?php }else if(isset($this->typeId) && $this->typeId == 11){ ?>
+			/ E-Filing Pending 
+		<?php }else if(isset($this->typeId) && $this->typeId == 13){ ?>
+			/ E-Filing Complete 
+		<?php }else if(isset($this->typeId) && $this->typeId == 12){ ?>
+			/ P-Filing Pending 
+		<?php }else if(isset($this->typeId) && $this->typeId == 14){ ?>
+			/ P-Filing Docs 
+		<?php }else if(isset($this->typeId) && $this->typeId == 15){ ?>
+			/ Files Cancelled 
+		<?php } ?>
           </ol>
         </section>
         <!-- Main content -->
@@ -29,7 +91,7 @@
 	$.ajax({
 		type:	'GET',
 		dataType:'json',
-		url: '<?php echo $this->baseUrl; ?>/to-be-assigned?type=0&sRch=<?php echo time(); ?>',
+		url: '<?php echo $this->baseUrl; ?>/to-be-assigned?type=<?php echo $this->typeId; ?>&sRch=<?php echo time(); ?>',
 		success: function(data){			
 		$('.tEList').html('<table id="serchList" class="table table-bordered table-striped"><thead><tr><th>File Number</th><th>Client Name</th><th>Email Id</th><th>SSN</th><th>File Status</th><th>Assigned</th></tr></thead><tbody></tbody></table>');				
 		var oTable = $('#serchList').dataTable( {
@@ -54,16 +116,16 @@
 		}
 	});
   });
-  function assignedToUser(assignToUser){
-		var assignedUser = $("#a_user_id").val();
-		if(assignedUser!=""){
+  function assignedToUser(assignToUser,$statusId){
+		var assignedUser = $("#a_user_id"+assignToUser).val();
+		if(assignedUser != "select"){
 			$.ajax({
 				type:'POST',
 				url:  baseUrl+'/assign-user',
 				data:{unlists_u_id:assignedUser,client_id:assignToUser},
 				success: function(data){
 					if(data.output == "success"){
-						window.location = baseUrl+"/all-assigned-users";
+						window.location = baseUrl+"/all-assigned-users/"+$statusId;
 					}else if(data.output == "fail"){	
 						$("#errorMsg").html('Entered inputs are wrong.');
 					}

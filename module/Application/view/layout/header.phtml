@@ -74,24 +74,24 @@
                 <ul class="sidebar-menu">
                     <li class="header">Mega Menu</li>
 <?php if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=="1"){?>
-<li class="treeview"><a href="all-users"><i class="fa fa-circle-o"></i> <span>All Records</span></a></li>
-<li class="treeview"><a href="all-assigned-users"><i class="fa fa-circle-o"></i> <span>To be Assigned</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>To be Allocated</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Basic Info Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Scheduling Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Interview Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Documents Upload Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Other Docs Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Preparation Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Synopses Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Payment Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Review Upload Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Review Confirmation Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>E-Filing Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>P-Filing Pending</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>E – Filing Complete</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>P- Filing Docs Sent</span></a></li>
-<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>Files Cancelled</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-users"><i class="fa fa-circle-o"></i> <span>All Records</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/0"><i class="fa fa-circle-o"></i> <span>To be Assigned</span></a></li>
+<!--<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>To be Allocated</span></a></li>-->
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/1"><i class="fa fa-circle-o"></i> <span>Basic Info Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/2"><i class="fa fa-circle-o"></i> <span>Scheduling Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/3"><i class="fa fa-circle-o"></i> <span>Interview Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/4"><i class="fa fa-circle-o"></i> <span>Documents Upload Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/5"><i class="fa fa-circle-o"></i> <span>Other Docs Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/6"><i class="fa fa-circle-o"></i> <span>Preparation Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/7"><i class="fa fa-circle-o"></i> <span>Synopses Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/8"><i class="fa fa-circle-o"></i> <span>Payment Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/9"><i class="fa fa-circle-o"></i> <span>Review Upload Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/10"><i class="fa fa-circle-o"></i> <span>Review Confirmation Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/11"><i class="fa fa-circle-o"></i> <span>E-Filing Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/12"><i class="fa fa-circle-o"></i> <span>P-Filing Pending</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/13"><i class="fa fa-circle-o"></i> <span>E–Filing Complete</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/14"><i class="fa fa-circle-o"></i> <span>P-Filing Docs Sent</span></a></li>
+<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/15"><i class="fa fa-circle-o"></i> <span>Files Cancelled</span></a></li>
 <?php } ?>
 				</ul>
             </section>
