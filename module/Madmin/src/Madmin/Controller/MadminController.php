@@ -76,10 +76,18 @@ class MadminController extends AbstractActionController
 					}else{
 						$email = $shedInfo->rf_on_email;
 					}
-					$data[$i]['rf_name']= $shedInfo->rf_name;
-					$data[$i]['rf_email']= '<a href="'.$baseUrl.'/all-tabs/'.$shedInfo->user_id.'-'.$shedInfo->ps_state.'">'.$shedInfo->rf_email.'</a>';
-					$data[$i]['re_on_name']= $name;
-					$data[$i]['re_on_email']= '<a href="'.$baseUrl.'/all-tabs/'.$shedInfo->user_id.'-'.$shedInfo->ps_state.'">'.$email.'</a>';
+					if($shedInfo->phone != ""){
+						$phone = $shedInfo->phone;
+					}else{
+						$phone = $shedInfo->rf_on_phone;
+					}
+					$data[$i]['rf_name']      = $shedInfo->rf_name;
+					$data[$i]['rf_email']     = $shedInfo->rf_email;
+					$data[$i]['rf_phone']     = $shedInfo->rf_phone;
+					$data[$i]['re_on_name']   = $name;
+					$data[$i]['re_on_email']  = $email;
+					$data[$i]['rf_on_phone']  = $phone;
+					$data[$i]['rf_comment']   = $shedInfo->rf_comment;
 					$i++;
 				}	
 				$datainfo['aaData'] = $data;	

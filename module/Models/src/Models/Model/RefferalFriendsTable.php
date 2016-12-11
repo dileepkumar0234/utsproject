@@ -103,6 +103,7 @@ class RefferalFriendsTable
 	public function getRefInfo(){
 		$select = $this->tableGateway->getSql()->select();	
 		$select->join('user', new Expression('user.user_id=referral_friends.rf_user_id'),array('*'),'left');
+		$select->join('user_details', new Expression('user.user_id=user_details.u_user_id'),array('*'),'left');
 		$select->join('processing_status', new Expression('referral_friends.rf_user_id = processing_status.ps_user_id'),array('*'),'left');
 		$select->order('referral_friends.rf_id DESC');
 		$resultSet = $this->tableGateway->selectWith($select);	
