@@ -26,7 +26,7 @@
                   <div class="box-body">
 					<div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Email Type</label>
-                      <div class="col-sm-4">
+                      <div class="col-sm-6">
                         <select class="form-control" name="email_type" id="email_type" onchange="displayMessage()">
 							<option value="1">Type 1</option>
 							<option value="2">Type 2</option>
@@ -36,13 +36,13 @@
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Names</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" name="email_names" id="email_names" placeholder="Names" required data-fv-notempty-message="The names are required and cannot be empty" />
+                        <textarea class="form-control" name="email_names" id="email_names" placeholder="Names" required data-fv-notempty-message="The names are required and cannot be empty"></textarea>
                       </div>
                     </div>
 					<div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Emails</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control" name="email_emails" id="email_emails" value="" placeholder="Last Name" required data-fv-notempty-message="The emails are required and cannot be empty" />
+                        <textarea class="form-control" name="email_emails" id="email_emails" value="" placeholder="Last Name" required data-fv-notempty-message="The emails are required and cannot be empty"></textarea>
                       </div>
                     </div>
 					<div class="form-group">
@@ -53,6 +53,8 @@
                     </div>
                 </div>
 				<div class="box-footer">
+					<span id="successMessage" style="display:none;color:green;">Message sent successfully!</span>
+					<i id="loadMessage" style="display:none;float:right;">loading..</i>
 					<button type="submit"  class="btn btn-info pull-right">Send</button>
 				</div>
 
@@ -86,6 +88,7 @@ function sendEmails(){
 		var email_type     = $("#email_type").val();
 		
 		if (email_names != "" && email_emails != "")  {
+			$('#loadMessage').show();
 			$.ajax({
 				type		:	'POST',
 				url			:  	baseUrl+'/send-admin-emails',
@@ -94,6 +97,8 @@ function sendEmails(){
 				success: function(data){
 					$("#email_names").val('');
 					$("#email_emails").val('');
+					$('#loadMessage').hide();
+					$("#successMessage").show().delay(2000).fadeOut();
 				}
 			});			
 		} 
