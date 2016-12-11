@@ -15,8 +15,10 @@
 .skin-blue .main-header .navbar .nav .open > a:hover,
 .skin-blue .main-header .navbar .nav .open > a:focus,
 .skin-blue .main-header .navbar .nav > .active > a {
-  background: #047ab7;
-  color: #f6f6f6;
+/*   background: #047ab7;
+  color: #f6f6f6; */
+  background:#fff;
+  color: #000;
 }
 .skin-blue .main-header .navbar .sidebar-toggle {
   color: #ffffff;

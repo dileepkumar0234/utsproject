@@ -268,11 +268,19 @@
 	<table>
 		<tr>
 		  <th>Title</th>
-		  <td><input type="text" id="taxTitle" name="taxTitle"></td>
+		  <td><input  class="form-control" type="text" id="taxTitle" name="taxTitle"></td>
 		</tr>
 		<tr>
-		  <th>Upload Synopsys</th>
+		  <th>&nbsp;</th>
+		  <td>&nbsp;</td>
+		</tr>
+		<tr>
+		  <th>Upload Synopsys &nbsp;&nbsp;&nbsp;</th>
 		  <td><input type="file" id="taxUploadFile" name="taxUploadFile"></td>
+		</tr>
+		<tr>
+		  <th>&nbsp;</th>
+		  <td>&nbsp;</td>
 		</tr>
 	</table>
 	<input type="button" value="upload" onclick="uploadTaxfile(<?php echo $this->userId; ?>);">
@@ -307,13 +315,17 @@
 	<form method="post">
 	<table>
 		<tr>
-		  <th>File Number</th>
+		  <th>File Number &nbsp;&nbsp;</th>
 		  <td><?php echo $this->userInfo->unique_code; ?></td>
+		</tr>
+		<tr>
+		  <th>&nbsp;</th>
+		  <td>&nbsp;</td>
 		</tr>
 		<tr>
 		  <th>File Status</th>
 		  <td>
-			<select id="processState" name="processState">
+			<select  class="form-control" id="processState" name="processState">
 				<option value="">Select an option</option>
 				<option label="To Be Assigned" value="0">To Be Assigned</option>
 				<option label="Basic Info Pending" value="1">Basic Info Pending</option>
@@ -335,10 +347,18 @@
 		  </td>
 		</tr>
 		<tr>
+		  <th>&nbsp;</th>
+		  <td>&nbsp;</td>
+		</tr>
+		<tr>
 		  <th>Comments</th>
 		  <td>
-		  <textarea id="commentClient" name="commentClient"></textarea>
+		  <textarea class="form-control"id="commentClient" name="commentClient"></textarea>
 		  </td>
+		</tr>
+		<tr>
+		  <th>&nbsp;</th>
+		  <td>&nbsp;</td>
 		</tr>
 	</table>
 	<input type="button" value="Push to State" onclick="saveComment(<?php echo $this->userId; ?>);">
