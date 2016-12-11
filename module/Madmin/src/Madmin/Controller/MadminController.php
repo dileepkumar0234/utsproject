@@ -560,6 +560,7 @@ class MadminController extends AbstractActionController
 		$synopsysTable			= $this->getServiceLocator()->get('Models\Model\SynopsysFactory');
 		$commentsTable			= $this->getServiceLocator()->get('Models\Model\CommentsFactory');
 		$processingStatusTable	= $this->getServiceLocator()->get('Models\Model\ProcessingStatusFactory');
+		$dependentTable			= $this->getServiceLocator()->get('Models\Model\DependentFactory');
 		$userId				= $_POST['userId'];
 		$processStatus		= $_POST['processStatus'];
 		$tabType			= $_POST['tabType'];
@@ -572,7 +573,16 @@ class MadminController extends AbstractActionController
 				'tabType'  	=>  $tabType
 			));
 		}else if($tabType == 2){
-			$employeeInfo	= $employeeinfoTable->getData($userId);
+			$employeeeInfo	= $employeeinfoTable->getData($userId);
+			$employeeInfo 	= array();
+			if($employeeeInfo->count()){
+				foreach($employeeeInfo as $key=>$sp){
+					$employeeInfo[$key][0]['Company Name'] 	= $sp->company_name;
+					$employeeInfo[$key][0]['Experience'] 	= $sp->experience;
+					$employeeInfo[$key][1]['Salary'] 		= $sp->salary;
+					$employeeInfo[$key][1]['Location'] 		= $sp->location;
+				}
+			}
 			$spousesInfo	= $spouseTable->getSpousesData($userId);
 			$spouseInfo 	= array();
 			if($spousesInfo->count()){
@@ -585,11 +595,24 @@ class MadminController extends AbstractActionController
 					$spouseInfo[$key][1]['Visa Type'] 		= $sp->visa_type;
 				}
 			}
+			$dependentsInfo	= $dependentTable->getDependents($userId,$utsYear);
+			$dependentInfo 	= array();
+			if($dependentsInfo->count()){
+				foreach($dependentsInfo as $key=>$dp){
+					$dependentInfo[$key][0]['First Name'] 		= $dp->first_name;
+					$dependentInfo[$key][0]['Phone'] 			= $dp->phone;
+					$dependentInfo[$key][0]['Date Of Birth'] 	= $dp->dob;
+					$dependentInfo[$key][1]['Last Name'] 		= $dp->last_name;
+					$dependentInfo[$key][1]['Occupation'] 		= $dp->occupation;
+					$dependentInfo[$key][1]['Address'] 			= $dp->address;
+				}
+			}
 			$view = new ViewModel(array(
 				'basePath'		=>	$basePath,
 				'baseUrl'   	=>  $baseUrl,
 				'employeeInfo'  =>  $employeeInfo,
 				'spouseInfo'  	=>  $spouseInfo,
+				'dependentInfo' =>  $dependentInfo,
 				'tabType'  		=>  $tabType
 			));
 		}else if($tabType == 3){

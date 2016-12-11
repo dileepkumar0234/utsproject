@@ -22,6 +22,6 @@ class EmployeeinfoTable
 		$select = $this->tableGateway->getSql()->select();	
 		$select->where('user_id = "'.$id.'"');
 		$resultSet = $this->tableGateway->selectWith($select);	
-		return $resultSet->current();		
+		return $resultSet;		
 	}
 }

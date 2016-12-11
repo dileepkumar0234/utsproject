@@ -66,4 +66,11 @@ class DependentTable
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet->count();		
 	}
+	public function getDependents($id,$year){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('d_user_id = "'.$id.'"');
+		$select->where('current_year = "'.$year.'"');
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet;		
+	}
 }

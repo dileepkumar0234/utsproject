@@ -90,35 +90,40 @@
 <div class="tabs_tit">
 	<h3>Employee Information:</h3>
 </div>
+<?php if(count($this->employeeInfo) != 0){
+	foreach($this->employeeInfo as $info=>$sp){
+?>
+<h3>Information-<?php echo ($info+1); ?>:</h3>
 <div class="tab_con">
 	<div class="col-md-12 und_lin mar_t30">
 		<div class="col-md-6">
 			<table class="table">
+				<?php foreach($sp[0] as $key=>$value){ ?>
 				<tr>
-					<th>Company Name</th>
-					<td><?php echo $this->employeeInfo->company_name; ?></td>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
 				</tr>
-				<tr>
-					<th>Experience</th>
-					<td><?php echo $this->employeeInfo->experience; ?></td>
-				</tr>
+				<?php } ?>
 			</table>
 		</div>
 		<div class="col-md-6">
 			<table class="table">
+				<?php foreach($sp[1] as $key=>$value){ ?>
 				<tr>
-					<th>Salary</th>
-					<td><?php echo $this->employeeInfo->salary; ?></td>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
 				</tr>
-				<tr>
-					<th>Location</th>
-					<td><?php echo $this->employeeInfo->location; ?></td>
-				</tr>
+				<?php } ?>
 			</table>
 		</div>
 	</div>
 </div>
-<br/><br/><br/><br/>
+<?php }}else{ ?>
+<div class="tabs_tit">
+	<h3>No records found.</h3>
+</div>
+<?php } ?>
+<br/><br/><br/><br/><br/>
 <div class="tabs_tit">
 	<h3>Spouse Information:</h3>
 </div>
@@ -149,7 +154,48 @@
 		</div>
 	</div>
 </div>
-<?php }}} else if($this->tabType == 3){ ?>
+<?php }} else { ?>
+<div class="tabs_tit">
+	<h3>No records found.</h3>
+</div>
+<?php } ?>
+<br/><br/><br/><br/><br/><br/><br/>
+<div class="tabs_tit">
+	<h3>Dependents Information:</h3>
+</div>
+<?php if(count($this->dependentInfo) != 0){
+	foreach($this->dependentInfo as $dep=>$sp){
+?>
+<h3>Dependent-<?php echo ($dep+1); ?>:</h3>
+<div class="tab_con">
+	<div class="col-md-12 und_lin mar_t30">
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($sp[0] as $key=>$value){ ?>
+				<tr>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($sp[1] as $key=>$value){ ?>
+				<tr>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+	</div>
+</div>
+<?php }} else { ?>
+<div class="tabs_tit">
+	<h3>No records found.</h3>
+</div>
+<?php }} else if($this->tabType == 3){ ?>
 <?php if(count($this->scheduleInfo) != 0){
 	foreach($this->scheduleInfo as $sc){
 ?>

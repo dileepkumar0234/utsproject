@@ -21,7 +21,21 @@ function loginBtnV(jForm){
 	});
 }
 function tabsUserInfo(userId,processStatus,tabType){
-	$('#basicInfoTab').html('<i>Loading...</i>');
+	if(tabType == 1){
+		$('#basicInfoTab').html('<i>Loading...</i>');
+	}else if(tabType == 2){
+		$('#otherInfoTab').html('<i>Loading...</i>');
+	}else if(tabType == 3){
+		$('#scheduleTab').html('<i>Loading...</i>');
+	}else if(tabType == 4){
+		$('#downloadTab').html('<i>Loading...</i>');
+	}else if(tabType == 5){
+		$('#uploadTab').html('<i>Loading...</i>');
+	}else if(tabType == 6){
+		$('#fileTab').html('<i>Loading...</i>');
+	}else if(tabType == 7){
+		$('#paymentTab').html('<i>Loading...</i>');
+	}
 	$.ajax({
 		type	: 'POST',
 		url		: baseUrl+'/tabs-user-info',
