@@ -62,7 +62,6 @@ class MadminController extends AbstractActionController
 		$basePath = $baseUrlArr['basePath'];
 		$refTable = $this->getServiceLocator()->get('Models\Model\RefferalFriendsFactory');
 		$getShedInfo    = $refTable->getRefInfo();
-		// $user_id = $_SESSION['user']['userId'];
 			if(count($getShedInfo) > 0 ){
 				$i = 0;
 				$data = array();
@@ -98,7 +97,6 @@ class MadminController extends AbstractActionController
 		$basePath = $baseUrlArr['basePath'];
 		$sheduleTable = $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
 		$getShedInfo    = $sheduleTable->getSheduleInfo();
-		// $user_id = $_SESSION['user']['userId'];
 			if(count($getShedInfo) > 0 ){
 				$i = 0;
 				$data = array();
