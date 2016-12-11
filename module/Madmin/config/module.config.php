@@ -270,6 +270,34 @@ return array(
                     ),
                 ),
             ),
+			'admin-emails' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/admin-emails[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9_-]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'adminEmails',
+                    ),
+                ),
+            ),
+			'send-admin-emails' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/send-admin-emails[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9_-]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'sendAdminEmails',
+                    ),
+                ),
+            ),
 		),
 	),     
     'view_manager' => array(

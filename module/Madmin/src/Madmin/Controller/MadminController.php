@@ -710,4 +710,55 @@ class MadminController extends AbstractActionController
 			'output' => 1
 		));
 	}
+	public function adminEmailsAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$utsYear 	= $baseUrlArr['utsYear'];
+		global $emailMessage1;
+		global $emailMessage2;
+		return new ViewModel(array(					
+			'baseUrl' 	=> $baseUrl,
+			'basePath' 	=> $basePath,
+			'emailMessage1' 	=> $emailMessage1,
+			'emailMessage2' 	=> $emailMessage2
+		));
+	}
+	public function sendAdminEmailsAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$utsYear 	= $baseUrlArr['utsYear'];
+		global $emailsSubject;
+		global $emailsMessage;
+		global $emailMessage1;
+		global $emailMessage2;
+		$email_type = $_POST['email_type'];
+		if($email_type == 1){
+			$message = $emailMessage1;
+		}else{
+			$message = $emailMessage2;
+		}
+		$emailNames = 	explode(',',$_POST['email_names']);
+		$emailEmails = 	explode(',',$_POST['email_emails']);
+		if(count($emailNames) != 0){
+			foreach($emailNames as $key=>$name){
+				global $emailsSubject;
+				global $emailsMessage;
+				$bodyMessage = $emailsMessage;
+				$bodyMessage = str_replace("<FULLNAME>",$name, $bodyMessage);
+				$bodyMessage = str_replace("<MESSAGE>",$message, $bodyMessage);
+				$to	= $emailEmails[$key];
+				// if(sendMail($to,$summaryUpdatesSubject,$bodyMessage)){
+					// $bodyMessage = "";
+				// }
+				//echo $bodyMessage.'<br/>';
+			}
+		}
+		return new JsonModel(array(					
+			'output' => 1
+		));
+	}
 }

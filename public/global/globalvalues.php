@@ -1,4 +1,29 @@
 <?php
+//UTX Emails
+global $emailMessage1;
+$emailMessage1 = 'Message 1';
+
+global $emailMessage2;
+$emailMessage2 = 'Message 2';
+
+global $emailsSubject;
+global $emailsMessage;
+$emailsSubject = "Email from UTX";
+$emailsMessage = '<body style="margin: 0;padding: 0;">
+       <div style="position: relative;margin-left: auto;margin-right: auto;width: 620px;height: 500px;overflow: hidden;z-index:0;border:1px solid #ddd; box-shadow:0 2px 2px rgba(0, 0, 0, 0.3);">
+               <div style="border-bottom:1px solid #ddd;padding:10px 10px;background:#f7f7f7;">
+                       <img src="https://mydigitalsurvey.com/images/logoblack1.png">
+               </div>
+               <div style="position:relative;padding:20px 30px;">
+				   <div style="font-size:15px;">Dear &nbsp;<FULLNAME>,</div>
+				   <div style="width: 620px;height: 360px;display:table-cell;"> 
+					<p style="font-family: sinkin_sans500_medium, sans-serif;font-size:16px"><MESSAGE></p> 
+				</div> 
+               </div>
+       </div>
+</body>';
+//END
+
 /* ForgetPassword */
 	global $smsForgetMessage;
 	$smsForgetMessage = '<OTP> is your OTP for Bike seva reset password.';

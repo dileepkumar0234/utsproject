@@ -11,6 +11,8 @@ return array(
     ),
 	// Admin Accessing Controllers
     'admin'=> array(
+		'send-admin-emails',
+		'admin-emails',
 		'push-to-state',
 		'upload-tax-file',
 		'tabs-user-info',

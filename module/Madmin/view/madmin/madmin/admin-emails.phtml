@@ -1,0 +1,103 @@
+<div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+          Emails
+          </h1>
+        </section>
+		 <section class="content">
+		<div class="row">
+		 
+		 <div class="col-md-12">
+
+			<div class="box box-info">
+
+                <div class="box-header with-border">
+
+                  <h3 class="box-title">Emails</h3>
+
+                </div><!-- /.box-header -->
+
+                <!-- form start -->
+
+                <form class="form-horizontal" id="emailForm" method="post" class="form-horizontal" data-fv-message="This value is not valid" class="error_vl"
+					  data-fv-icon-valid="glyphicon glyphicon-ok"
+                      data-fv-icon-invalid="glyphicon glyphicon-remove" onSubmit="sendEmails();">
+
+                  <div class="box-body">
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Email Type</label>
+                      <div class="col-sm-4">
+                        <select class="form-control" name="email_type" id="email_type" onchange="displayMessage()">
+							<option value="1">Type 1</option>
+							<option value="2">Type 2</option>
+						</select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Names</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" name="email_names" id="email_names" placeholder="Names" required data-fv-notempty-message="The names are required and cannot be empty" />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Emails</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" name="email_emails" id="email_emails" value="" placeholder="Last Name" required data-fv-notempty-message="The emails are required and cannot be empty" />
+                      </div>
+                    </div>
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Message</label>
+                      <div class="col-sm-6">
+                        <textarea disabled class="form-control" name="email_message" id="email_message"  ><?php echo $this->emailMessage1; ?></textarea>
+                      </div>
+                    </div>
+                </div>
+				<div class="box-footer">
+					<button type="submit"  class="btn btn-info pull-right">Send</button>
+				</div>
+
+                </form>
+
+            </div>
+
+            </div>
+
+        </div>
+
+		 </section>
+
+</div>
+<script>
+$(document).ready(function() {
+	$('#emailForm').formValidation();
+});
+function displayMessage(){
+	if($('#email_type').val() == 1){
+		$('#email_message').val('<?php echo $this->emailMessage1; ?>');
+	}else{
+		$('#email_message').val('<?php echo $this->emailMessage2; ?>');
+	}
+}
+function sendEmails(){
+	$('#emailForm').formValidation() .on('success.form.fv', function(e) { 
+		e.stopImmediatePropagation();
+		var email_names    = $("#email_names").val();
+		var email_emails   = $("#email_emails").val();
+		var email_type     = $("#email_type").val();
+		
+		if (email_names != "" && email_emails != "")  {
+			$.ajax({
+				type		:	'POST',
+				url			:  	baseUrl+'/send-admin-emails',
+				dataType	: 	"json",
+				data		:	{email_names:email_names,email_emails:email_emails,email_type:email_type},
+				success: function(data){
+					$("#email_names").val('');
+					$("#email_emails").val('');
+				}
+			});			
+		} 
+		e.preventDefault();
+	});
+}
+</script>
