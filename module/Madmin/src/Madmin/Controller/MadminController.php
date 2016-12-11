@@ -103,11 +103,13 @@ class MadminController extends AbstractActionController
 				$i = 0;
 				$data = array();
 				foreach($getShedInfo as $shedInfo){
-					$data[$i]['client_name']=$shedInfo->user_name;
-					$data[$i]['client_email']= '<a href="'.$baseUrl.'/all-tabs/'.$shedInfo->user_id.'-'.$shedInfo->ps_state.'">'.$shedInfo->email.'</a>';
-					$data[$i]['shedule_date']= $shedInfo->schedule_dt;
-					$data[$i]['shedule_period']= $shedInfo->schedule_period;
-					$i++;
+					if($shedInfo->user_type_id!=1){
+						$data[$i]['client_name']=$shedInfo->user_name;
+						$data[$i]['client_email']= '<a href="'.$baseUrl.'/all-tabs/'.$shedInfo->user_id.'-'.$shedInfo->ps_state.'">'.$shedInfo->email.'</a>';
+						$data[$i]['shedule_date']= $shedInfo->schedule_dt;
+						$data[$i]['shedule_period']= $shedInfo->schedule_period;
+						$i++;
+					}					
 				}	
 				$datainfo['aaData'] = $data;	
 			}else{ 
