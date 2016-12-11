@@ -20,12 +20,11 @@
 		padding:1px;
 		width:320px;
 		margin-top:40px;
-		text-algin:center
 	}
 	.mar_t30{
 		margin-top:30px;
 	}
-	.nav_pill_sty li a{
+	/* .nav_pill_sty li a{
 		color:#fff !important;
 	font-weight:600;
 	}
@@ -34,7 +33,7 @@
 		color:#fff;
 		padding:4px;
 		border-radius:5px;
-	}
+	} */
 
 /* Dileep for more information */
 
@@ -2350,8 +2349,8 @@ a:focus {
 .nav>li>a:hover,
 .nav>li>a:active,
 .nav>li>a:focus {
-    color: #444;
-    background: #f7f7f7
+   /*  color: #444;
+    background: #f7f7f7 */
 }
 .nav-pills>li>a {
     border-radius: 0;

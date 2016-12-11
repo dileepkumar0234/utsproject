@@ -1,7 +1,6 @@
 <?php if($this->tabType == 1){?>
-<div class="tabs_tit">
-	<h3>FILE NUMBER:<?php echo $this->userInfo->unique_code; ?></h3>
-</div>
+<button type="button" class="btn btn-primary">FILE NUMBER:<?php echo $this->userInfo->unique_code; ?></button>
+
 <div class="tab_con">
 	<div class="col-md-12 und_lin mar_t30">
 		<div class="col-md-6">
@@ -87,9 +86,10 @@
 	</div>
 </div>
 <?php } else if($this->tabType == 2){ ?>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>Employer Information:</h3>
-</div>
+</div>-->
+	<button type="button" class="btn btn-primary">Employer Information:</button>
 <?php if(count($this->employeeInfo) != 0){
 	foreach($this->employeeInfo as $info=>$sp){
 ?>
@@ -119,14 +119,16 @@
 	</div>
 </div>
 <?php }}else{ ?>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>No records found.</h3>
-</div>
+</div>-->
+	<button type="button" class="btn btn-danger">No records found.</button>
 <?php } ?>
 <br/><br/><br/><br/><br/>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>Spouse Information:</h3>
-</div>
+</div>-->
+<button type="button" class="btn btn-primary">Spouse Information:</button>
 <?php if(count($this->spouseInfo) != 0){
 	foreach($this->spouseInfo as $sp){
 ?>
@@ -155,14 +157,16 @@
 	</div>
 </div>
 <?php }} else { ?>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>No records found.</h3>
-</div>
+</div>-->
+	<button type="button" class="btn btn-primary">No records found:</button>
 <?php } ?>
 <br/><br/><br/><br/><br/><br/><br/>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>Dependents Information:</h3>
-</div>
+</div>-->
+	<button type="button" class="btn btn-primary">Dependents Information:</button>
 <?php if(count($this->dependentInfo) != 0){
 	foreach($this->dependentInfo as $dep=>$sp){
 ?>
@@ -192,9 +196,10 @@
 	</div>
 </div>
 <?php }} else { ?>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>No records found.</h3>
-</div>
+</div>-->
+<button type="button" class="btn btn-danger">No records found.</button>
 <?php }} else if($this->tabType == 3){ ?>
 <?php if(count($this->scheduleInfo) != 0){
 	foreach($this->scheduleInfo as $sc){
@@ -224,9 +229,10 @@
 	</div>
 </div>
 <?php }} else { ?>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>No records found.</h3>
-</div>
+</div>-->
+<button type="button" class="btn btn-danger">No records found.</button>
 <?php }} else if($this->tabType == 4){
 	if(count($this->downloadInfo) != 0){
 		foreach($this->downloadInfo as $category=>$dl){
@@ -247,13 +253,15 @@
 	</div>
 </div>
 <?php }}else{ ?>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>No records found.</h3>
-</div>
+</div>-->
+<button type="button" class="btn btn-danger">No records found.</button>
 <?php }} else if($this->tabType == 5){ ?>
-<div class="tabs_tit">
-	<h3>FILE NUMBER:<?php echo $this->userInfo->unique_code; ?></h3>
-</div>
+<!--<div class="tabs_tit">
+	<h3>FILE NUMBER:<?php // echo $this->userInfo->unique_code; ?></h3>
+</div>-->
+<button type="button" class="btn btn-primary">FILE NUMBER:<?php echo $this->userInfo->unique_code; ?></button>
 <div>
 <br/>
 	<form method="post">
@@ -289,9 +297,10 @@
 	</div>
 </div>
 <?php }else{ ?>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>No records found.</h3>
-</div>
+</div>-->
+<button type="button" class="btn btn-danger">No records found.</button>
 <?php }} else if($this->tabType == 6){ ?>
 <div>
 <br/>
@@ -354,9 +363,10 @@
 	</div>
 </div>
 <?php }else{ ?>
-<div class="tabs_tit">
+<!--<div class="tabs_tit">
 	<h3>No records found.</h3>
-</div>
+</div>-->
+<button type="button" class="btn btn-danger">No records found.</button>
 <?php }} ?>
 <script>
 function saveComment(userId){
