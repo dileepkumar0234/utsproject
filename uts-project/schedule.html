@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>umpire</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/umpire.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="bac_img">
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img src="img/logo.png"></a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+					<div class="btn_site"> Filing Status: Scheduling Pending </div>
+					<div class="btn_site">Make Payment</div>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.html"> <i class="fa fa-product-home"></i> Home <i class="fa fa-chevron-circle-down"></i></a>
+                    </li>
+					 <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-product-hunt"></i> Profile Information <i class="fa fa-chevron-circle-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="profile-information.html""><i class="fa fa-chevron-circle-right"></i> Profile Information </a>
+                            </li>
+							<li>
+                                <a href="profile-information.html""><i class="fa fa-chevron-circle-right"></i> Tax Payer Info </a>
+                            </li>
+                            <li>
+                                <a href="spouse.html"><i class="fa fa-chevron-circle-right"></i> Spouse &amp; Employer Info</a>
+                            </li>
+							<li>
+                                <a href="dependents-info.html"><i class="fa fa-chevron-circle-right"></i> Dependents (If any) </a>
+                            </li>
+                        </ul>
+                    </li>
+                     
+                    <li>
+                        <a href="schedule.html"><i class="fa fa-sticky-note"></i> Schedule For Tax Notes</a>
+                    </li>
+                    <li>
+                        <a href="upload-documents.html"><i class="fa fa-upload"></i> Upload Tax Documents</a>
+                    </li>
+                    <li>
+                        <a href="summary.html"><i class="fa fa-file-archive-o"></i> View Tax Summary</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-cc-paypal"></i> Make Payment</a>
+                    </li>
+					<li>
+                        <a href=""><i class="fa fa-download"></i>Download Tax Return Copy</a>
+                    </li>
+                    <!-- <li> -->
+                        <!-- <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a> -->
+                        <!-- <ul id="demo" class="collapse"> -->
+                            <!-- <li> -->
+                                <!-- <a href="#">Dropdown Item</a> -->
+                            <!-- </li> -->
+                            <!-- <li> -->
+                                <!-- <a href="#">Dropdown Item</a> -->
+                            <!-- </li> -->
+                        <!-- </ul> -->
+                    <!-- </li> -->
+                    <li>
+                        <a href=""><i class="fa fa-hand-o-right"></i> Disclaimer Agreement</a>
+                    </li>
+                    <li>
+                        <a href=""><i style="color:black;" class="glyphicon glyphicon-lock"></i> Go TO Home</a>
+                    </li>
+					<button ng-click="referals()" class="btn btn-success" style="margin:45px;">Refer a Friend</button>
+                </ul>
+				
+    
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper" class="">
+			<div class="container-fluid">
+				<div class="row page_lo">
+						<div class="col-xs-2 col-md-4 text-left">
+							<a class="btn_site">Schedule for an appointment</a>
+						</div>  
+						<div class="col-xs-10 col-md-8 text-right btn_pad">
+							<a class="btn_site">File Number:UTS0023</a>
+							<div class="dropdown btn_site">
+								<a class=" dropdown-toggle" data-toggle="dropdown"> welcome dileep   <span class="caret"></a>
+							 <ul class="dropdown-menu">
+								<li><a href="#">Referral List</a></li>
+								<li><a href="#">Change Password</a></li>
+								<li><a href="#">Logout</a></li>
+							 </ul>
+							</div>
+						</div>
+					</div>
+				<div class="row mar_t20">
+                    <div class="col-lg-6 label_col">
+						<form role="form">
+							<div class="form-group">
+                                <label>Date:</label>
+								<div class="input-group date" data-provide="datepicker">
+									<input type="text" class="form-control">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+							</div>
+							 <div class="form-group">
+                                <label>Time(Timings as per CST)</label>
+                                <select class="form-control">
+									<option label="select an option" value="string:select an option">select an option</option>
+									<option label="9:00 am" value="string:9:00 am">9:00 am</option>
+									<option label="9:30 am" value="string:9:30 am">9:30 am</option>
+									<option label="10:00 am" value="string:10:00 am">10:00 am</option>
+									<option label="10:30 am" value="string:10:30 am">10:30 am</option>
+									<option label="11:00 am" value="string:11:00 am">11:00 am</option>
+									<option label="11:30 am" value="string:11:30 am">11:30 am</option>
+									<option label="12:00 pm" value="string:12:00 pm">12:00 pm</option>
+									<option label="12:30 pm" value="string:12:30 pm">12:30 pm</option>
+									<option label="1:00 pm" value="string:1:00 pm">1:00 pm</option>
+									<option label="1:30 pm" value="string:1:30 pm">1:30 pm</option>
+									<option label="2:00 pm" value="string:2:00 pm">2:00 pm</option>
+									<option label="2:30 pm" value="string:2:30 pm">2:30 pm</option>
+									<option label="3:00 pm" value="string:3:00 pm">3:00 pm</option>
+									<option label="3:30 pm" value="string:3:30 pm">3:30 pm</option>
+									<option label="4:00 pm" value="string:4:00 pm">4:00 pm</option>
+									<option label="4:30 pm" value="string:4:30 pm">4:30 pm</option>
+									<option label="5:00 pm" value="string:5:00 pm">5:00 pm</option>
+									<option label="5:30 pm" value="string:5:30 pm">5:30 pm</option>
+									<option label="6:00 pm" value="string:6:00 pm">6:00 pm</option>
+									<option label="6:30 pm" value="string:6:30 pm">6:30 pm</option>
+                                </select>
+                            </div>
+						</form>
+                    </div>
+					<div class="col-lg-12 label_col">
+							<div class="pull-right">
+								<button type="button" class="btn btn-warning btn-md">EDIT</button>
+								<button type="button" class="btn btn-success btn-md">SUBMIT</button>
+							</div>
+						</div>
+                </div>
+					
+					
+					
+				<!-- /.container-fluid -->
+			</div>
+        <!-- /#page-wrapper -->
+		</div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+</body>
+
+</html>
