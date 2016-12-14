@@ -37,6 +37,56 @@ return array(
 						'action'     => 'taxInfo',
 					),
 				),
+			),
+			'spouse-info' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/spouse-info',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'spouseInfo',
+					),
+				),
+			),	
+			'dependents-info' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/dependents-info',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'dependentsInfo',
+					),
+				),
+			),	
+			'schedule-tax-info' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/schedule-tax-info',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'scheduleTaxInfo',
+					),
+				),
+			),	
+			'upload-documents-info' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/upload-documents-info',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'uploadDocumentsInfo',
+					),
+				),
+			),	
+			'summary-info' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/summary-info',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'summaryInfo',
+					),
+				),
 			),	
 			'logout' => array(
 				'type' => 'segment',

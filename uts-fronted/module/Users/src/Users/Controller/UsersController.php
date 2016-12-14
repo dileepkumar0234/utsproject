@@ -78,5 +78,57 @@ class UsersController extends AbstractActionController
 		));
 		
 	}
+	public function spouseInfoAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];	
+		return new ViewModel(array(					
+			'baseUrl' 			=>  $baseUrl,
+			'basePath'  		=>  $basePath,
+		));
+		
+	}
+	public function dependentsInfoAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];	
+		return new ViewModel(array(					
+			'baseUrl' 			=>  $baseUrl,
+			'basePath'  		=>  $basePath,
+		));
+	}
+	
+	public function scheduleTaxInfoAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];	
+		return new ViewModel(array(					
+			'baseUrl' 			=>  $baseUrl,
+			'basePath'  		=>  $basePath,
+		));
+	}
+	public function uploadDocumentsInfoAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];	
+		return new ViewModel(array(					
+			'baseUrl' 			=>  $baseUrl,
+			'basePath'  		=>  $basePath,
+		));
+	}
+	public function summaryInfoAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];	
+		return new ViewModel(array(					
+			'baseUrl' 			=>  $baseUrl,
+			'basePath'  		=>  $basePath,
+		));
+	}
 }	
 
