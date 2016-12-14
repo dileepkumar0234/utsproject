@@ -28,13 +28,13 @@ return array(
 					),
 				),
 			),		
-			'social-sign-in' => array(
+			'tax-info' => array(
 				'type' => 'Literal',
 				'options' => array(
-					'route' => '/social-sign-in',
+					'route' => '/tax-info',
 					'defaults' => array(
 						'controller' => 'Users\Controller\Users',
-						'action'     => 'socialSignIn',
+						'action'     => 'taxInfo',
 					),
 				),
 			),	
