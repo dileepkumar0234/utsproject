@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+	
+	$header			=	$this->action('Application\Controller\IndexController', 'headerAction');
+	$baseUrl 		= 	$header->headerarray['baseUrl'];
+	$basePath 		= 	$header->headerarray['basePath'];	
+?>
+<?php
+	include 'header.phtml';
+	echo $this->content;	
+	include 'footer.phtml';
+?>

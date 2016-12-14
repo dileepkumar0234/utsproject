@@ -1,0 +1,92 @@
+<?php //echo "<pre>"; print_r($this->userExp); exit;?>
+<div class="content-wrapper">
+	<div class="bredcrum_bg">
+			<div class="container">
+				<section class="content-header mar_t40 tooltip_pw">
+					<h1 class="text-right ">
+						&nbsp;
+					</h1>
+					<ol class="breadcrumb sm_hide">
+						<li><a href="<?php echo $this->baseUrl;?>/home" class="color_a">Home</a></li>
+						<li><a href="<?php echo $this->baseUrl;?>/outsourcing-viewall" class="color_a">External Development Community</a></li>
+						<li><a href="javascript:void(0);">View Profile</a></li>
+					</ol>
+				</section>
+			</div>
+	</div>
+	
+		
+	
+	<div class="container mar_t40 sm_container_pad">
+		<div class="box_white">
+		<!-- Box Title -->
+		<div class="box-header with-border">
+		  <h1 class="box-title">Profile Details</h1>
+			<div class="box-tools pull-right">
+			<?php /* if(isset($this->usertype) && $this->usertype == 4){ ?>
+				<a href="<?php echo $this->baseUrl;?>/admin/add-user/<?php echo $this->getUser->u_id; ?>" target="_blank" class="font_18 text-uppercase"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;EDIT PROFILE</a>
+			<?php }else{ ?>
+				<a href="<?php echo $this->baseUrl;?>/update-profile/<?php echo $this->getUser->u_id; ?>" class="font_18 text-uppercase"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;EDIT PROFILE</a>
+			<?php } */ ?>
+			<?php if(isset($this->uId) && $this->uId == 0 || $this->usertype == 4){ ?>
+			<a href="<?php echo $this->baseUrl;?>/update-profile/<?php echo $this->getUser->u_id; ?>" class="font_18 text-uppercase"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;EDIT PROFILE</a>
+			<?php } ?>
+			</div>
+		</div>
+		<!-- End -->
+		<div class="box-body pad_t30">
+			<div class="row">
+				
+				<div class="col-md-20 text-center">
+					<?php if($this->getUser->u_profile_image !=""){ ?>
+					<div class="user_profile_img">
+						<img src="<?php echo $basePath;?>/uploads/profiles/<?php echo $this->getUser->u_profile_image; ?>" class="img-responsive">
+					</div>
+					<?php }else{?>
+					<div class="user_profile_img">
+						<img src="<?php echo $basePath;?>/images/people-2.png" class="img-responsive">
+					</div>
+					<? }  ?>
+				</div>
+				
+				<div class="col-md-99 psm_c">
+					<h3 class="no_margin color_a"><?php echo ucwords(strtolower($this->getUser->u_first_name).' '.strtolower($this->getUser->u_last_name));?></h3>
+					<p style="font-size:16px;margin-top:5px;"><?php echo $this->getUser->u_title;?></p>
+					<table class="table">
+							<?php if($this->getUser->u_first_name != "" && $this->getUser->u_first_name != null){ ?>
+							<tr><td> First Name</td><td> <?php echo ucwords(strtolower($this->getUser->u_first_name));?></td></tr>
+							<?php } if($this->getUser->u_last_name != "" && $this->getUser->u_last_name != null){ ?>
+							<tr><td> Last Name</td><td><?php echo ucwords(strtolower($this->getUser->u_last_name));?></td></tr>
+							<?php } if($this->getUser->u_title != "" && $this->getUser->u_title != null){ ?>
+							<tr><td> Title</td><td><?php echo $this->getUser->u_title;?></td></tr>
+							<?php } if($this->getUser->u_email != "" && $this->getUser->u_email != null){ ?>
+							<tr><td> Email</td><td><?php echo $this->getUser->u_email;?></td></tr>
+							<?php } if($this->getUser->st_name != "" && $this->getUser->st_name != null){ ?>
+							<tr><td> Ea Studio </td><td><?php echo $this->getUser->st_name;?></td></tr>
+							<?php } if($this->userVen != "" && $this->userVen != null){ ?>
+							<tr><td> Vendor Utilized</td><td><?php echo $this->userVen;?></td></tr>
+							<?php } if($this->userExp != "" && $this->userExp != null){ ?>
+							<!--<tr><td> Areas of Outsourcing</td><td>Web Development</td></tr>-->
+							<tr><td> Expertise</td><td><?php echo $this->userExp;?></td></tr>
+							<?php } if($this->getUser->u_titles_worked_on != "" && $this->getUser->u_titles_worked_on != null){ ?>
+							<tr><td> Titles Worked On</td><td><?php echo $this->getUser->u_titles_worked_on;?></td></tr>
+							<?php } if($this->getUser->u_bio != "" && $this->getUser->u_bio != null){ ?>
+							<tr><td> BIO</td><td><?php echo $this->getUser->u_bio;?></td></tr>
+							<?php } ?>
+							<tr><td> Is Admin </td><td>
+							<?php if(isset($this->getUser->u_ut_id) && $this->getUser->u_ut_id !="" ){
+								if($this->getUser->u_ut_id == 4){
+									echo "YES";
+								}else{
+									echo "NO";
+								}
+							}
+						?>
+						</td></tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>

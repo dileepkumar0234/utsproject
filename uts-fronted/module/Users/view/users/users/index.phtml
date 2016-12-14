@@ -1,0 +1,416 @@
+<?php
+if(isMobile()){
+	 $browser = "mobile";
+}else{
+	$browser = "web";
+}
+//echo "<pre>"; print_r($this->highlightedVedors); exit;
+?>
+<div class="content-wrapper">
+<?php if($this->sliderList->count()){ ?>
+	<div class="">
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+	<?php 
+		foreach($this->sliderList as $s=>$sl){
+			if($s == 0){
+				$sactive = "active";
+			}else{
+				$sactive = "";
+			}
+	?>
+		<li data-target="#carousel-example-generic" data-slide-to="<?php echo $s; ?>" class="<?php echo $sactive; ?>"></li>
+	<?php } ?>
+	</ol>
+	<div class="carousel-inner">
+	<?php 
+		foreach($this->sliderList as $k=>$sl){
+			if($k == 0){
+				$active = "active";
+			}else{
+				$active = "";
+			}
+	?>
+		<div class="item <?php echo $active; ?>">
+			<img src="<?php echo $this->basePath; ?>/uploads/<?php echo $sl->sl_image; ?>">
+		</div>
+	<?php } ?>
+	</div>
+	<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+	<span class="fa fa-angle-left"></span>
+	</a>
+	<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+	<span class="fa fa-angle-right"></span>
+	</a>
+	</div>
+	</div>
+<?php } ?>
+<!-- Highlighted Vendors -->
+	<?php if(count($this->highlightedVedors) != 0){ ?>
+	<div class="container pad_b50">
+	<div class="title_heading pos_r mar_t40">
+		<h1><span class="span_bg_g">Highlighted Partners</span></h1>
+		<div class="title_lines"></div>
+	</div>
+	<div class="mar_t10 highlated_partner home_coursel_v">
+	<div id="myCarousel11" class="carousel slide">
+	<ol class="carousel-indicators">
+		<?php 
+		$hh = 0;
+		foreach($this->highlightedVedors as $h=>$u) {
+			if($h == 0){
+				$hactive = 'active';
+			}else{
+				$hactive = '';
+			}
+			if($browser == "web") {
+			$slideValue = 4;
+				if($h%4 == 0){
+					$li = 1;
+				}else{
+					$li = 0;
+				}
+			}else{
+				$slideValue = 1;
+				if($h%1 == 0){
+					$li = 1;
+				}else{
+					$li = 0;
+				}
+			}
+			if($li == 1){
+		?>
+		<li data-target="#myCarousel11" data-slide-to="<?php echo $hh; ?>" class="<?php echo $hactive; ?>"></li>
+		<?php $hh++; } } ?>
+	</ol>
+	<div class="carousel-inner">
+	<?php for($i = 0; $i <= count($this->highlightedVedors); $i++) {
+		if($i == 0){
+			$itemsActive = 'active';
+		}else{
+			$itemsActive = '';
+		}
+		if($i%$slideValue == 0){		
+	?>
+	<div class="item <?php echo $itemsActive; ?>">
+		<div class="row home_slide_h">
+		<ul id="og-grid" class="og-grid homr_gridpad">
+		<?php foreach($this->highlightedVedors as $kh=>$hv) {
+			if($browser == "web") {
+				$count = $i+3;
+			}else{
+				$count = $i;
+			}
+			if($kh >= $i && $kh <= $count){
+		?>
+		<?php
+			  $rate = "";
+			  $ratesAndEmployes = "";
+			  if($hv['v_minRate'] != 0 && $hv['v_minRate'] != null)
+			  {
+				  if($hv['v_minRate'] == $hv['v_maxRate'])
+				  {
+					  $rate = '$'.$hv['v_minRate'];
+				  }
+				  else
+				  {
+					  $rate =  '$'.$hv['v_minRate'].' - $'.$hv['v_maxRate'];
+				  }
+			  }
+			 
+				if($hv['v_employes']!="" && $hv['v_employes'] != null ){
+					
+					$employees = $hv['v_employes'];
+					if($rate != "" && $rate != null){
+						$ratesAndEmployes = $rate.' | '.$employees.' ppl';
+					}else{
+						$ratesAndEmployes = $employees.' ppl';
+					}
+				} else{
+					$employees  		= "";
+					$ratesAndEmployes   = $rate;
+				}
+				$rating = "";
+				if($hv['v_rating'] !="" && $hv['v_rating'] !=null ){
+					if($hv['v_rating'] == 0){
+						$rating = "Low Risk";
+						$color = 'color:green';
+					}else if($hv['v_rating'] == 1){
+						$rating = "Medium Risk";
+						$color = 'color:#FF6600';
+					}else if($hv['v_rating'] == 2){
+						$rating = "High Risk";
+						$color = 'color:#FF0000';
+					} 
+				}
+				
+				if(strlen($hv['v_name']) < 22){ 
+					$nameLength = $hv['v_name']; 
+				}else{ 
+					$nameLength =  substring($hv['v_name']);
+				}
+				if($hv['v_stratagic_partner'] == 1){
+					$vName = '<sup class="color_a stratagic_pophover"><i aria-hidden="true" class="fa fa-star" data-popover="true"  data-html=true data-content="Strategic Partner" style="cursor:pointer"></i></sup> '.$nameLength;
+					
+				}else{
+					$vName = $nameLength;
+				}
+				if(!empty($this->vendorArray)){
+					if(in_array($hv['v_id'],$this->vendorArray)){
+						$class = "disabled";
+						$labelName = "ADDED";
+					}else{
+						$class = "";
+						$labelName = "FAVORITE";
+					}
+				}else{
+					$class = "";
+					$labelName = "FAVORITE";
+				}
+				$reports = "";
+				$reports  .='<a target="_blank" href="'.$basePath.'/x-ray/'.$hv['v_id'].'">XRAY,</a>';
+				if(isset($hv['v_approved']) && $hv['v_approved'] == 0){
+					if(isset($hv['x_ray_duediligence_doc']) && $hv['x_ray_duediligence_doc'] != ""){
+						$reports  .=' <a target="_blank" href="'.$basePath.'/uploads/vendors/'.$hv['v_id'].'/wall/document/'.$hv['x_ray_duediligence_doc'].'"> Due Diligence,</a>';
+					}
+				}else if(isset($hv['v_approved']) && $hv['v_approved'] == 1 ) {
+					$reports .= ' <a target="_blank" href="'.$basePath.'/xportal/'.$hv['v_id'].'"> Due Diligence,</a>';
+				}
+				$reports  .=' <a target="_blank" href="'.$basePath.'/performance/'.$hv['v_id'].'"> Performance</a>';
+				
+			?>
+		<li id="li_<?php echo $hv['v_id']?>">
+			<?php if($browser == "web"){ ?>
+			<a href="javascript:void(0);" data-title='<div class="box_white"><?php if(isset($hv['v_thumbnail']) && $hv['v_thumbnail'] != "" && $hv['v_thumbnail']!= null){ ?><img alt="company log" class="img-responsive server_image_size" src="<?php echo $basePath; ?>/uploads/vendors/<?php echo $hv['v_id']; ?>/logo/<?php echo $hv['v_thumbnail']; ?>"><?php }else{ ?><img alt="company log" class="img-responsive" src="<?php echo $basePath; ?>/images/noimage1.png"><?php } ?><div class="partner_pad company_info"><h3 class="profile-username text-center" title="<?php echo $hv['v_name']; ?>" onClick="partnerViewprofile(<?php echo $hv['v_id'];?>)" ><?php echo $vName; ?></h3><p class="text-muted text-center"><?php echo $ratesAndEmployes; ?></p></div><div class="brg_t"><div class="apad_tbrl"><div class="row"><div class="col-xs-6 lh_risk text-left"><?php if($rating !=""){ ?><span><?php echo $rating; ?> <i style="<?php echo $color; ?>" class="fa fa-circle"aria-hidden="true"></i></span><?php } ?></div><div class="col-xs-6 text-right"><a id="addTocartHigh_<?php echo $hv['v_id'];?>" class="btn btn-primary btn-sm <?php echo $class; ?>" href="javascript:void(0);" onclick="addToCartPreview(<?php echo $hv['v_id'];?>);"><?php echo $labelName; ?></a></div></div></div></div></div>' data-description='<div class="row"><div class="col-mad-12"><h3>Company Description</h3><p><?php if(isset($hv['v_company_overview'])){ if(strlen($hv['v_company_overview']) < 200){ echo $hv['v_company_overview']; } else{ echo truncate($hv['v_company_overview'],200).'<i class="" data-popover="true" data-html=true data-content="'.$hv['v_company_overview'].'" aria-hidden="true" style="cursor:pointer">...</i>'; } }else{ echo "No Company Desccription";} ?></p></div></div><div class="row"><div class="col-md-6 mar_b30"><h3>Main Contact</h3><p>Name : <?php echo $hv['v_primary_contact']; ?></p><p>Email : <?php echo $hv['v_email_address']; ?></p></div><div class="col-md-6"><h3>We Worked With</h3><?php if(isset($hv['vendorUtilized']) && $hv['vendorUtilized']->count()){ ?> <p><?php echo $hv['vendorUtilized']->count(); ?> EA Teams have worked with this partner.</p><p class="team_ea_img"><?php foreach($hv['vendorUtilized'] as $key=>$ea){  if( $key <= 5){ ?><?php if($ea->u_profile_image != ""){ ?><a href="<?php echo $baseUrl;?>/view-profile/<?php echo $ea->vu_u_id; ?>" ><img class="img-circle" width="50" height="50" src="<?php echo $this->basePath; ?>/uploads/profiles/<?php echo $ea->u_profile_image; ?>"/></a><?php }else{ ?><a href="<?php echo $baseUrl;?>/view-profile/<?php echo $ea->vu_u_id; ?>" ><img class="img-circle" width="50" height="50" src="<?php echo $this->basePath; ?>/images/people-2.png"/></a><?php } ?><?php } } ?></p><?php }else{ ?><p>No EA Teams have worked with this partner.</p><?php } ?></div><div class="clearfix"></div><div class="col-md-6 mar_topminus35"><h3>Available Documents</h3><p><?php echo $reports; ?> </p></div></div><div class="text-right"><a href="<?php echo $baseUrl;?>/vendor-full-profile/<?php echo $hv['v_id']; ?>" class="btn btn-primary btn-lg">Full Profile </a></div>'>
+			<?php }else if($browser == "mobile") { ?> 
+			<a href="<?php echo $baseUrl;?>/vendor-full-profile/<?php echo $hv['v_id']?>" >
+			<?php } ?>
+				<div class="grid_bg">
+					<?php if($browser == "web") { if($hv['v_thumbnail'] != ""){ ?>
+					<img class="server_image_size" src="<?php echo $basePath; ?>/uploads/vendors/<?php echo $hv['v_id']; ?>/logo/<?php echo $hv['v_thumbnail']; ?>" />
+					<?php }else{ ?>
+					<img src="<?php echo $basePath; ?>/images/noimage1.png" />
+					<?php } } else{ if($hv['v_thumbnail'] != ""){ ?>
+					<a href="<?php echo $baseUrl;?>/vendor-full-profile/<?php echo $hv['v_id']?>" ><img class="server_image_size" src="<?php echo $basePath; ?>/uploads/vendors/<?php echo $hv['v_id']; ?>/logo/<?php echo $hv['v_thumbnail']; ?>" /></a>
+					<?php }else{ ?>
+					<a href="<?php echo $baseUrl;?>/vendor-full-profile/<?php echo $hv['v_id']?>" ><img src="<?php echo $basePath; ?>/images/noimage1.png" /></a>
+					<?php } }?>
+					<?php if(strlen($hv['v_reason']) < 60){
+						$reason = $hv['v_reason']; 
+					}else{
+						$reason = truncate($hv['v_reason'],60).'<i class="" data-popover="true" data-html=true data-content="'.$hv["v_reason"].'" aria-hidden="true" style="cursor:pointer">...</i>'; 
+					} ?>					
+					<div class="partner_pad company_info">
+						<div class="overview_boxw">
+						  <h3 class="profile-username text-center" title="<?php echo $hv['v_name']; ?>" onclick="partnerViewprofile('<?php echo $hv['v_id'];?>')" ><?php echo $vName; ?></h3>
+						  <p class="text-muted text-center"><?php echo $ratesAndEmployes; ?></p>
+						  <p class="text-muted text-center headr_pophover"><?php echo $reason; ?> </p>
+						</div>
+					</div>
+					<div class="brg_t">
+						<div class="apad_tbrl">
+							<div class="row">
+								<div class="col-xs-7 lh_risk text-left">
+								<?php if($hv['v_rating'] !="" && $hv['v_rating'] !=null ){ ?>
+									<span><?php echo $rating; ?> <i style="<?php echo $color; ?>" class="fa fa-circle" aria-hidden="true"></i> </span>
+									<?php } ?>
+								</div>
+								<div class="col-xs-5 text-right">
+									<button id="addTocart_<?php echo $hv['v_id'];?>" class="btn btn-primary btn-sm <?php echo $class;?>" onclick="addToCart(<?php echo $hv['v_id'];?>);"><?php echo $labelName; ?></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</li>
+		<?php }} ?>
+		</div>
+	</div>
+	<?php }} ?>
+	</div>
+	<!--<a class="left carousel-control" href="#myCarousel11" data-slide="prev"><span class="fa fa-angle-left"></span></a>
+	<a class="right carousel-control" href="#myCarousel11" data-slide="next"><span class="fa fa-angle-right"></span></a>-->
+	</div>
+	</div>
+	</div>
+	<?php } ?>
+<!-- End -->
+<!-- outsourcing community -->
+	<?php //echo "<pre>"; print_r($this->recentUsers); exit; ?>
+	<div class="span_bg_w">
+		<div class="container pos_r">
+		
+			<?php if($this->recentUsers->count() > 0){ ?>
+			<div class="title_heading pos_r mar_t40">
+				<h1><span class="span_bg_w">External Development Community</span></h1>
+				<div class="title_lines"></div>
+			</div>
+			<div class="mar_t20 pos_r">
+				<div class="row outsourcing_sm">
+					<?php foreach($this->recentUsers as $key => $ru){ 
+						if($key <=2){ 
+							if($ru->u_profile_image !="" && $ru->u_profile_image!= null){
+								 $proPic = $this->basePath.'/uploads/profiles/'.$ru->u_profile_image; 
+							}else{
+								 $proPic = $this->basePath.'/images/people-2.png'; 
+							}
+							$team = "Team not available";
+							if($ru->u_team_type == 1){
+								$team = 'XDI Team';
+							}else if($ru->u_team_type == 2){
+								$team = 'Legal & Business Affairs Business Partner';
+							}else if($ru->u_team_type == 3){
+								$team = 'SRM Business Partner';
+							}else if($ru->u_team_type == 4){
+								$team = 'Distributed Development Business Partner';
+							}
+					?>
+					<div class="col-md-4 pad_b50 oc_hover_effect">
+						<div class="row">
+							<div class="col-xs-2" >
+								<a href="<?php echo $baseUrl?>/view-profile/<?php echo $ru->u_id?>"><img class="profile_pic" src="<?php echo $proPic; ?>"/></a>
+							</div>
+							<div class="col-xs-10">
+								<a href="<?php echo $baseUrl?>/view-profile/<?php echo $ru->u_id?>"><?php echo $ru->u_first_name.' '.$ru->u_last_name; ?></a>
+								<!--<p><?php echo $ru->u_title; ?></p>-->
+								<p><span>Team:</span> <?php if(isset($team) && $team !=""){ echo $team; } ?></p>
+								<p><span>Studio:</span> <?php if(isset($ru->st_name) && $ru->st_name !=""){ echo $ru->st_name; }else{ echo "Studio not available"; } ?></p>								
+							</div>
+						</div>
+					</div>
+					<?php }  } ?>
+				</div>
+			</div>
+			<?php }else{ ?>
+			<div class="title_heading pos_r mar_t40">
+				<h1><span class="span_bg_w">outsourcing community</span></h1>
+				<p style="min-height:50px; text-center"> No outsourcing Community. </p>
+			</div>
+			<? } ?>
+			<?php for($oc = 0; $oc <= $this->recentUsers->count(); $oc++){
+					if($oc > 3){
+			?>
+				<div class="externadc">
+					<div class="text-right">
+						<a href="<?php echo $baseUrl;?>/outsourcing-viewall"><span style="background:#fff;padding:5px;">VIEW ALL</span></a>
+					</div>
+				</div>
+			<?php break; } } ?>
+		</div>
+	</div>
+	
+<!-- End -->
+<!-- Recent knowledge -->
+<?php if($this->resCatList->count()){ ?>
+<div class="container">
+<div class="title_heading pos_r mar_t40">
+<h1><span class="span_bg_g">Recent knowledge</span></h1>
+<div class="title_lines"></div>
+</div>
+<div class="mar_t20 mar_b20 pos_r">
+<div class="knowledge_devider">
+</div>
+<?php for($j=1; $j<= $this->resCatList->count(); $j++){
+	if($j == 1){
+		$knowledge = "";
+	}else{
+		$knowledge = "knowledge_k";
+	}
+	if(($j-1)%2 == 0){
+?>
+<div class="row <?php echo $knowledge; ?> knowledge_share">
+	<?php
+		$p = 0;
+		foreach($this->resCatList as $ck=>$ct){
+		if($ck >= ($j-1) && $ck <= ($j+0)){
+		if($p == 0){
+			$padding = '25';
+		}else{
+			$padding = '10';
+		}
+	?>
+	<div class="col-md-6" style="padding-right:<?php echo $padding; ?>px">
+		<div class="row knowledge">
+			<div class="col-xs-2">
+			<img src="<?php echo $this->basePath; ?>/images/process.png" class="knowledge_pic profile_pic<?php echo ($ck+1); ?>"/>
+			</div>
+			<div class="col-xs-10">
+				<div class="pad_left">
+					<h2><?php echo $ct->rc_name; ?></h2>
+					<?php 
+						if(!empty($this->getArticals[$ct->rc_id])){
+							foreach($this->getArticals[$ct->rc_id] as $ka=>$art){
+								if($ka <= 2){
+					?>
+					<p> <a href="<?php echo $baseUrl;?>/artical-view/<?php echo $art['ks_id'].'-'.$ct->rc_id; ?>-0"><i class="fa fa-angle-double-right" aria-hidden="true"></i> <?php if(strlen($art['ks_title']) < 50){ echo $art['ks_title']; }else{ echo truncate($art['ks_title'],50).'...'; } ?></a></p>
+					<?php }} ?>
+					<?php if(count($this->getArticals[$ct->rc_id])>3){ ?>
+					<p class="text-right pad_t10"> <a href="<?php echo $baseUrl;?>/knowledge-viewall/<?php echo $ct->rc_id; ?>-0" class="color_a">VIEW ALL</a></p>
+					<?php } } ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php $p++;}} ?>
+</div>
+<?php }} ?>
+</div>
+</div>
+<?php } ?>
+<!-- End -->
+<!-- Testimonials -->
+<?php if($this->testmonialsList->count()) { ?>
+	<div class="span_bg_w pad_b50">
+	<div class="container">
+	<div class="title_heading pos_r mar_t40">
+	<h1><span class="span_bg_w">Testimonials</span></h1>
+	<div class="title_lines"></div>
+	</div>
+	<div class="testimonial_say">
+	<div class="row">
+	<div style="width:90%; margin:0 auto;">
+	<div id="carouse2-example-generic" class="carousel slide testim" data-ride="carouse1">
+	<ol class="carousel-indicators">
+	<?php 
+		foreach($this->testmonialsList as $t=>$tm){
+			if($t == 0){
+				$tactive = "active";
+			}else{
+				$tactive = "";
+			}
+	?>
+		<li data-target="#carouse2-example-generic" data-slide-to="<?php echo $t ?>" class="<?php echo $tactive; ?>"></li>
+	<?php } ?>
+	</ol>
+	<div class="carousel-inner">
+	<?php 
+		foreach($this->testmonialsList as $t=>$tm){
+			if($t == 0){
+				$iactive = "active";
+			}else{
+				$iactive = "";
+			}
+	?>
+	<div class="item <?php echo $iactive; ?>">
+	<div class="row">
+	<div class="col-md-2 text-right">
+	<img src="<?php echo $this->basePath; ?>/uploads/testimonial/<?php echo $tm->t_image; ?>" class="testiimonial_pic">
+	</div>
+	<div class="col-md-10">
+	<p class="mar_t15"><?php echo $tm->t_message; ?></p>
+	<h4 class="no_margin"><?php echo $tm->t_name; ?></h4>
+	<h5 class="no_margin"><?php echo $tm->t_designation; ?></h5>
+	</div>
+	</div>
+	</div>
+	<?php } ?>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+<?php } ?>
+</div>

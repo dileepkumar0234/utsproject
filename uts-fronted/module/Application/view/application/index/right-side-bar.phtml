@@ -1,0 +1,30 @@
+<?php
+	
+	$header			=	$this->action('Application\Controller\IndexController', 'headerAction');
+	$baseUrl 		= 	$header->headerarray['baseUrl'];
+	$basePath 		= 	$header->headerarray['basePath'];
+	$quoteOfTheDay 		= 	$header->headerarray['quoteOfTheDay'];
+	$famousCategories 		= 	$header->headerarray['famousCatList'];
+	$famousAuthList 		= 	$header->headerarray['famousAuthList'];
+	// print_r($randomQt);exit;
+?>
+			<div class="col-md-3">
+					<div class="mar_t30"><img src="<?php echo $basePath;?>/images/ad.jpg" class="img-responsive"/></div>
+					<div class="title_heading mar_t25 pos_r">
+						<h1><span class="span_bg_g">Famous Categories</span></h1>
+						<div class="title_lines"></div>
+					</div>
+					<div class="famous_btn">
+						<?php
+						if(isset($famousCategories) && $famousCategories != "" && is_array($famousCategories))
+						{
+							foreach($famousCategories as $fCat):?>
+						<a href="<?php echo $baseUrl;?>all-cat-quotes/<?php echo $fCat['qc_cat_id'].'-'.'0'.'-'.'Cat'.'-'.'0'; ?>"><button type="button" class="btn btn-labeled btn-raised btn-default btn-block">
+						<span class="btn-label"><img src="<?php echo $basePath;?>/images/1.png" class="author_btnicon"/>&nbsp;</span><?php if(isset($fCat['qc_cat_name']) && $fCat['qc_cat_name'] !=""){ echo $fCat['qc_cat_name']; }?></button></a>
+						<?php 
+						endforeach;
+						}
+						?>
+						
+					</div>
+			</div>

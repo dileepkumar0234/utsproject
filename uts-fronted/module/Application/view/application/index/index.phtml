@@ -1,0 +1,339 @@
+<div class="content-wrapper" style="padding-top: 270px;">
+<div class="container">
+<div class="mar_t10">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="title_heading pos_r">
+				<a href="" id="fgt"><p id="forgotPasswordLink"></p></a>
+				<h1><span class="span_bg_g">Famous Categories</span></h1>
+				<div class="title_lines"></div>
+			</div>
+			<div class="row famous_btn">
+				<div class="col-md-6">
+			<?php
+			if(isset($famousCatList) && $famousCatList != "")
+			{
+				$userSessId = "";
+				if(isset( $_SESSION['user']['userId'] ) && $_SESSION['user']['userId'] != "")
+				{
+					$userSessId = $_SESSION['user']['userId'];
+				}
+				else{
+					$userSessId = 0;
+				}
+				$i = 1;
+				foreach($famousCatList as $famous)
+				{
+					//echo "<pre>";print_r($famous['qc_cat_pic']);exit;
+					// category id - quoteid-Cat
+					if($famous['qc_cat_pic']!=""){
+						$categoryImage='/categorypics/'.$famous['qc_cat_pic'];
+					}else{
+						$categoryImage='/images/5.png';
+					}
+				?>				
+					<a href="<?php echo $baseUrl;?>all-cat-quotes/<?php echo $famous['qc_cat_id'].'-'.'0'.'-'.'Cat'.'-'.'0'; ?>"><button type="button" class="btn btn-labeled btn-raised btn-default btn-block">
+					<span class="btn-label"><img src="<?php echo $basePath.$categoryImage;?>" class="author_btnicon"/>&nbsp;</span><?php if(isset($famous['qc_cat_name']) && $famous['qc_cat_name'] != ""){ echo $famous['qc_cat_name']; }?></button></a>
+					<?php if($i == 4)
+					{
+						echo '</div><div class="col-md-6">';
+					}?>
+				
+				
+				<?php $i++;
+				}
+			}				?>
+				</div>
+			</div>
+			<div class="text-right"><a class="btn   btn-raised btn-info no_margin" href="<?php echo $baseUrl?>categories">View More &nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a></div>
+		</div>
+		<div class="col-md-6">
+			<div class="title_heading pos_r">
+				<h1><span class="span_bg_g">Popular Authors</span></h1>
+				<div class="title_lines"></div>
+			</div>
+			<div class="row famous_btn">
+				<div class="col-md-6">
+				<?php
+					$i = 1;					
+					foreach($famousAuthList as $famous)
+					{
+						//echo "<pre>";print_r($famous);exit;
+					// author id - quoteid-Auth	
+				?>
+					<a href="<?php echo $baseUrl;?>all-auth-quotes/<?php echo $famous['au_id'].'-'.'0'.'-'.'Auth'.'-'.'0'; ?>"><button type="button" class="btn btn-labeled btn-raised btn-block overflow_hidden">
+					<span class="btn-label"><img src="<?php if(isset($famous['au_pic']) && $famous['au_pic'] != ""){ echo $basePath;?>/authorpics/<?php echo $famous['au_pic']; }else{ echo $basePath.'/authorpics/icon-user.png';?>
+						
+					<?php }?>" class="author_btnimg"/>&nbsp;</span><?php if(isset($famous['au_fname']) && $famous['au_fname'] !=""){ 
+					echo $famous['au_fname']; echo '&nbsp;'; echo $famous['au_lname']; }?></button></a>
+					<?php if($i == 4)
+					{
+						echo '</div><div class="col-md-6">';
+					}?>
+				
+				<?php
+					$i++;
+					} 
+				?>	
+				</div>				
+			</div>
+			<div class="text-right"><a href="<?php echo $baseUrl?>authors" class="btn   btn-raised btn-info no_margin">View More &nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a></div>
+		</div>
+	</div>
+	<!-- Top Authors -->
+	<div class="top_authors">
+		<div class="title_heading_center pos_r mar_b20">
+					<h1><span class="span_bg_g">Top Quotes</span></h1>
+					<div class="title_lines"></div>
+		</div>
+		<div class="row">
+			
+			<?php if(isset($topQuotes) && $topQuotes !="")
+			{
+				$keywords="";
+				$i=0;
+				$userSessId = "";
+				if(isset( $_SESSION['user']['userId'] ) && $_SESSION['user']['userId'] != "")
+				{
+					$userSessId = $_SESSION['user']['userId'];
+				}
+				else{
+					$userSessId = 0;
+				}
+				foreach($topQuotes as $key=>$tQuotes):
+					$keywords.="";
+					$string=$tQuotes['qc_name'];
+					if(isset($tQuotes['qc_image']) && $tQuotes['qc_image'] != ""){
+						$string = strip_tags($string);
+						if (strlen($string) > 50) {
+							$stringCut = substr($string, 0, 50);
+							$route = $baseUrl."viewers/".$userSessId.'-'.$tQuotes['qc_id'].'-'.$tQuotes['au_id'].'-0';
+							$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'... <a href="'.$route.'" style="font-size:12px;">Read more</a>'; 
+						}
+						$classDy="box_height_f";
+					}else{
+						$string = strip_tags($string);
+						if (strlen($string) > 120) {
+							$stringCut = substr($string, 0, 120);
+							$route = $baseUrl."viewers/".$userSessId.'-'.$tQuotes['qc_id'].'-'.$tQuotes['au_id'].'-0';
+							$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'... <a  href="'.$route.'" style="font-size:12px;">Read more</a>'; 
+						}	
+						$classDy="";	
+					}
+					if(isset($tQuotes['qc_tags']) && $tQuotes['qc_tags']!="" ){
+						$myString = $tQuotes['qc_tags'];
+						$myArray = explode(',', $myString);
+						foreach($myArray as $keyword){
+							
+								$keywords.= '<a href="'.$baseUrl.'search-quote?q='.$keyword.'">'.ucfirst($keyword).'</a>, ';
+						}
+						$keywords= rtrim($keywords,', ');
+					}
+				?>
+			<a style="color:#333 !important;" href="<?php echo $baseUrl;?>viewers/<?php echo $userSessId.'-';echo $tQuotes['qc_id']; echo '-'.'Top'.'-'.'0';?>"><div class="col-md-4">
+				<div class="box overflow_hidden">
+					<?php if(isset($tQuotes['qc_image']) && $tQuotes['qc_image'] != ""){?>
+					<img src="<?php echo $basePath;?>/uploads/<?php echo $tQuotes['qc_image'];?>" class="img-responsive" style="height:150px;width:100%" />
+					<?php } ?>
+						<div class="box-body <?php echo $classDy; ?>">
+							<h2><?php echo $string;?></h2>
+							<h3 class="author_name"><a  href="<?php echo $baseUrl;?>all-auth-quotes/<?php echo $tQuotes['qc_au_id'].'-'.'0'.'-'.'Auth'.'-'.'0'; ?>" ><?php if(isset($tQuotes['au_fname']) && $tQuotes['au_fname'] != ""){ echo $tQuotes['au_fname']; echo '&nbsp'; echo $tQuotes['au_lname']; }?></a></h3>
+							<?php if($keywords!=""){ ?>
+							<h4 class="keywords"><b class="text-muted">Keywords : </b><?php echo $keywords;?></h4>
+							<?php } ?>
+						</div>
+						<div class="social_views">
+							<div class="box-body">
+								<div class="row">
+									<?php $favCnt = $this->plugin('favviewscnt_helper')->getUserFavorate($userSessId, $tQuotes['qc_id']);
+									//echo "<pre>";print_r($favCnt);exit;
+										?>
+									<div class="col-xs-6">
+										<a href="javascript:void(0)" onClick="topShortQuotesFav(<?php echo $tQuotes['qc_id'];?>);" id="quoteFav1_<?php echo $tQuotes['qc_id'];?>">
+										<?php if(isset( $_SESSION['user']['userId'] ) && $_SESSION['user']['userId'] != "")
+										{?>
+										<?php if(isset($favCnt) && $favCnt!=0){ ?><i id="favSymbal_<?php echo $tQuotes['qc_id'];?>" class="fa fa-heart love_s20" aria-hidden="true"></i> <?php }else{?><i id="favSymbal_<?php echo $tQuotes['qc_id'];?>" class="fa fa-heart-o love_s20" aria-hidden="true"></i> <?php }?> 
+										<?php }else{?>
+											<i id="favSymbal_<?php echo $tQuotes['qc_id'];?>" class="fa fa-heart love_s20" aria-hidden="true"></i>
+										<?php } ?>
+										
+										<span id="favCountIdValue_<?php echo $tQuotes['qc_id'];?>" class="color_lc font_w600">
+										<?php
+										if(isset($tQuotes['fav']) && $tQuotes['fav'] != "")
+										{
+											echo $tQuotes['fav'];
+										}
+										else
+										{
+											echo '0';
+										}
+										?></span></a> <span class="font_w600"><?php if(isset($tQuotes['viewCounnt']) && $tQuotes['viewCounnt'] != ""){ echo $tQuotes['viewCounnt']; }else{ echo '0';}?> Views</span> <input type="hidden" name="userSessId" id="userSessId" value="<?php echo $userSessId; ?>" />
+										<input type="hidden" name="quoteId" id="quoteId" value="<?php if(isset($tQuotes['qc_id']) && $tQuotes['qc_id'] != ""){ echo $tQuotes['qc_id']; } ?>" />
+										<input type="hidden" name="hidUserFavorate_<?php echo $tQuotes['qc_id'];?>" id="hidUserFavorate_<?php echo $tQuotes['qc_id'];?>" value="<?php if(isset($favCnt) && $favCnt!=0){ echo $favCnt; }?>" />
+									</div>
+									<div class="col-xs-6 text-right">
+										<a href="javascript:void(0);" onClick="socialSharing('https://www.facebook.com/sharer/sharer.php?u=<?php echo $baseUrl;?>viewers/<?php echo $userSessId.'-';echo $tQuotes['qc_id']; echo '-'.'Top'.'-'.'0';?>');"><img src="<?php echo $basePath;?>/images/facebook.png"></a>
+										<a href="javascript:void(0);" onClick="socialSharing('https://twitter.com/intent/tweet?url=<?php echo $baseUrl;?>viewers/<?php echo $userSessId.'-';echo $tQuotes['qc_id']; echo '-'.'Top'.'-'.'0';?>');"><img src="<?php echo $basePath;?>/images/twitter.png"></a>
+										<a href="javascript:void(0);" onClick="socialSharing('https://plus.google.com/share?url=<?php echo $baseUrl;?>viewers/<?php echo $userSessId.'-';echo $tQuotes['qc_id']; echo '-'.'Top'.'-'.'0';?>');"><img src="<?php echo $basePath;?>/images/pinterest.png"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			
+				
+			</div></a>
+				<?php
+				if($i == 1)
+				{
+				?>
+				<div class="col-md-4 text-center">
+				<div class="box overflow_hidden">
+				<img src="<?php echo $basePath;?>/images/addddd.png"  style="width:100%">
+					
+				</div>
+				</div>
+				<div class="clearfix"></div>
+			<?php
+				}
+				
+				$i++;
+				$keywords="";
+				
+			endforeach;
+			}
+			?>		
+			
+			
+			
+			
+		</div>
+		<?php $url = $baseUrl.'all-quotes-list/0-0-0';?>
+		<div class="text-center"><a href="<?php echo $url;?>" class="btn btn-raised btn-info no_margin"> View More &nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a></div>
+	</div>
+	
+	<!-- Top Authors -->
+	<div class="mar_t30 mar_b30 top_authors">
+		<div class="title_heading_center pos_r mar_b20">
+					<h1><span class="span_bg_g">Short Quotes</span></h1>
+					<div class="title_lines"></div>
+		</div>
+		<div class="row">
+			<?php if(isset($shortQuotes) && $shortQuotes !="")
+			{
+				$keywords="";
+				$i=0;
+				$userSessId = "";
+				if(isset( $_SESSION['user']['userId'] ) && $_SESSION['user']['userId'] != "")
+				{
+					$userSessId = $_SESSION['user']['userId'];
+				}
+				else{
+					$userSessId = 0;
+				}
+				foreach($shortQuotes as $key=>$tQuotes):
+				$keywords.="";
+				 $string=$tQuotes['qc_name'];
+					$string = strip_tags($string);
+					if (strlen($string) > 50) {
+					// $a=$row["news_id"];
+					// $b=$row['category_id'];
+						$stringCut = substr($string, 0, 50);
+						$route = $baseUrl."viewers/".$userSessId.'-'.$tQuotes['qc_id'].'-'.$tQuotes['au_id'].'-0';
+						$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'... <a href="'.$route.'" style="font-size:12px;">Read more</a>'; 
+						}
+					if(isset($tQuotes['qc_tags']) && $tQuotes['qc_tags']!="" ){
+						$myString = $tQuotes['qc_tags'];
+						$myArray = explode(',', $myString);
+						foreach($myArray as $keyword){
+							
+								$keywords.= '<a href="'.$baseUrl.'search-quote?q='.$keyword.'">'.ucfirst($keyword).'</a>, ';
+						}
+						$keywords= rtrim($keywords,', ');
+					}
+				
+				?>
+			<div class="col-md-4">
+			<a href="<?php echo $baseUrl;?>viewers/<?php echo $userSessId.'-';echo $tQuotes['qc_id']; echo '-'.'Short'.'-'.'0';?>">
+				<div class="box overflow_hidden">
+					
+					<?php if(isset($tQuotes['qc_image']) && $tQuotes['qc_image'] != ""){?>
+					<img src="<?php echo $basePath;?>/uploads/<?php echo $tQuotes['qc_image'];?>" class="img-responsive" style="height:150px;width:100%" />
+					<?php } ?>
+					
+						<div class="box-body box_height_f">
+							<h2><?php echo $string;?></h2>
+							<h3 class="author_name"><a href="<?php echo $baseUrl;?>all-auth-quotes/<?php echo $tQuotes['qc_au_id'].'-'.'0'.'-'.'Auth'.'-'.'0'; ?>" ><?php if(isset($tQuotes['au_fname']) && $tQuotes['au_fname'] != ""){ echo $tQuotes['au_fname']; echo '&nbsp'; echo $tQuotes['au_lname']; }?></a></h3>
+							<?php if($keywords!=""){?>
+							<h4 class="keywords"><b class="text-muted">Keywords : </b> <?php echo $keywords;?></h4>
+							<?php } ?>
+						</div>
+						<div class="social_views">
+							<div class="box-body">
+								<div class="row">
+									<?php $favCnt = $this->plugin('favviewscnt_helper')->getUserFavorate($userSessId, $tQuotes['qc_id']);
+										?>
+									<div class="col-xs-6">
+										<a href="javascript:void(0)" onClick="topShortQuotesFav(<?php echo $tQuotes['qc_id'];?>)" id="quoteFav1_<?php echo $tQuotes['qc_id'];?>">
+										<?php if(isset( $_SESSION['user']['userId'] ) && $_SESSION['user']['userId'] != "")
+										{?>
+										<?php if(isset($favCnt) && $favCnt!=0){ ?><i id="favSymbal_<?php echo $tQuotes['qc_id'];?>" class="fa fa-heart love_s20" aria-hidden="true"></i> <?php }else{ ?><i id="favSymbal_<?php echo $tQuotes['qc_id'];?>" class="fa fa-heart-o love_s20" aria-hidden="true"></i> <?php }?> 
+										<?php }else{?>
+											<i id="favSymbal_<?php echo $tQuotes['qc_id'];?>" class="fa fa-heart love_s20" aria-hidden="true"></i>
+										<?php } ?>
+										<span id="favCountIdValue_<?php echo $tQuotes['qc_id'];?>" class="color_lc font_w600">
+										<?php
+										if(isset($tQuotes['fav']) && $tQuotes['fav'] != "")
+										{
+											echo $tQuotes['fav'];
+										}
+										else
+										{
+											echo '0';
+										}
+										
+										?></span></a> <span class="font_w600"><?php if(isset($tQuotes['viewCounnt']) && $tQuotes['viewCounnt'] != ""){ echo $tQuotes['viewCounnt']; }else{ echo '0';}?> Views</span> <input type="hidden" name="userSessId" id="userSessId" value="<?php echo $userSessId; ?>" />
+										<input type="hidden" name="quoteId" id="quoteId" value="<?php if(isset($tQuotes['qc_id']) && $tQuotes['qc_id'] != ""){ echo $tQuotes['qc_id']; } ?>" />
+										<input type="hidden" name="hidUserFavorate_<?php echo $tQuotes['qc_id'];?>" id="hidUserFavorate_<?php echo $tQuotes['qc_id'];?>" value="<?php if(isset($favCnt) && $favCnt!=0){ echo $favCnt; }?>" />
+									</div>
+									<div class="col-xs-6 text-right">
+										<a href="javascript:void(0);" onClick="socialSharing('https://www.facebook.com/sharer/sharer.php?u=<?php echo $baseUrl;?>viewers/<?php echo $userSessId.'-';echo $tQuotes['qc_id']; echo '-'.'Top'.'-'.'0';?>');"><img src="<?php echo $basePath;?>/images/facebook.png"></a>
+										<a href="javascript:void(0);" onClick="socialSharing('https://twitter.com/intent/tweet?url=<?php echo $baseUrl;?>viewers/<?php echo $userSessId.'-';echo $tQuotes['qc_id']; echo '-'.'Top'.'-'.'0';?>');"><img src="<?php echo $basePath;?>/images/twitter.png"></a>
+										<a href="javascript:void(0);" onClick="socialSharing('https://plus.google.com/share?url=<?php echo $baseUrl;?>viewers/<?php echo $userSessId.'-';echo $tQuotes['qc_id']; echo '-'.'Top'.'-'.'0';?>');"><img src="<?php echo $basePath;?>/images/pinterest.png"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			</a>
+				
+			</div>
+				<?php
+				if($i == 1)
+				{
+				?>
+				<div class="col-md-4 text-center">
+				<div class="box overflow_hidden">
+				<img src="<?php echo $basePath;?>/images/addddd.png"  style="width:100%">
+					
+				</div>
+				</div>
+				<div class="clearfix"></div>
+			<?php
+				}
+				
+				$i++;
+				$keywords="";
+			endforeach;
+			}
+			?>	
+			
+			
+			
+		</div>
+		<?php $url = $baseUrl.'short-quotes-list/s-0-Short';?>
+		<div class="text-center"><a href="<?php echo $url;?>" class="btn btn-raised btn-info no_margin">View More &nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></a></div>
+	</div>
+</div>
+</div>
+</div>

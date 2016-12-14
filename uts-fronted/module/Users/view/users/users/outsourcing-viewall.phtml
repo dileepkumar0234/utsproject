@@ -1,0 +1,71 @@
+<div class="content-wrapper">
+	<div class="bredcrum_bg">
+		<div class="container">
+			<section class="content-header mar_t40">
+				<h1 class="text-right">
+					&nbsp;
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="<?php echo $baseUrl;?>/home" class="color_a">Home</a></li>
+					<li><a href="javascript:void(0)">External Development Community</a></li>
+				</ol>
+			</section>
+		</div>
+	</div>
+	<!-- Recent knowledge -->
+	<div class="container">
+		<div class="min_height">
+		<div class="title_heading pos_r mar_t40">
+			<h1><span class="span_bg_g">External Development Community</span></h1>
+			<div class="title_lines"></div>
+		</div>
+		<div class="user_filter_search">
+		<div class="row">
+			<div class="col-md-2 mmhide">&nbsp;</div>
+			<div class="col-md-3 col-xs-3 sm_hide">
+				<div class="select_style">
+				<select  onchange="getEaUsers();" name="resourceCat" id="resourceCat" class="form-control filter_www pull-right">
+				<option value="0"> All</option>
+				<option value="1">XDI Team</option>
+				<option value="2">Legal & Business Affairs Business Partners</option>
+				<option value="3">SRM Business Partners</option>
+				<option value="4">Distributed Development Business Partners</option>
+				</select>
+				</div>
+			</div>
+			<div class="col-md-5 col-xs-8" id="closeAutoSearchDrop1">
+				<div class="input-group">
+					<!--<div class="input-group-btn search-panel">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background:#fff;color:#555;border:1px solid #d2d6de">
+							<span id="search_concept">All</span> <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu comm_dropdown" role="menu">
+						  <li><a href="javascript:void(0);" onclick="getEaUsers(0);">All</a></li>
+						  <li><a href="javascript:void(0);" onclick="getEaUsers(1);">XDI Team</a></li>
+						  <li><a href="javascript:void(0);" onclick="getEaUsers(2);">Legal & Business Affairs Team</a></li>
+						  <li><a href="javascript:void(0);" onclick="getEaUsers(3);">SRM Team</a></li>
+						  <li><a href="javascript:void(0);" onclick="getEaUsers(4);">Distribute Development Team</a></li>
+						</ul>
+					</div>-->
+					
+					<input type="text" class="form-control" name="searchWordEa" id="searchWordEa" placeholder="Search User..." onkeyup="openAutoResultEaUsers();">
+					<span class="input-group-btn">
+						<button class="btn btn-primary xxdi_search_r" type="button" onclick="getEaUsersSearchButton();"><span class="glyphicon glyphicon-search comm_searchpad"></span></button>
+					</span>
+					<div id="top_searchdropdown1" class="dropdown-menu dropdown-menu-right top_searchdropdown" role="menu">
+				
+				</div>
+				</div>
+			</div>
+			<div class="col-md-2 mmhide sm_hide">&nbsp;</div>
+		</div>
+		</div>
+		
+			<div id="outsourcingList" class="mar_t20">
+				<div class="box_white"><div class="main" align="center" style="margin-top:10%;min-height:300px"><img src='<?php echo $basePath;?>/images/ring-alt.gif' /></div></div>
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="sortByTeam" value="0">
+							

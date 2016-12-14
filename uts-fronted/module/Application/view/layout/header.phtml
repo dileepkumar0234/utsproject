@@ -1,0 +1,184 @@
+<?php
+	$header			=	$this->action('Application\Controller\IndexController', 'headerAction');
+	$baseUrl 		= 	$header->headerarray['baseUrl'];
+	$basePath 		= 	$header->headerarray['basePath'];
+	$quoteOfTheDay 		= 	$header->headerarray['quoteOfTheDay'];
+	$socialLogins 		= 	$header->headerarray['options'];
+	// print_r($socialLogins);exit;
+?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Spread the Quotes</title>
+	<link rel="shortcut icon" type="image/png" href="<?php echo $basePath;?>/images/stq-fav.png"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="<?php echo $basePath;?>/css/bootstrap.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo $basePath;?>/css/AdminLTE.css">
+    <link rel="stylesheet" href="<?php echo $basePath;?>/css/_all-skins.css">
+	<link rel="stylesheet" href="<?php echo $basePath;?>/css/custom.css"/>	
+	<link href="<?php echo $basePath;?>/css/bootstrap-material-design.css" rel="stylesheet">
+	<link href="<?php echo $basePath;?>/css/ripples.css" rel="stylesheet">	
+    <link rel="stylesheet" href="<?php echo $basePath;?>/css/default.css">
+	<link rel="stylesheet" href="<?php echo $basePath; ?>/css/formValidation.css">
+	<link rel="stylesheet" href="<?php echo $basePath; ?>/css/xdi-Jcrop.min.css">
+
+  </head>
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+<div class="top_bar_fixed " id="top_bar_fixed">
+<div class="container" style="position:relative;z-index:2">
+	<div class="sign_in_posab">
+	<div class="pull-right">
+	<ul class="nav navbar-nav text-uppercase">
+		<li class="active">
+			<div class="ts_pos_r">
+			<div class="tspos_ab">
+				<div class="form-group text-right tform_group_w no_padding">
+					<form  class="form-horizontal" action="" method="POST" id="QtSearchForm">
+					<div class="input-group input-group-sm">									
+					<input class="form-control top_searcht" type="text" id="QtSearch" name="QtSearch">									
+					<span class="input-group-btn no_padding_im">
+					<button class="btn btn-raised btn-flat" type="button" id="srchBt">Go!</button>
+
+					</span>
+					</div>
+					</form>
+				</div>
+			</div>
+			</div>
+		</li>
+		<li>
+			<div id="dropdownId" class="dropdown">
+				<?php 
+					if(isset($_SESSION['user']['userId']) && $_SESSION['user']['userId'] != "")
+					{?>
+						<div  class="dropdown-toggle user_name" data-toggle="dropdown"><?php echo $_SESSION['user']['displayName'];
+						?> &nbsp;<i class="fa fa-caret-down v_middle" aria-hidden="true"></i></div>
+						
+						<ul  class="dropdown-menu und">
+							<span class="glyphicon glyphicon-triangle-top poin"></span>
+							<li class="und1"><a href="<?php echo $baseUrl; ?>view-userprofile" ><span class="glyphicon glyphicon-user"></span> View Profile</a></li>
+							<li class="und1"><a href="#"  data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-lock"></span> Change password</a></li>
+							<li class="sty"><a href="javascript:void(0)" id="userLogoutButn">
+							<!--<i class="fa fa-sign-out" aria-hidden="true"></i>-->	 <span class="glyphicon glyphicon-off"></span> Sign Out</a></li>
+						</ul>
+
+					<?php }else
+					{?>
+						<a class="btn btn-raised  dropdown-toggle sign_in" href="javascript:void(0)"  data-toggle="dropdown" id="userSignInBtn" >Sign In</a>
+					<?php
+					}
+				?>
+				<?php
+				if(!isset($_SESSION['user']['userId'])):
+				?>
+				<ul id="login-dp" class="dropdown-menu und">
+				<span class="glyphicon glyphicon-triangle-top poin1"></span>
+					<li>
+						<div class="row">
+							<div class="col-md-12">
+								<h4 style="margin:0">Login</h4>
+								<div class="social-buttons">
+									  <a href="javascript:void(0);" id="facebook" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+									<a href="javascript:void(0);" id="gplus" class="btn btn-ge"><i class="fa fa-google"></i> Google</a>
+								</div>
+								<div class="title_heading_center pos_r">
+									<h1 style="margin:0;"><span class="span_bg_g" style="background:#fff;font-size:15px;">or</span></h1>
+									<div class="title_lines" style="top:-10px;"></div>
+								</div>
+								<form class="form-horizontal" role="form" method="post" accept-charset="UTF-8" id="login-nav" data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon"
+						data-fv-icon-invalid="glyphicon"  data-fv-icon-validating="glyphicon glyphicon-refresh"
+						 name="login-nav"   onSubmit="return userLogin();">
+								
+									<p id="errorMsg" style="color:red"></p>
+									<div class="form-group">
+									<label class="sr-only" for="exampleInputEmail2">Email address</label>
+									<input type="text" class="form-control" id="exampleInputEmail2" name="exampleInputEmail2"  placeholder="Email address" required data-fv-notempty-message="The email address is required"  >
+									</div>
+									<div class="form-group">
+									<label class="sr-only" for="exampleInputPassword2">Password</label>
+									<input type="password" class="form-control" id="exampleInputPassword2" name="exampleInputPassword2" placeholder="Password" required data-fv-notempty-message="The password is required" >
+									<div class="text-right"><a href="#"><span style="color:#189def" data-toggle="modal" data-target="#myModal1">Forget password ?</span></a></div>
+									</div>
+									<div class="form-group">
+									<button type="submit" class="btn btn-raised btn-lg btn-info btn-block" >Sign in</button>
+									</div>
+									<input type="hidden" class="form-control" id="hidvalue" name="hidvalue" value="0">
+									<input type="hidden" class="form-control" id="hidvalue2" name="hidvalue2" value="0">
+								</form>
+							</div>
+							<div class="bottom text-center">
+							New here ? <a href="#"><b style="color:#189def" data-toggle="modal" data-target="#myModal">Join Us</b></a>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<?php
+				endif;
+				?>
+			</div>
+		</li>
+    </ul>
+		
+		</div>
+	</div>
+</div>
+<?php //echo '<pre>';print_r($quoteOfTheDay);exit;?>
+	<div class="top_header_h pos_r overflow_hidden">
+		<div class="top_header_quote_bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 mar_t15 logo_ds"><a href="<?php echo $baseUrl;?>"><img src="<?php echo $basePath;?>/images/spread.png" /></a></div>
+					<div class="col-md-7 text-center ">
+						
+					</div>
+				</div>
+				<div class="text-center mar_t20 mar_l00">
+					<?php 
+					$quoteName = 'The Mountains are Calling and I Must go';$authorName = 'John Muir';$QtId = 0;
+					if(isset($quoteOfTheDay) && !is_null($quoteOfTheDay) && !empty($quoteOfTheDay))
+					{
+						if(isset($quoteOfTheDay['qc_name']) && $quoteOfTheDay['qc_name'] != "")
+						{
+							$quoteName = $quoteOfTheDay['qc_name'];
+						}
+						
+						if(isset($quoteOfTheDay['au_fname']) && $quoteOfTheDay['au_fname'] != "")
+						{
+							$authorName = $quoteOfTheDay['au_fname'].'&nbsp'.$quoteOfTheDay['au_lname'];
+						}
+						
+						if(isset($quoteOfTheDay['qc_id']) && $quoteOfTheDay['qc_id'] != "")
+						{
+							$QtId = $quoteOfTheDay['qc_id'];
+						}
+						
+					}
+						
+					?>
+						
+					
+					<h1 id="QtName"><?php echo $quoteName; ?></h1>
+					<span id="AuthName"><a href="<?php echo $baseUrl;?>all-auth-quotes/<?php echo $quoteOfTheDay['qc_au_id'].'-'.'0'.'-'.'Auth'.'-'.'0'; ?>" ><h2><?php echo $authorName; ?></h2></a></span>
+					<a href="javascript:void(0)" id="quoteFav_<?php echo $QtId;?>"><i class="fa fa-heart" aria-hidden="true"></i></a>
+					<a href="javascript:void(0)"><i class="fa fa-refresh " aria-hidden="true" id="refreshBtn"></i></a>
+				</div>
+			</div>
+			<div class="share_icon">
+				<i class="fa fa-share-alt ficon_s" aria-hidden="true"></i>
+				<div class="" style="margin-left: 33px;position: absolute;top: 136px">
+					<i class="fa fa-quote-left ficon_ss" aria-hidden="true"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+    <header class="main-header main_menu">
+        <?php require 'top-menu.phtml'; ?>
+    </header>
+	</div>
+		
