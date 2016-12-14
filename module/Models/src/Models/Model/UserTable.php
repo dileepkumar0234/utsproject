@@ -139,7 +139,7 @@ class UserTable
 	   $password=md5($pwd);
 	   $data = array(
 		   'password'        =>$password,
-		   'locked_pwd'      =>$pwd,
+		   'locked_pwd'      =>base64_encode($pwd),
 		);
 	   $changepassword=$this->tableGateway->update($data, array('user_id' => $userid));	   
 	   return $changepassword;                        

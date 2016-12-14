@@ -769,14 +769,78 @@ class MadminController extends AbstractActionController
 			'output' => 1
 		));
 	}
-	function changePasswordAction(){
-		$baseUrls 	= $this->getServiceLocator()->get('config');
+	public function changePasswordAction()
+	{
+		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
-		$baseUrl 	= $baseUrlArr['baseUrl'];
-		$basePath 	= $baseUrlArr['basePath'];
-		return new ViewModel(array(					
-			'baseUrl' 	=> $baseUrl,
-			'basePath' 	=> $basePath
-		));
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_POST['u_password']) && $_POST['u_password']!=""){
+			$u_id = $_POST['u_id'];
+			$u_password = $_POST['u_password'];
+			$old_password = $_POST['o_u_password'];
+			$n_u_password = $_POST['n_u_password'];
+			$userTable=$this->getServiceLocator()->get('Models\Model\UserFactory');
+			if($old_password!=$n_u_password){
+				$checkOldPassword = $userTable->getpassword($u_id,$old_password);
+				if($checkOldPassword>0){
+					$statusRest = $userTable->changepwd($u_id,$u_password);
+					if($statusRest!=0){
+						$viewModel = new ViewModel(
+						array(
+							'baseUrl'	=> $baseUrl,
+							'basePath' 	=> $basePath,				
+							'sucMsg' 	=> "Successfully changed the password.",
+							'errMsg' 	=> "",
+							'ErrorM' 	=> "",
+							'data'      => ''
+						));
+						return $viewModel;			
+					}else{
+						$viewModel = new ViewModel(
+						array(
+							'baseUrl'	=> $baseUrl,
+							'basePath' 	=> $basePath,				
+							'sucMsg' 	=> "Not changed the password .",
+							'errMsg' 	=> "",
+							'ErrorM' 	=> "",
+							'data'      => $_POST
+						));
+						return $viewModel;
+					}		
+				}else{
+					$viewModel = new ViewModel(
+					array(
+						'baseUrl'	=> $baseUrl,
+						'basePath' 	=> $basePath,				
+						'errMsg' 	=> "Your old password is wrong.",
+						'sucMsg' 	=> "",
+						'ErrorM' 	=> "",
+						'data'      => $_POST
+					));
+					return $viewModel;	
+				}
+			}else{
+				$viewModel = new ViewModel(
+				array(
+					'baseUrl'	=> $baseUrl,
+					'basePath' 	=> $basePath,				
+					'ErrorM' 	=> "Entered your Old password and New password is same.",
+					'sucMsg' 	=> "",
+					'data'      => $_POST
+				));
+				return $viewModel;	
+			}
+		}else{
+			$viewModel = new ViewModel(
+				array(
+					'baseUrl'	=> $baseUrl,
+					'basePath' 	=> $basePath,
+					'sucMsg'	=> "",
+					'ErrorM' 	=> "",
+					'errMsg' 	=> ""
+			));
+			return $viewModel;	
+		}
 	}
 }
