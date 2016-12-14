@@ -3,7 +3,6 @@ return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
         'Application',
-		'Apicalls',
 		'Models',
 		'Users',
     ),
@@ -16,7 +15,6 @@ return array(
         // Module class.
         'module_paths' => array(
             './module',
-            './Apicalls',
 			'./Models',
 			'./Users',
         ),
