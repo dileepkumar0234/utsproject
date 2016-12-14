@@ -83,6 +83,22 @@ return array(
                 ),
             ),
 			//End 
+			//referels
+			'change-password' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/change-password[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'changePassword',
+                    ),
+                ),
+            ),
+			//End 
 			// get Shedules info
 			'get-schedule-info' => array(
                 'type'    => 'segment',

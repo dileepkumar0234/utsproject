@@ -60,7 +60,7 @@ class SchedulesTimingsTable
 	}
 	public function getSheduleInfo(){
 		$select = $this->tableGateway->getSql()->select();
-		$select->columns(array('MaxFqNr' => new Expression('MAX(faq_cat_order)')));		
+		//$select->columns(array('MaxFqNr' => new Expression('MAX(faq_cat_order)')));		
 		$select->join('user', new Expression('user.user_id=schedules_timings.sc_user_id'),array('*'),'left');
 		$select->join('processing_status', new Expression('schedules_timings.sc_user_id = processing_status.ps_user_id'),array('*'),'left');
 		

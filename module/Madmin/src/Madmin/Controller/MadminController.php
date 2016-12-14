@@ -769,4 +769,14 @@ class MadminController extends AbstractActionController
 			'output' => 1
 		));
 	}
+	function changePasswordAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		return new ViewModel(array(					
+			'baseUrl' 	=> $baseUrl,
+			'basePath' 	=> $basePath
+		));
+	}
 }

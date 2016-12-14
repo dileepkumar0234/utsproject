@@ -1,8 +1,90 @@
 <?php
-		$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
-		$baseUrl = $header->headerarray['baseUrl'];
-		$basePath = $header->headerarray['basePath'];
-		
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath'];
+	
+	$referrals		= 	"";
+	$schedules		= 	"";
+	$adminEmail		= 	"";
+	$allusers		= 	"";
+	$assignedUser	= 	"";
+	$assignedUser1	= 	"";
+	$assignedUser2	= 	"";
+	$assignedUser3	= 	"";
+	$assignedUser4	= 	"";
+	$assignedUser5	= 	"";
+	$assignedUser6	= 	"";
+	$assignedUser7	= 	"";
+	$assignedUser8	= 	"";
+	$assignedUser9	= 	"";
+	$assignedUser10	= 	"";
+	$assignedUser11	= 	"";
+	$assignedUser12	= 	"";
+	$assignedUser13	= 	"";
+	$assignedUser14	= 	"";
+	$assignedUser15	= 	"";
+	if(strpos($_SERVER['REQUEST_URI'], 'referels') !== false){
+		$referrals    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'schedules') !== false){
+		$schedules    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'admin-emails') !== false){
+		$adminEmail    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-users') !== false){
+		$allusers    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/0') !== false){
+		$assignedUser    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/1') !== false){
+		$assignedUser1    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/2') !== false){
+		$assignedUser2    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/3') !== false){
+		$assignedUser3    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/4') !== false){
+		$assignedUser4    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/5') !== false){
+		$assignedUser5    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/6') !== false){
+		$assignedUser6    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/7') !== false){
+		$assignedUser7    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/8') !== false){
+		$assignedUser8    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/9') !== false){
+		$assignedUser9    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/10') !== false){
+		$assignedUser10    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/11') !== false){
+		$assignedUser11    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/12') !== false){
+		$assignedUser12    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/13') !== false){
+		$assignedUser13    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/14') !== false){
+		$assignedUser14    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/15') !== false){
+		$assignedUser15    = "active";		
+	}
+	
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,11 +113,11 @@
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav nav_col">  
-								<li><a href="">Payments</a></li>
-								<li><a href="<?php echo $baseUrl;?>/referels" >Referrals</a></li>
-								<li><a href="<?php echo $baseUrl;?>/schedules" >Schedules</a></li>
-								<li><a href="<?php echo $baseUrl;?>/admin-emails" >Emails</a></li>					
-								<li><a href="">Want us to call?</a></li>					
+								<li ><a  href="javascript:void(0);">Payments</a></li>
+								<li  class ="<?php echo $referrals;?>" ><a href="<?php echo $baseUrl;?>/referels" >Referrals</a></li>
+								<li class ="<?php echo $schedules;?>" ><a href="<?php echo $baseUrl;?>/schedules" >Schedules</a></li>
+								<li class ="<?php echo $adminEmail;?>" ><a href="<?php echo $baseUrl;?>/admin-emails" >Emails</a></li>					
+								<li><a href="javascript:void(0);">Want us to call?</a></li>					
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<?php echo $basePath;?>/img/logoblack1.png" class="user-image" alt="User Image">
@@ -73,24 +155,24 @@
                 <ul class="sidebar-menu">
                     <li class="header">Mega Menu</li>
 <?php if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=="1"){?>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-users"><i class="fa fa-users"></i> <span>All Records</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/0"><i class="fa fa-tasks"></i> <span>To be Assigned</span></a></li>
+<li class="treeview <?php echo $allusers; ?>"><a href="<?php echo $baseUrl; ?>/all-users"><i class="fa fa-users"></i> <span>All Records</span></a></li>
+<li class="treeview <?php echo $assignedUser; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/0"><i class="fa fa-tasks"></i> <span>To be Assigned</span></a></li>
 <!--<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>To be Allocated</span></a></li>-->
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/1"><i class="fa fa-user-md"></i> <span>Basic Info Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/2"><i class="fa fa-calendar-o"></i> <span>Scheduling Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/3"><i class="fa  fa-handshake-o"></i> <span>Interview Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/4"><i class="fa fa-file"></i> <span>Documents Upload Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/5"><i class="fa fa-file-text"></i> <span>Other Docs Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/6"><i class="fa fa-circle-o"></i> <span>Preparation Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/7"><i class="fa  fa-arrow-circle-down"></i> <span>Synopses Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/8"><i class="fa fa-circle-o"></i> <span>Payment Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/9"><i class="fa fa-circle-o"></i> <span>Review Upload Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/10"><i class="fa fa-circle-o"></i> <span>Review Confirmation Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/11"><i class="fa fa-circle-o"></i> <span>E-Filing Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/12"><i class="fa fa-circle-o"></i> <span>P-Filing Pending</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/13"><i class="fa fa-circle-o"></i> <span>E–Filing Complete</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/14"><i class="fa fa-circle-o"></i> <span>P-Filing Docs Sent</span></a></li>
-<li class="treeview"><a href="<?php echo $baseUrl; ?>/all-assigned-users/15"><i class="fa fa-circle-o"></i> <span>Files Cancelled</span></a></li>
+<li class="treeview <?php echo $assignedUser1; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/1"><i class="fa fa-user-md"></i> <span>Basic Info Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser2; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/2"><i class="fa fa-calendar-o"></i> <span>Scheduling Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser3; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/3"><i class="fa fa-circle-o"></i> <span>Interview Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser4; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/4"><i class="fa fa-file"></i> <span>Documents Upload Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser5; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/5"><i class="fa fa-file-text"></i> <span>Other Docs Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser6; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/6"><i class="fa fa-circle-o"></i> <span>Preparation Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser7; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/7"><i class="fa  fa-arrow-circle-down"></i> <span>Synopses Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser8; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/8"><i class="fa fa-circle-o"></i> <span>Payment Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser9; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/9"><i class="fa fa-circle-o"></i> <span>Review Upload Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser10; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/10"><i class="fa fa-circle-o"></i> <span>Review Confirmation Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser11; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/11"><i class="fa fa-circle-o"></i> <span>E-Filing Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser12; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/12"><i class="fa fa-circle-o"></i> <span>P-Filing Pending</span></a></li>
+<li class="treeview <?php echo $assignedUser13; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/13"><i class="fa fa-circle-o"></i> <span>E–Filing Complete</span></a></li>
+<li class="treeview <?php echo $assignedUser14; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/14"><i class="fa fa-circle-o"></i> <span>P-Filing Docs Sent</span></a></li>
+<li class="treeview <?php echo $assignedUser15; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/15"><i class="fa fa-circle-o"></i> <span>Files Cancelled</span></a></li>
 <?php } ?>
 				</ul>
             </section>

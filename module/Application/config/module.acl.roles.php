@@ -23,6 +23,7 @@ return array(
 		'schedules',
 		'get-schedule-info',
 		'referels',
+		'change-password',
 		'get-referels-info',
         'all-users',
 		'all-tabs',
