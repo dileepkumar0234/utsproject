@@ -59,11 +59,14 @@ class SchedulesTimingsTable
 		return $row;		
 	}
 	public function getSheduleInfo(){
-		$select = $this->tableGateway->getSql()->select();	
+		$select = $this->tableGateway->getSql()->select();
+		$select->columns(array('MaxFqNr' => new Expression('MAX(faq_cat_order)')));		
 		$select->join('user', new Expression('user.user_id=schedules_timings.sc_user_id'),array('*'),'left');
 		$select->join('processing_status', new Expression('schedules_timings.sc_user_id = processing_status.ps_user_id'),array('*'),'left');
-		$select->order('schedules_timings.created_at DESC');
-		$resultSet = $this->tableGateway->selectWith($select);	
+		
+		$select->order('schedules_timings.schedule_dt DESC');
+		$select->group('user.user_id');
+		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;	
 	}
 }

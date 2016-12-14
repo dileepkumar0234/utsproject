@@ -27,7 +27,7 @@
 	$.ajax({
 		type:	'GET',
 		dataType:'json',
-		url: '<?php echo $this->baseUrl; ?>/get-schedule-info',
+		url: '<?php echo $this->baseUrl; ?>/get-schedule-info?sRch=<?php echo time(); ?>',
 		success: function(data){			
 		$('.tEList').html('<table id="serchList" class="table table-bordered table-striped"><thead><tr><th>Client Name</th><th>Email Id</th><th>Schedule Date</th><th>Schedule Time</th></tr></thead><tbody></tbody></table>');				
 		var oTable = $('#serchList').dataTable( {
