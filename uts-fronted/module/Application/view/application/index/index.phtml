@@ -1,3 +1,8 @@
+<?php
+	$header			=	$this->action('Application\Controller\IndexController', 'headerAction');
+	$baseUrl 		= 	$header->headerarray['baseUrl'];
+	$basePath 		= 	$header->headerarray['basePath'];
+?>
 <header id="myCarousel" class="carousel slide">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
@@ -11,30 +16,30 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner">
 		<div class="item active">
-			<div><img src="img/sl1.jpg"></div>
+			<div><img src="<?php echo $basePath; ?>/img/sl1.jpg"></div>
 			<div class="carousel-caption">
 				<h2>Caption 1</h2>
 			</div>
 		</div>
 		<div class="item">
-			<div><img src="img/sl2.jpg"></div>
+			<div><img src="<?php echo $basePath; ?>/img/sl2.jpg"></div>
 			<div class="carousel-caption">
 				<h2>Caption 2</h2>
 			</div>
 		</div>
 		<div class="item">
-			<div><img src="img/sl3.jpg"></div>
+			<div><img src="<?php echo $basePath; ?>/img/sl3.jpg"></div>
 			<div class="carousel-caption">
 				<h2>Caption 3</h2>
 			</div>
 		</div>
 		<div class="item">
-			<div><img src="img/sl4.jpg"></div>
+			<div><img src="<?php echo $basePath; ?>/img/sl4.jpg"></div>
 			<div class="carousel-caption">
 				<h2>Caption 4</h2>
 			</div>
 		</div> <div class="item">
-			<div><img src="img/sl5.jpg"></div>
+			<div><img src="<?php echo $basePath; ?>/img/sl5.jpg"></div>
 			<div class="carousel-caption">
 				<h2>Caption 5</h2>
 			</div>
@@ -61,7 +66,7 @@
  </div>
  <div class=" col-md-12 about_div mar_t10">
 				<div class="col-md-6">
-					<img class="img-responsive" src="img/about.jpg" alt="">
+					<img class="img-responsive" src="<?php echo $basePath; ?>/img/about.jpg" alt="">
 				</div>
 				<div class="col-md-6">
 					<h2>Advantages with UTS.... </h2>
@@ -102,7 +107,7 @@
 				<h1>Contact Us</h1>
 			</div>
 				<div class="col-md-4">
-					<img  class="img-responsive"src="img/contact.jpg" alt="">
+					<img  class="img-responsive"src="<?php echo $basePath; ?>/img/contact.jpg" alt="">
 				</div>
 				<div class="col-md-3">
 					<h3>Umpire Tax Solutions,LLC</h3>
