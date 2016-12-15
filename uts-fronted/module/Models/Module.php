@@ -30,6 +30,8 @@ use Models\Model\Payment;
 use Models\Model\PaymentTable;
 use Models\Model\Employeeinfo;
 use Models\Model\EmployeeinfoTable;
+use Models\Model\UploadTypes;
+use Models\Model\UploadTypesTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 class Module
@@ -53,6 +55,7 @@ class Module
         return array(
             'factories' => array(
 				'Models\Model\EmployeeinfoFactory'			=>'Models\Factory\Model\EmployeeinfoTableFactory',
+				'Models\Model\UploadTypesFactory'			=>'Models\Factory\Model\UploadTypesTableFactory',
 				'Models\Model\UserFactory'					=>'Models\Factory\Model\UserTableFactory',
 				'Models\Model\ForgetpasswordFactory'		=>'Models\Factory\Model\ForgetpasswordTableFactory',
 				'Models\Model\UserDetailsFactory'			=>'Models\Factory\Model\UserDetailsTableFactory',

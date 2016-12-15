@@ -78,7 +78,17 @@ return array(
 						'action'     => 'scheduleTaxInfo',
 					),
 				),
-			),	
+			),
+			'remove-tax-file' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/remove-tax-file',
+					'defaults' => array(
+						'controller' => 'Users\Controller\TaxDocuments',
+						'action'     => 'removeTaxFile',
+					),
+				),
+			),			
 			'upload-documents-info' => array(
 				'type' => 'Literal',
 				'options' => array(
@@ -94,7 +104,7 @@ return array(
 				'options' => array(
 					'route' => '/summary-info',
 					'defaults' => array(
-						'controller' => 'Users\Controller\Users',
+						'controller' => 'Users\Controller\TaxDocuments',
 						'action'     => 'summaryInfo',
 					),
 				),

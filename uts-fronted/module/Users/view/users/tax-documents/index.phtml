@@ -1,72 +1,112 @@
 <div id="page-wrapper" class="bac_img">
 	<div class="container-fluid">
-	<div class="row page_lo">
-	<div class="col-xs-2 col-md-4 text-left">
-	<a class="btn_site" href="<?php echo $this->baseUrl; ?>schedule-tax-info">Upload Tax Documents</a>
-	</div>  
-	<div class="col-xs-10 col-md-8 text-right btn_pad">
-		<a class="btn_site sm-hide" >File Number:UTS0023</a>
-		<div class="dropdown btn_site">
-			<a class=" dropdown-toggle" data-toggle="dropdown"> welcome dileep   <span class="caret"></a>
-		 <ul class="dropdown-menu">
-			<li><a href="#">Referral List</a></li>
-			<li><a href="#">Change Password</a></li>
-			<li><a href="#">Logout</a></li>
-		 </ul>
+		<div class="row page_lo">
+			<div class="col-xs-2 col-md-4 text-left">
+				<a class="btn_site">Upload Tax Documents</a>
+			</div>
+		</div>
+		<div class="row mar_t20 bac_uplo" id="view_tax_documents">
+			<?php if(count($this->taxDocuments) != 0){
+				foreach($this->taxDocuments as $category=>$files){
+			?>
+				<div class="col-lg-6 ">
+					<div class="table-responsive">
+						<table class="table	">
+							<tbody>
+								<?php foreach($files as $file){ ?>
+								<tr>
+									<th><?php echo $category; ?></th>
+									<td><a href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$category.'/'.$file; ?>" download><?php echo $file; ?></a></td>
+								</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			<?php }}else{ ?>
+				<div class="col-lg-6 ">
+					<div class="table-responsive">
+						<i>Documents are not available</i>
+					</div>
+				</div>
+			<?php } ?>
+			<div class="col-lg-12 label_col">
+				<div class="pull-right">
+					<button type="button" class="btn btn-warning btn-md" onclick="showTaxUploads(2)">EDIT</button>
+					<!--<button type="button" class="btn btn-success btn-md">SUBMIT</button>-->
+				</div>
+			</div>
+		</div>
+		<div id="edit_tax_documents" style="display:none">
+			<form id="taxDocumentsForm" name="dependentsForm" method="POST" enctype="multipart/form-data" data-fv-message="This value is not valid"
+			data-fv-icon-valid="glyphicon glyphicon-ok"
+			data-fv-icon-invalid="glyphicon glyphicon-remove"
+			data-fv-icon-validating="glyphicon glyphicon-refresh">
+				<div class="row mar_t20">
+					<?php if(count($this->categories) != 0){
+						foreach($this->categories as $name){
+					?>
+					<div class="col-lg-6 label_col">
+						<div class="form-group">
+							<label><?php echo $name->upt_name; ?>:</label>
+						</div>
+						<?php if(isset($this->taxDocuments[$name->upt_name]) && count($this->taxDocuments[$name->upt_name]) != 0){
+							foreach($this->taxDocuments[$name->upt_name] as $fileId => $file){
+						?>
+							<div class="form-group">
+								<p id="existsFile_<?php echo $fileId; ?>"><a style="color:#fff !important" href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$name->upt_name.'/'.$file; ?>" download><?php echo $file; ?> &nbsp;&nbsp; <a href="javascript:void(0);" style="color:red !important" onclick="removeFile(<?php echo $fileId; ?>)">Remove</a></p>
+							</div>
+						<?php }} ?>
+						<div class="form-group">
+							<button type="button" class="btn btn-success btn-md" onclick="addMoreFiles(<?php echo $name->upt_id; ?>)">Add more</button>
+						</div>
+						<div id="addMore_<?php echo $name->upt_id; ?>"></div>
+					</div>
+					<?php }} ?>
+				</div>
+				<div class="col-lg-12 label_col">
+					<div class="pull-right">
+						<button type="button" class="btn btn-warning btn-md" onclick="showTaxUploads(1)">VIEW</button>
+						<button type="button" class="btn btn-success btn-md" onclick="submitTaxDocumentsForm();">SUBMIT</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-	</div>
-	<div class="row mar_t20 bac_uplo">
-					<div class="col-lg-6 ">
-						<div class="table-responsive">
-                            <table class="table	">
-                                <tbody>
-                                    <tr>
-                                        <th>health</th>
-                                        <td>file.pdf</td>
-                                    </tr>
-                                    <tr>
-                                       <th>health</th>
-                                        <td>file.pdf</td>
-                                    </tr><tr>
-                                       <th>health</th>
-                                        <td>file.pdf</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-					<div class="col-lg-6 ">
-						<div class="table-responsive">
-                            <table class="table	">
-                                <tbody>
-                                    <tr>
-                                        <th>health</th>
-                                        <td>file.pdf</td>
-                                    </tr>
-                                    <tr>
-                                       <th>health</th>
-                                        <td>file.pdf</td>
-                                    </tr><tr>
-                                       <th>health</th>
-                                        <td>file.pdf</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-					
-					
-					
-                    
-					<div class="col-lg-12 label_col">
-					
-							<div class="pull-right">
-								<button type="button" class="btn btn-warning btn-md">EDIT</button>
-								<button type="button" class="btn btn-success btn-md">SUBMIT</button>
-							</div>
-						</div>
-                </div>
-					
 </div>
+<input type="hidden" id="filesCount" value="1">
+<input type="hidden" id="hid_tax_file_id">
+<div class="modal fade" id="confirm-remove-file" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+				<h3 class="modal-title" id="lineModalLabel">Confirmation</h3>
+			</div>
+			<div class="modal-body">
+				<p>Oops! are you sure want to remove the record.</p>
+			</div>
+			<div class="modal-footer">
+				<span id="loading_remove_file" style="display:none;" class="pull-left"><i>Loading...</i></span>
+				<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+				<button  type="button" class="btn btn-raised btn-info btn-sm" onclick="removeTaxFile()">Ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="warning-upload-files" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+				<h3 class="modal-title" id="lineModalLabel">Warnning</h3>
+			</div>
+			<div class="modal-body">
+				<p>Oops! please upload atleat one file.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+			</div>
+		</div>
+	</div>
 </div>

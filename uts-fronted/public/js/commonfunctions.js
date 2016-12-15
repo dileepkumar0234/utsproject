@@ -1,3 +1,51 @@
+function addMoreFiles(appendDivId){
+	var filesCount = $('#filesCount').val();
+	$('#addMore_'+appendDivId).append('<div class="form-group" id="filescount-'+filesCount+'"><input class="form-control" type="file" id="taxFile_'+filesCount+'" name="taxfile-'+appendDivId+'[]"> &nbsp;&nbsp;<a href="javascript:void(0);" style="color:red !important" onclick="removeFileInput('+filesCount+')">Remove</a></div>');
+	$('#filesCount').val(parseInt(filesCount)+1);
+}
+function removeFileInput(fileInput){
+	$('#filescount-'+fileInput).remove();
+}
+function removeFile(taxFileId){
+	$('#hid_tax_file_id').val(taxFileId);
+	$('#confirm-remove-file').modal('show');
+}
+function removeTaxFile(){
+	var taxFileId = $('#hid_tax_file_id').val();
+	$('#loading_remove_file').show();
+	$.ajax({
+		type:'POST',
+		url:  baseUrl+'remove-tax-file',
+		data:{taxFileId:taxFileId},
+		success: function(){
+			$('#loading_remove_file').hide();
+			$('#confirm-remove-file').modal('hide');
+			$('#existsFile_'+taxFileId).remove();
+		}
+	});
+}
+function showTaxUploads(type){
+	if(type == 2){
+		$('#view_tax_documents').hide();
+		$('#edit_tax_documents').show();
+	}else{
+		window.location = baseUrl+'upload-documents-info';
+	}
+}
+function submitTaxDocumentsForm(){
+	var uploadFile = 0;
+	$('input[id^=taxFile_]').each(function(){
+		if($('#'+this.id).val() != ""){
+			uploadFile = 1;
+			return false; 
+		}
+	});
+	if(uploadFile == 1){
+		$('#taxDocumentsForm').submit();
+	}else{
+		$('#warning-upload-files').modal('show');
+	}
+}
 function adminLogout(){
 	$.ajax({
 		type:'POST',

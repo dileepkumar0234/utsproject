@@ -250,7 +250,7 @@
 				<?php foreach($this->downloadInfo[$category] as $value){ ?>
 				<tr>
 					<th><?php echo $value; ?></th>
-					<td><a href="<?php echo $this->baseUrl.'/uploads/'.$this->userId.'/'.$value; ?>" download>Download</a></td>
+					<td><a href="<?php echo $this->baseUrl.'/uploads/'.$this->userId.'/'.$category.'/'.$value; ?>" download>Download</a></td>
 				</tr>
 				<?php } ?>
 			</table>

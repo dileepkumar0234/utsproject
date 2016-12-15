@@ -21,7 +21,7 @@ return array(
         'baseUrl'        =>     'http://localhost/utsproject/trunk',
         'basePath'       =>    'http://localhost/utsproject/trunk/public',
         'imagesUrl'      =>    '#',
-        'utsYear'        =>    '2015',
+        'utsYear'        =>    '2016',
     ),
     'service_manager'     =>     array(
         'factories'     =>     array(  

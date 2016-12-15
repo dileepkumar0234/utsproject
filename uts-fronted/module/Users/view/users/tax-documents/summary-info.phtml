@@ -1,0 +1,33 @@
+<div id="page-wrapper" class="bac_img">
+	<div class="container-fluid">
+		<div class="row page_lo">
+			<div class="col-xs-2 col-md-4 text-left">
+				<a class="btn_site">View Tax Summary</a>
+			</div>
+		</div>
+		<div class="row mar_t20 bac_uplo" id="view_tax_documents">
+			<?php if(count($this->taxSummary) != 0){ ?>
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table class="table	">
+							<tbody>
+								<?php foreach($this->taxSummary as $s){ ?>
+								<tr>
+									<th><?php echo $s->synopsys_title; ?></th>
+									<td><a href="<?php echo $this->baseUrl.'synopsys/'.$s->synopsys_file; ?>" download><?php echo $s->synopsys_file; ?></a></td>
+								</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			<?php }else{ ?>
+				<div class="col-lg-6 ">
+					<div class="table-responsive">
+						<i>Documents are not available</i>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+</div>

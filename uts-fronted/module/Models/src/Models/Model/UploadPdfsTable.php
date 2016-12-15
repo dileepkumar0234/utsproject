@@ -18,64 +18,6 @@ class UploadPdfsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function addUploadPdf($uid,$fileName)
-    {
-    	
-		if(isset($fileName['hid_w_2']) && $fileName['hid_w_2']!=""){
-			$hid_w_2 = $fileName['hid_w_2'];
-			
-		}else{
-			$hid_w_2 ='';
-		}
-		if(isset($fileName['hid_p1099int']) && $fileName['hid_p1099int']!=""){
-			$hid_p1099int = $fileName['hid_p1099int'];
-			
-		}else{
-			$hid_p1099int ='';
-		}
-		if(isset($fileName['hid_Hsa']) && $fileName['hid_Hsa']!=""){
-			$hid_Hsa = $fileName['hid_Hsa'];
-			
-		}else{
-			$hid_Hsa ='';
-		}
-		if(isset($fileName['hid_Ira']) && $fileName['hid_Ira']!=""){
-			$hid_Ira = $fileName['hid_Ira'];
-			
-		}else{
-			$hid_Ira ='';
-		}
-		if(isset($fileName['hid_health_card']) && $fileName['hid_health_card']!=""){
-			$hid_health_card = $fileName['hid_health_card'];
-			
-		}else{
-			$hid_health_card ='';
-		}
-		$curYear = date("Y");
-		$data = array(
-			'up_user_id' 	  	    => $uid, 	
-			'w2pdf' 		    => $hid_w_2,  		
-			'p1099Int' 		    => $hid_p1099int,  		
-			'hsa' 		        => $hid_Hsa,  		
-			'ira' 		        => $hid_Ira,  		
-			'healthcard' 		=> $hid_health_card,  		
-			'current_year' 		=> $curYear,  		
-			'status'		    => 1, 
-			'created_at' 		=> date('Y-m-d H:i:s')				
-		);
-		
-		$this->tableGateway->insert($data);	
-		return $this->tableGateway->lastInsertValue;
-    }
-	public function requiredUploads(){
-		$select = $this->tableGateway->getSql()->select();	
-		$select->where('w2pdf= ""');
-		$select->where('p1099Int= ""');
-		$select->where('hsa= ""');
-		$select->where('healthcard= ""');
-		$resultSet = $this->tableGateway->selectWith($select);	
-		return $resultSet->current();		
-	}
 	public function getUploadsData($id){
 		$select = $this->tableGateway->getSql()->select();	
 		$select->where('up_user_id= "'.$id.'"');
@@ -94,5 +36,33 @@ class UploadPdfsTable
 		$select->where('upload_pdfs.status="1"');                                         
 		$resultSet = $this->tableGateway->selectWith($select);			
 		return $resultSet;
+    }
+	public function getUserTaxDocuments($user_id){        
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('upload_types', new Expression('upload_types.upt_id=upload_pdfs.upt_id'),array('*'),'left');	
+		$select->where('upload_pdfs.up_user_id="'.$user_id.'"');                                                                                  
+		$select->where('upload_pdfs.status="1"');                                         
+		$resultSet = $this->tableGateway->selectWith($select);			
+		return $resultSet;
+    }
+	public function deleteTaxFile($taxFileId){
+		$row=$this->tableGateway->delete(array('(up_id IN ('.$taxFileId.'))'));
+		return $row;		
+	}
+	public function addTaxUploadPdf($uid,$upt_id,$upload_file)
+    {
+		$curYear = date("Y");
+		$data = array(
+			'up_user_id' 	  	=> $uid, 	
+			'upt_id' 		    => $upt_id,  		 		
+			'upload_file' 		=> $upload_file,  		 		
+			'current_year' 		=> $curYear,  		
+			'status'		    => 1, 
+			'created_at' 		=> date('Y-m-d H:i:s'),				
+			'updated_at' 		=> date('Y-m-d H:i:s')				
+		);
+		
+		$this->tableGateway->insert($data);	
+		return $this->tableGateway->lastInsertValue;
     }
 }
