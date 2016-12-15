@@ -416,3 +416,32 @@ function totalTimeSpenGraph(fromGraphDate,toGraphDate){
 	});
 }
 
+
+//Add Tax info funcxtion 
+function backFun(){
+	$('#editHideShow').hide();
+	$('#hideShow').show();
+}
+function editInfoFun(){
+	$('#editHideShow').show();
+	$('#hideShow').hide();
+}
+
+function taxInfoSubmit(){
+	$('#taxInfoForm').formValidation().on('success.form.fv', function(e) {
+			//$('#sliderLoader').show();
+			e.stopImmediatePropagation();
+			$.ajax({
+				type	: 	"POST",
+				url		: 	baseUrl+'tax-info',
+				data	:	$('#taxInfoForm').serialize(),
+				success	: 	function(result) {
+					//$('#sliderLoader').hide();
+					if(result.output == "success"){
+						window.location=baseUrl+"tax-info";
+					}
+				}
+			});
+			e.preventDefault();
+		});
+}

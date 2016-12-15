@@ -82,11 +82,24 @@ class UsersController extends AbstractActionController
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
-		$basePath 	= $baseUrlArr['basePath'];	
-		return new ViewModel(array(					
-			'baseUrl' 			=>  $baseUrl,
-			'basePath'  		=>  $basePath,
-		));
+		$basePath 	= $baseUrlArr['basePath'];
+		$userId     = 23;
+		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
+		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
+		$getUserInfo = $userTable->getUserInfo($userId);
+		if($_POST){
+		    $userTable->saveUserData($_POST);
+			$userDetailesTable->saveUserDetails($_POST);
+			return new JsonModel(array(					
+				'output' 	=> 'success',
+			));
+		}else{
+			return new ViewModel(array(					
+				'baseUrl' 	=>  $baseUrl,
+				'basePath'  =>  $basePath,
+				'userInfo'  =>  $getUserInfo,
+			));
+		}
 		
 	}
 	public function spouseInfoAction(){

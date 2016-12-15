@@ -4,7 +4,7 @@
 	<div class="col-xs-2 col-md-4 text-left">
 	<a class="btn_site" href="<?php echo $this->baseUrl; ?>tax-info">Tax Payer Information</a>
 	</div>  
-	<div class="col-xs-10 col-md-8 text-right btn_pad">
+	<!--<div class="col-xs-10 col-md-8 text-right btn_pad">
 		<a class="btn_site sm-hide" >File Number:UTS0023</a>
 		<div class="dropdown btn_site">
 			<a class=" dropdown-toggle" data-toggle="dropdown"> welcome dileep   <span class="caret"></a>
@@ -14,99 +14,204 @@
 			<li><a href="#">Logout</a></li>
 		 </ul>
 		</div>
+	</div>-->
 	</div>
+	<div class="row mar_t20 bac_uplo" id="hideShow" >
+		<div class="col-lg-6 ">
+			<div class="table-responsive">
+				<table class="table	">
+					<tbody>
+						<tr>
+							<th>First Name</th>
+							<td><?php if(isset($this->userInfo->first_name) && $this->userInfo->first_name !=""){ echo $this->userInfo->first_name; }?></td>
+						</tr>
+						<tr>
+						   <th>SSN</th>
+							<td><?php if(isset($this->userInfo->ssnitin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?></td>
+						</tr>
+						<tr>
+						   <th>DOB</th>
+							<td><?php if(isset($this->userInfo->itin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?></td>
+						</tr>
+						<tr>
+						   <th>Dependents:Yes/No</th>
+							<td><?php if(isset($this->userInfo->dependent) && $this->userInfo->dependent !=""){ echo $this->userInfo->dependent; }?></td>
+						</tr>
+						<tr>
+						   <th>Mobile/Phone</th>
+							<td><?php if(isset($this->userInfo->phone) && $this->userInfo->phone !=""){ echo $this->userInfo->phone; }?></td>
+						</tr>
+						<tr>
+						   <th>Address</th>
+							<td><?php if(isset($this->userInfo->address) && $this->userInfo->address !=""){ echo $this->userInfo->address; }?></td>
+						</tr>
+						<tr>
+						   <th>State</th>
+							<td><?php if(isset($this->userInfo->state_name) && $this->userInfo->state_name !=""){ echo $this->userInfo->state_name; }?></td>
+						</tr>
+						<tr>
+						   <th>Zip Code</th>
+							<td><?php if(isset($this->userInfo->zip) && $this->userInfo->zip !=""){ echo $this->userInfo->zip; }?></td>
+						</tr>
+						<tr>
+						   <th>Employer Name</th>
+							<td><?php if(isset($this->userInfo->current_emp) && $this->userInfo->current_emp !=""){ echo $this->userInfo->current_emp; }?></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-lg-6 ">
+			<div class="table-responsive">
+				<table class="table	">
+					<tbody>
+						<tr>
+						   <th>Last Name</th>
+							<td><?php if(isset($this->userInfo->last_name) && $this->userInfo->last_name !=""){ echo $this->userInfo->last_name; }?></td>
+						</tr>
+						<tr>
+						   <th>ITIN</th>
+							<td><?php if(isset($this->userInfo->itin) && $this->userInfo->itin !=""){ echo $this->userInfo->itin; }?></td>
+						</tr>
+						<tr>
+						   <th>Occupation</th>
+							<td><?php if(isset($this->userInfo->occupation) && $this->userInfo->occupation !=""){ echo $this->userInfo->occupation; }?></td>
+						</tr>
+						<tr>
+						   <th>Filling Status</th>
+							<td><?php if(isset($this->userInfo->filling_status) && $this->userInfo->filling_status !=""){ echo $this->userInfo->filling_status; }?></td>
+						</tr>
+						<tr>
+						   <th>Email</th>
+							<td><?php if(isset($this->userInfo->email) && $this->userInfo->email !=""){ echo $this->userInfo->email; }?></td>
+						</tr>
+						<tr>
+						   <th>Work Phone</th>
+							<td><?php if(isset($this->userInfo->alterphone) && $this->userInfo->alterphone !=""){ echo $this->userInfo->alterphone; }?></td>
+						</tr>
+						<tr>
+						   <th>City</th>
+							<td><?php if(isset($this->userInfo->city_name) && $this->userInfo->city_name !=""){ echo $this->userInfo->city_name; }?></td>
+						</tr>
+						<tr>
+						   <th>Country</th>
+							<td><?php if(isset($this->userInfo->country_name) && $this->userInfo->country_name !=""){ echo $this->userInfo->country_name; }?></td>
+						</tr>
+						<tr>
+						   <th>Do You Have Health Insurence ?</th>
+							<td><?php if(isset($this->userInfo->insurence) && $this->userInfo->insurence !=""){ echo $this->userInfo->insurence; }?></td>
+						</tr>
+						<tr>
+						   <th>ClientName(If Working In Cl Location)</th>
+							<td><?php if(isset($this->userInfo->c_location) && $this->userInfo->c_location !=""){ echo $this->userInfo->c_location; }?></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class="col-lg-12 label_col">
+			<div class="pull-right">
+				<button type="button" onClick="editInfoFun()" class="btn btn-warning btn-md">EDIT</button>
+			</div>
+		</div>
 	</div>
-	<div class="row mar_t20">
-	<div class="col-lg-6 label_col">
-	<form role="form">
-	<div class="form-group">
-	<label>First Name:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>SSN</label>
-	<input class="form-control">
-	</div><div class="form-group">
-	<label>DOB</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Dependents:Yes/No:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Mobile/Phone</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Address:</label>
-	<!-- <textarea class="form-control" rows="3"></textarea> -->
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>State:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Zip Code:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Employer Name:</label>
-	<input class="form-control">
-	</div>
-	</form>
-	</div>
+	<div class="row mar_t20" id="editHideShow" style="display:none;">
+		<form role="form" id="taxInfoForm" onSubmit="taxInfoSubmit();" method="POST"  
+				data-fv-message="This value is not valid"	
+				data-fv-icon-valid="glyphicon glyphicon-ok"
+				data-fv-icon-invalid="glyphicon glyphicon-remove"
+				data-fv-icon-validating="glyphicon glyphicon-refresh">
+			<div class="col-lg-6 label_col">
+				
+				<div class="form-group">
+					<label>First Name:</label>
+					<input class="form-control" type="text" name="fname" id="fname" required data-fv-notempty-message="Please enter firstname" value="<?php if(isset($this->userInfo->first_name) && $this->userInfo->first_name !=""){ echo $this->userInfo->first_name; }?>">
+				</div>
+				<div class="form-group">
+					<label>SSN</label>
+					<input class="form-control" type="text" name="ssn" id="ssn" value="<?php if(isset($this->userInfo->ssnitin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?>">
+				</div>
+				<div class="form-group">
+					<label>DOB</label>
+					<input class="form-control" type="text" name="dob" id="dob" value="<?php if(isset($this->userInfo->itin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?>">
+				</div>
+				<div class="form-group">
+					<label>Dependents:Yes/No:</label>
+					<input class="form-control" type="text" name="dependents" id="dependents" value="<?php if(isset($this->userInfo->dependent) && $this->userInfo->dependent !=""){ echo $this->userInfo->dependent; }?>">
+				</div>
+				<div class="form-group">
+					<label>Mobile/Phone</label>
+					<input class="form-control" type="text" name="mobile" id="mobile" value="<?php if(isset($this->userInfo->phone) && $this->userInfo->phone !=""){ echo $this->userInfo->phone; }?>">
+				</div>
+				<div class="form-group">
+					<label>Address:</label>
+					<input class="form-control" type="text" name="address" id="address" value="<?php if(isset($this->userInfo->address) && $this->userInfo->address !=""){ echo $this->userInfo->address; }?>">
+				</div>
+				<div class="form-group">
+					<label>State:</label>
+					<input class="form-control" type="text" name="state" id="state" value="<?php if(isset($this->userInfo->state_name) && $this->userInfo->state_name !=""){ echo $this->userInfo->state_name; }?>">
+				</div>
+				<div class="form-group">
+					<label>Zip Code:</label>
+					<input class="form-control" type="text" name="zipcode" id="zipcode" value="<?php if(isset($this->userInfo->zip) && $this->userInfo->zip !=""){ echo $this->userInfo->zip; }?>">
+				</div>
+				<div class="form-group">
+					<label>Employer Name:</label>
+					<input class="form-control" type="text" name="empName" id="empName" value="<?php if(isset($this->userInfo->current_emp) && $this->userInfo->current_emp !=""){ echo $this->userInfo->current_emp; }?>">
+				</div>
+			</div>
 
-	<div class="col-lg-6 label_col">
-	<form role="form">
-	<div class="form-group">
-	<label>Last Name:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>ITIN</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Occupation:</label>
-	<input class="form-control">
-	</div><div class="form-group">
-	<label>Filing Status:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>E-Mail:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Work Phone:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>City:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Country:</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Do you have health Insurance</label>
-	<input class="form-control">
-	</div>
-	<div class="form-group">
-	<label>Client Name(If working in CL Location)</label>
-	<input class="form-control">
-	</div>
-	</form>
-	<div class="col-lg-12 label_col">
-	<div class="pull-right">
-	<button type="button" class="btn btn-warning btn-md">EDIT</button>
-	<button type="button" class="btn btn-success btn-md">SUBMIT</button>
-	</div>
-	</div>
-	</div>
-	</div>
+			<div class="col-lg-6 label_col">
+				<div class="form-group">
+					<label>Last Name:</label>
+					<input class="form-control" type="text" name="lname" id="lname" value="<?php if(isset($this->userInfo->last_name) && $this->userInfo->last_name !=""){ echo $this->userInfo->last_name; }?>">
+				</div>
+				<div class="form-group">
+					<label>ITIN</label>
+					<input class="form-control" type="text" name="itin" id="itin" value="<?php if(isset($this->userInfo->itin) && $this->userInfo->itin !=""){ echo $this->userInfo->itin; }?>">
+				</div>
+				<div class="form-group">
+					<label>Occupation:</label>
+					<input class="form-control" type="text" name="occupation" id="occupation" value="<?php if(isset($this->userInfo->occupation) && $this->userInfo->occupation !=""){ echo $this->userInfo->occupation; }?>">
+				</div>
+				<div class="form-group">
+					<label>Filing Status:</label>
+					<input class="form-control" type="text" name="filingSta" id="filingSta" value="<?php if(isset($this->userInfo->filling_status) && $this->userInfo->filling_status !=""){ echo $this->userInfo->filling_status; }?>">
+				</div>
+				<div class="form-group">
+					<label>E-Mail:</label>
+					<input class="form-control" type="text" name="email" id="email" value="<?php if(isset($this->userInfo->email) && $this->userInfo->email !=""){ echo $this->userInfo->email; }?>">
+				</div>
+				<div class="form-group">
+					<label>Work Phone:</label>
+					<input class="form-control" type="text" name="workPhone" id="workPhone" value="<?php if(isset($this->userInfo->alterphone) && $this->userInfo->alterphone !=""){ echo $this->userInfo->alterphone; }?>">
+				</div>
+				<div class="form-group">
+					<label>City:</label>
+					<input class="form-control" type="text" name="city" id="city" value="<?php if(isset($this->userInfo->city_name) && $this->userInfo->city_name !=""){ echo $this->userInfo->city_name; }?>">
+				</div>
+				<div class="form-group">
+					<label>Country:</label>
+					<input class="form-control" type="text" name="country" id="country" value="<?php if(isset($this->userInfo->country_name) && $this->userInfo->country_name !=""){ echo $this->userInfo->country_name; }?>">
+				</div>
+				<div class="form-group">
+					<label>Do you have health Insurance?</label>
+					<input class="form-control" type="text" name="insurence" id="insurence" value="<?php if(isset($this->userInfo->insurence) && $this->userInfo->insurence !=""){ echo $this->userInfo->insurence; }?>">
+				</div>
+				<div class="form-group">
+					<label>Client Name(If working in CL Location)</label>
+					<input class="form-control" type="text" name="clientName" id="clientName" value="<?php if(isset($this->userInfo->c_location) && $this->userInfo->c_location !=""){ echo $this->userInfo->c_location; }?>" >
+				</div>
+				<div class="col-lg-12 label_col">
+					<div class="pull-right">
+						<button type="button" onClick ="backFun()" class="btn btn-warning btn-md">BACK</button>
+						<button type="submit" class="btn btn-success btn-md">SUBMIT</button>
+					</div>
+				</div>
+			  </div>
+			  <input type="hidden" name="hidUserId" id="hidUserId" value="<?php if(isset($this->userInfo->user_id) && $this->userInfo->user_id){ echo $this->userInfo->user_id; }?>" />
+			 </form>
+		</div>
 	</div>
 </div>

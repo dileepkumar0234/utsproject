@@ -20,29 +20,18 @@ class UserTable
     }
 	public function saveUserData($users)
     {
-		$password=md5($users['userpwd']);
-		if(isset($users['inputFirstname']) && $users['inputFirstname']!=''){
-			$firstName = $users['inputFirstname'];
-		}else{
-			$firstName = '';
-		}
-		if(isset($users['inputEmail']) && $users['inputEmail']!=''){
-			$email = $users['inputEmail'];
+		if(isset($users['email']) && $users['email']!=''){
+			$email = $users['email'];
 		}else{
 			$email ='';
 		}
-		$data = array(
-			'user_name' 	  	       => $firstName,				
+		$data = array(			
 			'email' 		           => $email,  		
-			'password' 		           => $password,		
-			'locked_pwd' 		       => $users['userpwd'],		
 			'status'  	               => 1,  	
-			'date_added' 	           => date('Y-m-d H:i:s'),   
-			'date_updated'	  	       => date('Y-m-d H:i:s'), 	
-			'user_type_id' 		       => 2, 			
+			'date_updated'	  	       => date('Y-m-d H:i:s'), 				
 		);	
-		$insertresult=$this->tableGateway->insert($data);	
-		return $this->tableGateway->lastInsertValue;		
+		 $result = $this->tableGateway->update($data, array('user_id' => $users['hidUserId']));	   
+	     return $result;   
     }		
 	public function checkDetails($details)
     {	
@@ -185,7 +174,7 @@ class UserTable
 		$updateuserid=$this->tableGateway->update($data, array('user_id' => $uid));
 		return $updateuserid;	
     }
-	public function getUserDataInfo($user_id){        
+	public function getUserInfo($user_id){        
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user_details', new Expression('user_details.u_user_id=user.user_id'),array('*'),'left');	
 		$select->where('user.user_id="'.$user_id.'"');                                         

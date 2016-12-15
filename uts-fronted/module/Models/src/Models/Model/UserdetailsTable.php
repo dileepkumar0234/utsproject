@@ -18,88 +18,32 @@ class UserdetailsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function saveUserDetails($users,$userId)
+	public function saveUserDetails($users)
     {
-		if(isset($users['inputFirstname']) && $users['inputFirstname']!=''){
-			$firstName = $users['inputFirstname'];
-		}else{
-			$firstName = '';
-		}
-		if(isset($users['inputLastname']) && $users['inputLastname']!=''){
-			$lastName = $users['inputLastname'];
-		}else{
-			$lastName ='';
-		}
-		if(isset($users['occupation']) && $users['occupation']!=''){
-			$occupation = $users['occupation'];
-		}else{
-			$occupation ='';
-		}
-		if(isset($users['dob']) && $users['dob']!=''){
-			$dob = $users['dob'];
-		}else{
-			$dob ='';
-		}
-		if(isset($users['city_name']) && $users['city_name']!=''){
-			$city_name = $users['city_name'];
-		}else{
-			$city_name ='';
-		}
-		if(isset($users['state_name']) && $users['state_name']!=''){
-			$state_name = $users['state_name'];
-		}else{
-			$state_name ='';
-		}
-		if(isset($users['ssnitin']) && $users['ssnitin']!=''){
-			$ssnitin = $users['ssnitin'];
-		}else{
-			$ssnitin ='';
-		}
-		if(isset($users['visa_type']) && $users['visa_type']!=''){
-			$visa_type = $users['visa_type'];
-		}else{
-			$visa_type ='';
-		}
-		if(isset($users['country_name']) && $users['country_name']!=''){
-			$country_name = $users['country_name'];
-		}else{
-			$country_name ='';
-		}
-		if(isset($users['addr']) && $users['addr']!=''){
-			$addr = $users['addr'];
-		}else{
-			$addr ='';
-		}
-		if(isset($users['apt_no']) && $users['apt_no']!=''){
-			$apt_no = $users['apt_no'];
-		}else{
-			$apt_no ='';
-		}
-		if(isset($users['inputTelephone']) && $users['inputTelephone']!=''){
-			$inputTelephone = $users['inputTelephone'];
-		}else{
-			$inputTelephone ='';
-		}
-		$data = array(		
-			'u_user_id'         => 	$userId,  		
-			'first_name'        => 	$firstName,  		
-			'last_name'         => 	$lastName,  		
-			'occupation'        => 	$occupation,  		
-			'dob'               => 	$dob,  		
-			'city_name'         => 	$city_name,		
-			'state_name'        => 	$state_name,	  	
-			'country_name'      => 	$country_name,	  	
-			'visa_type'         => 	$visa_type,	  	
-			'ssnitin'           => 	$ssnitin,	  	
-			'address' 	       	=> 	$addr,	
-			'apt_no' 	       	=> 	$apt_no,			
-			'phone'	      	 	=> 	$inputTelephone,	  	
-			'status'			=>	1,
-			'date_added'		=>	date('Y-m-d H:i:s'), 
-			'date_updated'		=>	date('Y-m-d H:i:s'), 	
+		$data = array(
+			'first_name' 	  	       => $users['fname'],						
+			'last_name' 		       => $users['lname'],		
+			'occupation' 		       => $users['occupation'],		
+			'current_emp' 		       => $users['empName'],		
+			'dob' 		       		   => $users['dob'],		
+			'address' 		      	   => $users['address'],		
+			'city_name' 		       => $users['city'],		
+			'state_name' 		       => $users['state'],		
+			'country_name' 		       => $users['country'],		
+			'zip' 		      		   => $users['zipcode'],		
+			'phone' 		      	   => $users['mobile'],		
+			'alterphone' 		       => $users['workPhone'],		
+			'dependent' 		       => $users['dependents'],		
+			'ssnitin' 		      	   => $users['ssn'],		
+			'itin' 		       		   => $users['itin'],		
+			'insurence' 		       => $users['insurence'],		
+			'c_location' 		       => $users['clientName'],		
+			'filling_status' 		   => $users['filingSta'],
+			'status'  	               => 1,  	
+			'date_updated'	  	       => date('Y-m-d H:i:s'), 				
 		);	
-		$insertresult=$this->tableGateway->insert($data);	
-		return $this->tableGateway->lastInsertValue;		
+		$result = $this->tableGateway->update($data, array('u_user_id' => $users['hidUserId']));	   
+	     return $result; 	
     }	
 	public function updateTaxPayer($users,$userId){
 		if(isset($users['user_name']) && $users['user_name']!=''){
