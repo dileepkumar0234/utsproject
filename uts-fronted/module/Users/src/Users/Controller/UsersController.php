@@ -9,6 +9,17 @@ use Zend\Session\Container;
 
 class UsersController extends AbstractActionController
 {
+	public function dashboardAction(){
+		$user_session 				= new Container('user');
+		$baseUrls 					= $this->getServiceLocator()->get('config');
+		$baseUrlArr 				= $baseUrls['urls'];
+		$baseUrl 					= $baseUrlArr['baseUrl'];
+		$basePath 					= $baseUrlArr['basePath'];
+		return new ViewModel(array(					
+			'baseUrl' 			=>  $baseUrl,
+			'basePath'  		=>  $basePath,
+		));
+	}
     public function indexAction(){
 		$user_session 				= new Container('user');
 		$baseUrls 					= $this->getServiceLocator()->get('config');

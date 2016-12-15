@@ -28,6 +28,16 @@ return array(
 						'action'     => 'userLogin',
 					),
 				),
+			),
+			'dashboard' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/dashboard',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'dashboard',
+					),
+				),
 			),		
 			'tax-info' => array(
 				'type' => 'Literal',

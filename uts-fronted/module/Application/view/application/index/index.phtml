@@ -1,28 +1,154 @@
-<?php
-	$header			=	$this->action('Application\Controller\IndexController', 'headerAction');
-	$baseUrl 		= 	$header->headerarray['baseUrl'];
-	$basePath 		= 	$header->headerarray['basePath'];
-?>
-<div id="page-wrapper" class="">
-	<div class="container-fluid">
-			<div class="row page_lo">
-				<div class="col-xs-2 col-md-4 text-left">
-					<a class="btn_site" href="<?php echo $baseUrl; ?>">Home</a>
-				</div>  
-				<?php include('home-menu.phtml'); ?>
+<header id="myCarousel" class="carousel slide">
+	<!-- Indicators -->
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+		<li data-target="#myCarousel" data-slide-to="3"></li>
+		<li data-target="#myCarousel" data-slide-to="4"></li>
+	</ol>
+
+	<!-- Wrapper for slides -->
+	<div class="carousel-inner">
+		<div class="item active">
+			<div><img src="img/sl1.jpg"></div>
+			<div class="carousel-caption">
+				<h2>Caption 1</h2>
 			</div>
-			<div class="row whit_col">
-				<div class="col-lg-12">
-					<h3>Welcome to Umpire Tax Solutions,LLC</h2>
-				</div>
-				<div class="col-lg-12 whit_col text-center">
-					<h3>6 Steps to File your Tax Returns</h2>
-				</div>
+		</div>
+		<div class="item">
+			<div><img src="img/sl2.jpg"></div>
+			<div class="carousel-caption">
+				<h2>Caption 2</h2>
 			</div>
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<img  class="img-responsive2"src="<?php echo $basePath;?>/img/steps.png">
-				</div>
-			 </div>
+		</div>
+		<div class="item">
+			<div><img src="img/sl3.jpg"></div>
+			<div class="carousel-caption">
+				<h2>Caption 3</h2>
+			</div>
+		</div>
+		<div class="item">
+			<div><img src="img/sl4.jpg"></div>
+			<div class="carousel-caption">
+				<h2>Caption 4</h2>
+			</div>
+		</div> <div class="item">
+			<div><img src="img/sl5.jpg"></div>
+			<div class="carousel-caption">
+				<h2>Caption 5</h2>
+			</div>
+		</div>
 	</div>
+
+	<!-- Controls -->
+	<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		<span class="icon-prev"></span>
+	</a>
+	<a class="right carousel-control" href="#myCarousel" data-slide="next">
+		<span class="icon-next"></span>
+	</a>
+</header>
+<div class="container mar_t20">
+	<div class="">
+		<div class="col-lg-12">
+		   <h1 class="text-center">
+				Welcome To Umpire Tax Solutions
+			</h1>
+			<p>Umpire Tax Solutions, LLC is a firm established with a group of Qualified professionals such as Certified Public Accountants, Enrolled Agents and Chartered Accountants. Umpire Tax Solutions provide outstanding services to the clients because of our Commitment to the five underlying principles of Professionalism, Accuracy, Dedication, Integrity and Responsibility. The qualified professionals of our company hard work experience of 6 years in the fields of International Taxation and Various Financial Services. </p>
+		</div>
+	</div>
+ </div>
+ <div class=" col-md-12 about_div mar_t10">
+				<div class="col-md-6">
+					<img class="img-responsive" src="img/about.jpg" alt="">
+				</div>
+				<div class="col-md-6">
+					<h2>Advantages with UTS.... </h2>
+            <p class="head_process text-justify">
+                
+ HOW TO PAY LESS TAXES BY TAKING THE ELIGIBLE ADVANTAGES????<br>
+  UTS will guide you in claiming the benefits which provided by the Federal & State Governments so that it
+                will help you to reduce the taxes.
+            </p>
+            <ul class="about_list">
+                <li> IRA (Individual Retirement Arrangement)</li>
+                <li> HSA (Health Savings Account)</li>
+                <li> Credits <br>
+                    <ul class="SUbmenu">
+                        <li>Educational Credits</li>
+                        <li>Foriegn Tax Credit</li>
+                        <li>Earned Income Credit</li>
+                        <li>Child Tax Credit</li>
+                        <li>Dependant Care Credit</li>
+                    </ul>
+                </li>
+                <li> Home loan Interest Deduction (U.S/Foreign)</li>
+                <li> Student loan Interest Deduction (U.S/Foreign)</li>
+                <li> Medical Expenses</li>
+                <li> Charities</li>
+                <li> Free Federal & State Filing Extensions</li>
+                <li> Free Tax Estimates</li>
+                <li> 100% Guarantee to get the Estimated Refunds</li>
+
+                <a href="#" class="more-btn btn btn-primary mar_t10" ng-click="referals()"><i class="fa fa-user"></i> Refer a
+                    Friend</a>
+            </ul>	
+				</div>
 </div>
+<div class="container">
+		<div class="col-md-12">
+			<div class="text-center">
+				<h1>Contact Us</h1>
+			</div>
+				<div class="col-md-4">
+					<img  class="img-responsive"src="img/contact.jpg" alt="">
+				</div>
+				<div class="col-md-3">
+					<h3>Umpire Tax Solutions,LLC</h3>
+						<address>
+							<p><strong>Corporate Office:</strong> <br>9500 Grove Crest Ln<br>
+							 Charlotte NC 28262</p>
+							<p><strong>India Office:</strong> <br> 4-7-8/116, <br>Raghavendra Nagar Nacharam<br>
+								Secunderabad ,&nbsp;Telangana 76</p>
+							 
+							<p><strong>E-mail:</strong> Hello@umpiretaxsolutions.com</p>
+						</address>
+						<br/>
+
+						<h3>Social</h3>
+						<p><i class="icon-facebook icon"></i> <a href="#">Facebook</a></p>
+						<p><i class="icon-google_plus icon"></i> <a href="#">Google+</a></p>
+						<p class="margin-bottom"><i class="icon-linked_in icon"></i> <a
+								href="#">LinkedIn</a></p>
+				</div>
+				
+			<div class="col-md-5">
+				<div class="form-area">  
+					<form role="form">
+					<br style="clear:both">
+								<h3 style="margin-bottom: 20px;">Contact Form</h3>
+								<div class="form-group">
+									<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+								</div>
+								<div class="form-group">
+								<textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
+									<span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>                    
+								</div>
+						
+					<button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Submit Form</button>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
