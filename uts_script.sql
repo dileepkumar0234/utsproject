@@ -1,3 +1,5 @@
+
+ALTER TABLE `umpiretaxpayer`.`user_details` ADD COLUMN `insurence` VARCHAR(100) NULL AFTER `visa_type`; 
 ALTER TABLE `umpiretaxpayer`.`user_details` ADD COLUMN `itin` VARCHAR(100) NULL AFTER `ssnitin`; 
 
 ALTER TABLE `processing_status` ADD COLUMN `ps_year` INT(10) NULL AFTER `ps_state`; 
