@@ -3,6 +3,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Users\Controller\Users'		 			=> 'Users\Controller\UsersController',
+            'Users\Controller\TaxDocuments'		 		=> 'Users\Controller\TaxDocumentsController',
         ),
     ),
     // The following section is new and should be added to your file
@@ -73,8 +74,8 @@ return array(
 				'options' => array(
 					'route' => '/upload-documents-info',
 					'defaults' => array(
-						'controller' => 'Users\Controller\Users',
-						'action'     => 'uploadDocumentsInfo',
+						'controller' => 'Users\Controller\TaxDocuments',
+						'action'     => 'index',
 					),
 				),
 			),	
