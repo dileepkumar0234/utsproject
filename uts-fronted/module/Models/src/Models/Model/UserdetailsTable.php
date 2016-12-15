@@ -45,6 +45,22 @@ class UserdetailsTable
 		$result = $this->tableGateway->update($data, array('u_user_id' => $users['hidUserId']));	   
 	     return $result; 	
     }	
+	public function saveUserSpouseDetails($users)
+    {
+		$data = array(
+			'first_name' 	  	       => $users['fname'],						
+			'last_name' 		       => $users['lname'],
+			'occupation' 		       => $users['occupation'],		
+			'dob' 		       		   => $users['dob'],	
+			'ssnitin' 		      	   => $users['ssn'],		
+			'itin' 		       		   => $users['itin'],
+			'visa_type' 		       => $users['visa_type'],
+			'status'  	               => 1,  	
+			'date_updated'	  	       => date('Y-m-d H:i:s'), 				
+		);	
+		$result = $this->tableGateway->update($data, array('u_user_id' => $users['hidUserId']));	   
+	     return $result; 	
+    }	
 	public function updateTaxPayer($users,$userId){
 		if(isset($users['user_name']) && $users['user_name']!=''){
 			$user_name = $users['user_name'];

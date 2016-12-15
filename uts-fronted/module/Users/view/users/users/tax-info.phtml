@@ -31,7 +31,7 @@
 						</tr>
 						<tr>
 						   <th>DOB</th>
-							<td><?php if(isset($this->userInfo->itin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?></td>
+							<td><?php if(isset($this->userInfo->dob) && $this->userInfo->dob !=""){ echo $this->userInfo->dob; }?></td>
 						</tr>
 						<tr>
 						   <th>Dependents:Yes/No</th>
@@ -134,7 +134,7 @@
 				</div>
 				<div class="form-group">
 					<label>DOB</label>
-					<input class="form-control" type="text" name="dob" id="dob" value="<?php if(isset($this->userInfo->itin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?>">
+					<input class="form-control" type="text" name="dob" id="dob" value="<?php if(isset($this->userInfo->dob) && $this->userInfo->dob !=""){ echo $this->userInfo->dob; }?>">
 				</div>
 				<div class="form-group">
 					<label>Dependents:Yes/No:</label>

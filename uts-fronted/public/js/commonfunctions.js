@@ -474,7 +474,14 @@ function editInfoFun(){
 	$('#editHideShow').show();
 	$('#hideShow').hide();
 }
-
+function editSpouseInfoFun(){
+	$('#editSpousehideShow').show();
+	$('#hideShowSpouse').hide();
+}
+function backSpouseFun(){
+	$('#editSpousehideShow').hide();
+	$('#hideShowSpouse').show();
+}
 function taxInfoSubmit(){
 	$('#taxInfoForm').formValidation().on('success.form.fv', function(e) {
 			//$('#sliderLoader').show();
@@ -492,4 +499,23 @@ function taxInfoSubmit(){
 			});
 			e.preventDefault();
 		});
+}
+
+function submitSpouseInfo(){
+	$('#spouseInformation').formValidation().on('success.form.fv', function(e) {
+		//$('#sliderLoader').show();
+		e.stopImmediatePropagation();
+		$.ajax({
+			type	: 	"POST",
+			url		: 	baseUrl+'spouse-info',
+			data	:	$('#spouseInformation').serialize(),
+			success	: 	function(result) {
+				//$('#sliderLoader').hide();
+				if(result.output == "success"){
+					window.location=baseUrl+"spouse-info";
+				}
+			}
+		});
+		e.preventDefault();
+	});
 }

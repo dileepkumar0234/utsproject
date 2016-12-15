@@ -106,12 +106,34 @@ class UsersController extends AbstractActionController
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$userId     = 23;
+		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
+		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
+		$getUserInfo = $userTable->getUserInfo($userId);
+		if($_POST){
+			$userDetailesTable->saveUserSpouseDetails($_POST);
+			return new JsonModel(array(					
+				'output' 	=> 'success',
+			));
+		}else{
+			return new ViewModel(array(					
+				'baseUrl' 	=>  $baseUrl,
+				'basePath'  =>  $basePath,
+				'userInfo'  =>  $getUserInfo,
+			));
+		}
+	}
+	public function empInfoAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];	
 		return new ViewModel(array(					
 			'baseUrl' 			=>  $baseUrl,
 			'basePath'  		=>  $basePath,
+			
 		));
-		
 	}
 	public function dependentsInfoAction(){
 		$baseUrls 	= $this->getServiceLocator()->get('config');

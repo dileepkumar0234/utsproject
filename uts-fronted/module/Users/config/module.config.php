@@ -49,6 +49,16 @@ return array(
 					),
 				),
 			),
+			'emp-info' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/emp-info',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'empInfo',
+					),
+				),
+			),	
 			'spouse-info' => array(
 				'type' => 'Literal',
 				'options' => array(
