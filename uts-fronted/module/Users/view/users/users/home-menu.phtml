@@ -1,0 +1,16 @@
+<?php	
+	$header			=	$this->action('Application\Controller\IndexController', 'headerAction');
+	$baseUrl 		= 	$header->headerarray['baseUrl'];
+	$basePath 		= 	$header->headerarray['basePath'];
+?>
+<div class="col-xs-10 col-md-8 text-right btn_pad">
+		<a class="btn_site sm-hide">File Number:UTS0023</a>
+		<div class="dropdown btn_site">
+			<a class=" dropdown-toggle" data-toggle="dropdown"> welcome dileep   <span class="caret"></a>
+		 <ul class="dropdown-menu">
+			<li><a href="#">Referral List</a></li>
+			<li><a href="#">Change Password</a></li>
+			<li><a href="#">Logout</a></li>
+		 </ul>
+		</div>
+	</div>
