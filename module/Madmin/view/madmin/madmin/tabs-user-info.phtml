@@ -86,6 +86,41 @@
 	</div>
 </div>
 <?php } else if($this->tabType == 2){ ?>
+<button type="button" class="btn btn-primary">Spouse Information:</button>
+<?php if(count($this->spouseInfo) != 0){
+	foreach($this->spouseInfo as $sp){
+?>
+<div class="tab_con">
+	<div class="col-md-12 und_lin mar_t30">
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($sp[0] as $key=>$value){ ?>
+				<tr>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+		<div class="col-md-6">
+			<table class="table">
+				<?php foreach($sp[1] as $key=>$value){ ?>
+				<tr>
+					<th><?php echo $key; ?></th>
+					<td><?php echo $value; ?></td>
+				</tr>
+				<?php } ?>
+			</table>
+		</div>
+	</div>
+</div>
+<?php }} else { ?>
+<!--<div class="tabs_tit">
+	<h3>No records found.</h3>
+</div>-->
+	<button type="button" class="btn btn-primary">No records found:</button>
+<?php } ?>
+<br/><br/><br/><br/><br/><br/><br/>
 <!--<div class="tabs_tit">
 	<h3>Employer Information:</h3>
 </div>-->
@@ -128,41 +163,6 @@
 <!--<div class="tabs_tit">
 	<h3>Spouse Information:</h3>
 </div>-->
-<button type="button" class="btn btn-primary">Spouse Information:</button>
-<?php if(count($this->spouseInfo) != 0){
-	foreach($this->spouseInfo as $sp){
-?>
-<div class="tab_con">
-	<div class="col-md-12 und_lin mar_t30">
-		<div class="col-md-6">
-			<table class="table">
-				<?php foreach($sp[0] as $key=>$value){ ?>
-				<tr>
-					<th><?php echo $key; ?></th>
-					<td><?php echo $value; ?></td>
-				</tr>
-				<?php } ?>
-			</table>
-		</div>
-		<div class="col-md-6">
-			<table class="table">
-				<?php foreach($sp[1] as $key=>$value){ ?>
-				<tr>
-					<th><?php echo $key; ?></th>
-					<td><?php echo $value; ?></td>
-				</tr>
-				<?php } ?>
-			</table>
-		</div>
-	</div>
-</div>
-<?php }} else { ?>
-<!--<div class="tabs_tit">
-	<h3>No records found.</h3>
-</div>-->
-	<button type="button" class="btn btn-primary">No records found:</button>
-<?php } ?>
-<br/><br/><br/><br/><br/><br/><br/>
 <!--<div class="tabs_tit">
 	<h3>Dependents Information:</h3>
 </div>-->
@@ -202,8 +202,11 @@
 <button type="button" class="btn btn-danger">No records found.</button>
 <?php }} else if($this->tabType == 3){ ?>
 <?php if(count($this->scheduleInfo) != 0){
-	foreach($this->scheduleInfo as $sc){
+	$k=0; foreach($this->scheduleInfo as $sc){
+		if($k==0){
 ?>
+<button type="button" class="btn btn-primary">Schedule Time</button>
+		<?php  } ?>
 <div class="tab_con">
 	<div class="col-md-12 und_lin mar_t30">
 		<div class="col-md-6">
@@ -228,7 +231,7 @@
 		</div>
 	</div>
 </div>
-<?php }} else { ?>
+<?php $k++; }} else { ?>
 <!--<div class="tabs_tit">
 	<h3>No records found.</h3>
 </div>-->
@@ -237,7 +240,9 @@
 	if(count($this->downloadInfo) != 0){
 		foreach($this->downloadInfo as $category=>$dl){
 ?>
-<h3><?php echo $category; ?>:</h3>
+
+<button type="button" class="btn btn-primary"><?php echo $category; ?></button>
+
 <div class="tab_con">
 	<div class="col-md-12 und_lin mar_t30">
 		<div class="col-md-6">
@@ -261,38 +266,32 @@
 <!--<div class="tabs_tit">
 	<h3>FILE NUMBER:<?php // echo $this->userInfo->unique_code; ?></h3>
 </div>-->
-<button type="button" class="btn btn-primary">FILE NUMBER:<?php echo $this->userInfo->unique_code; ?></button>
+<button type="button" class="btn btn-primary">FILE NUMBER <?php echo $this->userInfo->unique_code; ?></button>
 <div>
 <br/>
-	<form method="post">
-	<table>
-		<tr>
-		  <th>Title</th>
-		  <td><input  class="form-control" type="text" id="taxTitle" name="taxTitle"></td>
-		</tr>
-		<tr>
-		  <th>&nbsp;</th>
-		  <td>&nbsp;</td>
-		</tr>
-		<tr>
-		  <th>Upload Synopsys &nbsp;&nbsp;&nbsp;</th>
-		  <td><input type="file" id="taxUploadFile" name="taxUploadFile"></td>
-		</tr>
-		<tr>
-		  <th>&nbsp;</th>
-		  <td>&nbsp;</td>
-		</tr>
-	</table>
-	<input type="button" value="upload" onclick="uploadTaxfile(<?php echo $this->userId; ?>);">
+	<form method="post" class="form">
+		<div class="form-group row">		  
+		  <div class="col-sm-4">
+		  <label>Title</label>
+			<input  class="form-control" type="text" id="taxTitle" name="taxTitle">
+		  </div>
+		  <div class="col-sm-4">
+			  <label>Upload Synopsys</label>
+				<input style=" height:36px;padding:0;" class="form-control" type="file" id="taxUploadFile" name="taxUploadFile">
+		  </div>
+		</div>
+		<button type="button" class="btn btn-primary" onclick="uploadTaxfile(<?php echo $this->userId; ?>);" >Upload</button>
+		  </div>
+		</div>
 	</form>
 </div>
 <br/><br/>
 <?php if($this->taxInfo->count()){ ?>
-<h3>Previous Tax Summary:</h3>
+<button type="button" class="btn btn-primary">Previous Tax Summary</button>
 <div class="tab_con">
 	<div class="col-md-12 und_lin mar_t30">
 		<div class="col-md-6">
-			<table class="table">
+			<table class="table table-responsive">
 				<?php foreach($this->taxInfo as $value){ ?>
 				<tr>
 					<th><?php echo $value->synopsys_title; ?></th>
@@ -311,20 +310,12 @@
 <button type="button" class="btn btn-danger">No records found.</button>
 <?php }} else if($this->tabType == 6){ ?>
 <div>
+<button type="button" class="btn btn-primary">File Number <?php echo $this->userInfo->unique_code; ?></button>
 <br/>
 	<form method="post">
-	<table>
-		<tr>
-		  <th>File Number &nbsp;&nbsp;</th>
-		  <td><?php echo $this->userInfo->unique_code; ?></td>
-		</tr>
-		<tr>
-		  <th>&nbsp;</th>
-		  <td>&nbsp;</td>
-		</tr>
-		<tr>
-		  <th>File Status</th>
-		  <td>
+		<div class="form-group row">		  
+		  <div class="col-sm-6">
+		  <label>File Status</label>
 			<select  class="form-control" id="processState" name="processState">
 				<option value="">Select an option</option>
 				<option label="To Be Assigned" value="0">To Be Assigned</option>
@@ -344,25 +335,18 @@
 				<option label="Filing Docs Sent" value="14">Filing Docs Sent</option>
 				<option label="Cancel Filing" value="15">Cancel Filing</option>
 			</select>
-		  </td>
-		</tr>
-		<tr>
-		  <th>&nbsp;</th>
-		  <td>&nbsp;</td>
-		</tr>
-		<tr>
-		  <th>Comments</th>
-		  <td>
-		  <textarea class="form-control"id="commentClient" name="commentClient"></textarea>
-		  </td>
-		</tr>
-		<tr>
-		  <th>&nbsp;</th>
-		  <td>&nbsp;</td>
-		</tr>
-	</table>
-	<input type="button" value="Push to State" onclick="saveComment(<?php echo $this->userId; ?>);">
-	<input type="hidden" id="presentProcessSate" value="<?php echo $this->processInfo->ps_state; ?>">
+		  </div>		  
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-6">
+			  <label>Comments</label>
+				<textarea rows="5" cols="60" class="form-control"id="commentClient" name="commentClient"></textarea>
+			</div>
+		</div>
+		<button type="button" class="btn btn-primary" onclick="saveComment(<?php echo $this->userId; ?>);" >Push to State</button>
+		<input type="hidden" id="presentProcessSate" value="<?php echo $this->processInfo->ps_state; ?>">
+		  </div>
+		</div>
 	</form>
 </div>
 <br/><br/>
