@@ -31,9 +31,19 @@ return array(
 						'action'     => 'index',
 					),
 				),
-			),	
+			),
+			'checking-login' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/checking-login',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'checkingLogin',
+					),
+				),
+			),
 			'application' 		=> 	array(
-				'type'    		=> 	'Literal',
+				'type'    		=> 	'Zend\Mvc\Router\Http\Segment',
 				'options' 		=> 	array(
 					'route'    	=> 	'/application',
 					'defaults' 	=> 	array(

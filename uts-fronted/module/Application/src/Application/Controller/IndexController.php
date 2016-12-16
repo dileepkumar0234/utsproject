@@ -34,6 +34,36 @@ class IndexController extends AbstractActionController
 			'basePath'   					=>  $basePath,
 		));
     }
+	public function checkingLoginAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];	
+		$userTable=$this->getServiceLocator()->get('Models\Model\UserFactory');
+		$email = $_POST['u_email'];
+		$checkUserloginemail = $userTable->checkDetails($_POST)->current();	
+		if(isset($checkUserloginemail->user_id) && $checkUserloginemail->user_id!=''){
+			$user_type_id = $checkUserloginemail->user_type_id;
+			$user_id = $checkUserloginemail->user_id;
+			$user_session = new Container('user');
+			$user_session->user_id		=	$user_id;
+			$user_session->email		=	$checkUserloginemail->email;
+			$user_session->user_name	=	ucwords(strtolower($checkUserloginemail->user_name));
+			$user_session->userType	    =	$user_type_id;
+			$user_session->phone	    =	$checkUserloginemail->phone;
+			$status = $checkUserloginemail->ps_state;
+			$statusName = getFileStatusName($status);
+			$user_session->file_name	=	$statusName;
+			$user_session->phone	    =	$checkUserloginemail->phone;
+			return new JsonModel(array(
+				'output'	=>	'success',
+			));
+		}else{
+			return new JsonModel(array(
+				'output'	=>	'wrongdeatils',
+			));
+		}		
+	}
 	public function headerAction($params)
     {
 		$user_session 						=  new Container('user');

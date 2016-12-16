@@ -35,6 +35,42 @@
 		}
 	}
 	
+	function getFileStatusName($userStatus){
+		$statusName = "";
+		if($userStatus=='0'){
+			return $statusName = "To Be Assigned";
+		}else if($userStatus=='1'){
+			return $statusName = "Basic Info Pending";
+		}else if($userStatus=='2'){
+			return $statusName = "Scheduling Pending";
+		}else if($userStatus=='3'){
+			return $statusName = "Interview Pending";
+		}else if($userStatus=='4'){
+			return $statusName = "Docs Upload Pending";
+		}else if($userStatus=='5'){
+			return $statusName = "Other Docs Upload Pending";
+		}else if($userStatus=='6'){
+			return $statusName = "Preparation Pending";
+		}else if($userStatus=='7'){
+			return $statusName = "Synopsys Pending";
+		}else if($userStatus=='8'){
+			return $statusName = "Payment Pending";
+		}else if($userStatus=='9'){
+			return $statusName = "Review Pending";
+		}else if($userStatus=='10'){
+			return $statusName = "Confirmation Pending";
+		}else if($userStatus=='11'){
+			return $statusName = "E-Filing Pending";
+		}else if($userStatus=='12'){
+			return $statusName = "Paper-Filing Pending";
+		}else if($userStatus=='13'){
+			return $statusName = "E-Filing Complete";
+		}else if($userStatus=='14'){
+			return $statusName = "Filing Docs Sent";
+		}else if($userStatus=='15'){
+			return $statusName = "Cancel Filing";
+		}
+	}	
 	
 	function getUniqueCode($length = "")
 	{

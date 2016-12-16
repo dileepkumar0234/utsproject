@@ -38,8 +38,13 @@
 							</p>
 						</li>
 						<li class="res btn_ref">
-								<a  class="login_btn"><i class="fa fa-lock"> </i> Login / Sign Up</a>
-								<a class="ref_frnd"  data-toggle="modal" data-target="#squarespaceModal" ui-sref="main.referalProgram"><i class="fa fa-user"></i> Refer a Friend</a>	
+								<?php if(isset($_SESSION["user"]["user_id"]) && $_SESSION["user"]["user_id"]!=""){ ?>
+									<a  class="login_btn" href="<?php echo $baseUrl;?>dashboard"><i class="fa fa-tachometer "> </i> Go To Dashboard </a>
+								<?php }else { ?>
+									<a  class="login_btn" data-toggle="modal" data-target="#regModal"><i class="fa fa-user"> </i> Sign Up </a>
+									<a  class="login_btn" data-toggle="modal" data-target="#loginModal"><i class="fa fa-lock"> </i> Login </a>
+								<?php } ?>
+								<a class="ref_frnd"  data-toggle="modal" data-target="#regModal" ui-sref="main.referalProgram"><i class="fa fa-user"></i> Refer a Friend</a>	
 						</li>
 					</ul>
 				</div>

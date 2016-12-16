@@ -51,79 +51,165 @@
 		</div>
 	</div>
 </footer>
-		
-<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-	<div class="modal-content">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-			<h3 class="modal-title" id="lineModalLabel">Login </h3>
-		</div>
-		<div class="modal-body">
-			<form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter a email">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter a password">
-              </div>
-            </form>
-		</div>
-		<div class="modal-footer">
-			<div class="btn-group btn-group-justified" role="group" aria-label="group button">
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+<!-- Register -->
+	<div class="modal fade" id="regModal" role="dialog" >
+		<div class="modal-dialog">
+			<div class="modal-content" >
+				<div class="modal-header" style="border-bottom:1px solid #ddd;background:#189def;color:#fff;border-radius:2px 2px 0 0">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Sing Up</h4>
 				</div>
-				<div class="btn-group btn-delete hidden" role="group">
-					<button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
-				</div>
-				<div class="btn-group" role="group">
-					<button type="button" id="saveImage" class="btn btn-default btn-hover-green" data-action="save" role="button">Submit</button>
-				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon"  data-fv-icon-validating="glyphicon glyphicon-refresh"	method="POST" name="registerForm" id="registerForm"  onSubmit="return signUpUser('registerForm');" enctype="multipart/form-data">
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputFullName">First Name</label>
+							<div class="col-md-9">
+							<input type="text" placeholder="Enter a first name" id="inputFirstname" name="inputFirstname" class="form-control"  required data-fv-notempty="true" 
+							data-fv-notempty-message="The full name is required" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputFullName">Last Name</label>
+							<div class="col-md-9">
+							<input type="text" placeholder="Enter a last name" id="inputLastname" name="inputLastname" class="form-control"  required data-fv-notempty="true" 
+							data-fv-notempty-message="The last name is required" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label tex_lef" for="occupation">Occupation</label>
+							<div class="col-md-9">
+								<input type="text" placeholder="Enter a occupation" id="occupation" name="occupation" class="form-control user_login" required data-fv-notempty-message="The occupation is required" 
+								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
+								<span id="emailChecking" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label tex_lef" for="phone">Phone</label>
+							<div class="col-md-9">
+								<input type="text" placeholder="Enter a phone" id="phone" name="phone" class="form-control user_login" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10"
+							data-fv-stringlength data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be 10 digits only" maxlength="10">
+								<span id="phoneChecking" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label tex_lef" for="inputEmail">Email</label>
+							<div class="col-md-9">
+								<input type="text" placeholder="Enter a email" id="inputEmail" name="inputEmail" class="form-control user_login" required data-fv-notempty-message="The email address is required" 
+								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
+								<span id="emailChecking" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputPassword">Password</label>
+							<div class="col-md-9">
+								<input type="password" placeholder="Enter a password" id="inputPassword" name="inputPassword" class="form-control" required data-fv-notempty-message="The password is required">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputPassword">Confirm Password</label>
+							<div class="col-md-9">
+								<input type="password" placeholder="Enter a confirm password" id="userpwd" name="userpwd" class="form-control" required data-fv-notempty-message="The confirm password is required">
+							</div>
+						</div>
+						<div class="form-group">
+							<p class="col-md-12 control-label" align="justify">
+								By clicking Submit, you agree to our <a href="<?php echo $baseUrl; ?>term-conditions">Terms </a> and that you have read our Data Policy, including our Cookie Use.
+							</p>
+						</div>
+						<div class="modal-footer mar_r5">
+							<div class="col-md-8 text-left">
+								
+								<span id="forgeterrorEmail" style="color:red"></span>
+								<span id="forgetsucessEmail" style="color:red"></span>
+							</div><br/>
+							<div class="col-md-2 pull-right">
+								<button type="submit" class="btn   btn-raised btn-info" id="checkForgetEmail">Submit</button>
+							</div>		
+						</div>
+					</form>	
+				</div>				
 			</div>
 		</div>
 	</div>
-  </div>
-</div>
-<div class="modal fade" id="myModal1" role="dialog" >
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content overflow_hidden" >
-        <div class="modal-header pop_title">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Forget the password</h4>
-        </div>
-        <div class="modal-body">
-         <form id="forgetPasswordForm" class="form-horizontal" style="margin-top:-30px;"  data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon" data-fv-icon-validating="glyphicon glyphicon-refresh" onSubmit="return CheckForgetEmail();" enctype="multipart/form-data">
-            <div class="pop">
-			  <div class="form-group is-empty">
-                <label class="col-md-3 control-label tex_lef" for="ForgetEmail">Email</label>
+<!-- End -->
 
-                <div class="col-md-9">
-                  <input type="text" placeholder="Email" id="ForgetEmail" name="ForgetEmail" class="form-control input-lg user_login" required data-fv-regexp="true" data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
-				  
-                </div>
-              </div>
-            </div>
-			  
-        
-        </div>
-        <div class="modal-footer mar_r5">
-			<div class="col-md-8 text-left">
-				<span id="forgeterrorEmail" style="color:red"></span>
-				<span id="forgetsucessEmail" style="color:red"></span>
+
+
+<!-- Login -->
+	<div class="modal fade" id="loginModal" role="dialog" >
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="lineModalLabel">Login</h4>
+				</div>
+				<div class="modal-body">
+					<form id="loginForm" name="loginForm" class="form-horizontal"  data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon" data-fv-icon-validating="glyphicon glyphicon-refresh" onSubmit="return loginChecking('loginForm');" enctype="multipart/form-data">
+						<div class="pop">
+							<div class="form-group">
+								<label class="col-md-3 control-label tex_lef" for="LoginEmail">Email</label>
+								<div class="col-md-9">
+									<input type="text" placeholder="Enter your email address" 
+									id="useremail" name="useremail" class="form-control user_login" required data-fv-regexp="true" data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label tex_lef" for="LoginPassword">Password</label>
+								<div class="col-md-9">
+								  <input type="password" placeholder="Enter your password" id="userpassword" name="userpassword" class="form-control" required data-fv-notempty-message="The password is required">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<span id="errorLogin" style="margin-left:66px;color:red"></span>
+						</div>
+						<div class="modal-footer mar_r5">
+							<div class="col-md-8">
+							<a href="javascript:void(0);" id='forget_popup' ng-click="forgetForm();" class=""><label class="col-md-6 control-label tex_lef" for="LoginPassword">Forgot password?</label></a>
+							</div><br/>
+							<div class="col-md-2 pull-right">
+								<button type="submit" class="btn   btn-raised btn-info" id="checkForgetEmail">Submit</button>
+							</div>		
+						</div>
+					</form>
+				</div>					
 			</div>
-			<div class="col-md-2 pull-right">
-			<button type="submit" class="btn   btn-raised btn-info" id="checkForgetEmail">Submit</button>
-			</div>		
-        </div>
-      </div>
-        </form>
-    </div>
-  </div>		
-		
+		</div>
+	</div>
+<!-- End -->
+<!-- Forgot Password -->
+	<div class="modal fade" id="myModal1" role="dialog" >
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="lineModalLabel">Forget the password</h4>
+				</div>
+				<div class="modal-body">
+					<form id="forgetPasswordForm" class="form-horizontal"  data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon" data-fv-icon-validating="glyphicon glyphicon-refresh" onSubmit="return CheckForgetEmail();" enctype="multipart/form-data">
+						<div class="pop">
+							<div class="form-group is-empty">
+								<label class="col-md-3 control-label tex_lef" for="ForgetEmail">Email</label>
+								<div class="col-md-9">
+									<input type="text" placeholder="Email" id="ForgetEmail" name="ForgetEmail" class="form-control input-lg user_login" required data-fv-regexp="true" data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer mar_r5">
+							<div class="col-md-8 text-left">
+								<span id="forgeterrorEmail" style="color:red"></span>
+								<span id="forgetsucessEmail" style="color:red"></span>
+							</div><br/>
+							<div class="col-md-2 pull-right">
+								<button type="submit" class="btn   btn-raised btn-info" id="checkForgetEmail">Submit</button>
+							</div>		
+						</div>
+					</form>
+				</div>					
+			</div>
+		</div>
+	</div>
+<!-- End -->		
 		
 		
 		<script>
@@ -132,10 +218,64 @@
 		</script>
 		<script src="<?php echo $basePath;?>/js/uts-jquery.js"></script>
 		<script src="<?php echo $basePath;?>/js/bootstrap.min.js"></script>
+		<script src="<?php echo $basePath;?>/js/commonfunctions.js"></script>
+		<script src="<?php echo $basePath;?>/js/formValidation.js"></script>
+		<script src="<?php echo $basePath;?>/js/bootstrap.js"></script>
+
 		<script>
 			$('.carousel').carousel({
 				interval: 5000 
 			});
+			
+			
+		$(document).ready(function() {
+			$('#loginForm,#registerForm,#forgetPasswordForm').formValidation().on('success.form.fv', function(e, data) {	
+				e.preventDefault();
+			});
+		});
+		function loginChecking(jForm){ 
+			var d 		= new Date();
+			var time 	= d.getTime();
+			$("#loginForm").formValidation().on('success.form.fv', function(e) {
+				e.stopImmediatePropagation();
+				var u_email    = $("#useremail").val();
+				var u_password = $("#userpassword").val();
+				$.ajax({
+					type:'POST',
+					url:  baseUrl+'checking-login?sRch='+time,
+					data:{u_email:u_email,u_password:u_password},
+					success: function(data){
+						alert();
+						$("#errorLogin").html('');
+						if(data.output == "emailnotinrecord"){
+							$("#errorLogin").html('Entered email is not in records');
+						}else if(data.output == "fail"){	
+							$("#errorLogin").html('Please email is requried');					
+						}else if(data.output == "wrongdeatils"){
+							$("#errorLogin").html('Entered email or password are wrong');	
+						}else if(data.output == "success"){
+							window.location = baseUrl+'dashboard';
+						}
+					}
+				});
+				e.preventDefault();	
+			});
+		}
+		function signUpUser(JFrom){
+			$("#registerForm").formValidation().on('success.form.fv', function(e) {
+				e.stopImmediatePropagation();
+					$.ajax({
+						type		:   'POST',
+						url			:  	baseUrl+'sign-in/fdata',
+						dataType	: 	"json",
+						success: function(data){
+						}
+					});
+				
+				e.preventDefault();	
+			});
+		}
+
 		</script>
 	</body>
 </html>

@@ -18,6 +18,35 @@ class UserTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
+	
+	public function saveUserDataa($users)
+    {
+		$password=md5($users['userpwd']);
+		if(isset($users['inputFirstname']) && $users['inputFirstname']!=''){
+			$firstName = $users['inputFirstname'];
+		}else{
+			$firstName = '';
+		}
+		if(isset($users['inputEmail']) && $users['inputEmail']!=''){
+			$email = $users['inputEmail'];
+		}else{
+			$email ='';
+		}
+		$data = array(
+			'user_name' 	  	       => $firstName,				
+			'email' 		           => $email,  		
+			'password' 		           => $password,		
+			'locked_pwd' 		       => $users['userpwd'],		
+			'status'  	               => 1,  	
+			'date_added' 	           => date('Y-m-d H:i:s'),   
+			'date_updated'	  	       => date('Y-m-d H:i:s'), 	
+			'user_type_id' 		       => 2, 			
+		);	
+		$insertresult=$this->tableGateway->insert($data);	
+		return $this->tableGateway->lastInsertValue;		
+    }
+	
+	
 	public function saveUserData($users)
     {
 		if(isset($users['email']) && $users['email']!=''){
@@ -37,8 +66,9 @@ class UserTable
     {	
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user_details', new Expression('user_details.u_user_id=user.user_id'),array('*'),'left');
-		$select->where('user.email="'.$details['userEmail'].'"');
-		$select->where('user.password="'.md5($details['pwd']).'"');
+		$select->join('processing_status', new Expression('processing_status.ps_user_id=user.user_id'),array('*'),'left');
+		$select->where('user.email="'.$details['u_email'].'"');
+		$select->where('user.password="'.md5($details['u_password']).'"');
 		$select->where('user.status="1"');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		

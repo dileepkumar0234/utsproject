@@ -1,0 +1,176 @@
+.mar_t20{
+	margin-top:20px;
+}
+.top_foot li{
+	padding:10px 0;
+	list-style-type:none;	
+}
+.footer-bottom p{
+	color:#fff;
+}
+.footer-bottom li{
+	color:#fff;
+}
+.top_footer{
+	background:#00283A none repeat scroll 0 0;
+	padding:28px 0;
+	margin-bottom:0px;
+	}
+.bord_rigt{
+	border-right:1px solid #335361;
+}
+.payments li {
+	padding:0 20px;
+}
+.top_foot a{
+	color:#fff;
+	text-decoration:none;
+		
+}
+.mar_t10{
+	margin-top:10px;
+}
+.bor_bot{
+	border-bottom:1px solid #335361;
+	
+}
+.site_col{
+	color:#00C4FD;
+}
+
+.text-center{
+	text-align:center;
+}
+.about_div{
+	background-color:#00283a;
+	padding:30px 5px;
+	color:#fff;
+	width:100%
+}
+.menu_pad li{
+	padding-right:22px;
+}
+
+	.top_bar li{
+		padding:2px 25px;
+	}
+	.pos_nav{
+		position:absolute;
+		top:50px;
+		z-index:1000;
+		width:100%;
+	}
+	.navbar-inverse .navbar-nav>li>a:focus,
+.navbar-inverse .navbar-nav>li>a:hover {
+	  text-decoration: none;
+	  background-color: #20abe2;
+	  color:#fff;
+	  border-radius:6px;
+}
+.active{
+	 text-decoration: none;
+	  background-color: #20abe2;
+	  color:#fff;
+	  border-radius:6px;
+}
+.menu_pad>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px
+    }
+.item img{
+	width:150%
+}
+	.btn_ref a {
+    background: #00c4fd none repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 0;
+    color: #fff !important;
+    float: right;
+    font-family: "Roboto",sans-serif;
+    font-size: 14px;
+    margin: 0 1px 0 0;
+    padding: 9px 15px;
+    text-decoration: none;
+    transition: all 0.9s ease 0s;
+}
+.btn_pr {
+	background: #2d7da4;
+    padding: 10px 15px;
+    color: #fff;
+}
+.mar_t15 {
+	margin-top:15px;
+}
+.mar_t5 {
+	margin-top:5px;
+}
+
+
+
+	@media only screen and (max-width:767px) { 
+		.top_bar li{
+		padding-left:5px;
+	}
+.mar_t15 {
+	margin-top:0px;
+}
+	.res{
+		float:left;
+	}
+	.pos_nav{
+		top:none;
+		position:relative;
+	}
+	.navbar-toggle{
+			background-color:#20abe2;
+	}
+	.mar_t50{
+		margin-top:106px;
+	}
+	header.carousel {
+    height: 50%;
+}
+.navbar-inverse {
+    background-color: #222;
+}
+.navbar-inverse .navbar-nav>li>a:focus,
+.navbar-inverse .navbar-nav>li>a:hover {
+	border-radius:0px;
+}
+.logo_res {
+	width:50%;
+	margin-top:-4px;
+}.sm-hide {
+	display:none;
+}
+.pad_res{
+	padding-right: 20px;
+        padding-left: 20px
+}
+}
+/* modal Css PopUp */
+.center {
+    margin-top:50px;   
+}
+
+.modal-header {
+	padding-bottom: 5px;
+}
+
+.modal-footer {
+    	padding: 0;
+	}
+    
+.modal-footer .btn-group button {
+	height:40px;
+	border-top-left-radius : 0;
+	border-top-right-radius : 0;
+	border: none;
+	border-right: 1px solid #ddd;
+}
+	
+.modal-footer .btn-group:last-child > button {
+	border-right: 0;
+}	
+	
+/* End */
