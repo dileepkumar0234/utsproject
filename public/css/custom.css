@@ -67,4 +67,4 @@ div.bhoechie-tab-content{
 
 div.bhoechie-tab div.bhoechie-tab-content:not(.active){
   display: none;
-}
+}@media only screen and (max-width:767px) {	.main-sidebar, .left-side{		padding-top:250px;		}	.content-wrapper{		margin-top:150px;	}	}
