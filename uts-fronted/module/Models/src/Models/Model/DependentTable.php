@@ -25,15 +25,15 @@ class DependentTable
                $userId = $userId;
        }	   
        $data = array(        
-               'd_user_id' => $userId, 
-               'first_name' => $users['first_name'], 
-               'last_name' => $users['last_name'], 
-               'dob'        => $users['dob'],
-               'occupation' => $users['occupation'],
-               'phone'        => $users['phone'],
-               'address' => $users['address'],        
-               'mail_id' => $users['mail_id'],
-               'status'        =>        1,
+               'd_user_id' 		=> $userId, 
+               'first_name' 	=> $users['first_name'], 
+               'last_name' 		=> $users['last_name'], 
+               'dob'        	=> $users['dob'],
+               'occupation' 	=> $users['occupation'],
+               'phone'        	=> $users['phone'],
+               'address' 		=> $users['address'],        
+               'mail_id' 		=> $users['mail_id'],
+               'status'        =>  1,
        );        
        $data['added_at'] =        date('Y-m-d H:i:s');
        $data['updated_at'] =        date('Y-m-d H:i:s');
@@ -72,5 +72,28 @@ class DependentTable
 		$select->where('current_year = "'.$year.'"');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		
+	}
+	public function addDependentInfo($dependentInfo,$userId){        
+		$this->tableGateway->delete(array('(d_user_id IN ('.$userId.'))'));
+		foreach($dependentInfo['fname'] as $k=>$fname){
+			if($fname != ""){
+				$data = array(        
+				   'd_user_id' 		=> $userId, 
+				   'first_name' 	=> $fname, 
+				   'last_name' 		=> $dependentInfo['lname'][$k], 
+				   'dob'        	=> $dependentInfo['dob'][$k],
+				   'occupation' 	=> $dependentInfo['occupation'][$k],
+				   'visa_type'      => $dependentInfo['visa_type'][$k],
+				   'ssn'      		=> $dependentInfo['ssn'][$k],
+				   'itin'      		=> $dependentInfo['itin'][$k], 
+				   'current_year'   => date('Y'), 
+				   'added_at' 		=> date('Y-m-d H:i:s'), 
+				   'updated_at' 	=> date('Y-m-d H:i:s'), 
+				   'status'         =>  1,
+			   );   
+			   $insertresult=$this->tableGateway->insert($data);
+			}
+		}   
+		return 1;        
 	}
 }

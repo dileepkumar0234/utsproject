@@ -10,6 +10,7 @@ return array(
 		'baseUrl' 		=> 	'http://localhost/utsproject/trunk/uts-fronted/',
 		'basePath' 		=> 	'http://localhost/utsproject/trunk/uts-fronted/public',
 		'imageUrl' 		=> 	'http://localhost/utsproject/trunk/uts-fronted/',
+		'year' 			=> 	2016,
 	),
 	'service_manager' 	=> 	array(
         'factories' 	=> 	array(  

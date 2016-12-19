@@ -585,10 +585,10 @@ class MadminController extends AbstractActionController
 			$employeeInfo 	= array();
 			if($employeeeInfo->count()){
 				foreach($employeeeInfo as $key=>$sp){
-					$employeeInfo[$key][0]['Company Name'] 	= $sp->company_name;
-					$employeeInfo[$key][0]['Experience'] 	= $sp->experience;
-					$employeeInfo[$key][1]['Salary'] 		= $sp->salary;
-					$employeeInfo[$key][1]['Location'] 		= $sp->location;
+					$employeeInfo[$key][0]['Company Name'] 			= $sp->company_name;
+					$employeeInfo[$key][0]['Project Start Date'] 	= $sp->proj_start_date;
+					$employeeInfo[$key][1]['Client Name(Any)'] 		= $sp->client_name;
+					$employeeInfo[$key][1]['Project End Date'] 		= $sp->proj_end_date;
 				}
 			}
 			$spousesInfo	= $spouseTable->getSpousesData($userId);
@@ -608,11 +608,12 @@ class MadminController extends AbstractActionController
 			if($dependentsInfo->count()){
 				foreach($dependentsInfo as $key=>$dp){
 					$dependentInfo[$key][0]['First Name'] 		= $dp->first_name;
-					$dependentInfo[$key][0]['Phone'] 			= $dp->phone;
+					$dependentInfo[$key][0]['SSN'] 				= $dp->ssn;
 					$dependentInfo[$key][0]['Date Of Birth'] 	= $dp->dob;
 					$dependentInfo[$key][1]['Last Name'] 		= $dp->last_name;
+					$dependentInfo[$key][1]['ITIN'] 			= $dp->itin;
 					$dependentInfo[$key][1]['Occupation'] 		= $dp->occupation;
-					$dependentInfo[$key][1]['Address'] 			= $dp->address;
+					$dependentInfo[$key][1]['Visa Type'] 		= $dp->visa_type;
 				}
 			}
 			$view = new ViewModel(array(

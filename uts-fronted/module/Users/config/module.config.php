@@ -58,7 +58,17 @@ return array(
 						'action'     => 'empInfo',
 					),
 				),
-			),	
+			),
+			'emp-edit-info' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/emp-edit-info',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'empEditInfo',
+					),
+				),
+			),			
 			'spouse-info' => array(
 				'type' => 'Literal',
 				'options' => array(
@@ -78,7 +88,17 @@ return array(
 						'action'     => 'dependentsInfo',
 					),
 				),
-			),	
+			),
+			'dependents-edit-info' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/dependents-edit-info',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'dependentsEditInfo',
+					),
+				),
+			),
 			'schedule-tax-info' => array(
 				'type' => 'Literal',
 				'options' => array(

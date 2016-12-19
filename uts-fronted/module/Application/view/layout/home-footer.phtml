@@ -245,7 +245,6 @@
 					url:  baseUrl+'checking-login?sRch='+time,
 					data:{u_email:u_email,u_password:u_password},
 					success: function(data){
-						alert();
 						$("#errorLogin").html('');
 						if(data.output == "emailnotinrecord"){
 							$("#errorLogin").html('Entered email is not in records');

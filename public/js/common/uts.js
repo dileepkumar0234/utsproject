@@ -20,6 +20,10 @@ function loginBtnV(jForm){
 		e.preventDefault();	
 	});
 }
+function taxInfoForm(){
+	
+	
+}
 function tabsUserInfo(userId,processStatus,tabType){
 	if(tabType == 1){
 		$('#basicInfoTab').html('<i>Loading...</i>');

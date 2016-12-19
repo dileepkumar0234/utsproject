@@ -519,3 +519,112 @@ function submitSpouseInfo(){
 		e.preventDefault();
 	});
 }
+//Dependents 
+function editDependtsInfoFun(){
+	window.location=baseUrl+"dependents-edit-info";
+}
+function viewDependtsInfoFun(){
+	window.location=baseUrl+"dependents-info";
+}
+function addMoreDependents(){
+	var depentsCount = parseInt($('#depentsCount').val())+1;
+	$('#addMoreDepents').append('<div id="dependent-'+depentsCount+'"><div><a class="text-left btn_site">Dependent</a>&nbsp;&nbsp;<sup><a style="color:red" href="javascript:void(0);" onclick="removeDependents('+depentsCount+')">Remove</a></sup></div><br/>'+
+					'<div class="col-lg-6 label_col">'+
+					'<div class="form-group">'+
+						'<label>First Name:</label>'+
+						'<input class="form-control" type="text" name="fname[]" id="fname'+depentsCount+'" required data-fv-notempty-message="Please enter firstname">'+
+					'</div>'+
+					'<div class="form-group">'+
+						'<label>SSN</label>'+
+						'<input class="form-control" type="text" name="ssn[]" id="ssn'+depentsCount+'">'+
+					'</div>'+
+					'<div class="form-group">'+
+						'<label>DOB</label>'+
+						'<input class="form-control" type="text" name="dob[]" id="dob'+depentsCount+'">'+
+					'</div>'+
+				'</div>'+
+				'<div class="col-lg-6 label_col">'+
+					'<div class="form-group">'+
+						'<label>Last Name:</label>'+
+						'<input class="form-control" type="text" name="lname[]" id="lname'+depentsCount+'">'+
+					'</div>'+
+					'<div class="form-group">'+
+						'<label>ITIN</label>'+
+						'<input class="form-control" type="text" name="itin[]" id="itin'+depentsCount+'">'+
+					'</div>'+
+					'<div class="form-group">'+
+						'<label>Occupation:</label>'+
+						'<input class="form-control" type="text" name="occupation[]" id="occupation'+depentsCount+'">'+
+					'</div>'+
+					'<div class="form-group">'+
+						'<label>Visa Type:</label>'+
+						'<input class="form-control" type="text" name="visa_type[]" id="visa_type'+depentsCount+'">'+
+					'</div>'+
+				'</div></div>');
+	$('#depentsCount').val(depentsCount);
+}
+function removeDependents(depentsCount){
+	$('#dependent-'+depentsCount).remove();
+}
+function submitDependentsInfo(){
+	$('#dependentInformation').formValidation().on('success.form.fv', function(e) {
+		//$('#sliderLoader').show();
+		e.stopImmediatePropagation();
+		$.ajax({
+			type	: 	"POST",
+			url		: 	baseUrl+'dependents-edit-info',
+			data	:	$('#dependentInformation').serialize(),
+			success	: 	function(result) {}
+		});
+		e.preventDefault();
+	});
+}
+
+//Employee Info 
+function editEmpInfoFun(){
+	window.location=baseUrl+"emp-edit-info";
+}
+function viewEmpInfoFun(){
+	window.location=baseUrl+"emp-info";
+}
+function addMoreEmp(){
+	var empCount = parseInt($('#empCount').val())+1;
+	$('#addMoreEmp').append('<div id="emp-'+empCount+'"><div><a class="text-left btn_site">Information</a>&nbsp;&nbsp;<sup><a style="color:red" href="javascript:void(0);" onclick="removeEmp('+empCount+')">Remove</a></sup></div><br/>'+
+					'<div class="col-lg-6 label_col">'+
+					'<div class="form-group">'+
+						'<label>Employer Name:</label>'+
+						'<input class="form-control" type="text" name="cname[]" id="cname'+empCount+'" required data-fv-notempty-message="Please enter company name">'+
+					'</div>'+
+					'<div class="form-group">'+
+						'<label>Project Start Date:</label>'+
+						'<input class="form-control" type="text" name="psd[]" id="psd'+empCount+'">'+
+					'</div>'+
+				'</div>'+
+				'<div class="col-lg-6 label_col">'+
+					'<div class="form-group">'+
+						'<label>Client Name(Any):</label>'+
+						'<input class="form-control" type="text" name="cnname[]" id="cnname'+empCount+'">'+
+					'</div>'+
+					'<div class="form-group">'+
+						'<label>Project End Date</label>'+
+						'<input class="form-control" type="text" name="ped[]" id="ped'+empCount+'">'+
+					'</div>'+
+				'</div></div>');
+	$('#empCount').val(empCount);
+}
+function removeEmp(empCount){
+	$('#emp-'+empCount).remove();
+}
+function submitEmpInfo(){
+	$('#empInformation').formValidation().on('success.form.fv', function(e) {
+		//$('#sliderLoader').show();
+		e.stopImmediatePropagation();
+		$.ajax({
+			type	: 	"POST",
+			url		: 	baseUrl+'emp-edit-info',
+			data	:	$('#empInformation').serialize(),
+			success	: 	function(result) {}
+		});
+		e.preventDefault();
+	});
+}

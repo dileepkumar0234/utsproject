@@ -24,4 +24,23 @@ class EmployeeinfoTable
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		
 	}
+	public function addEmpInfo($empInfo,$userId){        
+		$this->tableGateway->delete(array('(user_id IN ('.$userId.'))'));
+		foreach($empInfo['cname'] as $k=>$cname){
+			if($cname != ""){
+				$data = array(        
+				   'user_id' 			=> $userId, 
+				   'company_name' 		=> $cname, 
+				   'client_name' 		=> $empInfo['cnname'][$k], 
+				   'proj_start_date'	=> $empInfo['psd'][$k],
+				   'proj_end_date' 		=> $empInfo['ped'][$k], 
+				   'added_at' 			=> date('Y-m-d H:i:s'), 
+				   'updated_at' 		=> date('Y-m-d H:i:s'), 
+				   'status'         	=>  1,
+			   );   
+			   $insertresult=$this->tableGateway->insert($data);
+			}
+		}   
+		return 1;        
+	}
 }

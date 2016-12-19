@@ -128,22 +128,75 @@ class UsersController extends AbstractActionController
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
-		$basePath 	= $baseUrlArr['basePath'];	
+		$basePath 	= $baseUrlArr['basePath'];
+		$year 		= $baseUrlArr['year'];
+		$empTable   = $this->getServiceLocator()->get('Models\Model\EmployeeinfoFactory');
+		$userId 	= 23;
+		$empInfo 	= $empTable->getData($userId,$year);
 		return new ViewModel(array(					
 			'baseUrl' 			=>  $baseUrl,
 			'basePath'  		=>  $basePath,
-			
+			'empInfo'  			=>  $empInfo->toArray(),
 		));
+	}
+	
+	public function empEditInfoAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$year 		= $baseUrlArr['year'];
+		$empTable   = $this->getServiceLocator()->get('Models\Model\EmployeeinfoFactory');
+		$userId 	= 23;
+		if(isset($_POST) && count($_POST) != 0){
+			$empInfo = $_POST;
+			$empTable->addEmpInfo($empInfo,$userId);
+			return $this->redirect()->toUrl($baseUrl.'emp-info');
+		}else{
+			$empInfo 	= $empTable->getData($userId);
+			return new ViewModel(array(					
+				'baseUrl' 			=>  $baseUrl,
+				'basePath'  		=>  $basePath,
+				'empInfo'  			=>  $empInfo->toArray(),
+			));
+		}
 	}
 	public function dependentsInfoAction(){
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
-		$basePath 	= $baseUrlArr['basePath'];	
+		$basePath 	= $baseUrlArr['basePath'];
+		$year 		= $baseUrlArr['year'];
+		$dependentTable  = $this->getServiceLocator()->get('Models\Model\DependentFactory');
+		$userId = 23;
+		$dependentsInfo = $dependentTable->getDependents($userId,$year);
 		return new ViewModel(array(					
 			'baseUrl' 			=>  $baseUrl,
 			'basePath'  		=>  $basePath,
+			'dependentsInfo'  	=>  $dependentsInfo->toArray(),
 		));
+	}
+	
+	public function dependentsEditInfoAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$year 		= $baseUrlArr['year'];
+		$dependentTable  = $this->getServiceLocator()->get('Models\Model\DependentFactory');
+		$userId = 23;
+		if(isset($_POST) && count($_POST) != 0){
+			$dependentInfo = $_POST;
+			$dependentTable->addDependentInfo($dependentInfo,$userId);
+			return $this->redirect()->toUrl($baseUrl.'dependents-info');
+		}else{
+			$dependentsInfo = $dependentTable->getDependents($userId,$year);
+			return new ViewModel(array(					
+				'baseUrl' 			=>  $baseUrl,
+				'basePath'  		=>  $basePath,
+				'dependentsInfo'  	=>  $dependentsInfo->toArray(),
+			));
+		}
 	}
 	
 	public function scheduleTaxInfoAction(){

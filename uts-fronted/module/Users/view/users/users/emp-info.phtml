@@ -1,43 +1,57 @@
 <div id="page-wrapper" class="bac_img">
 	<div class="container-fluid">
-	<div class="row page_lo">
-		<div class="col-xs-2 col-md-4 text-left">
-			<a class="btn_site" href="<?php echo $this->baseUrl; ?>emp-info">Emp Info </a>
-		</div>  
-	</div>
-	<div class="row mar_t20">
-	 <div class="col-lg-6 label_col">
-		<form role="form">
-			<div class="form-group">
-				<label>Employer Name:</label>
-				<input class="form-control">
-			</div>
-			<div class="form-group">
-				<label>Project Start Date</label>
-				<input class="form-control">
-			</div>
-			
-		</form>
-	</div>
-	<div class="col-lg-6 label_col">
-		<form role="form">
-			<div class="form-group">
-				<label>Client Name(Any):</label>
-				<input class="form-control">
-			</div>
-			<div class="form-group">
-			<label>Project End Date</label>
-			<input class="form-control">
-			</div>
-		</form>
-	</div>
-	<div class="col-lg-12 label_col">
-		<p class="whit_col">Note: If Spouse doesn’t hold either SSN/ITIN please upload Passport Scan copy</p>
-		<div class="pull-right">
-			<button type="button" class="btn btn-warning btn-md">EDIT</button>
-			<button type="button" class="btn btn-success btn-md">SUBMIT</button>
+		<div class="row page_lo">
+			<div class="col-xs-2 col-md-4 text-left">
+				<a class="btn_site">Employer Information</a>
+			</div>  
 		</div>
-   </div>
-   </div>
-</div>
+		<div class="row mar_t20 bac_uplo" id="hideShowDependents" >
+			<?php if(count($this->empInfo) != 0){
+			foreach($this->empInfo as $k=>$e){
+				$index = $k+1;
+			?>
+			<div class="col-lg-6 ">
+				<div class="table-responsive">
+				<a class="text-left btn_site">Information <?php echo $index; ?></a>
+					<table class="table	">
+						<tbody>
+							<tr>
+								<th>Employer Name:</th>
+								<td><?php echo $e['company_name']; ?></td>
+							</tr>
+							<tr>
+							   <th>Project Start Date:</th>
+								<td><?php echo $e['proj_start_date']; ?></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-lg-6 ">
+				<div class="table-responsive">
+					<a class="text-left btn_site">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<table class="table	">
+						<tbody>
+							<tr>
+							   <th>Client Name(Any):</th>
+								<td><?php echo $e['client_name']; ?></td>
+							</tr>
+							<tr>
+							   <th>Project End Date:</th>
+								<td><?php echo $e['proj_end_date']; ?></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<?php }}else{ ?>
+			<i>Employee information not available.</i>
+			<?php } ?>
+			<div class="col-lg-12 label_col">
+				<div class="pull-right">
+					<button type="button" onClick="editEmpInfoFun()" class="btn btn-warning btn-md">EDIT</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
