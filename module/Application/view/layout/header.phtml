@@ -23,6 +23,7 @@
 	$assignedUser13	= 	"";
 	$assignedUser14	= 	"";
 	$assignedUser15	= 	"";
+	$wantusCall     =   "";
 	if(strpos($_SERVER['REQUEST_URI'], 'referels') !== false){
 		$referrals    = "active";		
 	}
@@ -34,6 +35,9 @@
 	}
 	if(strpos($_SERVER['REQUEST_URI'], 'all-users') !== false){
 		$allusers    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'want-us-to-call') !== false){
+		$wantusCall    = "active";		
 	}
 	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/0') !== false){
 		$assignedUser    = "active";		
@@ -83,6 +87,9 @@
 	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/15') !== false){
 		$assignedUser15    = "active";		
 	}
+	if(strpos($_SERVER['REQUEST_URI'], 'all-assigned-users/15') !== false){
+		$assignedUser15    = "active";		
+	}
 	
 	
 ?>
@@ -117,7 +124,7 @@
 								<li  class ="<?php echo $referrals;?>" ><a href="<?php echo $baseUrl;?>/referels" >Referrals</a></li>
 								<li class ="<?php echo $schedules;?>" ><a href="<?php echo $baseUrl;?>/schedules" >Schedules</a></li>
 								<li class ="<?php echo $adminEmail;?>" ><a href="<?php echo $baseUrl;?>/admin-emails" >Emails</a></li>					
-								<li><a href="javascript:void(0);">Want us to call?</a></li>					
+								<li class = "<?php echo $wantusCall;?>"><a href="<?php echo $baseUrl;?>/want-us-to-call">Want us to call?</a></li>					
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<?php echo $basePath;?>/img/logoblack1.png" class="user-image" alt="User Image">

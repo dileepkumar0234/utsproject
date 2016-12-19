@@ -67,6 +67,36 @@ return array(
                 ),
             ),
 			//End 
+			//Want us to call
+			'want-us-to-call' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/want-us-to-call[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'wantUsToCall',
+                    ),
+                ),
+            ),
+			//get want us to info
+			'get-want-us-info' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/get-want-us-info[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'getWantUsInfo',
+                    ),
+                ),
+            ),
 			//referels
 			'referels' => array(
                 'type'    => 'segment',

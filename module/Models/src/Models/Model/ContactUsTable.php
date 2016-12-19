@@ -54,4 +54,9 @@ class ContactUsTable
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;    
 	}
+	public function getCallInfo(){
+		$select = $this->tableGateway->getSql()->select();	
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet; 
+	}
 }

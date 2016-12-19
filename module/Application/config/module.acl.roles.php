@@ -13,6 +13,8 @@ return array(
     'admin'=> array(
 		'send-admin-emails',
 		'admin-emails',
+		'get-want-us-info',
+		'want-us-to-call',
 		'push-to-state',
 		'upload-tax-file',
 		'tabs-user-info',

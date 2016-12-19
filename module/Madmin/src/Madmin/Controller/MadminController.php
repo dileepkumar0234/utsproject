@@ -194,6 +194,47 @@ class MadminController extends AbstractActionController
 			));	
 		}
 	}
+	public function wantUsToCallAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$viewModel = new ViewModel(
+			array(
+				'baseUrl'		=> $baseUrl,
+				'basePath' 		=> $basePath				
+		));
+		return $viewModel;
+	}
+	//Get want info 
+	public function getWantUsInfoAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];	
+		$contactTable=$this->getServiceLocator()->get('Models\Model\ContactUsFactory');
+		$getOfInfo = $contactTable->getCallInfo();
+		if($getOfInfo!=""){
+			if(count($getOfInfo)>0){
+				$i = 0;
+				foreach($getOfInfo as $callInfo){
+					$data[$i]['c_name'] =$callInfo->c_name;
+					$data[$i]['c_phone']=$callInfo->c_email;
+					$data[$i]['c_email']=$callInfo->c_phone;
+					$data[$i]['c_message']= $callInfo->c_message;
+					$i++;
+				}	
+				$datainfo['aaData'] = $data;	
+				print_r(json_encode($datainfo));exit;
+			}else{ 
+				$datainfo['aaData'] = array();
+				print_r(json_encode($datainfo));exit;
+			}
+		}else{
+			$datainfo['aaData'] = array();
+			print_r(json_encode($datainfo));exit;
+		}	
+	}
 	public function allUsersAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
