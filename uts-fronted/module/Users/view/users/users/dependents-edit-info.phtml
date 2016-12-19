@@ -1,0 +1,115 @@
+<div id="page-wrapper" class="bac_img">
+	<div class="container-fluid">
+		<div class="row page_lo">
+			<div class="col-xs-2 col-md-4 text-left">
+				<a class="btn_site">Dependents</a>
+			</div>  
+		</div>
+		<div class="row mar_t20" id="editDependentshideShow">
+			<form role="form" id="dependentInformation" onSubmit="submitDependentsInfo()" method="POST" 
+			data-fv-message="This value is not valid"	
+			data-fv-icon-valid="glyphicon glyphicon-ok"
+			data-fv-icon-invalid="glyphicon glyphicon-remove"
+			data-fv-icon-validating="glyphicon glyphicon-refresh">
+				<div id="addMoreDepents">
+					<?php if(count($this->dependentsInfo) != 0){
+					foreach($this->dependentsInfo as $k=>$d){
+						$index = $k+1;
+					?>
+					<div id="dependent-<?php echo $index; ?>">
+						<?php if($index != 1){ ?>
+						<div><a class="text-left btn_site">Dependent</a>&nbsp;&nbsp;<sup><a style="color:red" href="javascript:void(0);" onclick="removeDependents(<?php echo $index; ?>)">Remove</a></sup></div><br/>
+						<?php }else{ ?>
+						<div><a class="text-left btn_site">Dependent</a></div><br/>
+						<?php } ?>
+						<div class="col-lg-6 label_col">
+							<div class="form-group">
+								<label>First Name:</label>
+								<input class="form-control" type="text" name="fname[]" id="fname<?php echo $index; ?>" required data-fv-notempty-message="Please enter firstname" value="<?php echo $d['first_name']; ?>">
+							</div>
+							<div class="form-group">
+								<label>SSN</label>
+								<input class="form-control" type="text" name="ssn[]" id="ssn<?php echo $index; ?>" value="<?php echo $d['ssn']; ?>">
+							</div>
+							<div class="form-group">
+								<label>DOB</label>
+								<input class="form-control" type="text" name="dob[]" id="dob<?php echo $index; ?>" value="<?php echo $d['dob']; ?>">
+							</div>
+						</div>
+						<div class="col-lg-6 label_col">
+							<div class="form-group">
+								<label>Last Name:</label>
+								<input class="form-control" type="text" name="lname[]" id="lname<?php echo $index; ?>" value="<?php echo $d['last_name']; ?>">
+							</div>
+							<div class="form-group">
+								<label>ITIN</label>
+								<input class="form-control" type="text" name="itin[]" id="itin<?php echo $index; ?>" value="<?php echo $d['itin']; ?>">
+							</div>
+							<div class="form-group">
+								<label>Occupation:</label>
+								<input class="form-control" type="text" name="occupation[]" id="occupation<?php echo $index; ?>" value="<?php echo $d['occupation']; ?>">
+							</div>
+							<div class="form-group">
+								<label>Visa Type:</label>
+								<input class="form-control" type="text" name="visa_type[]" id="visa_type<?php echo $index; ?>" value="<?php echo $d['visa_type']; ?>">
+							</div>
+						</div>
+					</div>
+					<?php }}else{ ?>
+					<div id="dependent-1">
+						<div><a class="text-left btn_site">Dependent</a></div><br/>
+						<div class="col-lg-6 label_col">
+							<div class="form-group">
+								<label>First Name:</label>
+								<input class="form-control" type="text" name="fname[]" id="fname1" required data-fv-notempty-message="Please enter firstname">
+							</div>
+							<div class="form-group">
+								<label>SSN</label>
+								<input class="form-control" type="text" name="ssn[]" id="ssn1">
+							</div>
+							<div class="form-group">
+								<label>DOB</label>
+								<input class="form-control" type="text" name="dob[]" id="dob1">
+							</div>
+						</div>
+						<div class="col-lg-6 label_col">
+							<div class="form-group">
+								<label>Last Name:</label>
+								<input class="form-control" type="text" name="lname[]" id="lname1">
+							</div>
+							<div class="form-group">
+								<label>ITIN</label>
+								<input class="form-control" type="text" name="itin[]" id="itin1">
+							</div>
+							<div class="form-group">
+								<label>Occupation:</label>
+								<input class="form-control" type="text" name="occupation[]" id="occupation1">
+							</div>
+							<div class="form-group">
+								<label>Visa Type:</label>
+								<input class="form-control" type="text" name="visa_type[]" id="visa_type1">
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+				</div>
+				<div class="col-lg-12 label_col">
+					<div class="col-lg-4">
+						<div class="pull-left">
+							<button type="button" class="btn btn-success btn-md" onclick="addMoreDependents();">Add more Dependents</button>
+						</div>
+					</div>
+					<div class="pull-right">
+						<button type="button" class="btn btn-warning  btn-md" onClick="viewDependtsInfoFun()" >BACK</button>
+						<button type="submit" class="btn btn-success btn-md">SUBMIT</button>
+					</div>
+				</div>
+		   </form>
+		</div>	
+	</div>
+</div>
+<?php if(count($this->dependentsInfo) != 0){ ?>
+<input type="hidden" name="depentsCount" id="depentsCount" value="<?php count($this->dependentsInfo); ?>" />
+<?php }else{ ?>
+<input type="hidden" name="depentsCount" id="depentsCount" value="1" />
+<?php } ?>

@@ -1,0 +1,91 @@
+<div id="page-wrapper" class="bac_img">
+	<div class="container-fluid">
+		<div class="row page_lo">
+			<div class="col-xs-2 col-md-4 text-left">
+				<a class="btn_site">Employer Information</a>
+			</div>  
+		</div>
+		<div class="row mar_t20" id="editEmphideShow">
+			<form role="form" id="empInformation" onSubmit="submitEmpInfo()" method="POST" 
+			data-fv-message="This value is not valid"	
+			data-fv-icon-valid="glyphicon glyphicon-ok"
+			data-fv-icon-invalid="glyphicon glyphicon-remove"
+			data-fv-icon-validating="glyphicon glyphicon-refresh">
+				<div id="addMoreEmp">
+					<?php if(count($this->empInfo) != 0){
+					foreach($this->empInfo as $k=>$e){
+						$index = $k+1;
+					?>
+					<div id="emp-<?php echo $index; ?>">
+						<?php if($index != 1){ ?>
+						<div><a class="text-left btn_site">Information</a>&nbsp;&nbsp;<sup><a style="color:red" href="javascript:void(0);" onclick="removeEmp(<?php echo $index; ?>)">Remove</a></sup></div><br/>
+						<?php }else{ ?>
+						<div><a class="text-left btn_site">Information</a></div><br/>
+						<?php } ?>
+						<div class="col-lg-6 label_col">
+							<div class="form-group">
+								<label>Employer Name:</label>
+								<input class="form-control" type="text" name="cname[]" id="cname<?php echo $index; ?>" required data-fv-notempty-message="Please enter company name" value="<?php echo $e['company_name']; ?>">
+							</div>
+							<div class="form-group">
+								<label>Project Start Date:</label>
+								<input class="form-control" type="text" name="psd[]" id="psd<?php echo $index; ?>" value="<?php echo $e['proj_start_date']; ?>">
+							</div>
+						</div>
+						<div class="col-lg-6 label_col">
+							<div class="form-group">
+								<label>Client Name(Any):</label>
+								<input class="form-control" type="text" name="cnname[]" id="cnname<?php echo $index; ?>" value="<?php echo $e['client_name']; ?>">
+							</div>
+							<div class="form-group">
+								<label>Project End Date:</label>
+								<input class="form-control" type="text" name="ped[]" id="ped<?php echo $index; ?>" value="<?php echo $e['proj_end_date']; ?>">
+							</div>
+						</div>
+					</div>
+					<?php }}else{ ?>
+					<div id="dependent-1">
+						<div><a class="text-left btn_site">Information</a></div><br/>
+						<div class="col-lg-6 label_col">
+							<div class="form-group">
+								<label>Employer Name:</label>
+								<input class="form-control" type="text" name="cname[]" id="cname1" required data-fv-notempty-message="Please enter company name">
+							</div>
+							<div class="form-group">
+								<label>Project Start Date:</label>
+								<input class="form-control" type="text" name="psd[]" id="psd1">
+							</div>
+						</div>
+						<div class="col-lg-6 label_col">
+							<div class="form-group">
+								<label>Client Name(Any):</label>
+								<input class="form-control" type="text" name="cnname[]" id="cnname1">
+							</div>
+							<div class="form-group">
+								<label>Project End Date:</label>
+								<input class="form-control" type="text" name="ped[]" id="ped1">
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+				</div>
+				<div class="col-lg-12 label_col">
+					<div class="col-lg-4">
+						<div class="pull-left">
+							<button type="button" class="btn btn-success btn-md" onclick="addMoreEmp();">Add more Employee Info</button>
+						</div>
+					</div>
+					<div class="pull-right">
+						<button type="button" class="btn btn-warning  btn-md" onClick="viewEmpInfoFun()" >BACK</button>
+						<button type="submit" class="btn btn-success btn-md">SUBMIT</button>
+					</div>
+				</div>
+		   </form>
+		</div>	
+	</div>
+</div>
+<?php if(count($this->empInfo) != 0){ ?>
+<input type="hidden" name="empCount" id="empCount" value="<?php count($this->empInfo); ?>" />
+<?php }else{ ?>
+<input type="hidden" name="empCount" id="empCount" value="1" />
+<?php } ?>
