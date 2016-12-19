@@ -99,6 +99,16 @@ return array(
 					),
 				),
 			),
+			'schdule-submit' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/schdule-submit',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'schduleSubmit',
+					),
+				),
+			),
 			'schedule-tax-info' => array(
 				'type' => 'Literal',
 				'options' => array(

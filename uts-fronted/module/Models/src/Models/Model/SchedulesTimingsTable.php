@@ -69,4 +69,24 @@ class SchedulesTimingsTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;	
 	}
+	public function addScheduleDateTime($sdate,$stime,$uid)
+    {
+		$checkAvailable = $this->getData($uid);
+		if(isset($checkAvailable->timing_id)){
+			$ustatus = 2;
+		}else{
+			$ustatus = 1;
+		}
+		$data = array(
+			'sc_user_id' 	  	=> $uid, 	
+			'schedule_dt' 		=> $sdate,  		
+			'schedule_period' 	=> $stime,  		
+			'user_status' 	    => $ustatus,  		
+			'status'		    => 1, 
+			'created_at' 		=> date('Y-m-d H:i:s'), 				
+			'updated_at' 		=> date('Y-m-d H:i:s'), 				
+		);
+		$this->tableGateway->insert($data);	
+		return $this->tableGateway->lastInsertValue;
+    }
 }

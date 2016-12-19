@@ -1,8 +1,8 @@
 
-ALTER TABLE `umpiretaxpayer`.`user_details` CHANGE `visa_type` `visa_type` VARCHAR(100) CHARSET latin1 COLLATE latin1_swedish_ci NULL; 
-ALTER TABLE `umpiretaxpayer`.`user_details` CHANGE `c_location` `c_location` VARCHAR(100) CHARSET latin1 COLLATE latin1_swedish_ci NULL; 
-ALTER TABLE `umpiretaxpayer`.`user_details` ADD COLUMN `insurence` VARCHAR(100) NULL AFTER `visa_type`; 
-ALTER TABLE `umpiretaxpayer`.`user_details` ADD COLUMN `itin` VARCHAR(100) NULL AFTER `ssnitin`; 
+ALTER TABLE `user_details` CHANGE `visa_type` `visa_type` VARCHAR(100) CHARSET latin1 COLLATE latin1_swedish_ci NULL; 
+ALTER TABLE `user_details` CHANGE `c_location` `c_location` VARCHAR(100) CHARSET latin1 COLLATE latin1_swedish_ci NULL; 
+ALTER TABLE `user_details` ADD COLUMN `insurence` VARCHAR(100) NULL AFTER `visa_type`; 
+ALTER TABLE `user_details` ADD COLUMN `itin` VARCHAR(100) NULL AFTER `ssnitin`; 
 
 ALTER TABLE `processing_status` ADD COLUMN `ps_year` INT(10) NULL AFTER `ps_state`; 
 UPDATE `processing_status` SET `ps_year`=2015 WHERE `ps_added_at`!=""

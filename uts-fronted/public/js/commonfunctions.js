@@ -628,3 +628,21 @@ function submitEmpInfo(){
 		e.preventDefault();
 	});
 }
+function saveSchduleTime(){
+	var scDate = $('#sc-date').val();
+	var scTime = $('#sc-time').val();
+	if(scDate != "" && scTime != ""){
+		$.ajax({
+			type:'POST',
+			url:  baseUrl+'schdule-submit',
+			data:{scDate:scDate,scTime:scTime},
+			success: function(){
+				$('#scheduleTitle').html('Reschedule For Tax Notes');
+				$('#sc-date').val('');
+				$('#sc-time').val('');
+			}
+		});
+	}else{
+		$('#schduleErrorPop').modal('show');
+	}
+}

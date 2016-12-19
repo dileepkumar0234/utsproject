@@ -198,15 +198,37 @@ class UsersController extends AbstractActionController
 			));
 		}
 	}
-	
 	public function scheduleTaxInfoAction(){
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
-		$basePath 	= $baseUrlArr['basePath'];	
+		$basePath 	= $baseUrlArr['basePath'];
+		$scheduleTable  = $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
+		$userId = 23;
+		$result = $scheduleTable->getData($userId);
+		if(isset($result->timing_id)){
+			$ustatus = 1;
+		}else{
+			$ustatus = 0;
+		}
 		return new ViewModel(array(					
 			'baseUrl' 			=>  $baseUrl,
 			'basePath'  		=>  $basePath,
+			'ustatus'  			=>  $ustatus,
+		));
+	}
+	public function schduleSubmitAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$scheduleTable  = $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
+		$userId = 23;
+		$sdate	= $_POST['scDate'];
+		$stime	= $_POST['scTime'];
+		$scheduleTable->addScheduleDateTime($sdate,$stime,$userId);
+		return new JsonModel(array(					
+			'output' 			=> 1
 		));
 	}
 }	

@@ -2,18 +2,11 @@
 	<div class="container-fluid">
 	<div class="row page_lo">
 	<div class="col-xs-2 col-md-4 text-left">
-	<a class="btn_site" href="<?php echo $this->baseUrl; ?>schedule-tax-info">Schedule For Tax Notes</a>
-	</div>  
-	<div class="col-xs-10 col-md-8 text-right btn_pad">
-		<a class="btn_site sm-hide" >File Number:UTS0023</a>
-		<div class="dropdown btn_site">
-			<a class=" dropdown-toggle" data-toggle="dropdown"> welcome dileep   <span class="caret"></a>
-		 <ul class="dropdown-menu">
-			<li><a href="#">Referral List</a></li>
-			<li><a href="#">Change Password</a></li>
-			<li><a href="#">Logout</a></li>
-		 </ul>
-		</div>
+	<?php if($this->ustatus == 1){ ?>
+	<a class="btn_site" id="scheduleTitle">Reschedule For Tax Notes</a>
+	<?php } else { ?>
+	<a class="btn_site" id="scheduleTitle">Schedule For Tax Notes</a>
+	<?php } ?>
 	</div>
 	</div>
 	<div class="row mar_t20">
@@ -21,8 +14,8 @@
 			<form role="form">
 				<div class="form-group">
 					<label>Date:</label>
-					<div class="input-group date" data-provide="datepicker">
-						<input type="text" class="form-control">
+					<div class="input-group date">
+						<input type="text" class="form-control" id="sc-date" name="sc-date">
 						<div class="input-group-addon">
 							<span class="glyphicon glyphicon-th"></span>
 						</div>
@@ -30,36 +23,36 @@
 				</div>
 				 <div class="form-group">
 					<label>Time(Timings as per CST)</label>
-					<select class="form-control">
-						<option label="select an option" value="string:select an option">select an option</option>
-						<option label="9:00 am" value="string:9:00 am">9:00 am</option>
-						<option label="9:30 am" value="string:9:30 am">9:30 am</option>
-						<option label="10:00 am" value="string:10:00 am">10:00 am</option>
-						<option label="10:30 am" value="string:10:30 am">10:30 am</option>
-						<option label="11:00 am" value="string:11:00 am">11:00 am</option>
-						<option label="11:30 am" value="string:11:30 am">11:30 am</option>
-						<option label="12:00 pm" value="string:12:00 pm">12:00 pm</option>
-						<option label="12:30 pm" value="string:12:30 pm">12:30 pm</option>
-						<option label="1:00 pm" value="string:1:00 pm">1:00 pm</option>
-						<option label="1:30 pm" value="string:1:30 pm">1:30 pm</option>
-						<option label="2:00 pm" value="string:2:00 pm">2:00 pm</option>
-						<option label="2:30 pm" value="string:2:30 pm">2:30 pm</option>
-						<option label="3:00 pm" value="string:3:00 pm">3:00 pm</option>
-						<option label="3:30 pm" value="string:3:30 pm">3:30 pm</option>
-						<option label="4:00 pm" value="string:4:00 pm">4:00 pm</option>
-						<option label="4:30 pm" value="string:4:30 pm">4:30 pm</option>
-						<option label="5:00 pm" value="string:5:00 pm">5:00 pm</option>
-						<option label="5:30 pm" value="string:5:30 pm">5:30 pm</option>
-						<option label="6:00 pm" value="string:6:00 pm">6:00 pm</option>
-						<option label="6:30 pm" value="string:6:30 pm">6:30 pm</option>
+					<select class="form-control" id="sc-time" name="sc-time">
+						<option value="">select an option</option>
+						<option value="9:00 am">9:00 am</option>
+						<option value="9:30 am">9:30 am</option>
+						<option value="10:00 am">10:00 am</option>
+						<option value="10:30 am">10:30 am</option>
+						<option value="11:00 am">11:00 am</option>
+						<option value="11:30 am">11:30 am</option>
+						<option value="12:00 pm">12:00 pm</option>
+						<option value="12:30 pm">12:30 pm</option>
+						<option value="1:00 pm">1:00 pm</option>
+						<option value="1:30 pm">1:30 pm</option>
+						<option value="2:00 pm">2:00 pm</option>
+						<option value="2:30 pm">2:30 pm</option>
+						<option value="3:00 pm">3:00 pm</option>
+						<option value="3:30 pm">3:30 pm</option>
+						<option value="4:00 pm">4:00 pm</option>
+						<option value="4:30 pm">4:30 pm</option>
+						<option value="5:00 pm">5:00 pm</option>
+						<option value="5:30 pm">5:30 pm</option>
+						<option value="6:00 pm">6:00 pm</option>
+						<option value="6:30 pm">6:30 pm</option>
 					</select>
 				</div>
 			</form>
 		</div>
 		<div class="col-lg-12 label_col">
 				<div class="pull-right">
-					<button type="button" class="btn btn-warning btn-md">EDIT</button>
-					<button type="button" class="btn btn-success btn-md">SUBMIT</button>
+					<!--<button type="button" class="btn btn-warning btn-md">EDIT</button>-->
+					<button type="button" class="btn btn-success btn-md" onclick="saveSchduleTime();">SUBMIT</button>
 				</div>
 			</div>
 	</div>
