@@ -597,7 +597,9 @@ function addMoreEmp(){
 					'</div>'+
 					'<div class="form-group">'+
 						'<label>Project Start Date:</label>'+
+						'<div class="input-group date">'+
 						'<input class="form-control" type="text" name="psd[]" id="psd'+empCount+'">'+
+						'<div class="input-group-addon"><span class="glyphicon glyphicon-th"></span></div></div>'+
 					'</div>'+
 				'</div>'+
 				'<div class="col-lg-6 label_col">'+
@@ -607,10 +609,18 @@ function addMoreEmp(){
 					'</div>'+
 					'<div class="form-group">'+
 						'<label>Project End Date</label>'+
+						'<div class="input-group date">'+
 						'<input class="form-control" type="text" name="ped[]" id="ped'+empCount+'">'+
+						'<div class="input-group-addon"><span class="glyphicon glyphicon-th"></span></div></div>'+
 					'</div>'+
 				'</div></div>');
 	$('#empCount').val(empCount);
+	$('input[id^=psd]').datetimepicker({
+		 format: 'YYYY-MM-DD'
+	});
+	$('input[id^=ped]').datetimepicker({
+		 format: 'YYYY-MM-DD'
+	});
 }
 function removeEmp(empCount){
 	$('#emp-'+empCount).remove();
