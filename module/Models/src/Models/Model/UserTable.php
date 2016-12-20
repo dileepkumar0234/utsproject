@@ -185,6 +185,16 @@ class UserTable
 		$updateuserid=$this->tableGateway->update($data, array('user_id' => $uid));
 		return $updateuserid;	
     }
+	public function updateUser($uid,$filenumber)
+    {
+		$data = array(
+			'unique_code' 	  	       => $filenumber, 
+			'check_newuser' 	  	   => 1, 
+			'date_updated'	  	       => date('Y-m-d H:i:s'), 	
+		);	
+		$updateuserid=$this->tableGateway->update($data, array('user_id' => $uid));
+		return $updateuserid;	
+    }
 	public function getUserDataInfo($user_id){        
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user_details', new Expression('user_details.u_user_id=user.user_id'),array('*'),'left');	
@@ -193,4 +203,17 @@ class UserTable
 		$resultSet = $this->tableGateway->selectWith($select);			
 		return $resultSet->current();
     }
+	public function getNewUsers(){        
+		$select = $this->tableGateway->getSql()->select();                                       
+		$select->where('check_newuser = 2');                                         
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;	
+    }
+	public function checkFileNumber($user_id,$fileNumber){        
+		$select = $this->tableGateway->getSql()->select();                                       
+		$select->where('unique_code ="'.$fileNumber.'"');                                         
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet->current();
+    }
+	
 }

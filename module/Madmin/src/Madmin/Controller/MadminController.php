@@ -206,6 +206,43 @@ class MadminController extends AbstractActionController
 		));
 		return $viewModel;
 	}
+	
+	public function assignedFileNumberAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$userTable=$this->getServiceLocator()->get('Models\Model\UserFactory');
+		$getNewUser = $userTable->getNewUsers();
+		$viewModel = new ViewModel(
+			array(
+				'baseUrl'		=> $baseUrl,
+				'basePath' 		=> $basePath,
+				'newuser'		=> $getNewUser
+		));
+		return $viewModel;
+	}
+	
+	public function checkUserExitsAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$userTable=$this->getServiceLocator()->get('Models\Model\UserFactory');
+		$getNewUser = $userTable->checkFileNumber($_POST['newUser'],$_POST['fileNumber']);
+		if(isset($getNewUser->user_id) && $getNewUser->user_id !=""){
+			return new JsonModel(array(
+				'output'        => 'exits',
+			));
+		}else{
+			$updateUser  = $userTable->updateUser($_POST['newUser'],$_POST['fileNumber']);
+			return new JsonModel(array(
+				'output'        => 'success',
+		    ));	
+		}
+		
+	}
+	
 	//Get want info 
 	public function getWantUsInfoAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');

@@ -24,8 +24,12 @@
 	$assignedUser14	= 	"";
 	$assignedUser15	= 	"";
 	$wantusCall     =   "";
+	$newUsers		=   "";
 	if(strpos($_SERVER['REQUEST_URI'], 'referels') !== false){
 		$referrals    = "active";		
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'assigned-file-nuber') !== false){
+		$newUsers    = "active";		
 	}
 	if(strpos($_SERVER['REQUEST_URI'], 'schedules') !== false){
 		$schedules    = "active";		
@@ -163,6 +167,7 @@
                     <li class="header">Mega Menu</li>
 <?php if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=="1"){?>
 <li class="treeview <?php echo $allusers; ?>"><a href="<?php echo $baseUrl; ?>/all-users"><i class="fa fa-users"></i> <span>All Records</span></a></li>
+<li class="treeview <?php echo $newUsers; ?>"><a href="<?php echo $baseUrl; ?>/assigned-file-number"><i class="fa fa-users"></i> <span>Assigned File Number</span></a></li>
 <li class="treeview <?php echo $assignedUser; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/0"><i class="fa fa-tasks"></i> <span>To be Assigned</span></a></li>
 <!--<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>To be Allocated</span></a></li>-->
 <li class="treeview <?php echo $assignedUser1; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/1"><i class="fa fa-user-md"></i> <span>Basic Info Pending</span></a></li>

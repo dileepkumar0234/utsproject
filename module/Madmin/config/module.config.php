@@ -82,6 +82,37 @@ return array(
                     ),
                 ),
             ),
+			//Assigned - file number 
+			'assigned-file-number' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/assigned-file-number[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'assignedFileNumber',
+                    ),
+                ),
+            ),
+			//Check file number
+			'check-user-exits' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/check-user-exits[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Madmin\Controller\Madmin',
+                        'action'     => 'checkUserExits',
+                    ),
+                ),
+            ),
+			
 			//get want us to info
 			'get-want-us-info' => array(
                 'type'    => 'segment',

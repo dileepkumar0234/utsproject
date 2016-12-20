@@ -1,0 +1,102 @@
+  <?php
+		$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+		$baseUrl = $header->headerarray['baseUrl'];
+		$basePath = $header->headerarray['basePath'];
+		
+		//echo "<pre>"; print_r(count($this->newuser)); exit;
+	?>
+  <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+			<h1> Assigned File Number </h1>
+          <ol class="breadcrumb">
+            <li><a href="<?php echo $baseUrl?>/members"><i class="fa fa-dashboard"></i> Home</a></li>
+		    / Assigned File Number 
+          </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+		<div class="row">
+		 
+		 <div class="col-md-12">
+
+			<div class="box box-info">
+
+                <div class="box-header with-border">
+
+                  <h3 class="box-title">Set File Number</h3>
+
+                </div><!-- /.box-header -->
+
+                <!-- form start -->
+
+                <form class="form-horizontal" name="assignedFileNumber" id="assignedFileNumber" method="post" class="form-horizontal" data-fv-message="This value is not valid" class="error_vl"
+					  data-fv-icon-valid="glyphicon glyphicon-ok"
+                      data-fv-icon-invalid="glyphicon glyphicon-remove" onSubmit="changeUser('assignedFileNumber');">
+
+                  <div class="box-body">
+					<div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">New User</label>
+                      <div class="col-sm-6">
+                        <select class="form-control" name="newUser" id="newUser" required data-fv-notempty-message="Select a user and cannot be empty">
+							<option value=""> Select User</option>
+							 <?php if(count($this->newuser) > 0){
+								 foreach($this->newuser as $nuser){ ?>
+								<option value="<?php echo $nuser->user_id; ?>"><?php echo ucfirst($nuser->user_name) .'('.$nuser->email .')'; ?></option>
+							<?php } } ?>
+						</select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">File Number</label>
+                      <div class="col-sm-6">
+                        <input class="form-control" placeholder="File Number Ex: UTS0001" type ="text" name="fileNumber" required data-fv-notempty-message="The file number is required and cannot be empty" id="fileNumber" >
+						<span name="errorFile" id="errorFile" ></span>
+                      </div>
+                    </div>
+				</div>
+				<div class="box-footer">
+					<span id="successMessage" style="display:none;color:green;">Message sent successfully!</span>
+					<i id="loadMessage" style="display:none;float:right;">loading..</i>
+					<button type="submit"  class="btn btn-info pull-right">Submit</button>
+					<span type="hidden" style="color:red" name="errorExits" id="errorExits"></span>
+				</div>
+
+                </form>
+
+            </div>
+
+            </div>
+
+        </div>
+
+		 </section>
+    </div><!-- /.content-wrapper -->
+	
+<script>
+$(document).ready(function() {
+	$('#assignedFileNumber').formValidation();
+});
+function changeUser(jform){
+	$('#assignedFileNumber').formValidation() .on('success.form.fv', function(e) { 
+		e.stopImmediatePropagation();
+		$('#errorExits').html();
+		$('#errorNewUser').html();
+		$('#errorFile').html();
+		$.ajax({
+			type:'POST',
+			url:  baseUrl+'/check-user-exits',
+			data:{newUser:$('#newUser').val(),fileNumber:$('#fileNumber').val()},
+			success: function(data){
+				if(data.output == "exits"){
+					$('#errorExits').html('FileNumber Already Exits.');
+				}else{
+					$('#errorExits').html('Successfully Updated.');
+				}
+			}
+		});
+		e.preventDefault();
+	});
+}
+
+</script>
