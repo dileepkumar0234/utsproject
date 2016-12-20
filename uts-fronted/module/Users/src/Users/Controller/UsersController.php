@@ -20,6 +20,14 @@ class UsersController extends AbstractActionController
 			'basePath'  		=>  $basePath,
 		));
 	}
+	public function changePassword(){
+		$user_session 				= new Container('user');
+		$baseUrls 					= $this->getServiceLocator()->get('config');
+		$baseUrlArr 				= $baseUrls['urls'];
+		$baseUrl 					= $baseUrlArr['baseUrl'];
+		$basePath 					= $baseUrlArr['basePath'];
+				
+	}
     public function indexAction(){
 		$user_session 				= new Container('user');
 		$baseUrls 					= $this->getServiceLocator()->get('config');

@@ -15,8 +15,8 @@
 							<tbody>
 								<?php foreach($files as $file){ ?>
 								<tr>
-									<th><?php echo $category; ?></th>
-									<td><a href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$category.'/'.$file; ?>" download><?php echo $file; ?></a></td>
+									<th style="width:100%"><?php echo $category; ?></th>
+									<td style="width:100%"><a href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$category.'/'.$file; ?>" download><?php echo $file; ?></a></td>
 								</tr>
 								<?php } ?>
 							</tbody>
@@ -54,13 +54,13 @@
 							foreach($this->taxDocuments[$name->upt_name] as $fileId => $file){
 						?>
 							<div class="form-group">
-								<p id="existsFile_<?php echo $fileId; ?>"><a style="color:#fff !important" href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$name->upt_name.'/'.$file; ?>" download><?php echo $file; ?> &nbsp;&nbsp; <a href="javascript:void(0);" style="color:red !important" onclick="removeFile(<?php echo $fileId; ?>)">Remove</a></p>
+								<p id="existsFile_<?php echo $fileId; ?>"><a style="color:#fff !important" href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$name->upt_name.'/'.$file; ?>" download><?php echo $file; ?> &nbsp;&nbsp; <a href="javascript:void(0);" style="color:#ff3349 !important;font-size:20px;padding-left:10px;" onclick="removeFile(<?php echo $fileId; ?>)"><span class="glyphicon glyphicon-trash"></span></a></p>
 							</div>
 						<?php }} ?>
 						<div class="form-group">
 							<button type="button" class="btn btn-success btn-md" onclick="addMoreFiles(<?php echo $name->upt_id; ?>)">Add more</button>
 						</div>
-						<div id="addMore_<?php echo $name->upt_id; ?>"></div>
+						<div class="col-lg-12" id="addMore_<?php echo $name->upt_id; ?>"></div>
 					</div>
 					<?php }} ?>
 				</div>
