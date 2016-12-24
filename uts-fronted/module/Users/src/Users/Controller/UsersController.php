@@ -20,15 +20,7 @@ class UsersController extends AbstractActionController
 			'basePath'  		=>  $basePath,
 		));
 	}
-	public function changePassword(){
-		$user_session 				= new Container('user');
-		$baseUrls 					= $this->getServiceLocator()->get('config');
-		$baseUrlArr 				= $baseUrls['urls'];
-		$baseUrl 					= $baseUrlArr['baseUrl'];
-		$basePath 					= $baseUrlArr['basePath'];
-				
-	}
-    public function indexAction(){
+	public function indexAction(){
 		$user_session 				= new Container('user');
 		$baseUrls 					= $this->getServiceLocator()->get('config');
 		$baseUrlArr 				= $baseUrls['urls'];
@@ -53,12 +45,7 @@ class UsersController extends AbstractActionController
 	//LOGOUT CONFIRMATION
 	
 	public function logoutAction(){
-		if(isset($_GET['id']) && $_GET['id']=="google"){
-			$user_session 	= 	new Container('user');			
-		}else{
-			$user_session 	= 	new Container('user');
-			$admin_session 	= 	new Container('admin');
-		}
+		$user_session 	= 	new Container('user');
 		session_destroy();
 		return new JsonModel(array(					
 			'output' => 1
@@ -66,23 +53,31 @@ class UsersController extends AbstractActionController
 	}
 	
 	Public function changePasswordAction(){
-		$user_session  = 	new Container('user');
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
-		$userTable  = $this->getServiceLocator()->get('Models\Model\UsersFactory');
-		$u_id 		= $user_session->userId;
-		$result		= $userTable->checkPassword($u_id,$_POST['oldPassword'])->current();
-		if($result){
-			$user_id 			= $result->u_id;
-			$updatePassword		=  $userTable->updatePassword($user_id,$_POST['cnfPassword']);
-			return new JsonModel(array(					
-				'output' 	=> 'success'
-			));
+		if(isset($_POST["oldPassword"]) && $_POST["oldPassword"]!=""){
+			$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
+			$u_id 		 = $_SESSION["user"]["user_id"];
+			$oldPassword = $_POST["oldPassword"];
+			$result		 = $userTable->getpassword($u_id,$_POST['oldPassword']);
+			if($result!=0){
+				$updatePassword		=  $userTable->changepwd($u_id,$_POST['confirmPassword']);
+				return new JsonModel(array(					
+					'output' 	=> 'success',
+					'message' 	=> 'success'
+				));
+			}else{
+				return new JsonModel(array(					
+					'output' 	=> 'fail',
+					'message' 	=> 'oldpasswordworng',
+				));
+			}
 		}else{
 			return new JsonModel(array(					
-				'output' 	=> 'fail'
+				'output' 	=> 'fail',
+				'message' 	=> 'oldpasswordrequired',
 			));
 		}
 	}

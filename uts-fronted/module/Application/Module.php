@@ -15,7 +15,7 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
 class Module implements AutoloaderProviderInterface
 {
-	protected $whitelist = array('/admin', '/change-password', '/user-management', '/user-payment', '/reports-management',  '/client-management', '/ad-management', '/admin-logout');
+	protected $whitelist = array('/admin',  '/user-management', '/user-payment', '/reports-management',  '/client-management', '/ad-management', '/admin-logout');
      public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
