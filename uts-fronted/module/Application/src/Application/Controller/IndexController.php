@@ -80,4 +80,15 @@ class IndexController extends AbstractActionController
 			)
 		);
 	}
+	public function contactFormAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$contactTable = $this->getServiceLocator()->get('Models\Model\ContactUsFactory'); 
+		$saveReferer = $contactTable->inserContact($_POST);
+		return new JsonModel(array(
+			'output'    =>  'success',
+		));	
+	}
 }

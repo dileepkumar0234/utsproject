@@ -101,6 +101,12 @@
 	</div>
 <!-- End -->
 <script>
+$(document).ready(function() {
+	$('#contactForm').formValidation().on('success.form.fv', function(e, data) {	
+		e.preventDefault();
+	});
+});
+	
 function referFriend(){
 		$('#refMesage').html('');
 		$('#refSuccMesage').html('');
@@ -145,5 +151,25 @@ function referFriend(){
 			$('#refSuccMesage').html('');
 			$('#referFriendForm').formValidation('resetForm', true);
 			$('#referFriendPopUp').modal('hide');
+		}
+		
+		function contactFormFun(){
+		 $('#successContact').html('');
+			$("#contactForm").formValidation().on('success.form.fv', function(e) {
+				e.stopImmediatePropagation();
+					$.ajax({
+						type		:   'POST',
+						url			:  	baseUrl+'contact-form',
+						dataType	: 	"json",
+						data:$('#contactForm').serialize(),
+						success: function(data){
+							if(data.output == "success"){
+								$('#successContact').html('Successfully ');
+								//window.location = baseUrl;
+							}
+						}
+					});
+				e.preventDefault();	
+			});
 		}
 		</script>

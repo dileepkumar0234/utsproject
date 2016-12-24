@@ -130,27 +130,27 @@
 				
 			<div class="col-md-5">
 				<div class="form-area">  
-					<form role="form">
+					<form role="form" id="contactForm" name="contactForm"  onSubmit="contactFormFun()" data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon" data-fv-icon-validating="glyphicon glyphicon-refresh">
 					<br style="clear:both">
 								<h3 style="margin-bottom: 20px;">Contact Form</h3>
 								<div class="form-group">
-									<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+									<input type="text" class="form-control" id="c_name" name="c_name" placeholder="Name" required data-fv-notempty="true" data-fv-notempty-message="The name is required">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+									<input type="text" class="form-control" id="c_email" name="c_email" placeholder="Email"required data-fv-notempty-message="The email is required"	data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
+									<input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Mobile Number" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10" data-fv-stringlength data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be 10 digits only" maxlength="10">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+									<input type="text" class="form-control" id="c_subject" name="c_subject" placeholder="Subject" required data-fv-notempty="true" data-fv-notempty-message="The subject is required">
 								</div>
 								<div class="form-group">
-								<textarea class="form-control" type="textarea" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
+								<textarea class="form-control" type="textarea" id="c_message" name="c_message" placeholder="Message" maxlength="140" rows="7" required data-fv-notempty="true" data-fv-notempty-message="The message is required"></textarea>
 									<span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>                    
 								</div>
-						
-					<button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Submit Form</button>
+						<span id="successContact" name="successContact" style="color:green"> </span>
+					<button type="submit" class="btn btn-primary pull-right">Submit Form</button>
 					</form>
 				</div>
 

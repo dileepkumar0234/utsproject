@@ -42,6 +42,16 @@ return array(
 					),
 				),
 			),
+			'contact-form' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/contact-form',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'contactForm',
+					),
+				),
+			),
 			'application' 		=> 	array(
 				'type'    		=> 	'Zend\Mvc\Router\Http\Segment',
 				'options' 		=> 	array(
