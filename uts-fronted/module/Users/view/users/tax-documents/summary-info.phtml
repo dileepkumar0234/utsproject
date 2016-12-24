@@ -2,9 +2,23 @@
 	<div class="container-fluid">
 		<div class="row page_lo">
 			<div class="col-xs-2 col-md-4 text-left">
-				<a class="btn_site">View Tax Summary</a>
+				<div class="btn_site"><a href="<?php echo $this->baseUrl; ?>summary-info">View Tax Summary</a></div>
+			</div>  
+			<div class="col-xs-10 col-md-8 text-right btn_pad">
+				<div class="btn_site sm-hide">
+					File Number: <?php if(isset($_SEESSION["user"]["file_name"]) && $_SEESSION["user"]["file_name"]!=""){ echo $_SEESSION["user"]["file_name"]; } else { ?> UTS0023 <?php } ?>
+				</div>
+				<div class="dropdown btn_site">
+					<a class=" dropdown-toggle" data-toggle="dropdown"> Welcome <?php if(isset($_SEESSION["user"]["user_name"]) && $_SEESSION["user"]["user_name"]!=""){ echo ucfirst($_SEESSION["user"]["user_name"]); } else { ?> Dileep <?php } ?>   <span class="caret"></a>
+					 <ul class="dropdown-menu">
+						<li><a href="<?php echo $baseUrl;?>referral-list">Referral List</a></li>
+						<li><a href="javascript:void(0);" onClick="changeQ();">Change Password</a></li>
+						<li><a href="javascript:void(0);" onClick="logOutFun();">Logout</a></li>
+					 </ul>
+				</div>
 			</div>
 		</div>
+		
 		<div class="row mar_t20 bac_uplo" id="view_tax_documents">
 			<?php if(count($this->taxSummary) != 0){ ?>
 				<div class="col-lg-12">

@@ -2,9 +2,11 @@
 	<div class="container-fluid">
 		<div class="row page_lo">
 			<div class="col-xs-2 col-md-4 text-left">
-				<a class="btn_site">Employer Information</a>
+				<div class="btn_site"><a href="<?php echo $this->baseUrl; ?>spouse-info">Employer Information</a></div>
 			</div>  
+			<?php include('home-menu.phtml'); ?>
 		</div>
+		
 		<div class="row mar_t20 bac_uplo" id="hideShowDependents" >
 			<?php if(count($this->empInfo) != 0){
 			foreach($this->empInfo as $k=>$e){

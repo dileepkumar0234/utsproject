@@ -1,14 +1,16 @@
 <div id="page-wrapper" class="bac_img">
 	<div class="container-fluid">
 	<div class="row page_lo">
-	<div class="col-xs-2 col-md-4 text-left">
-	<?php if($this->ustatus == 1){ ?>
-	<a class="btn_site" id="scheduleTitle">Reschedule For Tax Notes</a>
-	<?php } else { ?>
-	<a class="btn_site" id="scheduleTitle">Schedule For Tax Notes</a>
-	<?php } ?>
+		<div class="col-xs-2 col-md-4 text-left">
+			<?php if($this->ustatus == 1){ ?>
+			<div class="btn_site" id="scheduleTitle"><a href="<?php echo $this->baseUrl; ?>schedule-tax-info">Reschedule For Tax Notes</a></div>
+			<?php } else { ?>
+			<div class="btn_site" id="scheduleTitle"><a href="<?php echo $this->baseUrl; ?>schedule-tax-info">Schedule For Tax Notes</a></div>
+			<?php } ?>
+		</div>  
+		<?php include('home-menu.phtml'); ?>
 	</div>
-	</div>
+	
 	<div class="row mar_t20">
 		<div class="col-lg-6 label_col">
 			<form role="form">
