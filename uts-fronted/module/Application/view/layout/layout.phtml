@@ -164,7 +164,8 @@ function referFriend(){
 						data:$('#contactForm').serialize(),
 						success: function(data){
 							if(data.output == "success"){
-								$('#successContact').html('Successfully ');
+								$('#contactForm').formValidation('resetForm', true);
+								$('#successContact').html('Successfull');
 								//window.location = baseUrl;
 							}
 						}
