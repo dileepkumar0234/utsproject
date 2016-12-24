@@ -91,6 +91,21 @@ return array(
                 ),
             ),
 			//End
+			'check-email-exits' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/check-email-exits[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Users\Controller\Users',
+                        'action'     => 'checkEmailExits',
+                    ),
+                ),
+            ),
+			
 			'emp-edit-info' => array(
 				'type' => 'Literal',
 				'options' => array(

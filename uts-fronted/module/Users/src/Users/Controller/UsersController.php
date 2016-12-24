@@ -243,19 +243,30 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
 		$user_session = new Container('user');
-		$u_id 		= $user_session->userId;
 		$refTable = $this->getServiceLocator()->get('Models\Model\RefferalFriendsFactory'); 
-		$checkEmail  = $refTable->checkEmail($_POST['friendEmail']);
-		if($checkEmail == 0){
-			$saveReferer = $refTable->saveReferer($u_id ,$_POST);
-			return new JsonModel(array(
-				'output'       =>  'success',
-			));	
+		if(isset($_POST['friendEmail']) && $_POST["friendEmail"]!=""){
+			$checkEmail  = $refTable->checkEmail($_POST['friendEmail']);
+			if($checkEmail == 0){
+				if(isset($user_session->user_id) && $user_session->user_id !=""){
+					$u_id  = $user_session->user_id;
+				}else{
+					$u_id  = "";
+				}
+				$saveReferer = $refTable->saveReferer($u_id ,$_POST);
+				return new JsonModel(array(
+					'output'       =>  'success',
+				));	
+			}else{
+				return new JsonModel(array(
+					'output'       =>  'email exits',
+				));	
+			}
 		}else{
 			return new JsonModel(array(
-				'output'       =>  'email exits',
+				'output'       =>  'fail',
 			));	
 		}
+		
 	}
 	public function getUserInfoAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -263,8 +274,12 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
 		$user_session = new Container('user');
-		$u_id 		= $user_session->userId;
-		// $u_id = 23;
+		
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$u_id  = $user_session->user_id;
+		}else{
+			$u_id  = "";
+		}
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$getUserInfo = $userTable->userdetails($u_id);
 		if(isset($getUserInfo->user_id) && $getUserInfo->user_id != ""){
@@ -277,7 +292,27 @@ class UsersController extends AbstractActionController
 				'output'       =>  'fail',
 			));	
 		}
-		
+	}
+	
+	public function checkEmailExitsAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$user_session = new Container('user');
+		$u_id 		= $user_session->userId;
+		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
+		$getUserInfo = $userTable->checkEmail($_POST['']);
+		if(isset($getUserInfo->user_id) && $getUserInfo->user_id != ""){
+			return new JsonModel(array(
+				'userInfo'     =>  $getUserInfo,
+				'output'       =>  'success',
+			));	
+		}else{
+			return new JsonModel(array(
+				'output'       =>  'fail',
+			));	
+		}
 	}
 }	
 
