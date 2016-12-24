@@ -133,7 +133,83 @@
 	</div>
 <!-- End -->
 
-
+<!-- Register -->
+	<div class="modal fade" id="referFriendPopUp" role="dialog" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog">
+			<div class="modal-content" >
+				<div class="modal-header" style="border-bottom:1px solid #ddd;background:#189def;color:#fff;border-radius:2px 2px 0 0">
+					<button type="button" class="close" onclick="closeForm()">&times;</button>
+					<center><h4 class="modal-title">REFER A FRIEND</h4><p> Please provide the following detailes of the Friend Whom you wish to Refer.<p></center>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon"  data-fv-icon-validating="glyphicon glyphicon-refresh"	method="POST" name="referFriendForm" id="referFriendForm"  onSubmit="referFriend();" enctype="multipart/form-data">
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputFullName">Your Name</label>
+							<div class="col-md-9">
+							<input type="text" placeholder="Your Name" id="yourName" name="yourName" class="form-control"  required data-fv-notempty="true" 
+							data-fv-notempty-message="The full name is required" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label tex_lef" for="inputEmail">Your Email Id</label>
+							<div class="col-md-9">
+								<input type="text" placeholder="Your Email Id" id="yourEmail" name="yourEmail" class="form-control user_login" required data-fv-notempty-message="The email is required" 
+								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
+								<span id="emailChecking" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label tex_lef" for="phone">Your Telephone Number</label>
+							<div class="col-md-9">
+								<input type="text" placeholder="Your Telephone Number" id="yourPhone" name="yourPhone" class="form-control user_login" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10"
+							data-fv-stringlength data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be 10 digits only" maxlength="10">
+								<span id="phoneChecking" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputFullName">Name Of Your Friend </label>
+							<div class="col-md-9">
+							<input type="text" placeholder="Name Of Your Friend" id="friendName" name="friendName" class="form-control"  required data-fv-notempty="true" 
+							data-fv-notempty-message="The full name is required" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label tex_lef" for="inputEmail">Friend's Email Id</label>
+							<div class="col-md-9">
+								<input type="text" placeholder="Friend's Email Id" id="friendEmail" name="friendEmail" class="form-control user_login" required data-fv-notempty-message="The email is required" 
+								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
+								<span id="emailChecking" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label tex_lef" for="phone">Friend's Telephone Number</label>
+							<div class="col-md-9">
+								<input type="text" placeholder="Friend's Telephone Number" id="friendPhone" name="friendPhone" class="form-control user_login" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10"
+							data-fv-stringlength data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be 10 digits only" maxlength="10">
+								<span id="phoneChecking" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label" for="inputFullName">Description</label>
+							<div class="col-md-9">
+							<input type="text" placeholder="Description" id="description" name="description" class="form-control"  required data-fv-notempty="true" 
+							data-fv-notempty-message="The description is required" />
+							</div>
+						</div>
+						<div class="modal-footer mar_r5">
+							<div class="col-md-8 text-left">
+								<span id="refMesage" style="color:red"></span>
+							</div><br/>
+							<div class="col-md-2 pull-right">
+								<button type="submit" class="btn   btn-raised btn-info" >Submit</button>
+							</div>		
+						</div>
+					</form>	
+				</div>				
+			</div>
+		</div>
+	</div>
+<!-- End -->
 
 <!-- Login -->
 	<div class="modal fade" id="loginModal" role="dialog" >
@@ -178,7 +254,7 @@
 	</div>
 <!-- End -->
 <!-- Forgot Password -->
-	<div class="modal fade" id="myModal1" role="dialog" >
+	<div class="modal fade" id="forgotpasswordModal" role="dialog" >
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -229,7 +305,7 @@
 			
 			
 		$(document).ready(function() {
-			$('#loginForm,#registerForm,#forgetPasswordForm').formValidation().on('success.form.fv', function(e, data) {	
+			$('#loginForm,#registerForm,#forgetPasswordForm,#referFriendForm').formValidation().on('success.form.fv', function(e, data) {	
 				e.preventDefault();
 			});
 		});
@@ -274,7 +350,46 @@
 				e.preventDefault();	
 			});
 		}
-
+		function referFriend(){
+		$('#refMesage').html('');
+			$("#referFriendForm").formValidation().on('success.form.fv', function(e) {
+				e.stopImmediatePropagation();
+					$.ajax({
+						type		:   'POST',
+						url			:  	baseUrl+'refer-friend',
+						dataType	: 	"json",
+						data:$('#referFriendForm').serialize(),
+						success: function(data){
+							if(data.output == "success"){
+								$('#refMesage').html('Successfully Saved');
+							}else{
+								$('#refMesage').html('Friend email already exits');
+							}
+						}
+					});
+				e.preventDefault();	
+			});
+		}
+		function referFriendPopFun(){
+			$('#referFriendForm').formValidation('resetForm', true);
+			$.ajax({
+				type		:   'GET',
+				url			:  	baseUrl+'get-user-info',
+				dataType	: 	"json",
+				success: function(data){
+					if(data.output == "success"){
+						$('#yourName').val(data.userInfo['user_name']);
+						$('#yourEmail').val(data.userInfo['email']);
+						$('#yourPhone').val(data.userInfo['phone']);
+					}
+					$('#referFriendPopUp').modal('show');
+				}
+			});
+		}
+		function closeForm(){
+			$('#referFriendForm').formValidation('resetForm', true);
+			$('#referFriendPopUp').modal('hide')
+		}
 		</script>
 	</body>
 </html>

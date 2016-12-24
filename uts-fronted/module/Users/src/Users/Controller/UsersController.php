@@ -234,5 +234,50 @@ class UsersController extends AbstractActionController
 			'output' 			=> 1
 		));
 	}
+	
+	//Refer Friend 
+	
+	public function referFriendAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$user_session = new Container('user');
+		$u_id 		= $user_session->userId;
+		$refTable = $this->getServiceLocator()->get('Models\Model\RefferalFriendsFactory'); 
+		$checkEmail  = $refTable->checkEmail($_POST['friendEmail']);
+		if($checkEmail == 0){
+			$saveReferer = $refTable->saveReferer($u_id ,$_POST);
+			return new JsonModel(array(
+				'output'       =>  'success',
+			));	
+		}else{
+			return new JsonModel(array(
+				'output'       =>  'email exits',
+			));	
+		}
+	}
+	public function getUserInfoAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$user_session = new Container('user');
+		$u_id 		= $user_session->userId;
+		// $u_id = 23;
+		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
+		$getUserInfo = $userTable->userdetails($u_id);
+		if(isset($getUserInfo->user_id) && $getUserInfo->user_id != ""){
+			return new JsonModel(array(
+				'userInfo'     =>  $getUserInfo,
+				'output'       =>  'success',
+			));	
+		}else{
+			return new JsonModel(array(
+				'output'       =>  'fail',
+			));	
+		}
+		
+	}
 }	
 

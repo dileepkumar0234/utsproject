@@ -70,6 +70,66 @@ class RefferalFriendsTable
 		$insertresult=$this->tableGateway->insert($data);	
 		return $this->tableGateway->lastInsertValue;		
     }	
+	public function saveReferer($uid,$rf)
+    {
+		if(isset($rf['yourName']) && $rf['yourName']!=''){
+			$rf_on_name = $rf['yourName'];
+		}else{
+			$rf_on_name = '';
+		}
+		if(isset($rf['yourEmail']) && $rf['yourEmail']!=''){
+			$rf_on_email = $rf['yourEmail'];
+		}else{
+			$rf_on_email ='';
+		}		
+		if(isset($rf['yourPhone']) && $rf['yourPhone']!=''){
+			$rf_on_phone = $rf['yourPhone'];
+		}else{
+			$rf_on_phone ='';
+		}
+		if(isset($rf['friendName']) && $rf['friendName']!=''){
+			$rf_name = $rf['friendName'];
+		}else{
+			$rf_name ='';
+		}
+		if(isset($rf['friendEmail']) && $rf['friendEmail']!=''){
+			$rf_email = $rf['friendEmail'];
+		}else{
+			$rf_email ='';
+		}
+		if(isset($rf['friendPhone']) && $rf['friendPhone']!=''){
+			$rf_phone = $rf['friendPhone'];
+		}else{
+			$rf_phone ='';
+		}
+		if(isset($rf['description']) && $rf['description']!=''){
+			$rf_comment = $rf['description'];
+		}else{
+			$rf_comment ='';
+		}
+		$data = array(
+			'rf_user_id'          => $uid,
+			'rf_on_name' 	  	  => $rf_on_name,				
+			'rf_on_email' 		  => $rf_on_email,  		
+			'rf_on_phone' 		  => $rf_on_phone,		
+			'rf_name'  	          => $rf_name,  	
+			'rf_email' 	          => $rf_email,   
+			'rf_phone'	  	      => $rf_phone, 	
+			'rf_comment'	  	  => $rf_comment, 	
+			'added_at' 		      => date('Y-m-d H:i:s'), 			
+			'status' 		      => 1, 			
+		);	
+		$insertresult=$this->tableGateway->insert($data);	
+		return $this->tableGateway->lastInsertValue;		
+    }	
+	//Check Email
+	public function checkEmail($refEmail){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('rf_email= "'.$refEmail.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->count();		
+	}
+	
 	public function checkRequestOneWay($refferedBy,$refferedon){
 		$select = $this->tableGateway->getSql()->select();
 		$select->where('rf_on_email= "'.$refferedBy.'"');

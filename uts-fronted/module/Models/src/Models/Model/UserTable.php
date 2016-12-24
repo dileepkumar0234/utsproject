@@ -129,6 +129,7 @@ class UserTable
 	public function userdetails($id)
     {	
 		$select = $this->tableGateway->getSql()->select();
+		$select->join('user_details', new Expression('user_details.u_user_id=user.user_id'),array('*'),'left');
 		$select->where('user_id="'.$id.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current();

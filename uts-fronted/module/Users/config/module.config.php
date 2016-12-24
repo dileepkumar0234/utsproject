@@ -59,6 +59,38 @@ return array(
 					),
 				),
 			),
+			//Refer Friend 
+			'refer-friend' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/refer-friend[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Users\Controller\Users',
+                        'action'     => 'referFriend',
+                    ),
+                ),
+            ),
+			//End 
+			//get-user-info
+			'get-user-info' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/get-user-info[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Users\Controller\Users',
+                        'action'     => 'getUserInfo',
+                    ),
+                ),
+            ),
+			//End
 			'emp-edit-info' => array(
 				'type' => 'Literal',
 				'options' => array(

@@ -12,8 +12,10 @@ return array(
 	// Admin Accessing Controllers
     'admin'=> array(
 		'send-admin-emails',
+		'refer-friend',
 		'admin-emails',
 		'assigned-file-number',
+		'get-user-info',
 		'check-user-exits',
 		'get-want-us-info',
 		'want-us-to-call',
