@@ -15,6 +15,7 @@
 		<link href="<?php echo $basePath;?>/css/bootstrap.min-home.css" rel="stylesheet">
 		<link href="<?php echo $basePath;?>/css/custom-home.css" rel="stylesheet">
 		<link href="<?php echo $basePath;?>/css/style-home.css" rel="stylesheet">
+		<link href="<?php echo $basePath;?>/css/animate-home.css" rel="stylesheet">
 		<link href="<?php echo $basePath;?>/font-awesome/css/font-awesome.min.css" rel="stylesheet">  
 	</head>
     <body>
@@ -27,14 +28,15 @@
 						</li>
 						<li class="res site_col">
 							<div class="mar_t5">
-								<img src="<?php echo $basePath;?>/img/us-flag.png" class="">&nbsp;<strong>+1(828)-548-6793</strong><br>
-								<img src="<?php echo $basePath;?>/img/us-flag.png" class="pull-left">&nbsp;<strong>+1(910)-835-1810</strong>
+								<img src="<?php echo $basePath;?>/img/us-flag.png" class="">&nbsp;<strong>+1(631)-407-1040</strong><br>
+								<!--<img src="<?php echo $basePath;?>/img/us-flag.png" class="pull-left">&nbsp;<strong>+1(910)-835-1810</strong>-->
+								<img src="<?php echo $basePath;?>/img/ind.png" class="pull-left">&nbsp;<strong>+9140-6999-1040</strong>
 							</div>
 						</li><li class="res site_col">
 							<p class="pull-left mar_t5">
-							<span><img src="<?php echo $basePath;?>/img/ind.png" class="pull-left">&nbsp;<strong>+91-720-754-3882</strong></span>
-							</br>
-							<span>Office Timings: Mon to Sun - 08:00AM CST to 6:30PM CST</span>
+							<!--<span><img src="<?php echo $basePath;?>/img/ind.png" class="pull-left">&nbsp;<strong>+9140-6999-1040</strong></span>
+							</br>-->
+							<span>Office Timings: Mon to Sun - 06:00AM CST to 6:30PM CST</span>
 							</p>
 						</li>
 						<li class="res btn_ref">
@@ -60,27 +62,39 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand logo_res" href="index.html"><img class="img-responsive" src="<?php echo $basePath;?>/img/logo-home.png"></a>
+						<a class="navbar-brand logo_res" href="index.html"><img class="img-responsive" src="<?php echo $basePath; ?>/img/logo-home.png"></a>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top:30px;">
-						<ul class="nav navbar-nav navbar-right menu_pad">
-							<li>
-								<a class="active"href="index.html">Home</a>
+						<ul class="nav navbar-nav navbar-right menu_pad drop_st">
+							<li  class="active">
+								<a class=""href="<?php echo $baseUrl;?>">Home</a>
 							</li> 
 							<li>
-								<a href="firm-profile.php">FIRM PROFILE</a>
+								<a href="<?php echo $baseUrl;?>firm-profile">PROFILE</a>
+							</li>
+							<li class="dropdown">
+								<a href="<?php echo $baseUrl;?>services">SERVICES</a>
+								 <div class="dropdown-content mob_hid">
+									<a href="<?php echo $baseUrl;?>services">US Tax Services</a>
+									<a href="<?php echo $baseUrl;?>services#inServices">Individual Services </a>
+									<a href="<?php echo $baseUrl;?>services#bServices">Business Services</a>
+									<a href="<?php echo $baseUrl;?>services#indianSer">Indian Tax Services</a>
+									<a href="<?php echo $baseUrl;?>services">Advisory on Taxation</a>
+									<a href="<?php echo $baseUrl;?>services#auditTaxation">Audit and Certification </a>
+									<a href="<?php echo $baseUrl;?>services#others">Service Tax VAT & others</a>
+								  </div>
 							</li>
 							<li>
-								<a href="">OUR SERVICES</a>
+								<a href="<?php echo $baseUrl;?>tax-center">TAX CENTER</a>
 							</li>
 							<li>
-								<a href="#">TAX CENTER</a>
+								<a href="<?php echo $baseUrl;?>tax-center">TESTIMONIALS</a>
 							</li> 
 							<li>
-								<a href="#">CAREERS</a>
+								<a href="<?php echo $baseUrl;?>carrers">CAREERS</a>
 							</li> 
 							<li>
-								<a href="#">CONTACT US</a>
+								<a href="<?php echo $baseUrl;?>contact-us">CONTACT US</a>
 							</li>
 							
 								</ul>

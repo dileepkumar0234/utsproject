@@ -42,6 +42,56 @@ return array(
 					),
 				),
 			),
+			'firm-profile' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/firm-profile',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'firmProfile',
+					),
+				),
+			),
+			'services' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/services',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'services',
+					),
+				),
+			),
+			'tax-center' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/tax-center',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'taxCenter',
+					),
+				),
+			),
+			'carrers' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/carrers',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'carrers',
+					),
+				),
+			),
+			'contact-us' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/contact-us',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'contactUs',
+					),
+				),
+			),
 			'contact-form' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(

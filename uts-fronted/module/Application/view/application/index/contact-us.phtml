@@ -1,0 +1,61 @@
+<div class="headerLine contact_bg img-responsive"></div>
+<div class="container">
+    <div class="row">
+        <h3 style="text-align:center;"><span class="hedd">Contact Us</span></h3><br>
+        <div class="col-sm-6">
+            <div class="col-sm-12">
+                <div class="col-sm-11">
+                    <h4 style="color: #16b1df;font-size: 20px;">Umpire Tax Solutions,LLC</h4>
+                    <address>
+                    <img src="<?php echo $basePath;?>/img/contact.jpg" alt="" style="float:left; margin-right:20px; width:206px ">
+					<div class="Contacts">
+                        <p><strong>Corporate Office:</strong> <br>9500 Grove Crest Ln<br>
+                            Charlotte NC 28262</p>
+                        <p><strong>Processing Center:</strong>  <br>T-Hub Hyderabad<br>
+								 &nbsp;Telangana</p><br>
+
+                        <p><strong>E-mail:</strong> Hello@umpiretaxsolutions.com</p>
+                        </div>
+                    </address>
+
+                </div>
+
+            </div>
+          
+        </div>
+        <div class="col-sm-6">
+        <form name="contactus">
+            <h4 style="color: #16b1df;font-size: 20px;">Contact Form</h4>
+
+            <div class="form-group">
+                <label for="usr">Name *:</label>
+                <input type="text" ng-model="contactform.c_name" class="form-control" id="usr">
+            </div>
+            <div class="form-group">
+                <label for="usr">Email *:</label>
+                <input type="text" name="email" ng-class="{'error':contactus.email.$invalid}" validate-form ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-model="contactform.c_email"  class="form-control" id="usr1">
+            </div>
+            <div class="form-group">
+                <label for="usr">Phone *:</label>
+                <input type="text" name="phone" ng-class="{'error':contactus.phone.$invalid}" validate-form ng-pattern="/^[1-9]{1}[0-9]{9}$/" ng-model="contactform.c_phone" class="form-control" id="usr2">
+            </div>
+
+           
+
+            <div class="form-group">
+                <label>Message *</label>
+                <textarea rows="8" class="form-control" ng-model="contactform.c_message" required="required" id="message" name="message"></textarea>
+            </div>
+            <div class="form-group">
+                <button required="required" ng-click="contactusService(contactus.$invalid,contactform)" class="btn btn-primary btn-lg" name="submit" type="submit">Submit
+                </button>
+            </div>
+</form>
+
+        </div>
+
+
+    </div>
+	
+
+</div>

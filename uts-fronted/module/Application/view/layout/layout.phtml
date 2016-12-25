@@ -10,6 +10,16 @@
 		include 'home-header.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'checking-login') == true){
 		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'firm-profile') == true){
+		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'services') == true){
+		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'tax-center') == true){
+		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'carrers') == true){
+		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'contact-us') == true){
+		include 'home-header.phtml';
 	}else{
 		include 'header.phtml';
 	}	
@@ -17,7 +27,17 @@
 	if($_SERVER['REQUEST_URI'] == '/utsproject/trunk/uts-fronted/'){
 		include 'home-footer.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'checking-login') == true){
-		include 'home-header.phtml';
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'firm-profile') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'services') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'tax-center') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'carrers') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'contact-us') == true){
+		include 'home-footer.phtml';
 	}else{
 		include 'footer.phtml';
 	}	

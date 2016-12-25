@@ -21,6 +21,56 @@ class IndexController extends AbstractActionController
         }
         return $this->options;
     }
+	public function firmProfileAction(){
+		$baseUrls 							= $this->getServiceLocator()->get('config');
+		$baseUrlArr 						= $baseUrls['urls'];
+		$baseUrl 							= $baseUrlArr['baseUrl'];
+		$basePath 							= $baseUrlArr['basePath'];
+		return new viewModel(array(					
+			'baseUrl' 						=> 	$baseUrl,
+			'basePath'   					=>  $basePath,
+		));
+	}
+	public function servicesAction(){
+		$baseUrls 							= $this->getServiceLocator()->get('config');
+		$baseUrlArr 						= $baseUrls['urls'];
+		$baseUrl 							= $baseUrlArr['baseUrl'];
+		$basePath 							= $baseUrlArr['basePath'];
+		return new viewModel(array(					
+			'baseUrl' 						=> 	$baseUrl,
+			'basePath'   					=>  $basePath,
+		));
+	}
+	public function contactUsAction(){
+		$baseUrls 							= $this->getServiceLocator()->get('config');
+		$baseUrlArr 						= $baseUrls['urls'];
+		$baseUrl 							= $baseUrlArr['baseUrl'];
+		$basePath 							= $baseUrlArr['basePath'];
+		return new viewModel(array(					
+			'baseUrl' 						=> 	$baseUrl,
+			'basePath'   					=>  $basePath,
+		));
+	}
+	public function carrersAction(){
+		$baseUrls 							= $this->getServiceLocator()->get('config');
+		$baseUrlArr 						= $baseUrls['urls'];
+		$baseUrl 							= $baseUrlArr['baseUrl'];
+		$basePath 							= $baseUrlArr['basePath'];
+		return new viewModel(array(					
+			'baseUrl' 						=> 	$baseUrl,
+			'basePath'   					=>  $basePath,
+		));
+	}
+	public function taxCenterAction(){
+		$baseUrls 							= $this->getServiceLocator()->get('config');
+		$baseUrlArr 						= $baseUrls['urls'];
+		$baseUrl 							= $baseUrlArr['baseUrl'];
+		$basePath 							= $baseUrlArr['basePath'];
+		return new viewModel(array(					
+			'baseUrl' 						=> 	$baseUrl,
+			'basePath'   					=>  $basePath,
+		));
+	}
 	public function indexAction()
     {
 		
