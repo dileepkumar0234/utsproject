@@ -13,6 +13,7 @@ return array(
     'admin'=> array(
 		'send-admin-emails',
 		'refer-friend',
+		'reset-password',
 		'admin-emails',
 		'assigned-file-number',
 		'get-user-info',

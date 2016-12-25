@@ -155,6 +155,14 @@ class UserTable
 	   $resultSet = $this->tableGateway->selectWith($select);                            
 	   return $resultSet;
 	} 
+	//Check Email
+	public function checkEmail($email){     
+	   $select = $this->tableGateway->getSql()->select();                        
+	   $select->where('email="'.$email.'"');                                         
+	   $resultSet = $this->tableGateway->selectWith($select);                            
+	   return $resultSet->current();
+	} 
+	
 	public function changepwd($userid,$pwd){
 	   $password=md5($pwd);
 	   $data = array(

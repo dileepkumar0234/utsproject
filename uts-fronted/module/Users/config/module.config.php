@@ -105,7 +105,34 @@ return array(
                     ),
                 ),
             ),
-			
+			'reset-password' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/reset-password[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Users\Controller\Users',
+                        'action'     => 'resetPassword',
+                    ),
+                ),
+            ),
+			'save-password' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/save-password[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Users\Controller\Users',
+                        'action'     => 'savePassword',
+                    ),
+                ),
+            ),
 			'emp-edit-info' => array(
 				'type' => 'Literal',
 				'options' => array(

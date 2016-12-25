@@ -86,7 +86,9 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
-		$userId     = 23;
+		//$userId     = 23;
+		$user_session = new Container('user');
+		$userId 		= $user_session->userId;
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
 		$getUserInfo = $userTable->getUserInfo($userId);
@@ -110,7 +112,9 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
-		$userId     = 23;
+		//$userId     = 23;
+		$user_session = new Container('user');
+		$userId 		= $user_session->userId;
 		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$getUserInfo = $userTable->getUserInfo($userId);
@@ -134,7 +138,9 @@ class UsersController extends AbstractActionController
 		$basePath 	= $baseUrlArr['basePath'];
 		$year 		= $baseUrlArr['year'];
 		$empTable   = $this->getServiceLocator()->get('Models\Model\EmployeeinfoFactory');
-		$userId 	= 23;
+		//$userId 	= 23;
+		$user_session = new Container('user');
+		$userId 		= $user_session->userId;
 		$empInfo 	= $empTable->getData($userId,$year);
 		return new ViewModel(array(					
 			'baseUrl' 			=>  $baseUrl,
@@ -150,7 +156,9 @@ class UsersController extends AbstractActionController
 		$basePath 	= $baseUrlArr['basePath'];
 		$year 		= $baseUrlArr['year'];
 		$empTable   = $this->getServiceLocator()->get('Models\Model\EmployeeinfoFactory');
-		$userId 	= 23;
+		//$userId 	= 23;
+		$user_session = new Container('user');
+		$userId 		= $user_session->userId;
 		if(isset($_POST) && count($_POST) != 0){
 			$empInfo = $_POST;
 			$empTable->addEmpInfo($empInfo,$userId);
@@ -171,7 +179,9 @@ class UsersController extends AbstractActionController
 		$basePath 	= $baseUrlArr['basePath'];
 		$year 		= $baseUrlArr['year'];
 		$dependentTable  = $this->getServiceLocator()->get('Models\Model\DependentFactory');
-		$userId = 23;
+		//$userId = 23;
+		$user_session = new Container('user');
+		$userId 		= $user_session->userId;
 		$dependentsInfo = $dependentTable->getDependents($userId,$year);
 		return new ViewModel(array(					
 			'baseUrl' 			=>  $baseUrl,
@@ -187,7 +197,9 @@ class UsersController extends AbstractActionController
 		$basePath 	= $baseUrlArr['basePath'];
 		$year 		= $baseUrlArr['year'];
 		$dependentTable  = $this->getServiceLocator()->get('Models\Model\DependentFactory');
-		$userId = 23;
+		//$userId = 23;
+		$user_session = new Container('user');
+		$userId 		= $user_session->userId;
 		if(isset($_POST) && count($_POST) != 0){
 			$dependentInfo = $_POST;
 			$dependentTable->addDependentInfo($dependentInfo,$userId);
@@ -207,7 +219,9 @@ class UsersController extends AbstractActionController
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
 		$scheduleTable  = $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
-		$userId = 23;
+		//$userId = 23;
+		$user_session = new Container('user');
+		$userId 		= $user_session->userId;
 		$result = $scheduleTable->getData($userId);
 		if(isset($result->timing_id)){
 			$ustatus = 1;
@@ -225,8 +239,10 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
+		$user_session = new Container('user');
+		$userId 		= $user_session->userId;
 		$scheduleTable  = $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
-		$userId = 23;
+		//$userId = 23;
 		$sdate	= $_POST['scDate'];
 		$stime	= $_POST['scTime'];
 		$scheduleTable->addScheduleDateTime($sdate,$stime,$userId);
@@ -300,19 +316,67 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
 		$user_session = new Container('user');
-		$u_id 		= $user_session->userId;
+		$forgetTable  = $this->getServiceLocator()->get('Models\Model\ForgetpasswordFactory');
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
-		$getUserInfo = $userTable->checkEmail($_POST['']);
-		if(isset($getUserInfo->user_id) && $getUserInfo->user_id != ""){
-			return new JsonModel(array(
-				'userInfo'     =>  $getUserInfo,
-				'output'       =>  'success',
-			));	
+		$saveReferer = $userTable->checkEmail($_POST['ForgetEmail']);
+		
+		if(isset($saveReferer->user_id) && $saveReferer->user_id !=""){
+			global $forgetSubject;
+			global $forgetMessage;
+			$token = getUniqueCode('6');
+			$url = $baseUrl.'reset-password/'.$token;
+			$saveInfo  = $forgetTable->addForgetpwd($saveReferer->user_id,$_POST['ForgetEmail'],$token);
+			$forgetMessage 	= str_replace("<SITELINK>",$url,$forgetMessage);
+            $to = $_POST['ForgetEmail']; 
+			if(sendMail($to,$forgetSubject,$forgetMessage)){
+				return new JsonModel(array(					
+					'output' 	=> 'success'
+				));
+			}
 		}else{
 			return new JsonModel(array(
-				'output'       =>  'fail',
+				'output'    =>  'fail',
 			));	
 		}
 	}
+	
+	public function resetPasswordAction(){
+		$baseUrls     = $this->getServiceLocator()->get('config');
+		$baseUrlArr   = $baseUrls['urls'];
+		$baseUrl      = $baseUrlArr['baseUrl'];
+		$basePath     = $baseUrlArr['basePath'];
+		$forgetTable  = $this->getServiceLocator()->get('Models\Model\ForgetpasswordFactory');
+		$token        = $this->params()->fromRoute('id', 0);
+		$checkToken   = $forgetTable->checkToken();
+		if($checkToken == 1){
+			return new ViewModel(array(					
+				'baseUrl' 			=>  $baseUrl,
+				'basePath'  		=>  $basePath,
+				'token'             => $token,
+			));
+		}else{
+			return new ViewModel(array(					
+				'baseUrl' 			=>  $baseUrl,
+				'basePath'  		=>  $basePath,
+				'token'				=> 0,
+			));
+		}
+		
+	}
+	
+	public function savePasswordAction(){
+		$baseUrls     = $this->getServiceLocator()->get('config');
+		$baseUrlArr   = $baseUrls['urls'];
+		$baseUrl      = $baseUrlArr['baseUrl'];
+		$basePath     = $baseUrlArr['basePath'];
+		$forgetTable  = $this->getServiceLocator()->get('Models\Model\ForgetpasswordFactory');
+		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
+		$deleteToken   = $forgetTable->deleteToken($_POST['hid_token']);
+		$savePassword  = $userTable->updatePassword($_POST);
+		return new ViewModel(array(					
+			'output' => 'success',	
+		));
+	}
+	
 }	
 
