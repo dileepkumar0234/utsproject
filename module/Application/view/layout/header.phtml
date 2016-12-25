@@ -2,6 +2,23 @@
 	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
+	$assFile = $header->headerarray['assFile'];
+	$assFile1 = $header->headerarray['assFile1'];
+	$assFile2 = $header->headerarray['assFile2'];
+	$assFile3 = $header->headerarray['assFile3'];
+	$assFile4 = $header->headerarray['assFile4'];
+	$assFile5 = $header->headerarray['assFile5'];
+	$assFile6 = $header->headerarray['assFile6'];
+	$assFile7 = $header->headerarray['assFile7'];
+	$assFile8 = $header->headerarray['assFile8'];
+	$assFile9 = $header->headerarray['assFile9'];
+	$assFile10 = $header->headerarray['assFile10'];
+	$assFile11 = $header->headerarray['assFile11'];
+	$assFile12 = $header->headerarray['assFile12'];
+	$assFile13 = $header->headerarray['assFile13'];
+	$assFile14 = $header->headerarray['assFile14'];
+	$assFile15 = $header->headerarray['assFile15'];
+	$allrecords = $header->headerarray['allrecords'];
 	
 	$referrals		= 	"";
 	$schedules		= 	"";
@@ -166,25 +183,25 @@
                 <ul class="sidebar-menu">
                     <li class="header">Mega Menu</li>
 <?php if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=="1"){?>
-<li class="treeview <?php echo $allusers; ?>"><a href="<?php echo $baseUrl; ?>/all-users"><i class="fa fa-users"></i> <span>All Records</span></a></li>
-<li class="treeview <?php echo $newUsers; ?>"><a href="<?php echo $baseUrl; ?>/assigned-file-number"><i class="fa fa-users"></i> <span>Assigned File Number</span></a></li>
-<li class="treeview <?php echo $assignedUser; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/0"><i class="fa fa-tasks"></i> <span>To be Assigned</span></a></li>
+<li class="treeview <?php echo $allusers; ?>"><a href="<?php echo $baseUrl; ?>/all-users"><i class="fa fa-users"></i> <span>All Records( <?php echo $allrecords; ?> )</span></a></li>
+<li class="treeview <?php echo $newUsers; ?>"><a href="<?php echo $baseUrl; ?>/assigned-file-number"><i class="fa fa-users"></i> <span>Assigned File Number </span></a></li>
+<li class="treeview <?php echo $assignedUser; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/0"><i class="fa fa-tasks"></i> <span>To be Assigned( <?php echo $assFile; ?> )</span></a></li>
 <!--<li class="treeview"><a href="#"><i class="fa fa-circle-o"></i> <span>To be Allocated</span></a></li>-->
-<li class="treeview <?php echo $assignedUser1; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/1"><i class="fa fa-user-md"></i> <span>Basic Info Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser2; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/2"><i class="fa fa-calendar-o"></i> <span>Scheduling Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser3; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/3"><i class="fa fa-circle-o"></i> <span>Interview Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser4; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/4"><i class="fa fa-file"></i> <span>Documents Upload Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser5; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/5"><i class="fa fa-file-text"></i> <span>Other Docs Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser6; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/6"><i class="fa fa-circle-o"></i> <span>Preparation Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser7; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/7"><i class="fa  fa-arrow-circle-down"></i> <span>Synopses Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser8; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/8"><i class="fa fa-circle-o"></i> <span>Payment Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser9; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/9"><i class="fa fa-circle-o"></i> <span>Review Upload Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser10; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/10"><i class="fa fa-circle-o"></i> <span>Review Confirmation Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser11; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/11"><i class="fa fa-circle-o"></i> <span>E-Filing Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser12; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/12"><i class="fa fa-circle-o"></i> <span>P-Filing Pending</span></a></li>
-<li class="treeview <?php echo $assignedUser13; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/13"><i class="fa fa-circle-o"></i> <span>E–Filing Complete</span></a></li>
-<li class="treeview <?php echo $assignedUser14; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/14"><i class="fa fa-circle-o"></i> <span>P-Filing Docs Sent</span></a></li>
-<li class="treeview <?php echo $assignedUser15; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/15"><i class="fa fa-circle-o"></i> <span>Files Cancelled</span></a></li>
+<li class="treeview <?php echo $assignedUser1; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/1"><i class="fa fa-user-md"></i> <span>Basic Info Pending( <?php echo $assFile1; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser2; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/2"><i class="fa fa-calendar-o"></i> <span>Scheduling Pending( <?php echo $assFile2; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser3; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/3"><i class="fa fa-circle-o"></i> <span>Interview Pending( <?php echo $assFile3; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser4; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/4"><i class="fa fa-file"></i> <span>Documents Upload Pending( <?php echo $assFile4; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser5; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/5"><i class="fa fa-file-text"></i> <span>Other Docs Pending( <?php echo $assFile5; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser6; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/6"><i class="fa fa-circle-o"></i> <span>Preparation Pending( <?php echo $assFile6; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser7; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/7"><i class="fa  fa-arrow-circle-down"></i> <span>Synopses Pending( <?php echo $assFile7; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser8; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/8"><i class="fa fa-circle-o"></i> <span>Payment Pending( <?php echo $assFile8; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser9; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/9"><i class="fa fa-circle-o"></i> <span>Review Upload Pending( <?php echo $assFile9; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser10; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/10"><i class="fa fa-circle-o"></i> <span>Review Confirmation Pending( <?php echo $assFile10; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser11; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/11"><i class="fa fa-circle-o"></i> <span>E-Filing Pending( <?php echo $assFile11; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser12; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/12"><i class="fa fa-circle-o"></i> <span>P-Filing Pending( <?php echo $assFile12; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser13; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/13"><i class="fa fa-circle-o"></i> <span>E–Filing Complete( <?php echo $assFile13; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser14; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/14"><i class="fa fa-circle-o"></i> <span>P-Filing Docs Sent( <?php echo $assFile14; ?> )</span></a></li>
+<li class="treeview <?php echo $assignedUser15; ?>"><a href="<?php echo $baseUrl; ?>/all-assigned-users/15"><i class="fa fa-circle-o"></i> <span>Files Cancelled( <?php echo $assFile15; ?> )</span></a></li>
 <?php } ?>
 				</ul>
             </section>
