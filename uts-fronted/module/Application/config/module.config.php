@@ -62,6 +62,16 @@ return array(
 					),
 				),
 			),
+			'referral' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/referral',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'referral',
+					),
+				),
+			),
 			'services' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
