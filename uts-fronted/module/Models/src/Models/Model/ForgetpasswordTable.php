@@ -18,6 +18,15 @@ class ForgetpasswordTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
+	public function checktoken($uid,$token){
+		$select = $this->tableGateway->getSql()->select();		
+		$select->where('user_id  = :user_id');
+		$select->where('token_id = :token_id');		
+		$statement 	= $this->tableGateway->getSql()->prepareStatementForSqlObject($select);
+		$data 		= array('user_id' => $uid,'token_id'=>$token); 
+		$result 	= $statement->execute($data)->current();
+		return $result;
+	}
 	public function addForgetpwd($userid,$email,$token)
     {
 		$data = array(

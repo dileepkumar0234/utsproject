@@ -41,6 +41,34 @@ class IndexController extends AbstractActionController
 			'basePath'   					=>  $basePath,
 		));
 	}
+	public function checkFgtUidAction()
+	{
+		$uid = "";$token = "";
+		if(isset($_POST['uid']) && $_POST['uid']!= "")
+		{
+			$uid 						= $_POST['uid'];			
+			$token 						= $_POST['token'];			
+		}
+		$user_session 					= new Container('user');
+		$baseUrls 						= $this->getServiceLocator()->get('config');
+		$baseUrlArr 					= $baseUrls['urls'];
+		$baseUrl 						= $baseUrlArr['baseUrl'];
+		$basePath 						= $baseUrlArr['basePath'];
+		$forgotTable  					= $this->getServiceLocator()->get('Models\Model\ForgetpasswordFactory');			
+		$usersTable  					= $this->getServiceLocator()->get('Models\Model\UserFactory');			
+		$checkFuid						= $forgotTable->checktoken($uid,$token);		
+		if(!empty($checkFuid) && !is_null($checkFuid))
+		{
+			return new JsonModel(array(					
+				'output' 	=> 'sucess',				
+			));
+		}
+		else{
+			return new JsonModel(array(					
+				'output' 	=> 'fail',				
+			));
+		}
+	}
 	public function contactUsAction(){
 		$baseUrls 							= $this->getServiceLocator()->get('config');
 		$baseUrlArr 						= $baseUrls['urls'];

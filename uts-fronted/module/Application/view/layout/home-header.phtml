@@ -20,32 +20,26 @@
 	</head>
     <body>
 		<nav class="navbar  navbar-default navbar-fixed-top" role="navigation">
-			<div class="">
-				<div class="">
-				<div class="">
-						<div class="res col-md-3">
-							<p class="mar_t15"><img style="border-radius:50%;width:10%"src="<?php echo $basePath;?>/img/cust.png"><strong> <span class="site_col">Hello@umpiretaxsolutions.com</span></strong></p>
-						</div>
-						<div class="res site_col col-md-2">
+			<div class="pad_res">
+				<div class="top_bar">
+					<ul class="nav navbar-nav ">
+						<li class="res ">
+							<p class="mar_t15">CONTACT US:<strong> <span class="site_col">Hello@umpiretaxsolutions.com</span></strong></p>
+						</li>
+						<li class="res site_col">
 							<div class="mar_t5">
 								<img src="<?php echo $basePath;?>/img/us-flag.png" class="">&nbsp;<strong>+1(631)-407-1040</strong><br>
 								<!--<img src="<?php echo $basePath;?>/img/us-flag.png" class="pull-left">&nbsp;<strong>+1(910)-835-1810</strong>-->
 								<img src="<?php echo $basePath;?>/img/ind.png" class="pull-left">&nbsp;<strong>+9140-6999-1040</strong>
 							</div>
-						</div>
-						<div class="res site_col col-md-3">
-							<p class="pull-left mar_t15">
+						</li><li class="res site_col">
+							<p class="pull-left mar_t5">
 							<!--<span><img src="<?php echo $basePath;?>/img/ind.png" class="pull-left">&nbsp;<strong>+9140-6999-1040</strong></span>
 							</br>-->
 							<span>Office Timings: Mon to Sun - 06:00AM CST to 6:30PM CST</span>
 							</p>
-						</div>
-						<style>
-							.btn_padd a{
-							margin:0 4px;
-							}
-						</style>
-						<div class="res btn_ref col-md-4 btn_padd mar_t15">
+						</li>
+						<li class="res btn_ref">
 								<?php if(isset($_SESSION["user"]["user_id"]) && $_SESSION["user"]["user_id"]!=""){ ?>
 									<a  class="login_btn" href="<?php echo $baseUrl;?>dashboard"><i class="fa fa-tachometer "> </i> Go To Dashboard </a>
 								<?php }else { ?>
@@ -53,9 +47,9 @@
 									<a  style="cursor: pointer;"class="login_btn" data-toggle="modal" data-target="#loginModal"><i class="fa fa-lock"> </i> Login </a>
 								<?php } ?>
 								<a class="ref_frnd" style="cursor: pointer;" data-toggle="modal" data-target="" ui-sref="main.referalProgram" onClick="referFriendPopFun()"><i class="fa fa-user"></i> Refer a Friend</a>	
-						</div>
+						</li>
+					</ul>
 				</div>
-			</div>
 			</div>
 		</nav>
 		<div class="mar_t50">

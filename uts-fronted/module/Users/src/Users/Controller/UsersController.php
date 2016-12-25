@@ -324,15 +324,20 @@ class UsersController extends AbstractActionController
 			global $forgetSubject;
 			global $forgetMessage;
 			$token = getUniqueCode('6');
-			$url = $baseUrl.'reset-password/'.$token;
+			$uid = $saveReferer->user_id;
+			$url = $baseUrl.'reset-mode?token='.$token.'&uid='.$uid.'&reset=1';
 			$saveInfo  = $forgetTable->addForgetpwd($saveReferer->user_id,$_POST['ForgetEmail'],$token);
 			$forgetMessage 	= str_replace("<SITELINK>",$url,$forgetMessage);
             $to = $_POST['ForgetEmail']; 
-			if(sendMail($to,$forgetSubject,$forgetMessage)){
-				return new JsonModel(array(					
-					'output' 	=> 'success'
-				));
-			}
+			// if(sendMail($to,$forgetSubject,$forgetMessage)){
+				// return new JsonModel(array(					
+					// 'output' 	=> 'success'
+				// ));
+			// }
+			return new JsonModel(array(					
+				'output' => 'success',
+				'url' 	 => $url,
+			));
 		}else{
 			return new JsonModel(array(
 				'output'    =>  'fail',
@@ -371,12 +376,28 @@ class UsersController extends AbstractActionController
 		$basePath     = $baseUrlArr['basePath'];
 		$forgetTable  = $this->getServiceLocator()->get('Models\Model\ForgetpasswordFactory');
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
-		$deleteToken   = $forgetTable->deleteToken($_POST['hid_token']);
-		$savePassword  = $userTable->updatePassword($_POST);
-		return new ViewModel(array(					
-			'output' => 'success',	
-		));
-	}
-	
+		if(isset($_POST['f_UserId']) && $_POST['f_UserId']!=""){			
+			$checktoken   = $forgetTable->checktoken($_POST['f_UserId'],$_POST['f_token']);
+			$uid = $_POST['f_UserId'];
+			$pwd = $_POST['f_confirmPassword'];
+			if(isset($checktoken['forget_pwd_id']) && $checktoken['forget_pwd_id']!="")
+			{				
+				$forget_pwd_id = $checktoken['forget_pwd_id'];
+				$deleteToken   = $forgetTable->deleteToken($forget_pwd_id);
+				$savePassword  = $userTable->changepwd($uid,$pwd);
+				return new JsonModel(array(					
+					'output' => 'success',	
+				));
+			}else{
+				return new JsonModel(array(					
+					'output' => 'fail',	
+				));
+			}
+		}else{
+			return new JsonModel(array(					
+				'output' => 'fail',	
+			));
+		}
+	}	
 }	
 

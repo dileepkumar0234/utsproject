@@ -22,13 +22,23 @@ return array(
 					),
 				),
 			),
-			'refresh' => array(
+			'reset-mode' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
-					'route'    => '/refresh',
+					'route'    => '/reset-mode',
 					'defaults' => array(
 						'controller' => 'Application\Controller\Index',
 						'action'     => 'index',
+					),
+				),
+			),
+			'check-fuid' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route'    => '/check-fuid',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'checkFgtUid',
 					),
 				),
 			),

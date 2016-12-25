@@ -20,6 +20,8 @@
 		include 'home-header.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'contact-us') == true){
 		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'reset-mode') == true){
+		include 'home-header.phtml';
 	}else{
 		include 'header.phtml';
 	}	
@@ -37,6 +39,8 @@
 	}else if(strpos($_SERVER['REQUEST_URI'], 'carrers') == true){
 		include 'home-footer.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'contact-us') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'reset-mode') == true){
 		include 'home-footer.phtml';
 	}else{
 		include 'footer.phtml';
@@ -86,54 +90,54 @@
 				<div class="modal-body">
 					<form class="form-horizontal" data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon"  data-fv-icon-validating="glyphicon glyphicon-refresh"	method="POST" name="referFriendForm" id="referFriendForm"  onSubmit="referFriend();" enctype="multipart/form-data">
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="inputFullName">Your Name</label>
-							<div class="col-md-9">
+							<!--<label class="col-md-3 control-label" for="inputFullName">Your Name</label>-->
+							<div class="col-md-12">
 							<input type="text" placeholder="Your Name" id="yourName" name="yourName" class="form-control"  required data-fv-notempty="true" 
 							data-fv-notempty-message="The full name is required" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label tex_lef" for="inputEmail">Your Email Id</label>
-							<div class="col-md-9">
+							<!--<label class="col-md-3 control-label tex_lef" for="inputEmail">Your Email Id</label>-->
+							<div class="col-md-12">
 								<input type="text" placeholder="Your Email Id" id="yourEmail" name="yourEmail" class="form-control user_login" required data-fv-notempty-message="The email is required" 
 								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
 								<span id="emailChecking" style="color:red;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label tex_lef" for="phone">Your Telephone Number</label>
-							<div class="col-md-9">
-								<input type="text" placeholder="Your Telephone Number" id="yourPhone" name="yourPhone" class="form-control user_login" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10"
+							<!--<label class="col-md-3 control-label tex_lef" for="phone">Your Mobile Number</label>-->
+							<div class="col-md-12">
+								<input type="text" placeholder="Your Mobile Number" id="yourPhone" name="yourPhone" class="form-control user_login" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10"
 							data-fv-stringlength data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be 10 digits only" maxlength="10">
 								<span id="phoneChecking" style="color:red;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="inputFullName">Name Of Your Friend </label>
-							<div class="col-md-9">
-							<input type="text" placeholder="Name Of Your Friend" id="friendName" name="friendName" class="form-control"  required data-fv-notempty="true" 
+							<!--<label class="col-md-3 control-label" for="inputFullName">Name Of Your Friend </label>-->
+							<div class="col-md-12">
+							<input type="text" placeholder="Name of Your Friend" id="friendName" name="friendName" class="form-control"  required data-fv-notempty="true" 
 							data-fv-notempty-message="The full name is required" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label tex_lef" for="inputEmail">Friend's Email Id</label>
-							<div class="col-md-9">
+							<!--<label class="col-md-3 control-label tex_lef" for="inputEmail">Friend's Email Id</label>-->
+							<div class="col-md-12">
 								<input type="text" placeholder="Friend's Email Id" id="friendEmail" name="friendEmail" class="form-control user_login" required data-fv-notempty-message="The email is required" 
 								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
 								<span id="emailChecking" style="color:red;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label tex_lef" for="phone">Friend's Telephone Number</label>
-							<div class="col-md-9">
-								<input type="text" placeholder="Friend's Telephone Number" id="friendPhone" name="friendPhone" class="form-control user_login" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10"
+							<!--<label class="col-md-3 control-label tex_lef" for="phone">Friend's Mobile Number</label>-->
+							<div class="col-md-12">
+								<input type="text" placeholder="Friend's Mobile Number" id="friendPhone" name="friendPhone" class="form-control user_login" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10"
 							data-fv-stringlength data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be 10 digits only" maxlength="10">
 								<span id="phoneChecking" style="color:red;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="inputFullName">Description</label>
-							<div class="col-md-9">
+							<!--<label class="col-md-3 control-label" for="inputFullName">Description</label>-->
+							<div class="col-md-12">
 							<input type="text" placeholder="Description" id="description" name="description" class="form-control"  required data-fv-notempty="true" 
 							data-fv-notempty-message="The description is required" />
 							</div>

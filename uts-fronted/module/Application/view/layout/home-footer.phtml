@@ -197,7 +197,7 @@
 						<div class="modal-footer mar_r5">
 							<div class="col-md-8 text-left">
 								<span id="forgetMessage" style="color:red"></span>
-								<span id="forgetSuccMessage" style="color:red"></span>
+								<span id="forgetSuccMessage"></span>
 							</div><br/>
 							<div class="col-md-2 pull-right">
 								<button type="submit" class="btn   btn-raised btn-info" id="checkForgetEmail">Submit</button>
@@ -208,64 +208,92 @@
 			</div>
 		</div>
 	</div>
-<!-- End -->		
-	<!-- Reset Password -->
-	<div class="modal fade" id="resetPasswordForm" role="dialog" data-backdrop="static" data-keyboard="false">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" onClick = "closeReset()">&times;</button>
-					<h4 class="modal-title" id="lineModalLabel">Reset the password</h4>
-				</div>
-				<div class="modal-body">
-					<form id="resetPass" class="form-horizontal"  data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon" data-fv-icon-validating="glyphicon glyphicon-refresh" onSubmit="resetPasswordFun();" enctype="multipart/form-data">
-						<div class="pop">
-							<div class="form-group">
-							<label class="col-md-3 control-label" for="inputPassword">Password</label>
-							<div class="col-md-9">
-								<input type="password" placeholder="Enter a password" id="resetPassword" name="resetPassword" class="form-control" required data-fv-notempty-message="The password is required">
-							</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label" for="inputPassword">Confirm Password</label>
-								<div class="col-md-9">
-									<input type="password" placeholder="Enter a confirm password" id="conPassword" name="conPassword" class="form-control" required data-fv-notempty-message="The confirm password is required">
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer mar_r5">
-							<div class="col-md-8 text-left">
-								<span id="forgetMessage" style="color:red"></span>
-								<span id="forgetSuccMessage" style="color:red"></span>
-							</div><br/>
-							<div class="col-md-2 pull-right">
-								<button type="submit" class="btn   btn-raised btn-info" >Submit</button>
-							</div>		
-						</div>
-						<input type ="hidden" name="hid_token" id="hid_token" value ="" />
-					</form>
-				</div>					
+<!-- End -->
+<?php	
+// Forget Password Code
+	$emailfwdvalue = 0;
+	$fuid          = 0;
+	if(isset($_GET['reset']) && $_GET['reset']!=""){
+		if($_GET['reset']==1){
+			$emailfwdvalue = 1;
+			if(isset($_GET['uid']) && $_GET['uid']!=""){
+				$fuid   = $_GET['uid'];
+				$ftoken = $_GET['token'];
+			}else{
+				$fuid   = 0;
+				$ftoken = 0;
+			}
+		}else{
+			$emailfwdvalue = 0;
+		}
+	}else{
+		$emailfwdvalue = 0;
+		$fuid          = 0;
+		$ftoken        = 0;
+	}
+?>	
+<input type="hidden" id="verifyfemail" name="verifyfemail" value="<?php echo $emailfwdvalue; ?>">
+<input type="hidden" id="uidfemail" name="uidfemail" value="<?php echo $fuid; ?>">	
+<input type="hidden" id="uidftoken" name="uidftoken" value="<?php echo $ftoken; ?>">
+ <!-- reset change password-->
+  <div class="modal fade" id="myModalReset" role="dialog" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content overflow_hidden" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		 
+          <h4 class="modal-title">Reset Password</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal" id="resetPasswordForm"  data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon" data-fv-icon-validating="glyphicon glyphicon-refresh"  onSubmit="return resetPasswordFun();">
+            <div class="pop">			  
+              
+			  <div class="form-group">
+                <label class="col-md-3 control-label tex_lef" for="f_newPassword">New Password</label>
+                <div class="col-md-9">
+                  <input type="password" placeholder="Current Password" id="f_newPassword" name="f_newPassword" class="form-control" required data-fv-notempty-message="The New Password is required">
+                </div>
+              </div>
+			  <div class="form-group">
+                <label class="col-md-3 control-label tex_lef" for="f_confirmPassword">  Confirm Password</label>
+                <div class="col-md-9">
+                  <input type="password" placeholder="Confirm New Password" id="f_confirmPassword" name="f_confirmPassword" class="form-control" required data-fv-notempty-message="The Confirm password is required">
+				  <input type="hidden" name="f_UserId" id="f_UserId" />
+				  <input type="hidden" name="f_token" id="f_token" />
+                </div>
+              </div>
+            </div>        
+        </div>
+        <div class="modal-footer mar_r5">
+			<div class="col-md-8 text-left">
+				<span id="f_errorPass" style="color:red"></span>
+				<span id="f_sucessPass" style="color:green"></span>
 			</div>
-		</div>
-	</div>
-<!-- End -->	
-		
-		<!-- Reset Password -->
-	<div class="modal fade" id="resetPasswordError" role="dialog" data-backdrop="static" data-keyboard="false">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" onClick = "closeReset()">&times;</button>
-					<h4 class="modal-title" id="lineModalLabel">Reset the password</h4>
-				</div>
-				<div class="modal-body">
-					<p>Your Link Is Expired.</p>
-				</div>					
+			<div class="col-md-2 pull-right">
+			<button type="submit" class="btn   btn-raised btn-info" id="updateForgotPass">Update</button> 
 			</div>
+        </div>
+      </div>
+        </form>
+    </div>
+  </div>
+<div class="modal fade" id="forgot_hidden_common" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+		 <div class="modal-header pop_title">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Reset Confirmation</h4>
+		  </div>	
+		  <div class="modal-body">
+			<p><span id="f_message"></span></p>
+		  </div>
+		  <div class="modal-footer">
+			<button  type="submit" class="btn   btn-raised btn-info btn-sm" data-dismiss="modal" id="forgot_Ok">Ok</button>
+		  </div>
 		</div>
+	  </div>
 	</div>
-<!-- End -->	
-
 		<script>
 			var basePath     	= '<?php echo $basePath; ?>';
 			var baseUrl 		= '<?php echo $baseUrl; ?>';
@@ -283,19 +311,9 @@
 			
 			
 		$(document).ready(function() {
-			$('#loginForm,#registerForm,#forgetPasswordForm,#referFriendForm,#resetPass').formValidation().on('success.form.fv', function(e, data) {	
+			$('#loginForm,#registerForm,#forgetPasswordForm,#referFriendForm,#resetPasswordForm').formValidation().on('success.form.fv', function(e, data) {	
 				e.preventDefault();
 			});
-			<?php 
-			if(strpos($_SERVER['REQUEST_URI'],$this->token) !== false){ ?>
-				$('resetPasswordPopUp').modal('show');
-				<?php if($this->token != 0){ ?>
-					$('#resetPasswordForm').modal('show');
-					$('#hid_token').val('<?php echo $this->token;?>');
-				<?php }else{ ?>
-					$('#resetPasswordError').modal('show');
-				<?php } } ?>
-			
 		});
 		function loginChecking(jForm){ 
 			var d 		= new Date();
@@ -377,22 +395,48 @@
 		function resetPasswordFun(){
 			$('#resetMessage').html('');
 			$('#resetSuccMessage').html('');
-			$("#resetPass").formValidation().on('success.form.fv', function(e) {
+			$("#resetPasswordForm").formValidation().on('success.form.fv', function(e) {
 				e.stopImmediatePropagation();
 					$.ajax({
 						type		:   'POST',
 						url			:  	baseUrl+'save-password',
 						dataType	: 	"json",
-						data:$('#resetPass').serialize(),
+						data        :  $('#resetPasswordForm').serialize(),
 						success: function(data){
 							if(data.output == "success"){
 								$('#resetSuccMessage').html('Successfully Updated Please login.');
+								window.location = baseUrl;
 							}else{
-								$('#resetMessage').html('Email not exits');
+								$('#myModalReset').modal('hide');
+								$('#f_message').html('Your verfication link has expired.');
+								$('#forgot_hidden_common').modal('show');
 							}
 						}
 					});
 				e.preventDefault();	
+			});
+		}
+		var uid			= $("#uidfemail").val();
+		var token		= $("#uidftoken").val();
+		var resetValue	= $("#verifyfemail").val();
+		if(uid != 0 && resetValue!=0)
+		{		
+			$.ajax({
+			type:'POST',
+			url:  baseUrl+'check-fuid',
+			data:{uid:uid,token:token},
+				success: function(data){									
+					console.log(data);
+					if(data.output == 'sucess')
+					{
+						$('#f_UserId').val(uid);
+						$('#f_token').val(token);
+						$('#myModalReset').modal('show');
+					}else{
+						$('#f_message').html('Your verfication link has expired.');
+						$('#forgot_hidden_common').modal('show');
+					}
+				}
 			});
 		}
 		</script>
