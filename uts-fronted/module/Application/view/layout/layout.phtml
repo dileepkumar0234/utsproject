@@ -22,6 +22,8 @@
 		include 'home-header.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'reset-mode') == true){
 		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'referral') == true){
+		include 'home-header.phtml';
 	}else{
 		include 'header.phtml';
 	}	
@@ -42,6 +44,8 @@
 		include 'home-footer.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'reset-mode') == true){
 		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'referral') == true){
+		include 'home-footer.phtml';
 	}else{
 		include 'footer.phtml';
 	}	
@@ -52,7 +56,7 @@
     position: fixed;
     right: -99px;
     z-index: 9999999;
-    top: 152px;
+    top: 40%;
     transition: all 1s ease-in-out;
     cursor: pointer;
 }
