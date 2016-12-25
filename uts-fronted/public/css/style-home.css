@@ -59,7 +59,8 @@
 }
 
 	.top_bar li{
-		padding:0px 22px;
+		 padding:0px 40px; 
+		
 	}
 	.pos_nav{
 		position:absolute;
@@ -343,6 +344,7 @@ div.adminGroup{
     padding:0;
 	line-height:40px;
 }
+
 @media only screen and (max-width:767px) {
 	/* inner pages */
 		.right_icon {

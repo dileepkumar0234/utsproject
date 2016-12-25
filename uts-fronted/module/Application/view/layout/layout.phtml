@@ -42,6 +42,39 @@
 		include 'footer.phtml';
 	}	
 ?>
+<!-- side refer friend -->
+<style>
+.cust_pop {
+    position: fixed;
+    right: -99px;
+    z-index: 9999999;
+    top: 152px;
+    transition: all 1s ease-in-out;
+    cursor: pointer;
+}
+.cust {
+    border-radius: 100%;
+    float: left;
+    padding: 10px;
+}
+.cust_pop >div {
+    background-color: #fff;
+    margin-top: 17px;
+    padding: 5px;
+}
+</style>
+<div class="cust_pop ng-scope" ng-if="userbody==''">
+    <img src="<?php echo $basePath;?>/img/cust.png" class="cust">
+    <div class="pull-left">
+		<a ui-sref="main.referalProgram" href="#/home/referalProgram">
+			Refer a Friend
+		</a>
+		<a ui-sref="main.contactUs" href="#/home/contactUs">
+			Contact us
+		</a>
+    </div>
+</div>
+<!--  end side refer friend -->
 <!-- Refer a Friend -->
 	<div class="modal fade" id="referFriendPopUp" role="dialog" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog">
