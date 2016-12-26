@@ -27,7 +27,7 @@
 							<p class="mar_t15"><img style="border-radius:50%;width:10%"src="<?php echo $basePath;?>/img/cust.png"><strong> <span class="site_col">Hello@umpiretaxsolutions.com</span></strong></p>
 						</div>
 						<div class="res site_col col-md-2">
-							<div class="mar_t5">
+							<div class="mar_t5" style="margin-top:17px">
 								<img src="<?php echo $basePath;?>/img/us-flag.png" class="">&nbsp;<strong>+1(631)-407-1040</strong><br>
 								<!--<img src="<?php echo $basePath;?>/img/us-flag.png" class="pull-left">&nbsp;<strong>+1(910)-835-1810</strong>-->
 								<img src="<?php echo $basePath;?>/img/ind.png" class="pull-left">&nbsp;<strong>+9140-6999-1040</strong>
@@ -37,7 +37,7 @@
 							<p class="pull-left mar_t15">
 							<!--<span><img src="<?php echo $basePath;?>/img/ind.png" class="pull-left">&nbsp;<strong>+9140-6999-1040</strong></span>
 							</br>-->
-							<span>Office Timings: Mon to Sun - 06:00AM CST to 6:30PM CST</span>
+							<span style="font-size:16px;font-weight:600">Office Timings: Mon to Sun  <br> 06:00AM CST to 6:30PM CST</span>
 							</p>
 						</div>
 						<style>
@@ -49,10 +49,10 @@
 								<?php if(isset($_SESSION["user"]["user_id"]) && $_SESSION["user"]["user_id"]!=""){ ?>
 									<a  class="login_btn" href="<?php echo $baseUrl;?>dashboard"><i class="fa fa-tachometer "> </i> Go To Dashboard </a>
 								<?php }else { ?>
-									<a  style="cursor: pointer;"class="login_btn" data-toggle="modal" data-target="#regModal"><i class="fa fa-user"> </i> Sign Up </a>
-									<a  style="cursor: pointer;"class="login_btn" data-toggle="modal" data-target="#loginModal"><i class="fa fa-lock"> </i> Login </a>
+									<a  style="cursor: pointer;font-size:16px;"class="login_btn" data-toggle="modal" data-target="#regModal"><i class="fa fa-user"> </i> Sign Up </a>
+									<a  style="cursor: pointer;font-size:16px;"class="login_btn" data-toggle="modal" data-target="#loginModal"><i class="fa fa-lock"> </i> Login </a>
 								<?php } ?>
-								<a class="ref_frnd" href="<?php echo $baseUrl?>referral"><i class="fa fa-user"></i> Refer a Friend</a>	
+								<a style="font-size:16px;" class="ref_frnd" href="<?php echo $baseUrl?>referral"><i class="fa fa-user"></i> Refer a Friend</a>	
 						</div>
 				</div>
 			</div>
@@ -71,7 +71,7 @@
 						<a class="navbar-brand logo_res" href="index.html"><img class="img-responsive" src="<?php echo $basePath; ?>/img/logo-home.png"></a>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top:30px;">
-						<ul class="nav navbar-nav navbar-right menu_pad drop_st">
+						<ul class="nav navbar-nav navbar-right menu_pad drop_st" style="margin-right:-100px;">
 							<li  class="active">
 								<a class=""href="<?php echo $baseUrl;?>">Home</a>
 							</li> 

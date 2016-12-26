@@ -57,58 +57,51 @@
 			<div class="modal-content" >
 				<div class="modal-header" style="border-bottom:1px solid #ddd;background:#189def;color:#fff;border-radius:2px 2px 0 0">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Sing Up</h4>
+					<h4 class="modal-title">Sign Up</h4>
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon"  data-fv-icon-validating="glyphicon glyphicon-refresh"	method="POST" name="registerForm" id="registerForm"  onSubmit="return signUpUser('registerForm');" enctype="multipart/form-data">
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="inputFullName">First Name</label>
-							<div class="col-md-9">
-							<input type="text" placeholder="Enter a first name" id="inputFirstname" name="inputFirstname" class="form-control"  required data-fv-notempty="true" 
+							<div class="col-md-12">
+							<input type="text" placeholder="Enter First name" id="inputFirstname" name="inputFirstname" class="form-control"  required data-fv-notempty="true" 
 							data-fv-notempty-message="The full name is required" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="inputFullName">Last Name</label>
-							<div class="col-md-9">
-							<input type="text" placeholder="Enter a last name" id="inputLastname" name="inputLastname" class="form-control"  required data-fv-notempty="true" 
+							<div class="col-md-12">
+							<input type="text" placeholder="Enter Last name" id="inputLastname" name="inputLastname" class="form-control"  required data-fv-notempty="true" 
 							data-fv-notempty-message="The last name is required" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label tex_lef" for="occupation">Occupation</label>
-							<div class="col-md-9">
-								<input type="text" placeholder="Enter a occupation" id="occupation" name="occupation" class="form-control user_login" required data-fv-notempty-message="The occupation is required" 
+							<div class="col-md-12">
+								<input type="text" placeholder="Enter Occupation" id="occupation" name="occupation" class="form-control user_login" required data-fv-notempty-message="The occupation is required" 
 								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
 								<span id="emailChecking" style="color:red;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label tex_lef" for="phone">Phone</label>
-							<div class="col-md-9">
-								<input type="text" placeholder="Enter a phone" id="phone" name="phone" class="form-control user_login" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10"
+							<div class="col-md-12">
+								<input type="text" placeholder="Enter Phone number" id="phone" name="phone" class="form-control user_login" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10"
 							data-fv-stringlength data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be 10 digits only" maxlength="10">
 								<span id="phoneChecking" style="color:red;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label tex_lef" for="inputEmail">Email</label>
-							<div class="col-md-9">
-								<input type="text" placeholder="Enter a email" id="inputEmail" name="inputEmail" class="form-control user_login" required data-fv-notempty-message="The email address is required" 
+							<div class="col-md-12">
+								<input type="text" placeholder="Enter Email id" id="inputEmail" name="inputEmail" class="form-control user_login" required data-fv-notempty-message="The email address is required" 
 								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
 								<span id="emailChecking" style="color:red;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="inputPassword">Password</label>
-							<div class="col-md-9">
-								<input type="password" placeholder="Enter a password" id="inputPassword" name="inputPassword" class="form-control" required data-fv-notempty-message="The password is required">
+							<div class="col-md-12">
+								<input type="password" placeholder="Enter Password " id="inputPassword" name="inputPassword" class="form-control" required data-fv-notempty-message="The password is required">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 control-label" for="inputPassword">Confirm Password</label>
-							<div class="col-md-9">
-								<input type="password" placeholder="Enter a confirm password" id="userpwd" name="userpwd" class="form-control" required data-fv-notempty-message="The confirm password is required">
+							<div class="col-md-12">
+								<input type="password" placeholder="Enter Confirm password" id="userpwd" name="userpwd" class="form-control" required data-fv-notempty-message="The confirm password is required">
 							</div>
 						</div>
 						<div class="form-group">

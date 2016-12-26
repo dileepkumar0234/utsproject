@@ -33,7 +33,7 @@
                 <a class="navbar-brand" href="<?php echo $baseUrl;?>dashboard"><img src="<?php echo $basePath;?>/img/logo.png"></a>
             </div>
             <ul class="nav navbar-right top-nav">
-					<div class="btn_site"> Filing Status: <?php if(isset($_SESSION["user"]["file_name"]) && $_SESSION["user"]["file_name"]!="") { echo $_SESSION["user"]["file_name"]; }else{ echo "No Status"; }?> </div>
+					<div class="btn_site"> Tax File Status : <?php if(isset($_SESSION["user"]["file_name"]) && $_SESSION["user"]["file_name"]!="") { echo $_SESSION["user"]["file_name"]; }else{ echo "No Status"; }?> </div>
 					<div class="btn_site" >Make Payment</div>
             </ul>
             <?php include('left-menu.phtml'); ?>
