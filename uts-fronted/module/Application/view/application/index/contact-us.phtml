@@ -24,30 +24,28 @@
           
         </div>
         <div class="col-sm-6">
-        <form name="contactus">
+        <form id="contactForm" name="contactForm"  onSubmit="contactFormFun()" data-fv-message="This value is not valid" data-fv-icon-valid="glyphicon" data-fv-icon-invalid="glyphicon" data-fv-icon-validating="glyphicon glyphicon-refresh">
             <h4 style="color: #16b1df;font-size: 20px;">Contact Form</h4>
 
             <div class="form-group">
                 <label for="usr">Name *:</label>
-                <input type="text" ng-model="contactform.c_name" class="form-control" id="usr">
+				<input type="text" class="form-control" id="c_name" name="c_name" placeholder="Name" required data-fv-notempty="true" data-fv-notempty-message="The name is required">
             </div>
             <div class="form-group">
                 <label for="usr">Email *:</label>
-                <input type="text" name="email" ng-class="{'error':contactus.email.$invalid}" validate-form ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-model="contactform.c_email"  class="form-control" id="usr1">
+               <input type="text" class="form-control" id="c_email" name="c_email" placeholder="Email"required data-fv-notempty-message="The email is required"	data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
             </div>
             <div class="form-group">
                 <label for="usr">Phone *:</label>
-                <input type="text" name="phone" ng-class="{'error':contactus.phone.$invalid}" validate-form ng-pattern="/^[1-9]{1}[0-9]{9}$/" ng-model="contactform.c_phone" class="form-control" id="usr2">
+               <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Mobile Number" required data-fv-notempty-message="Please enter a phone" data-fv-integer="true" data-fv-integer-message="The value is not an integer" maxlength="10" data-fv-stringlength data-fv-stringlength-min="10" data-fv-stringlength-message="Phone number must be 10 digits only" maxlength="10">
             </div>
-
-           
-
             <div class="form-group">
                 <label>Message *</label>
-                <textarea rows="8" class="form-control" ng-model="contactform.c_message" required="required" id="message" name="message"></textarea>
+               <textarea class="form-control" type="textarea" id="c_message" name="c_message" placeholder="Message" maxlength="140" rows="7" required data-fv-notempty="true" data-fv-notempty-message="The message is required"></textarea>
             </div>
             <div class="form-group">
-                <button required="required" ng-click="contactusService(contactus.$invalid,contactform)" class="btn btn-primary btn-lg" name="submit" type="submit">Submit
+			<span id="successContact" name="successContact" style="color:green"> </span>
+                <button class="btn btn-primary btn-lg" type="submit">Submit
                 </button>
             </div>
 </form>
