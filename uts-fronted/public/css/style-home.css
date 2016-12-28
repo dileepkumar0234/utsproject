@@ -89,7 +89,7 @@
         padding-bottom: 10px
     }
 .item img{
-	width:150%
+	width:100%
 }
 	.btn_ref a {
     background: #00c4fd none repeat scroll 0 0;
@@ -359,6 +359,9 @@ div.adminGroup{
 	.mob_hid{
 	visibility: hidden;
 	}	
+	.item img{
+	width:150%
+}
 .headerLine.contact_bg {
 	height:50%;
 }
@@ -427,16 +430,33 @@ div.adminGroup{
 }
 }
 @media only screen and (max-width:360px) {
-	.btn_ref a{
-		    padding: 9px 6px;
+	.top_bar li{
+		padding:0;
 	}
+	.btn_ref a{
+		    padding: 9px 5px;
+	}
+	.btn_padd a{
+		margin:0 2px;
+	}
+	.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-top: 20px;
+}
+	
+	
+}
 }
 @media only screen and (max-width:320px) {
 	.top_bar li{
 		padding:0;
 	}
 	.btn_ref a{
-		    padding: 9px 6px;
+		    padding: 9px 5px;
+	}
+	.btn_padd a{
+		margin:0 2px;
 	}
 	.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
     margin-right: -15px;
