@@ -115,6 +115,9 @@
 .mar_t5 {
 	margin-top:5px;
 }
+.mar_t17 {
+	margin-top:17px;
+}
   /* <inner pages> */
   .services_hedd{
     padding:8px 20px;
@@ -350,6 +353,15 @@ div.adminGroup{
 
 @media only screen and (max-width:767px) {
 	/* inner pages */
+	.about_div {
+    background-color: #fff;
+    padding: 30px 5px;
+    color: #222;
+    width: 100%;
+}
+	.mar_t17 {
+	margin-top:-10px;
+}
 		.right_icon {
 			display:none;
 		}
