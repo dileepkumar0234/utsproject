@@ -184,6 +184,22 @@
 		</div>
 	</div>
 <!-- End -->
+<div class="modal fade" id="successPopUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" >
+	  <div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+		  <div class="modal-header" style="border-bottom:1px solid #ddd;background:#189def;color:#fff;border-radius:2px 2px 0 0">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+		  </div>
+		  <div class="modal-body">
+			<p>Successfully Sent.Admin contact soon.</p>
+		  </div>
+		  <div class="modal-footer mar_r5">
+			<button type="button" onclick ="contactSuccess()" class="btn btn-raised btn-info  btn-sm" > Ok </button>
+		  </div>
+		</div>
+	  </div>
+	</div>
 <script>
 $(document).ready(function() {
 	$('#contactForm').formValidation().on('success.form.fv', function(e, data) {	
@@ -249,12 +265,16 @@ function referFriend(){
 						success: function(data){
 							if(data.output == "success"){
 								$('#contactForm').formValidation('resetForm', true);
-								$('#successContact').html('Successfull');
+								//$('#successContact').html('Successfull');
+								$('#successPopUp').modal('show');
 								//window.location = baseUrl;
 							}
 						}
 					});
 				e.preventDefault();	
 			});
+		}
+		function contactSuccess(){
+			window.location = baseUrl;
 		}
 		</script>
