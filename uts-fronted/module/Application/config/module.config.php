@@ -72,6 +72,17 @@ return array(
 					),
 				),
 			),
+			//Testimonial
+			'testimonial' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/testimonial',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'testimonial',
+					),
+				),
+			),
 			'services' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(

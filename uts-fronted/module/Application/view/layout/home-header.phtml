@@ -1,7 +1,37 @@
 <?php
+	//echo "<pre>"; print_r($_SERVER); exit;
 	$header			=	$this->action('Application\Controller\IndexController', 'headerAction');
 	$baseUrl 		= 	$header->headerarray['baseUrl'];
 	$basePath 		= 	$header->headerarray['basePath'];
+	$home = "";
+	$testimonial = "";
+	$textCenter  = "";
+	$profile     = "";
+	$services    = "";
+	$careers      = "";
+	$contactUs     = "";
+	if($_SERVER['REQUEST_URI'] == '/utsproject/trunk/uts-fronted/'){
+		$home    = "active";
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'testimonial') !== false){
+		$testimonial    = "active";
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'tax-center') !== false){
+		$textCenter    = "active";
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'firm-profile') !== false){
+		$profile    = "active";
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'services') !== false){
+		$services    = "active";
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'carrers') !== false){
+		$careers    = "active";
+	}
+	if(strpos($_SERVER['REQUEST_URI'], 'contact-us') !== false){
+		$contactUs    = "active";
+	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,13 +102,13 @@
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top:30px;">
 						<ul class="nav navbar-nav navbar-right menu_pad drop_st" style="margin-right:-100px;">
-							<li  class="active">
-								<a class=""href="<?php echo $baseUrl;?>">Home</a>
+							<li  class="<?php echo $home;?>">
+								<a class="" href="<?php echo $baseUrl;?>">Home</a>
 							</li> 
-							<li>
+							<li class = "<?php echo $profile;?>" >
 								<a href="<?php echo $baseUrl;?>firm-profile">PROFILE</a>
 							</li>
-							<li class="dropdown">
+							<li class="dropdown <?php echo $services; ?>">
 								<a href="<?php echo $baseUrl;?>services">SERVICES</a>
 								 <div class="dropdown-content mob_hid">
 									<a href="<?php echo $baseUrl;?>services">US Tax Services</a>
@@ -90,16 +120,16 @@
 									<a href="<?php echo $baseUrl;?>services#others">Service Tax VAT & others</a>
 								  </div>
 							</li>
-							<li>
+							<li class = "<?php echo $textCenter;?>" >
 								<a href="<?php echo $baseUrl;?>tax-center">TAX CENTER</a>
 							</li>
-							<li>
-								<a href="<?php echo $baseUrl;?>tax-center">TESTIMONIALS</a>
+							<li class = "<?php echo $testimonial;?>" >
+								<a href="<?php echo $baseUrl;?>testimonial">TESTIMONIALS</a>
 							</li> 
-							<li>
+							<li class = "<?php echo $careers;?>" >
 								<a href="<?php echo $baseUrl;?>carrers">CAREERS</a>
 							</li> 
-							<li>
+							<li class = "<?php echo $contactUs;?>" >
 								<a href="<?php echo $baseUrl;?>contact-us">CONTACT US</a>
 							</li>
 							

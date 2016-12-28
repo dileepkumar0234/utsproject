@@ -24,6 +24,8 @@
 		include 'home-header.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'referral') == true){
 		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'testimonial') == true){
+		include 'home-header.phtml';
 	}else{
 		include 'header.phtml';
 	}	
@@ -45,6 +47,8 @@
 	}else if(strpos($_SERVER['REQUEST_URI'], 'reset-mode') == true){
 		include 'home-footer.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'referral') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'testimonial') == true){
 		include 'home-footer.phtml';
 	}else{
 		include 'footer.phtml';
