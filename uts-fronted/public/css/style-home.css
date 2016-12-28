@@ -36,7 +36,7 @@
 	text-decoration:none;
 		
 }
-.mar_t10{
+.	{
 	margin-top:10px;
 }
 .bor_bot{
@@ -316,6 +316,14 @@ div.adminGroup{
     -o-background-size: cover;
     background-size: cover;
 }
+.headerLine.testimonials_bg {
+    background: url(../img/testimonials.png) center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	margin-top:20px;
+}
 
 .headerLine.careers_bg {
     background: url(../img/bgTop5b.jpg) center center no-repeat;
@@ -350,9 +358,14 @@ div.adminGroup{
     padding:0;
 	line-height:40px;
 }
-
+.navbar-brand{
+	padding:25px 15px !important;
+}
 @media only screen and (max-width:767px) {
 	/* inner pages */
+	.navbar-brand{
+	padding:15px !important;
+}
 	.about_div {
     background-color: #fff;
     padding: 30px 5px;
