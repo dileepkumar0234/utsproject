@@ -16,25 +16,21 @@
 							<td><?php if(isset($this->userInfo->first_name) && $this->userInfo->first_name !=""){ echo $this->userInfo->first_name; }?></td>
 						</tr>
 						<tr>
-						   <th>SSN</th>
+						   <th>ITIN/SSN</th>
 							<td><?php if(isset($this->userInfo->ssnitin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?></td>
 						</tr>
 						<tr>
-						   <th>DOB</th>
+						   <th>Date of Birth</th>
 							<td><?php if(isset($this->userInfo->dob) && $this->userInfo->dob !=""){ echo $this->userInfo->dob; }?></td>
 						</tr>
 						<tr>
-						   <th>Dependents:Yes/No</th>
+						   <th>Dependents </th>
 							<td><?php if(isset($this->userInfo->dependent) && $this->userInfo->dependent !=""){ 
-								if($this->userInfo->dependent == 2){
-									echo "No";
-								}else{
-									echo "Yes";
-								}
+								echo $this->userInfo->dependent;
 							 }?></td>
 						</tr>
 						<tr>
-						   <th>Mobile/Phone</th>
+						   <th>Mobile</th>
 							<td><?php if(isset($this->userInfo->phone) && $this->userInfo->phone !=""){ echo $this->userInfo->phone; }?></td>
 						</tr>
 						<tr>
@@ -125,19 +121,19 @@
 					<input class="form-control" type="text" name="fname" id="fname" required data-fv-notempty-message="Please enter firstname" value="<?php if(isset($this->userInfo->first_name) && $this->userInfo->first_name !=""){ echo $this->userInfo->first_name; }?>">
 				</div>
 				<div class="form-group">
-					<label>SSN</label>
+					<label>ITIN/SSN</label>
 					<input class="form-control" type="text" name="ssn" id="ssn" value="<?php if(isset($this->userInfo->ssnitin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?>">
 				</div>
 				<div class="form-group">
-					<label>DOB</label>
+					<label>Date Of Birth</label>
 					<input class="form-control" type="text" name="dob" id="dob" value="<?php if(isset($this->userInfo->dob) && $this->userInfo->dob !=""){ echo $this->userInfo->dob; }?>">
 				</div>
 				<div class="form-group">
-					<label>Dependents:Yes/No:</label>
+					<label>Dependents </label>
 					<input class="form-control" type="text" name="dependents" id="dependents" value="<?php if(isset($this->userInfo->dependent) && $this->userInfo->dependent !=""){ echo $this->userInfo->dependent; }?>">
 				</div>
 				<div class="form-group">
-					<label>Mobile/Phone:</label>
+					<label>Mobile:</label>
 					<input class="form-control" type="text" name="mobile" id="mobile" value="<?php if(isset($this->userInfo->phone) && $this->userInfo->phone !=""){ echo $this->userInfo->phone; }?>">
 				</div>
 				<div class="form-group">

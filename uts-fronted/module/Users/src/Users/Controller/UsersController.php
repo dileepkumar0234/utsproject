@@ -88,7 +88,11 @@ class UsersController extends AbstractActionController
 		$basePath 	= $baseUrlArr['basePath'];
 		//$userId     = 23;
 		$user_session = new Container('user');
-		$userId 		= $user_session->userId;
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
 		$getUserInfo = $userTable->getUserInfo($userId);
@@ -112,9 +116,12 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
-		//$userId     = 23;
 		$user_session = new Container('user');
-		$userId 		= $user_session->userId;
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
 		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$getUserInfo = $userTable->getUserInfo($userId);
@@ -138,9 +145,12 @@ class UsersController extends AbstractActionController
 		$basePath 	= $baseUrlArr['basePath'];
 		$year 		= $baseUrlArr['year'];
 		$empTable   = $this->getServiceLocator()->get('Models\Model\EmployeeinfoFactory');
-		//$userId 	= 23;
 		$user_session = new Container('user');
-		$userId 		= $user_session->userId;
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
 		$empInfo 	= $empTable->getData($userId,$year);
 		return new ViewModel(array(					
 			'baseUrl' 			=>  $baseUrl,
@@ -156,9 +166,12 @@ class UsersController extends AbstractActionController
 		$basePath 	= $baseUrlArr['basePath'];
 		$year 		= $baseUrlArr['year'];
 		$empTable   = $this->getServiceLocator()->get('Models\Model\EmployeeinfoFactory');
-		//$userId 	= 23;
 		$user_session = new Container('user');
-		$userId 		= $user_session->userId;
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}		
 		if(isset($_POST) && count($_POST) != 0){
 			$empInfo = $_POST;
 			$empTable->addEmpInfo($empInfo,$userId);
@@ -179,9 +192,12 @@ class UsersController extends AbstractActionController
 		$basePath 	= $baseUrlArr['basePath'];
 		$year 		= $baseUrlArr['year'];
 		$dependentTable  = $this->getServiceLocator()->get('Models\Model\DependentFactory');
-		//$userId = 23;
 		$user_session = new Container('user');
-		$userId 		= $user_session->userId;
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
 		$dependentsInfo = $dependentTable->getDependents($userId,$year);
 		return new ViewModel(array(					
 			'baseUrl' 			=>  $baseUrl,
@@ -197,9 +213,12 @@ class UsersController extends AbstractActionController
 		$basePath 	= $baseUrlArr['basePath'];
 		$year 		= $baseUrlArr['year'];
 		$dependentTable  = $this->getServiceLocator()->get('Models\Model\DependentFactory');
-		//$userId = 23;
 		$user_session = new Container('user');
-		$userId 		= $user_session->userId;
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
 		if(isset($_POST) && count($_POST) != 0){
 			$dependentInfo = $_POST;
 			$dependentTable->addDependentInfo($dependentInfo,$userId);
@@ -219,9 +238,12 @@ class UsersController extends AbstractActionController
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
 		$scheduleTable  = $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
-		//$userId = 23;
 		$user_session = new Container('user');
-		$userId 		= $user_session->userId;
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
 		$result = $scheduleTable->getData($userId);
 		if(isset($result->timing_id)){
 			$ustatus = 1;
@@ -240,9 +262,12 @@ class UsersController extends AbstractActionController
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
 		$user_session = new Container('user');
-		$userId 		= $user_session->userId;
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
 		$scheduleTable  = $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
-		//$userId = 23;
 		$sdate	= $_POST['scDate'];
 		$stime	= $_POST['scTime'];
 		$scheduleTable->addScheduleDateTime($sdate,$stime,$userId);
@@ -319,7 +344,6 @@ class UsersController extends AbstractActionController
 		$forgetTable  = $this->getServiceLocator()->get('Models\Model\ForgetpasswordFactory');
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$saveReferer = $userTable->checkEmail($_POST['ForgetEmail']);
-		
 		if(isset($saveReferer->user_id) && $saveReferer->user_id !=""){
 			global $forgetSubject;
 			global $forgetMessage;
@@ -329,15 +353,16 @@ class UsersController extends AbstractActionController
 			$saveInfo  = $forgetTable->addForgetpwd($saveReferer->user_id,$_POST['ForgetEmail'],$token);
 			$forgetMessage 	= str_replace("<SITELINK>",$url,$forgetMessage);
             $to = $_POST['ForgetEmail']; 
-			// if(sendMail($to,$forgetSubject,$forgetMessage)){
-				// return new JsonModel(array(					
-					// 'output' 	=> 'success'
-				// ));
-			// }
-			return new JsonModel(array(					
-				'output' => 'success',
-				'url' 	 => $url,
-			));
+			if(sendMail($to,$forgetSubject,$forgetMessage)){
+				return new JsonModel(array(					
+					'output' 	=> 'success'
+				));
+			}else{
+				return new JsonModel(array(					
+					'output' => 'success',
+					'url' 	 => $url,
+				));
+			}			
 		}else{
 			return new JsonModel(array(
 				'output'    =>  'fail',

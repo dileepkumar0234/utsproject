@@ -4,7 +4,7 @@
 	{ 
 		$mail              = new PHPMailer();
 		$mail->IsSMTP();
-		$mail->Host      = "smtpout.secureserver.net";
+		$mail->Host      = "mail.umpiretaxsolutions.com";
 		$mail->Port    = 80;
 		$mail->IsSendmail();
 		$mail->IsHTML(true);
@@ -25,12 +25,12 @@
 		if($fromAddress!=''){
 			$mail->From     = $fromAddress;
 		} else {
-			$mail->From     = "noreply@bikeseva.com";
+			$mail->From     = "do_not_reply@umpiretaxsolutions.com";
 		}
 		if($fromUserName!=''){
 			$mail->FromName = $fromUserName;
 		} else {
-			$mail->FromName = "Bikeseva"; 
+			$mail->FromName = "UmpireTaxSolutions"; 
 		}
 		$mail->WordWrap = 50; 
 		$mail->IsHTML(true);

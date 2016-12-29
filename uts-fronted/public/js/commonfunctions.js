@@ -535,7 +535,7 @@ function addMoreDependents(){
 						'<input class="form-control" type="text" name="fname[]" id="fname'+depentsCount+'" required data-fv-notempty-message="Please enter firstname">'+
 					'</div>'+
 					'<div class="form-group">'+
-						'<label>SSN</label>'+
+						'<label>ITIN/SSN</label>'+
 						'<input class="form-control" type="text" name="ssn[]" id="ssn'+depentsCount+'">'+
 					'</div>'+
 					'<div class="form-group">'+

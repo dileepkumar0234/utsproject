@@ -18,9 +18,12 @@ class TaxDocumentsController extends AbstractActionController
 		
 		$uploadPdfsTable 	= $this->getServiceLocator()->get('Models\Model\UploadPdfsFactory');
 		$uploadTypesTable 	= $this->getServiceLocator()->get('Models\Model\UploadTypesFactory');
-		$user_id = 23;
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$user_id  = $user_session->user_id;
+		}else{
+			$user_id  = "";
+		}
 		if(isset($_FILES) && count($_FILES) != 0){
-			//echo '<pre>'; print_r($_FILES); exit;
 			$categories = $uploadTypesTable->getTaxDocumentCategories();
 			$taxTypes	= array();
 			if($categories->count()){
@@ -54,7 +57,6 @@ class TaxDocumentsController extends AbstractActionController
 				$taxDocuments[$t->upt_name][$t->up_id] = $t->upload_file;
 			}
 		}
-		//echo '<pre>'; print_r($taxDocuments); exit;
 		return new ViewModel(array(					
 			'baseUrl' 			=>  $baseUrl,
 			'basePath'  		=>  $basePath,
@@ -82,8 +84,11 @@ class TaxDocumentsController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
-		$user_id 	= 23;
-		
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$user_id  = $user_session->user_id;
+		}else{
+			$user_id  = "";
+		}
 		$synopsysTable 	= $this->getServiceLocator()->get('Models\Model\SynopsysFactory');
 		$taxSummary     = $synopsysTable->getSynopsys($user_id);
 		return new ViewModel(array(					
