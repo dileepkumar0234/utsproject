@@ -332,6 +332,19 @@ div.adminGroup{
     -o-background-size: cover;
     background-size: cover;
 }
+.headerLine.privacy_bg {
+    background: url(../img/privacy.jpg) center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}.headerLine.terms_bg {
+    background: url(../img/terms.jpg) center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 .headerLine:after{
     content: "";
     position: absolute;

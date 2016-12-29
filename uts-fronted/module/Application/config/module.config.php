@@ -62,6 +62,29 @@ return array(
 					),
 				),
 			),
+			
+			'privacy-policy' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/privacy-policy',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'privacyPolicy',
+					),
+				),
+			),
+			
+			'terms-conditions' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/terms-conditions',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'termsConditions',
+					),
+				),
+			),
+			
 			'referral' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(

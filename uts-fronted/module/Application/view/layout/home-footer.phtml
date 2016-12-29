@@ -42,10 +42,19 @@
 		<div class="container">
 			<p class="pull-left"> Copyright © Footer 2014. All right reserved. </p>
 			<div class="pull-right">
-				<ul class="nav nav-pills payments">
-					<li>Privacy Policy</li>
-					<li>Terms & Conditions</li>
-				   
+			<style>
+				.foot_lin span{
+					padding-right:25px;
+				}
+				.foot_lin a{
+					padding-right:25px;
+					color:#fff;
+					text-decoration:none;
+				}
+			</style>
+				<ul class="nav nav-pills payments foot_lin">
+					<span><a href="<?php echo $baseUrl;?>privacy-policy"> Privacy Policy </a></span>
+					<span><a href="<?php echo $baseUrl;?>terms-conditions"> Terms & Conditions </a></span>
 				</ul> 
 			</div>
 		</div>

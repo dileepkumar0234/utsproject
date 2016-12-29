@@ -31,6 +31,26 @@ class IndexController extends AbstractActionController
 			'basePath'   					=>  $basePath,
 		));
 	}
+	public function privacyPolicyAction(){
+		$baseUrls 							= $this->getServiceLocator()->get('config');
+		$baseUrlArr 						= $baseUrls['urls'];
+		$baseUrl 							= $baseUrlArr['baseUrl'];
+		$basePath 							= $baseUrlArr['basePath'];
+		return new viewModel(array(					
+			'baseUrl' 						=> 	$baseUrl,
+			'basePath'   					=>  $basePath,
+		));
+	}
+	public function termsConditionsAction(){
+		$baseUrls 							= $this->getServiceLocator()->get('config');
+		$baseUrlArr 						= $baseUrls['urls'];
+		$baseUrl 							= $baseUrlArr['baseUrl'];
+		$basePath 							= $baseUrlArr['basePath'];
+		return new viewModel(array(					
+			'baseUrl' 						=> 	$baseUrl,
+			'basePath'   					=>  $basePath,
+		));
+	}
 	public function referralAction(){
 		$baseUrls 							= $this->getServiceLocator()->get('config');
 		$baseUrlArr 						= $baseUrls['urls'];

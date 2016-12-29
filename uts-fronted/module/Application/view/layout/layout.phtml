@@ -26,6 +26,10 @@
 		include 'home-header.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'testimonial') == true){
 		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'terms-conditions') == true){
+		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'privacy-policy') == true){
+		include 'home-header.phtml';
 	}else{
 		include 'header.phtml';
 	}	
@@ -49,6 +53,10 @@
 	}else if(strpos($_SERVER['REQUEST_URI'], 'referral') == true){
 		include 'home-footer.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'testimonial') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'privacy-policy') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'terms-conditions') == true){
 		include 'home-footer.phtml';
 	}else{
 		include 'footer.phtml';
@@ -92,15 +100,16 @@
    padding: 5px;
    margin-top: 5px;
    padding: 0;
+   color:#222;
 }
 </style>
 <div class="cust_pop sm-hide"  ng-if="userbody==''">
    <img src="<?php echo $basePath;?>/img/cust.png" class="cust">
    <div class="pull-left">
-   <a ui-sref="main.referalProgram">
+   <a href="<?php echo $baseUrl;?>referral">
        Refer a Friend
    </a>
-       <a ui-sref="main.contactUs">
+       <a href="<?php echo $baseUrl;?>contact-us">
        Contact us
            </a>
    </div>
