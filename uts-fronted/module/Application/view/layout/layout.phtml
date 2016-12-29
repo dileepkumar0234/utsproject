@@ -8,7 +8,7 @@
 <?php
 	if($_SERVER['REQUEST_URI'] == '/utsproject/trunk/uts-fronted/'){
 		include 'home-header.phtml';
-	}else if(strpos($_SERVER['REQUEST_URI'], 'uts') == true){
+	}else if($_SERVER['REQUEST_URI'] == '/uts/'){
 		include 'home-header.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'checking-login') == true){
 		include 'home-header.phtml';
@@ -38,7 +38,7 @@
 	echo $this->content;	
 	if($_SERVER['REQUEST_URI'] == '/utsproject/trunk/uts-fronted/'){
 		include 'home-footer.phtml';
-	}else if(strpos($_SERVER['REQUEST_URI'], 'uts') == true){
+	}else if($_SERVER['REQUEST_URI'] == '/uts/'){
 		include 'home-footer.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'checking-login') == true){
 		include 'home-footer.phtml';
