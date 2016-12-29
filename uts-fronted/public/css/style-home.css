@@ -322,7 +322,7 @@ div.adminGroup{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-	margin-top:20px;
+	
 }
 
 .headerLine.careers_bg {
@@ -405,6 +405,9 @@ div.adminGroup{
 }
 .headerLine.careers_bg {
 	height:50%;
+}
+.headerLine.testimonials_bg {
+	height:35%;
 }
 .headerLine.taxxenter_bg {
 	height:50%;
