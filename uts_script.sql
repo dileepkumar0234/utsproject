@@ -1,6 +1,6 @@
 
 /* Naveen 12/28/2016 */
-ALTER TABLE `umpiretaxpayer`.`user` ADD COLUMN `check_newuser` TINYINT NULL AFTER `check_newuser`; 
+ALTER TABLE 'user' ADD COLUMN `check_newuser` TINYINT NULL AFTER `check_newuser`; 
 /* End */
 ALTER TABLE `user_details` CHANGE `visa_type` `visa_type` VARCHAR(100) CHARSET latin1 COLLATE latin1_swedish_ci NULL; 
 ALTER TABLE `user_details` CHANGE `c_location` `c_location` VARCHAR(100) CHARSET latin1 COLLATE latin1_swedish_ci NULL; 
