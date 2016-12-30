@@ -15,7 +15,7 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
 class Module implements AutoloaderProviderInterface
 {
-	protected $whitelist = array('/dashboard','/team-leads','/reset-password','/client-view','/add-team-member','/edit-member','/add-shop','/shops-list','/pricing','/view-shop','/edit-shop','/steps-process','/change-password','/edit-profile','/complaint-list','/bookings-info','manage-team','leads-executives','user-logs','all-present-logins','last-logs-list','assigned-service-list','service-assigned-process','unassigned-service-list','bookings-info','leads-reports','users-guest-list','security-questions','all-users');
+	protected $whitelist = array('/dashboard','/team-leads','/reset-password','/client-view','/add-team-member','/edit-member','/add-shop','/shops-list','/pricing','/view-shop','/edit-shop','/steps-process','/change-password','/edit-profile','/complaint-list','/bookings-info','manage-team','leads-executives','user-logs','all-present-logins','last-logs-list','assigned-service-list','service-assigned-process','unassigned-service-list','bookings-info','leads-reports','users-guest-list','security-questions','all-users','/all-assigned-users','/assigned-file-number');
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
