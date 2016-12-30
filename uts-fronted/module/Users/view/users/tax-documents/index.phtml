@@ -60,15 +60,19 @@
 						foreach($this->categories as $name){
 					?>
 					<div class="col-lg-6 label_col">
-						<div class="form-group">
-							<label><?php echo $name->upt_name; ?>:</label>
+						<div class="form-group" style="background:#ddd;width:100%;padding:6px;border-radius:5px;">
+							<label style="color:#111;margin-top:4px;"><?php echo $name->upt_name; ?>:</label>
 						</div>
 						<?php if(isset($this->taxDocuments[$name->upt_name]) && count($this->taxDocuments[$name->upt_name]) != 0){
 							foreach($this->taxDocuments[$name->upt_name] as $fileId => $file){
 						?>
+							
 							<div class="form-group">
-								<p id="existsFile_<?php echo $fileId; ?>"><a style="color:#fff !important" href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$name->upt_name.'/'.$file; ?>" download><?php echo $file; ?> &nbsp;&nbsp; <a href="javascript:void(0);" style="color:#ff3349 !important;font-size:20px;padding-left:10px;" onclick="removeFile(<?php echo $fileId; ?>)"><span class="glyphicon glyphicon-trash"></span></a></p>
+								<div class="col-lg-6">
+									<p id="existsFile_<?php echo $fileId; ?>"><a style="color:#fff !important" href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$name->upt_name.'/'.$file; ?>" download><?php echo $file; ?> &nbsp;&nbsp; <a href="javascript:void(0);" style="color:#ff3349 !important;font-size:20px;padding-left:10px;" onclick="removeFile(<?php echo $fileId; ?>)"><span class="glyphicon glyphicon-trash"></span></a></p>
+								</div>
 							</div>
+							<div class="clearfix"></div>
 						<?php }} ?>
 						<div class="form-group">
 							<button type="button" class="btn btn-success btn-md" onclick="addMoreFiles(<?php echo $name->upt_id; ?>)">Add more</button>
