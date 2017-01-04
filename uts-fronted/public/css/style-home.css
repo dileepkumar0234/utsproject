@@ -302,6 +302,13 @@ div.adminGroup{
     -o-background-size: cover;
     background-size: cover;
 }
+.headerLine.prof_bg {
+    background: url(../img/profile.png) center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 .headerLine.servics_bg {
     background: url(../img/first.jpg) center center no-repeat;
     -webkit-background-size: cover;
@@ -421,6 +428,10 @@ div.adminGroup{
 	height:50%;
 }
 .headerLine.firm_bg{
+	height:50%;
+}
+
+.headerLine.prof_bg{
 	height:50%;
 }
 		.bord_left{
