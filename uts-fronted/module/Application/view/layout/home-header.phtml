@@ -57,16 +57,24 @@
 				<div class="">
 				<div class="">
 						<div class="res col-md-3">
-							<p class="mar_t15"><img style="border-radius:50%;width:10%"src="<?php echo $basePath;?>/img/cust.png"><strong> <span class="site_col">Hello@umpiretaxsolutions.com</span></strong></p>
+							<p class="mar_t15">
+							<div class="col-md-3">
+								<img class="img-responsive imgRes sm-hide" style="border-radius:50%;width:100%"src="<?php echo $basePath;?>/img/cust.png">
+							</div>
+							<div class="col-md-9">
+								<strong> <span class="site_col">Hello@umpiretaxsolutions.com</span></strong><br>
+								<strong> <span class="site_col">Clientsupport@umpiretaxsolutions.com</span></strong>
+							</div>
+							</p>
 						</div>
-						<div class="res site_col col-md-2">
+						<div class="res site_col col-md-2 pad_lf70">
 							<div class="mar_t17" style="">
 								<img src="<?php echo $basePath;?>/img/us-flag.png" class="">&nbsp;<strong>+1(631)-407-1040</strong><br>
 								<!--<img src="<?php echo $basePath;?>/img/us-flag.png" class="pull-left">&nbsp;<strong>+1(910)-835-1810</strong>-->
 								<img src="<?php echo $basePath;?>/img/ind.png" class="pull-left">&nbsp;<strong>+9140-6999-1040</strong>
 							</div>
 						</div>
-						<div class="res site_col col-md-3">
+						<div class="res site_col col-md-3 pad_lf90">
 							<p class="pull-left mar_t15">
 							<!--<span><img src="<?php echo $basePath;?>/img/ind.png" class="pull-left">&nbsp;<strong>+9140-6999-1040</strong></span>
 							</br>-->
@@ -85,7 +93,7 @@
 									<a  style="cursor: pointer;font-size:16px;"class="login_btn" data-toggle="modal" data-target="#regModal"><i class="fa fa-user"> </i> Sign Up </a>
 									<a  style="cursor: pointer;font-size:16px;"class="login_btn" data-toggle="modal" data-target="#loginModal"><i class="fa fa-lock"> </i> Login </a>
 								<?php } ?>
-								<a style="font-size:16px;" class="ref_frnd" href="<?php echo $baseUrl?>referral"><i class="fa fa-user"></i> Refer a Friend</a>	
+								<span class="blink_me"><a style="font-size:16px;" class=" ref_frnd" href="<?php echo $baseUrl?>referral"><i class="fa fa-user"></i> Refer a Friend</a>	</span>
 						</div>
 				</div>
 			</div>
@@ -101,7 +109,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand logo_res" href="index.html"><img class="img-responsive" src="<?php echo $basePath; ?>/img/logo-home.png"></a>
+						<a class="navbar-brand logo_res" href="<?php echo $baseUrl;?>"><img class="img-responsive" src="<?php echo $basePath; ?>/img/logo-home.png"></a>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top:30px;">
 						<ul class="nav navbar-nav navbar-right menu_pad drop_st" style="margin-right:-100px;">

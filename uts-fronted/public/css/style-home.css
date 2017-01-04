@@ -317,7 +317,7 @@ div.adminGroup{
     background-size: cover;
 }
 .headerLine.taxxenter_bg {
-    background: url(../img/bgTop4b.jpg) center center no-repeat;
+    background: url(../img/hut.png) center center no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -381,10 +381,33 @@ div.adminGroup{
 .navbar-brand{
 	padding:25px 15px !important;
 }
+.pad_lf70{
+	padding-left:70px;
+}
+.pad_lf90{
+	padding-left:90px;
+}
+.blink_me {
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-name: blinker;
+    animation-timing-function: linear;
+}
+
+
 @media only screen and (max-width:767px) {
 	/* inner pages */
 	.navbar-brand{
 	padding:15px !important;
+}
+.pad_lf70{
+	padding-left:20px !important;
+}
+.pad_lf90{
+	padding-left:20px !important;
+}
+.imgRes{
+	width:20% !important;
 }
 	.about_div {
     background-color: #fff;

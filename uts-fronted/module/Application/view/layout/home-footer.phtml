@@ -11,7 +11,7 @@
 				</div>
 				<div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
 					<ul class="bord_rigt">
-						<li> <a href="#"> Testimonials </a> </li>
+						<li> <a href="<?php echo $baseUrl;?>testimonial"> Testimonials </a> </li>
 						<li> <a href="<?php echo $baseUrl;?>carrers"> Carrers </a> </li>
 						<li> <a href="<?php echo $baseUrl;?>contact-us"> ContactUs </a> </li>
 						
@@ -20,15 +20,11 @@
 				<div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
 					<ul class="bord_rigt">
 						<li> <a href="<?php echo $baseUrl;?>services"> Services </a> </li>
+						<li> <a href="<?php echo $baseUrl;?>privacy-policy"> Privacy Policy </a> </li>
+						<li> <a href="<?php echo $baseUrl;?>terms-conditions"> Terms & Conditions </a> </li>
 					</ul>
 				</div>
-				<div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-					<ul>
-						<li> <a href="#"> &nbsp; </a> </li>
-						
-					</ul>
-				</div>
-				<div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+				<div class="col-lg-6  col-md-6 col-sm-6 col-xs-12 ">
 				   <img class="img-responsive"src="<?php echo $basePath;?>/img/add.png">
 				</div>
 			</div>
@@ -40,23 +36,7 @@
 	</div>
 	<div class="footer-bottom mar_t10">
 		<div class="container">
-			<p class="pull-left"> Copyright © Footer 2014. All right reserved. </p>
-			<div class="pull-right">
-			<style>
-				.foot_lin span{
-					padding-right:25px;
-				}
-				.foot_lin a{
-					padding-right:25px;
-					color:#fff;
-					text-decoration:none;
-				}
-			</style>
-				<ul class="nav nav-pills payments foot_lin">
-					<span><a href="<?php echo $baseUrl;?>privacy-policy"> Privacy Policy </a></span>
-					<span><a href="<?php echo $baseUrl;?>terms-conditions"> Terms & Conditions </a></span>
-				</ul> 
-			</div>
+			<p class="pull-right"> Copyright © Footer 2014. All right reserved. </p>
 		</div>
 	</div>
 </footer>
@@ -84,8 +64,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-12">
-								<input type="text" placeholder="Enter Occupation" id="occupation" name="occupation" class="form-control user_login" required data-fv-notempty-message="The occupation is required" 
-								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
+							<input type="text" placeholder="Enter Occupation" id="occupation" name="occupation" class="form-control user_login" required data-fv-notempty-message="The occupation is required">
 								<span id="emailChecking" style="color:red;"></span>
 							</div>
 						</div>
@@ -115,7 +94,7 @@
 						</div>
 						<div class="form-group">
 							<p class="col-md-12 control-label" style=" text-align:left;" align="justify">
-								By clicking Submit, you agree to our <a href="<?php echo $baseUrl; ?>term-conditions">Terms </a> and that you have read our Data Policy, including our Cookie Use.
+								By clicking Submit, you agree to our <a href="<?php echo $baseUrl;?>terms-conditions">Terms </a> and that you have read our Data Policy, including our Cookie Use.
 							</p>
 						</div>
 						<div class="modal-footer mar_r5">
