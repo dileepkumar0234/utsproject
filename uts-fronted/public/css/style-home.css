@@ -400,6 +400,11 @@ div.adminGroup{
 	.item img{
 	width:150%
 }
+.carousel-inner img{
+	height:60% !important;
+	margin-top:30px;
+}
+
 .headerLine.contact_bg {
 	height:50%;
 }
@@ -446,7 +451,7 @@ div.adminGroup{
 		margin-top:83px;
 	}
 	header.carousel {
-    height: 50%;
+    height: 35%;
 }
 .navbar-inverse {
     background-color: #222;
