@@ -323,6 +323,13 @@ div.adminGroup{
     -o-background-size: cover;
     background-size: cover;
 }
+.headerLine.refer_bg {
+    background: url(../img/s4.png) center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 .headerLine.testimonials_bg {
     background: url(../img/testimonials.png) center center no-repeat;
     -webkit-background-size: cover;

@@ -345,6 +345,7 @@ class UsersController extends AbstractActionController
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$saveReferer = $userTable->checkEmail($_POST['ForgetEmail']);
 		if(isset($saveReferer->user_id) && $saveReferer->user_id !=""){
+			$userName = ucfirst($saveReferer->user_name);
 			global $forgetSubject;
 			global $forgetMessage;
 			$token = getUniqueCode('6');
@@ -352,17 +353,27 @@ class UsersController extends AbstractActionController
 			$url = $baseUrl.'reset-mode?token='.$token.'&uid='.$uid.'&reset=1';
 			$saveInfo  = $forgetTable->addForgetpwd($saveReferer->user_id,$_POST['ForgetEmail'],$token);
 			$forgetMessage 	= str_replace("<SITELINK>",$url,$forgetMessage);
+			$forgetMessage 	= str_replace("<FULLNAME>",$userName,$forgetMessage);
             $to = $_POST['ForgetEmail']; 
-			if(sendMail($to,$forgetSubject,$forgetMessage)){
-				return new JsonModel(array(					
-					'output' 	=> 'success'
-				));
-			}else{
-				return new JsonModel(array(					
-					'output' => 'success',
-					'url' 	 => $url,
-				));
-			}			
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			$headers .= 'From: <Reachus@umpiretaxsolutions.com>' . "\r\n";
+			mail($to,$forgetSubject,$forgetMessage,$headers);
+			return new JsonModel(array(					
+				'output' 	=> 'success'
+			));
+			
+			
+			// if(sendMail($to,$forgetSubject,$forgetMessage)){
+				// return new JsonModel(array(					
+					// 'output' 	=> 'success'
+				// ));
+			// }else{
+				// return new JsonModel(array(					
+					// 'output' => 'success',
+					// 'url' 	 => $url,
+				// ));
+			// }			
 		}else{
 			return new JsonModel(array(
 				'output'    =>  'fail',
