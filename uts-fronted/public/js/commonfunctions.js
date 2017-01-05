@@ -101,11 +101,11 @@ function loginChecking(jForm){
 			success: function(data){
 				$("#errorLogin").html('');
 				if(data.output == "emailnotinrecord"){
-					$("#errorLogin").html('Entered email is not in records');
+					$("#errorLogin").html('Email id not found');
 				}else if(data.output == "fail"){	
 					$("#errorLogin").html('Please email is requried');						
 				}else if(data.output == "wrongdeatils"){
-					$("#errorLogin").html('Entered email or password are wrong');	
+					$("#errorLogin").html('Entered email or password is wrong');	
 				}else if(data.output == "success"){
 					window.location = adminBaseUrl+'/ad-management';
 				}

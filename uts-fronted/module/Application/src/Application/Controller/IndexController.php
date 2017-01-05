@@ -173,6 +173,7 @@ class IndexController extends AbstractActionController
 			$status = $checkUserloginemail->ps_state;
 			$statusName = getFileStatusName($status);
 			$user_session->file_name	=	$statusName;
+			$user_session->unique_code	=	$checkUserloginemail->unique_code;
 			$user_session->phone	    =	$checkUserloginemail->phone;
 			return new JsonModel(array(
 				'output'	=>	'success',

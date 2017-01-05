@@ -16,7 +16,7 @@
 							<td><?php if(isset($this->userInfo->first_name) && $this->userInfo->first_name !=""){ echo $this->userInfo->first_name; }?></td>
 						</tr>
 						<tr>
-						   <th>ITIN/SSN</th>
+						   <th>SSN/ITIN</th>
 							<td><?php if(isset($this->userInfo->ssnitin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?></td>
 						</tr>
 						<tr>
@@ -25,9 +25,16 @@
 						</tr>
 						<tr>
 						   <th>Dependents </th>
-							<td><?php if(isset($this->userInfo->dependent) && $this->userInfo->dependent !=""){ 
-								echo $this->userInfo->dependent;
-							 }?></td>
+							<td><?php
+								if(isset($this->userInfo->dependent) && $this->userInfo->dependent !=""){ 
+									if($this->userInfo->dependent == 1){
+										echo "Yes";
+									}else if($this->userInfo->dependent == 2){
+										echo "No";
+									}
+								}
+								?>
+							 </td>
 						</tr>
 						<tr>
 						   <th>Mobile</th>
@@ -58,19 +65,15 @@
 				<table class="table	">
 					<tbody>
 						<tr>
-						   <th>Middle Name & Last Name</th>
+						   <th>Middle & Last Name</th>
 							<td><?php if(isset($this->userInfo->last_name) && $this->userInfo->last_name !=""){ echo $this->userInfo->last_name; }?></td>
-						</tr>
-						<tr>
-						   <th>ITIN</th>
-							<td><?php if(isset($this->userInfo->itin) && $this->userInfo->itin !=""){ echo $this->userInfo->itin; }?></td>
 						</tr>
 						<tr>
 						   <th>Occupation</th>
 							<td><?php if(isset($this->userInfo->occupation) && $this->userInfo->occupation !=""){ echo $this->userInfo->occupation; }?></td>
 						</tr>
 						<tr>
-						   <th>Filling Status</th>
+						   <th>Filing Status</th>
 							<td><?php if(isset($this->userInfo->filling_status) && $this->userInfo->filling_status !=""){ echo $this->userInfo->filling_status; }?></td>
 						</tr>
 						<tr>
@@ -90,7 +93,7 @@
 							<td><?php if(isset($this->userInfo->country_name) && $this->userInfo->country_name !=""){ echo $this->userInfo->country_name; }?></td>
 						</tr>
 						<tr>
-						   <th>Health Insurence</th>
+						   <th>Health Insurance</th>
 							<td><?php if(isset($this->userInfo->insurence) && $this->userInfo->insurence !=""){ echo $this->userInfo->insurence; }?></td>
 						</tr>
 						<tr>
@@ -121,7 +124,7 @@
 					<input class="form-control" type="text" name="fname" id="fname" required data-fv-notempty-message="Please enter firstname" value="<?php if(isset($this->userInfo->first_name) && $this->userInfo->first_name !=""){ echo $this->userInfo->first_name; }?>">
 				</div>
 				<div class="form-group">
-					<label>ITIN/SSN</label>
+					<label>SSN/ITIN</label>
 					<input class="form-control" type="text" name="ssn" id="ssn" value="<?php if(isset($this->userInfo->ssnitin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?>">
 				</div>
 				<div class="form-group">
@@ -130,7 +133,26 @@
 				</div>
 				<div class="form-group">
 					<label>Dependents </label>
-					<input class="form-control" type="text" name="dependents" id="dependents" value="<?php if(isset($this->userInfo->dependent) && $this->userInfo->dependent !=""){ echo $this->userInfo->dependent; }?>">
+					<select class="form-control" id="dependents" name="dependents">
+						<?php
+						
+						if(isset($this->userInfo->dependent) && $this->userInfo->dependent!=""){ 
+							if($this->userInfo->dependent == 1){ ?>
+								<option value="1" selected="selected">Yes</option>
+								<option value="2">No</option>
+						<?php }else if($this->userInfo->dependent == 2){ ?>
+								<option value="1">Yes</option>
+								<option value="2"  selected="selected">No</option>
+						<?php }else{ ?>
+								<option value="1">Yes</option>
+								<option value="2">No</option>
+						<?php } }else{ ?>
+								<option value="1">Yes</option>
+								<option value="2">No</option>
+						<?php } ?>
+						
+					</select>
+					
 				</div>
 				<div class="form-group">
 					<label>Mobile:</label>
@@ -158,10 +180,6 @@
 				<div class="form-group">
 					<label>Middle Name & Last Name:</label>
 					<input class="form-control" type="text" name="lname" id="lname" value="<?php if(isset($this->userInfo->last_name) && $this->userInfo->last_name !=""){ echo $this->userInfo->last_name; }?>">
-				</div>
-				<div class="form-group">
-					<label>ITIN:</label>
-					<input class="form-control" type="text" name="itin" id="itin" value="<?php if(isset($this->userInfo->itin) && $this->userInfo->itin !=""){ echo $this->userInfo->itin; }?>">
 				</div>
 				<div class="form-group">
 					<label>Occupation:</label>
