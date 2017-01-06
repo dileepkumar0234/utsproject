@@ -169,6 +169,7 @@ class IndexController extends AbstractActionController
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
+		$processStatusTable = $this->getServiceLocator()->get('Models\Model\ProcessingStatusFactory');
 		if(isset($_POST['sguid']) && $_POST['sguid']!=""){
 			$uid      = $_POST['sguid'];
 			$checkUserloginemail = $userTable->userdetailsreg($uid);
@@ -178,6 +179,8 @@ class IndexController extends AbstractActionController
 				));
 			}else{
 				$updatedid = $userTable->updateUid($uid);
+				$st =0;
+				$addProcessStatus = $processStatusTable->saveProccessingStatus($uid);
 				$user_type_id = $checkUserloginemail->user_type_id;
 				$user_id = $checkUserloginemail->user_id;
 				$user_session = new Container('user');
