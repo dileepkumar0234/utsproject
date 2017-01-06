@@ -34,6 +34,8 @@
 		include 'home-header.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'reg-auth') == true){
 		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'disclaimer') == true){
+		include 'home-header.phtml';
 	}else{
 		include 'header.phtml';
 	}	
@@ -65,6 +67,8 @@
 	}else if(strpos($_SERVER['REQUEST_URI'], 'terms-conditions') == true){
 		include 'home-footer.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'reg-auth') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'disclaimer') == true){
 		include 'home-footer.phtml';
 	}else{
 		include 'footer.phtml';
