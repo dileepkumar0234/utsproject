@@ -18,6 +18,35 @@ class UserdetailsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
+	public function addedUserInfo($users,$userId){
+		if(isset($users['inputFirstname']) && $users['inputFirstname']!=''){
+			$firstName = $users['inputFirstname'];
+		}else{
+			$firstName = '';
+		}
+		if(isset($users['inputLastname']) && $users['inputLastname']!=''){
+			$lastName = $users['inputLastname'];
+		}else{
+			$lastName ='';
+		}
+		if(isset($users['occupation']) && $users['occupation']!=''){
+			$occupation = $users['occupation'];
+		}else{
+			$occupation ='';
+		}
+		$data = array(		
+			'u_user_id'         => 	$userId,  		
+			'first_name'        => 	$firstName,  		
+			'last_name'         => 	$lastName,  		
+			'occupation'        => 	$occupation,			  	
+			'status'			=>	1,
+			'date_added'		=>	date('Y-m-d H:i:s'), 
+			'date_updated'		=>	date('Y-m-d H:i:s'), 	
+		);	
+		$insertresult=$this->tableGateway->insert($data);	
+		return $this->tableGateway->lastInsertValue;
+	}
+	
 	public function saveUserDetailss($users,$userId)
     {
 		if(isset($users['inputFirstname']) && $users['inputFirstname']!=''){

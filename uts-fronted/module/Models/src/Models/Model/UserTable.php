@@ -19,6 +19,32 @@ class UserTable
 		$this->select = new Select();
     }
 	
+	public function addedUser($users)
+    {
+		$password=md5($users['userpwd']);
+		if(isset($users['inputFirstname']) && $users['inputFirstname']!=''){
+			$firstName = $users['inputFirstname'];
+		}else{
+			$firstName = '';
+		}
+		if(isset($users['inputEmail']) && $users['inputEmail']!=''){
+			$email = $users['inputEmail'];
+		}else{
+			$email ='';
+		}
+		$data = array(
+			'user_name' 	  	       => $firstName,				
+			'email' 		           => $email,  		
+			'password' 		           => $password,		
+			'locked_pwd' 		       => base64_encode($users['userpwd']),		
+			'status'  	               => 0,  	
+			'date_added' 	           => date('Y-m-d H:i:s'),   
+			'date_updated'	  	       => date('Y-m-d H:i:s'), 	
+			'user_type_id' 		       => 2, 			
+		);	
+		$insertresult=$this->tableGateway->insert($data);	
+		return $this->tableGateway->lastInsertValue;		
+    }	
 	public function saveUserDataa($users)
     {
 		$password=md5($users['userpwd']);
@@ -129,11 +155,28 @@ class UserTable
 	public function userdetails($id)
     {	
 		$select = $this->tableGateway->getSql()->select();
-		$select->join('user_details', new Expression('user_details.u_user_id=user.user_id'),array('*'),'left');
-		$select->where('user_id="'.$id.'"');
+		$select->join('user_details', new Expression('user.user_id=user_details.u_user_id'),array('*'),'left');
+		$select->where('user.user_id="'.$id.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current();
 	}
+	public function userdetailsreg($id)
+    {	
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('processing_status', new Expression('processing_status.ps_user_id=user.user_id'),array('*'),'left');
+		$select->where('user.user_id="'.$id.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->current();
+	}
+	public function updateUid($userid){
+	   $data = array(
+		   'status'        =>1,
+		   'date_updated'  =>date('Y-m-d H:i:s'),
+		);
+	   $changepassword=$this->tableGateway->update($data, array('user_id' => $userid));	   
+	   return $changepassword;                        
+   }
+	
 	public function checkUniqueRecord($email){        
 		$select = $this->tableGateway->getSql()->select()                        
 			   ->where('email="'.$email.'"');                                         

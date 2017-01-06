@@ -45,7 +45,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content" >
 				<div class="modal-header" style="border-bottom:1px solid #ddd;background:#189def;color:#fff;border-radius:2px 2px 0 0">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<button type="button" class="close" onClick="closeSignup();">&times;</button>
 					<h4 class="modal-title">Sign Up</h4>
 				</div>
 				<div class="modal-body">
@@ -65,7 +65,7 @@
 						<div class="form-group">
 							<div class="col-md-12">
 							<input type="text" placeholder="Enter Occupation" id="occupation" name="occupation" class="form-control user_login" required data-fv-notempty-message="The occupation is required">
-								<span id="emailChecking" style="color:red;"></span>
+								
 							</div>
 						</div>
 						<div class="form-group">
@@ -84,12 +84,13 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-12">
-								<input type="password" placeholder="Enter Password " id="inputPassword" name="inputPassword" class="form-control" required data-fv-notempty-message="The password is required">
+								<input type="password" placeholder="Enter Password " id="inputPassword" name="inputPassword" class="form-control" required data-fv-notempty-message="The password is required" maxlength="6"
+							data-fv-stringlength data-fv-stringlength-min="6" data-fv-stringlength-message="Password must be at least 6 characters">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-md-12">
-								<input type="password" placeholder="Enter Confirm password" id="userpwd" name="userpwd" class="form-control" required data-fv-notempty-message="The confirm password is required">
+								<input type="password" placeholder="Enter Confirm password" id="userpwd" name="userpwd" class="form-control" required data-fv-notempty-message="The confirm password is required" data-fv-identical="true" data-fv-identical-field="inputPassword" data-fv-identical-message="Password and the confirmation password are not matching">
 							</div>
 						</div>
 						<div class="form-group">
@@ -218,6 +219,34 @@
 <input type="hidden" id="verifyfemail" name="verifyfemail" value="<?php echo $emailfwdvalue; ?>">
 <input type="hidden" id="uidfemail" name="uidfemail" value="<?php echo $fuid; ?>">	
 <input type="hidden" id="uidftoken" name="uidftoken" value="<?php echo $ftoken; ?>">
+
+<?php	
+// Sign up Code
+	$emailsingupvalue = 0;
+	$uid          = 0;	
+	if(isset($_GET['auth']) && $_GET['auth']!=""){
+		if($_GET['auth']==1){
+			$emailsingupvalue = 1;
+			if(isset($_GET['regid']) && $_GET['regid']!=""){
+				$udata   = base64_decode($_GET['regid']);
+				$exPlode = explode('UTS-',$udata);
+				$uid = $exPlode[1];
+			}else{
+				$uid   = 0;
+			}
+		}else{
+			$emailsingupvalue = 0;
+		}
+	}else{
+		$emailsingupvalue = 0;
+		$uid              = 0;
+	}
+?>	
+<input type="hidden" id="emailsgverify" name="emailsgverify" value="<?php echo $emailsingupvalue; ?>">
+<input type="hidden" id="uidsg" name="uidsg" value="<?php echo $uid; ?>">	
+
+
+
  <!-- reset change password-->
   <div class="modal fade" id="myModalReset" role="dialog" >
     <div class="modal-dialog">
@@ -262,21 +291,39 @@
     </div>
   </div>
 <div class="modal fade" id="forgot_hidden_common" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog modal-sm" role="document">
-		<div class="modal-content">
-		 <div class="modal-header pop_title">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="myModalLabel">Reset Confirmation</h4>
-		  </div>	
-		  <div class="modal-body">
-			<p><span id="f_message"></span></p>
-		  </div>
-		  <div class="modal-footer">
-			<button  type="submit" class="btn   btn-raised btn-info btn-sm" data-dismiss="modal" id="forgot_Ok">Ok</button>
-		  </div>
-		</div>
+  <div class="modal-dialog modal-sm" role="document">
+	<div class="modal-content">
+	 <div class="modal-header pop_title">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title" id="myModalLabel">Reset Confirmation</h4>
+	  </div>	
+	  <div class="modal-body">
+		<p><span id="f_message"></span></p>
+	  </div>
+	  <div class="modal-footer">
+		<button  type="submit" class="btn   btn-raised btn-info btn-sm" data-dismiss="modal" id="forgot_Ok">Ok</button>
 	  </div>
 	</div>
+  </div>
+</div>
+
+<div class="modal fade" id="sg_hidden_common" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+	<div class="modal-content">
+	 <div class="modal-header pop_title">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title" id="myModalLabel">Registration Confirmation</h4>
+	  </div>	
+	  <div class="modal-body">
+		<p><span id="sgu_message"></span></p>
+	  </div>
+	  <div class="modal-footer">
+		<button  type="submit" class="btn   btn-raised btn-info btn-sm" data-dismiss="modal" id="forgot_Ok">Ok</button>
+	  </div>
+	</div>
+  </div>
+</div>
+
 		<script>
 			var basePath     	= '<?php echo $basePath; ?>';
 			var baseUrl 		= '<?php echo $baseUrl; ?>';
@@ -325,14 +372,41 @@
 				e.preventDefault();	
 			});
 		}
+		function closeSignup(){
+			$('#registerForm').formValidation('resetForm', true);
+			$('#regModal').modal('hide');
+			$("#emailChecking").html("");
+		}
 		function signUpUser(JFrom){
+			var d 		= new Date();
+			var time 	= d.getTime();
 			$("#registerForm").formValidation().on('success.form.fv', function(e) {
 				e.stopImmediatePropagation();
+					var inputEmail     = $("#inputEmail").val();
+					var userpwd        = $("#userpwd").val();
+					var inputFirstname = $("#inputFirstname").val();
+					var inputLastname  = $("#inputLastname").val();
+					var occupation     = $("#occupation").val();
+					var phone          = $("#phone").val();
+					$("#loadMes").html("Loading...");
 					$.ajax({
 						type		:   'POST',
-						url			:  	baseUrl+'sign-in/fdata',
+						url			:  	baseUrl+'sign-up?srch='+time,
 						dataType	: 	"json",
+						data:{inputEmail:inputEmail,userpwd:userpwd,inputFirstname:inputFirstname,inputLastname:inputLastname,occupation:occupation},
 						success: function(data){
+							$("#loadMes").html("");
+							if(data.output == 'success'){
+								$("#emailChecking").html("");
+								$('#registerForm').formValidation('resetForm', true);
+								$('#regModal').modal('hide');
+								$('#successForgetPopUp').modal('show');
+								$('#message').html('Registration Successfull.\nPlease check your mail box to validate your email id.');
+							}else if(data.output == 'emailexists'){
+								$("#emailChecking").html("Email id already exists");
+							}else if(data.output == 'notsuccess'){
+								$("#emailChecking").html("Email id is required");
+							}
 						}
 					});
 				
@@ -354,20 +428,28 @@
 			$('#forgotpasswordModal').modal('hide');
 		}
 		function CheckForgetEmail(){
+			var d 		= new Date();
+			var time 	= d.getTime();
 			$('#forgetMessage').html('');
 			$('#forgetSuccMessage').html('');
 			$("#forgetPasswordForm").formValidation().on('success.form.fv', function(e) {
 				e.stopImmediatePropagation();
+				$('#forgetSuccMessage').html('loading..');
 					$.ajax({
 						type		:   'POST',
-						url			:  	baseUrl+'check-email-exits',
+						url			:  	baseUrl+'check-email-exits?sRch='+time,
 						dataType	: 	"json",
 						data:$('#forgetPasswordForm').serialize(),
 						success: function(data){
+							$('#forgotpasswordModal').modal('hide');
+							$('#forgetSuccMessage').html('');
 							if(data.output == "success"){
-								$('#forgetSuccMessage').html('Successfully Sent Please check your mail.');
+								$('#forgetPasswordForm').formValidation('resetForm', true);
+								$('#successForgetPopUp').modal('show');
+								$('#message').html('Successfully sent.Please check your mail box.');
 							}else{
-								$('#forgetMessage').html('Email not exits');
+								$('#successForgetPopUp').modal('show');
+								$('#message').html('Email id not in records');
 							}
 						}
 					});
@@ -387,7 +469,9 @@
 						data        :  $('#resetPasswordForm').serialize(),
 						success: function(data){
 							if(data.output == "success"){
-								$('#resetSuccMessage').html('Successfully Updated Please login.');
+								$('#myModalReset').modal('hide');
+								$('#f_message').html('Successfully Updated Please login.');
+								$('#forgot_hidden_common').modal('show');
 								window.location = baseUrl;
 							}else{
 								$('#myModalReset').modal('hide');
@@ -399,6 +483,36 @@
 				e.preventDefault();	
 			});
 		}
+		
+		
+		var sguid	= $("#uidsg").val();
+		var sgValue	= $("#emailsgverify").val();
+		if(sguid != 0 && sgValue!=0)
+		{		
+			$.ajax({
+			type:'POST',
+			url:  baseUrl+'check-reg-auth',
+			data:{sguid:sguid},
+				success: function(data){									
+					console.log(data);
+					if(data.output == 'success')
+					{
+						$('#sgu_message').html('Successfully.');
+						$('#sg_hidden_common').modal('show');
+					}else if(data.output == 'exists'){
+						$('#sgu_message').html('Your verfication link has expired.');
+						$('#sg_hidden_common').modal('show');
+					}else{
+						$('#sgu_message').html('Server not found.');
+						$('#sg_hidden_common').modal('show');
+					}
+				}
+			});
+		}
+		
+		
+		
+		
 		var uid			= $("#uidfemail").val();
 		var token		= $("#uidftoken").val();
 		var resetValue	= $("#verifyfemail").val();

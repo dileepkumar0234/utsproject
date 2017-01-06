@@ -32,6 +32,16 @@ return array(
 					),
 				),
 			),
+			'reg-auth' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route'    => '/reg-auth',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'index',
+					),
+				),
+			),
 			'check-fuid' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
@@ -42,6 +52,16 @@ return array(
 					),
 				),
 			),
+			'check-reg-auth' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route'    => '/check-reg-auth',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'checkRegAuth',
+					),
+				),
+			),
 			'checking-login' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
@@ -49,6 +69,16 @@ return array(
 					'defaults' => array(
 						'controller' => 'Application\Controller\Index',
 						'action'     => 'checkingLogin',
+					),
+				),
+			),
+			'sign-up' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/sign-up',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'signUp',
 					),
 				),
 			),

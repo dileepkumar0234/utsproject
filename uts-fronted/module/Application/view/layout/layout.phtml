@@ -32,6 +32,8 @@
 		include 'home-header.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'privacy-policy') == true){
 		include 'home-header.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'reg-auth') == true){
+		include 'home-header.phtml';
 	}else{
 		include 'header.phtml';
 	}	
@@ -61,6 +63,8 @@
 	}else if(strpos($_SERVER['REQUEST_URI'], 'privacy-policy') == true){
 		include 'home-footer.phtml';
 	}else if(strpos($_SERVER['REQUEST_URI'], 'terms-conditions') == true){
+		include 'home-footer.phtml';
+	}else if(strpos($_SERVER['REQUEST_URI'], 'reg-auth') == true){
 		include 'home-footer.phtml';
 	}else{
 		include 'footer.phtml';
@@ -213,6 +217,22 @@
 		</div>
 	  </div>
 	</div>
+<div class="modal fade" id="successForgetPopUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" >
+	  <div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+		  <div class="modal-header" style="border-bottom:1px solid #ddd;background:#189def;color:#fff;border-radius:2px 2px 0 0">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+		  </div>
+		  <div class="modal-body">
+			<p><span id="message"></span></p>
+		  </div>
+		  <div class="modal-footer mar_t5" style="margin-bottom: 10px;margin-right: 10px;">
+			<button type="button" onclick="forgetSuccess()" class="mar_t5 btn btn-raised btn-info  btn-sm" > Ok </button>
+		  </div>
+		</div>
+	  </div>
+	</div>
 <script>
 $(document).ready(function() {
 	$('#contactForm').formValidation().on('success.form.fv', function(e, data) {	
@@ -288,6 +308,9 @@ function referFriend(){
 			});
 		}
 		function contactSuccess(){
+			window.location = baseUrl;
+		}
+		function forgetSuccess(){
 			window.location = baseUrl;
 		}
 		</script>
