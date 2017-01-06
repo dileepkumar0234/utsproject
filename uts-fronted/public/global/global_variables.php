@@ -1,7 +1,7 @@
 <?php
 global $forgetSubject;
 global $forgetMessage;
-$forgetSubject= "Forgot Password";
+$forgetSubject= "Forgot Password - Umpire Tax Solutions";
 $forgetMessage='<body>
     <div style="width:800px;margin:0 auto;background:#fff;border-radius:2px; border:1px solid #ddd;">
     <!-- Header Start -->
@@ -36,7 +36,7 @@ $forgetMessage='<body>
         <!-- Footer Strtt-->
         <table style="border:0;width:100%;border-collapse: collapse;">
         <tr bgcolor="#33373b" style="font-size:14px;line-height:22px;">
-            <td style="padding:20px;color:#fff;text-align:center;font-family:Arial, Helvetica, sans-serif">Have a question? Check out the <a href="https://umpiretaxsolution.com/" style="text-decoration:none;color:#6ebe44" target="_blank">UmpireTaxSolutions </a> on our website<br/></td>
+            <td style="padding:20px;color:#fff;text-align:center;font-family:Arial, Helvetica, sans-serif">Have any questions? Reach us @ <u>631-407-1040</u></td>
         </tr>
         </table>
     </div>
