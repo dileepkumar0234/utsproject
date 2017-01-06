@@ -52,6 +52,16 @@ return array(
 					),
 				),
 			),
+			'disclaimer' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route'    => '/disclaimer',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'disclaimer',
+					),
+				),
+			),
 			'check-reg-auth' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
