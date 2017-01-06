@@ -317,8 +317,9 @@
 	  <div class="modal-body">
 		<p><span id="sgu_message"></span></p>
 	  </div>
+	  <input type="hidden" id="redirectToD" name="redirectToD" value="">
 	  <div class="modal-footer">
-		<button  type="submit" class="btn   btn-raised btn-info btn-sm" data-dismiss="modal" id="forgot_Ok">Ok</button>
+		<button  type="submit" onClick="return redirectdashboard('boom');" class="btn btn-raised btn-info btn-sm" id="forgot_Ok">OK</button>
 	  </div>
 	</div>
   </div>
@@ -376,6 +377,14 @@
 			$('#registerForm').formValidation('resetForm', true);
 			$('#regModal').modal('hide');
 			$("#emailChecking").html("");
+		}
+		function redirectdashboard(){
+			var redirectSpam = $('#redirectToD').val();
+			if(redirectSpam == "success"){
+				window.location = baseUrl+'dashboard';
+			}else{
+				window.location = baseUrl;
+			}
 		}
 		function signUpUser(JFrom){
 			var d 		= new Date();
@@ -489,6 +498,7 @@
 		var sgValue	= $("#emailsgverify").val();
 		if(sguid != 0 && sgValue!=0)
 		{		
+			$('#redirectToD').val('');
 			$.ajax({
 			type:'POST',
 			url:  baseUrl+'check-reg-auth',
@@ -497,12 +507,15 @@
 					console.log(data);
 					if(data.output == 'success')
 					{
-						$('#sgu_message').html('Successfully.');
+						$('#redirectToD').val('success');
+						$('#sgu_message').html('Successful.');
 						$('#sg_hidden_common').modal('show');
 					}else if(data.output == 'exists'){
-						$('#sgu_message').html('Your verfication link has expired.');
+						$('#redirectToD').val('fail');
+						$('#sgu_message').html('Your email verfication has been done.');
 						$('#sg_hidden_common').modal('show');
 					}else{
+						$('#redirectToD').val('fail');
 						$('#sgu_message').html('Server not found.');
 						$('#sg_hidden_common').modal('show');
 					}
