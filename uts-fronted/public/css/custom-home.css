@@ -25,9 +25,9 @@ body {
 
 /* Home Page Carousel */
 
-header.carousel {
-    height: 90%;
-}
+/* header.carousel { */
+    /* height: 90%; */
+/* } */
 
 header.carousel .item,
 header.carousel .item.active,
