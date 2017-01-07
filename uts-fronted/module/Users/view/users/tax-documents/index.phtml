@@ -6,10 +6,10 @@
 			</div>  
 			<div class="col-xs-10 col-md-8 text-right btn_pad">
 				<div class="btn_site sm-hide">
-					File Number: <?php if(isset($_SEESSION["user"]["file_name"]) && $_SEESSION["user"]["file_name"]!=""){ echo $_SEESSION["user"]["file_name"]; } else { ?> UTS0023 <?php } ?>
+					File Number: <?php if(isset($_SEESSION["user"]["file_name"]) && $_SEESSION["user"]["file_name"]!=""){ echo $_SEESSION["user"]["file_name"]; } else { echo "Not yet assigned"; } ?>
 				</div>
 				<div class="dropdown btn_site">
-					<a class=" dropdown-toggle" data-toggle="dropdown"> Welcome <?php if(isset($_SEESSION["user"]["user_name"]) && $_SEESSION["user"]["user_name"]!=""){ echo ucfirst($_SEESSION["user"]["user_name"]); } else { ?> Dileep <?php } ?>   <span class="caret"></a>
+					<a class=" dropdown-toggle" data-toggle="dropdown"> Welcome <?php if(isset($_SEESSION["user"]["user_name"]) && $_SEESSION["user"]["user_name"]!=""){ echo ucfirst($_SEESSION["user"]["user_name"]); } else { ?> User <?php } ?>   <span class="caret"></a>
 					 <ul class="dropdown-menu">
 						<li><a href="<?php echo $baseUrl;?>referral-list">Referral List</a></li>
 						<li><a href="javascript:void(0);" onClick="changeQ();">Change Password</a></li>
@@ -28,8 +28,12 @@
 							<tbody>
 								<?php foreach($files as $file){ ?>
 								<tr>
-									<?php if($category =="P1099INT"){?>
-										<th style="width:100%">1099INT</th>
+									<?php if($category =="HSA"){?>
+										<th style="width:100%">5498/HSA</th>
+									<?php }else if($category =="IRA"){?>
+										<th style="width:100%">1099R/IRA</th>
+									<?php }else if($category =="P1099B"){?>
+										<th style="width:100%">1099B/G/DIV/INT/MISC</th>
 									<?php }else{ ?>
 										<th style="width:100%"><?php echo $category; ?></th>
 									<?php } ?>									
@@ -66,9 +70,13 @@
 					<div class="col-lg-6 label_col">
 						<div class="form-group" style="background:#ddd;width:100%;padding:6px;border-radius:5px;">
 							<label style="color:#111;margin-top:4px;">
-							<?php if($name->upt_name=='P1099INT'){ ?>
-							1099INT :
-							<?php } else {?>
+							<?php if($name->upt_name =="HSA"){?>
+								<th style="width:100%">5498/HSA</th>
+							<?php }else if($name->upt_name =="IRA"){?>
+								<th style="width:100%">1099R/IRA</th>
+							<?php }else if($name->upt_name =="P1099B"){?>
+									<th style="width:100%">1099B/G/DIV/INT/MISC</th>
+							<?php }else {?>
 							<?php echo $name->upt_name; ?> :
 							<?php } ?>
 							</label>
@@ -111,12 +119,12 @@
 				<h3 class="modal-title" id="lineModalLabel">Confirmation</h3>
 			</div>
 			<div class="modal-body">
-				<p>Oops! are you sure want to remove the record.</p>
+				<p>Oops! are you sure want to erase the document.</p>
 			</div>
 			<div class="modal-footer">
 				<span id="loading_remove_file" style="display:none;" class="pull-left"><i>Loading...</i></span>
 				<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
-				<button  type="button" class="btn btn-raised btn-info btn-sm" onclick="removeTaxFile()">Ok</button>
+				<button  type="button" class="btn btn-raised btn-info btn-sm" onclick="removeTaxFile()">OK</button>
 			</div>
 		</div>
 	</div>
@@ -126,10 +134,10 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-				<h3 class="modal-title" id="lineModalLabel">Warnning</h3>
+				<h3 class="modal-title" id="lineModalLabel">Response</h3>
 			</div>
 			<div class="modal-body">
-				<p>Oops! please upload atleat one file.</p>
+				<p>Oops! please upload at least one document.</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>

@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row page_lo">
 			<div class="col-xs-2 col-md-4 text-left">
-				<div class="btn_site"><a href="<?php echo $this->baseUrl; ?>dependents-info">Dependent Informations</a></div>
+				<div class="btn_site"><a href="<?php echo $this->baseUrl; ?>dependents-info">Dependents Information</a></div>
 			</div>  
 			<?php include('home-menu.phtml'); ?>
 		</div>
@@ -29,7 +29,7 @@
 								<input class="form-control" type="text" name="fname[]" id="fname<?php echo $index; ?>" required data-fv-notempty-message="Please enter firstname" value="<?php echo $d['first_name']; ?>">
 							</div>
 							<div class="form-group">
-								<label>ITIN/SSN</label>
+								<label>SSN/ITIN</label>
 								<input class="form-control" type="text" name="ssn[]" id="ssn<?php echo $index; ?>" value="<?php echo $d['ssn']; ?>">
 							</div>
 							<div class="form-group">
