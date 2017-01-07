@@ -11,7 +11,8 @@
 	<div class="dropdown btn_site">
 		<a class=" dropdown-toggle" data-toggle="dropdown"> Welcome <?php if(isset($_SESSION["user"]["user_id"]) && $_SESSION["user"]["user_id"]!=""){ echo ucfirst($_SESSION["user"]["user_name"]); } else { ?> User <?php } ?>   <span class="caret"></a>
 		 <ul class="dropdown-menu">
-			<li><a href="<?php echo $baseUrl;?>referral-list">Referral List</a></li>
+			<!--<li><a href="<?php //echo $baseUrl;?>referral-list">Referral List</a></li>-->
+			<li><a href="#">Referral List</a></li>
 			<li><a href="javascript:void(0);" onClick="changeQ();">Change Password</a></li>
 			<li><a href="javascript:void(0);" onClick="logOutFun();">Logout</a></li>
 		 </ul>

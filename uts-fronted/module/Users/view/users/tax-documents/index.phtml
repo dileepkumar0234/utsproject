@@ -1,4 +1,5 @@
-<div id="page-wrapper" class="bac_img">
+
+<?php // echo "<pre>";print_r($_SESSION["user"]["user_name"]);exit; ?><div id="page-wrapper" class="bac_img">
 	<div class="container-fluid">
 		<div class="row page_lo">
 			<div class="col-xs-2 col-md-4 text-left">
@@ -6,12 +7,13 @@
 			</div>  
 			<div class="col-xs-10 col-md-8 text-right btn_pad">
 				<div class="btn_site sm-hide">
-					File Number: <?php if(isset($_SEESSION["user"]["file_name"]) && $_SEESSION["user"]["file_name"]!=""){ echo $_SEESSION["user"]["file_name"]; } else { echo "Not yet assigned"; } ?>
+					File Number: <?php if(isset($_SESSION["user"]["unique_code"]) && $_SESSION["user"]["unique_code"]!=""){ echo $_SESSION["user"]["unique_code"]; } else { echo "Not yet assigned"; } ?>
 				</div>
 				<div class="dropdown btn_site">
-					<a class=" dropdown-toggle" data-toggle="dropdown"> Welcome <?php if(isset($_SEESSION["user"]["user_name"]) && $_SEESSION["user"]["user_name"]!=""){ echo ucfirst($_SEESSION["user"]["user_name"]); } else { ?> User <?php } ?>   <span class="caret"></a>
+					<a class=" dropdown-toggle" data-toggle="dropdown"> Welcome <?php if(isset($_SESSION["user"]["user_id"]) && $_SESSION["user"]["user_id"]!=""){ echo ucfirst($_SESSION["user"]["user_name"]); } else { ?> User <?php } ?>   <span class="caret"></a>
 					 <ul class="dropdown-menu">
-						<li><a href="<?php echo $baseUrl;?>referral-list">Referral List</a></li>
+						<!--<li><a href="<?php //echo $baseUrl;?>referral-list">Referral List</a></li>-->
+						<li><a href="#">Referral List</a></li>
 						<li><a href="javascript:void(0);" onClick="changeQ();">Change Password</a></li>
 						<li><a href="javascript:void(0);" onClick="logOutFun();">Logout</a></li>
 					 </ul>
