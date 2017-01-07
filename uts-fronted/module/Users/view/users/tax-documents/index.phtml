@@ -28,7 +28,11 @@
 							<tbody>
 								<?php foreach($files as $file){ ?>
 								<tr>
-									<th style="width:100%"><?php echo $category; ?></th>
+									<?php if($category =="P1099INT"){?>
+										<th style="width:100%">1099INT</th>
+									<?php }else{ ?>
+										<th style="width:100%"><?php echo $category; ?></th>
+									<?php } ?>									
 									<td style="width:100%"><a href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$category.'/'.$file; ?>" download><?php echo $file; ?></a></td>
 								</tr>
 								<?php } ?>
@@ -61,7 +65,13 @@
 					?>
 					<div class="col-lg-6 label_col">
 						<div class="form-group" style="background:#ddd;width:100%;padding:6px;border-radius:5px;">
-							<label style="color:#111;margin-top:4px;"><?php echo $name->upt_name; ?>:</label>
+							<label style="color:#111;margin-top:4px;">
+							<?php if($name->upt_name=='P1099INT'){ ?>
+							1099INT :
+							<?php } else {?>
+							<?php echo $name->upt_name; ?> :
+							<?php } ?>
+							</label>
 						</div>
 						<?php if(isset($this->taxDocuments[$name->upt_name]) && count($this->taxDocuments[$name->upt_name]) != 0){
 							foreach($this->taxDocuments[$name->upt_name] as $fileId => $file){

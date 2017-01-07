@@ -7,13 +7,13 @@
 			<?php include('home-menu.phtml'); ?>
 		</div>
 		<div class="row mar_t20 bac_uplo" id="hideShowDependents" >
-			<?php if(count($this->dependentsInfo) != 0){
+			<?php if(count($this->dependentsInfo) != 0){ 
 			foreach($this->dependentsInfo as $k=>$d){
 				$index = $k+1;
 			?>
 			<div class="col-lg-6 ">
 				<div class="table-responsive">
-				<a class="text-left btn_site">Dependent <?php echo $index; ?></a>
+				<div class="text-left">Dependent <?php echo $index; ?></div>
 					<table class="table	">
 						<tbody>
 							<tr>
@@ -40,10 +40,6 @@
 							<tr>
 							   <th>Last Name</th>
 								<td><?php echo $d['last_name']; ?></td>
-							</tr>
-							<tr>
-							   <th>ITIN</th>
-								<td><?php echo $d['itin']; ?></td>
 							</tr>
 							<tr>
 							   <th>Occupation</th>

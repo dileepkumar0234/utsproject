@@ -20,7 +20,7 @@ $forgetMessage='<body>
                 	<span>
 						<p style="color:#666;margin-left:12%;padding-top:5px;line-height:22px;">
 						You have just requested a password change for your Umpire Tax Solutions account	associated with this email address.
-						Please click on following click to change your password.
+						Please click on following link to change your password.
 						<br/>
 						<br/>
 						<a target="_blank" href="<SITELINK>" ><SITELINK></a>

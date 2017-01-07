@@ -21,7 +21,7 @@
 						<?php if($index != 1){ ?>
 						<div><a class="text-left btn_site">Dependent</a>&nbsp;&nbsp;<sup><a style="color:red" href="javascript:void(0);" onclick="removeDependents(<?php echo $index; ?>)">Remove</a></sup></div><br/>
 						<?php }else{ ?>
-						<div><a class="text-left btn_site">Dependent</a></div><br/>
+						<div><div class="text-left">Dependent</div></div><br/>
 						<?php } ?>
 						<div class="col-lg-6 label_col">
 							<div class="form-group">
@@ -41,10 +41,6 @@
 							<div class="form-group">
 								<label>Last Name:</label>
 								<input class="form-control" type="text" name="lname[]" id="lname<?php echo $index; ?>" value="<?php echo $d['last_name']; ?>">
-							</div>
-							<div class="form-group">
-								<label>ITIN</label>
-								<input class="form-control" type="text" name="itin[]" id="itin<?php echo $index; ?>" value="<?php echo $d['itin']; ?>">
 							</div>
 							<div class="form-group">
 								<label>Occupation:</label>
@@ -77,10 +73,6 @@
 							<div class="form-group">
 								<label>Last Name:</label>
 								<input class="form-control" type="text" name="lname[]" id="lname1">
-							</div>
-							<div class="form-group">
-								<label>ITIN</label>
-								<input class="form-control" type="text" name="itin[]" id="itin1">
 							</div>
 							<div class="form-group">
 								<label>Occupation:</label>

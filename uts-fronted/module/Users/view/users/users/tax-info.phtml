@@ -187,7 +187,59 @@
 				</div>
 				<div class="form-group">
 					<label>Filing Status:</label>
-					<input class="form-control" type="text" name="filingSta" id="filingSta" value="<?php if(isset($this->userInfo->filling_status) && $this->userInfo->filling_status !=""){ echo $this->userInfo->filling_status; }?>">
+					<select class="form-control" id="filingSta" name="filingSta">
+						<?php if(isset($this->userInfo->filling_status)) {?>
+						<?php if($this->userInfo->filling_status =="Single"){ ?>
+							<option value=""> Select a filing status</option>
+							<option value="Single" selected="selected">Single</option>
+							<option value="Married Filing Jointly">Married Filing Jointly</option>
+							<option value="Married Filing Seperately">Married Filing Seperately</option>
+							<option value="Head Of Household">Head Of Household</option>
+							<option value="Qualified Widow/er with Dependent Child">Qualified Widow/er with Dependent Child</option>
+						<?php }else if($this->userInfo->filling_status =="Married Filing Jointly"){?>
+							<option value=""> Select a filing status</option>
+							<option value="Single">Single</option>
+							<option value="Married Filing Jointly" selected="selected">Married Filing Jointly</option>
+							<option value="Married Filing Seperately">Married Filing Seperately</option>
+							<option value="Head Of Household">Head Of Household</option>
+							<option value="Qualified Widow/er with Dependent Child">Qualified Widow/er with Dependent Child</option>
+						<?php }else if($this->userInfo->filling_status =="Married Filing Seperately"){?>
+							<option value=""> Select a filing status</option>
+							<option value="Single">Single</option>
+							<option value="Married Filing Jointly">Married Filing Jointly</option>
+							<option value="Married Filing Seperately" selected="selected">Married Filing Seperately</option>
+							<option value="Head Of Household">Head Of Household</option>
+							<option value="Qualified Widow/er with Dependent Child">Qualified Widow/er with Dependent Child</option>
+						<?php }else if($this->userInfo->filling_status =="Head Of Household"){?>
+							<option value=""> Select a filing status</option>
+							<option value="Single">Single</option>
+							<option value="Married Filing Jointly">Married Filing Jointly</option>
+							<option value="Married Filing Seperately" >Married Filing Seperately</option>
+							<option value="Head Of Household" selected="selected">Head Of Household</option>
+							<option value="Qualified Widow/er with Dependent Child">Qualified Widow/er with Dependent Child</option>
+						<?php }else if($this->userInfo->filling_status =="Qualified Widow/er with Dependent Child"){?>
+							<option value=""> Select a filing status</option>
+							<option value="Single">Single</option>
+							<option value="Married Filing Jointly">Married Filing Jointly</option>
+							<option value="Married Filing Seperately" >Married Filing Seperately</option>
+							<option value="Head Of Household">Head Of Household</option>
+							<option selected="selected" value="Qualified Widow/er with Dependent Child">Qualified Widow/er with Dependent Child</option>	
+						<?php } else {?>
+							<option value=""> Select a filing status</option>
+							<option value="Single">Single</option>
+							<option value="Married Filing Jointly">Married Filing Jointly</option>
+							<option value="Married Filing Seperately" >Married Filing Seperately</option>
+							<option value="Head Of Household">Head Of Household</option>
+							<option value="Qualified Widow/er with Dependent Child">
+						<?php } }else{ ?>
+							<option value=""> Select a filing status</option>
+							<option value="Single">Single</option>
+							<option value="Married Filing Jointly">Married Filing Jointly</option>
+							<option value="Married Filing Seperately" >Married Filing Seperately</option>
+							<option value="Head Of Household">Head Of Household</option>
+							<option value="Qualified Widow/er with Dependent Child">
+						<?php } ?>
+					</select>
 				</div>
 				<div class="form-group">
 					<label>E-Mail:</label>
@@ -203,11 +255,59 @@
 				</div>
 				<div class="form-group">
 					<label>Country:</label>
-					<input class="form-control" type="text" name="country" id="country" value="<?php if(isset($this->userInfo->country_name) && $this->userInfo->country_name !=""){ echo $this->userInfo->country_name; }?>">
+					<select class="form-control" id="country" name="country">
+						<?php if(isset($this->userInfo->country_name)) {?>
+						<?php if($this->userInfo->country_name =="INDIA"){ ?>
+							<option value=""> Select a country</option>
+							<option value="INDIA" selected="selected">INDIA</option>
+							<option value="US">US</option>
+							<option value="Other">Other</option>
+						<?php }else if($this->userInfo->country_name =="US"){?>
+							<option value=""> Select a country</option>
+							<option value="INDIA">INDIA</option>
+							<option value="US" selected="selected">US</option>
+							<option value="Other">Other</option>
+						<?php }else if($this->userInfo->country_name =="Other"){?>
+							<option value=""> Select a country</option>
+							<option value="INDIA">INDIA</option>
+							<option value="US" >US</option>
+							<option value="Other" selected="selected">Other</option>
+						<?php } else {?>
+							<option value=""> Select a country</option>
+							<option value="INDIA">INDIA</option>
+							<option value="US">US</option>
+							<option value="Other">Other</option>
+						<?php } } else {?>
+							<option value=""> Select a country</option>
+							<option value="INDIA">INDIA</option>
+							<option value="US">US</option>
+							<option value="Other">Other</option>
+						<?php } ?>
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Health Insurance:</label>
-					<input class="form-control" type="text" name="insurence" id="insurence" value="<?php if(isset($this->userInfo->insurence) && $this->userInfo->insurence !=""){ echo $this->userInfo->insurence; }?>">
+					<select class="form-control" id="insurence" name="insurence">
+					<?php if(isset($this->userInfo->insurence)) {
+						if($this->userInfo->insurence == "Yes") {
+					?>
+						<option value=""> Select a Health Insurance</option>
+						<option value="Yes" selected="selected">Yes</option>
+						<option value="No">No</option>
+					<?php } else if($this->userInfo->insurence == "No") {?>
+						<option value=""> Select a Health Insurance</option>
+						<option value="Yes">Yes</option>
+						<option value="No" selected="selected">No</option>
+					<?php } else {?>
+						<option value=""> Select a Health Insurance</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					<?php } } else {?>
+						<option value=""> Select a Health Insurance</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					<?php } ?>
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Client Location:</label>

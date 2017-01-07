@@ -69,7 +69,7 @@ class DependentTable
 	public function getDependents($id,$year){
 		$select = $this->tableGateway->getSql()->select();	
 		$select->where('d_user_id = "'.$id.'"');
-		$select->where('current_year = "'.$year.'"');
+		// $select->where('current_year = "'.$year.'"');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		
 	}
@@ -85,7 +85,7 @@ class DependentTable
 				   'occupation' 	=> $dependentInfo['occupation'][$k],
 				   'visa_type'      => $dependentInfo['visa_type'][$k],
 				   'ssn'      		=> $dependentInfo['ssn'][$k],
-				   'itin'      		=> $dependentInfo['itin'][$k], 
+				   // 'itin'      		=> $dependentInfo['itin'][$k], 
 				   'current_year'   => date('Y'), 
 				   'added_at' 		=> date('Y-m-d H:i:s'), 
 				   'updated_at' 	=> date('Y-m-d H:i:s'), 
