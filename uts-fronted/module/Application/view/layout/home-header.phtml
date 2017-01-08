@@ -16,6 +16,9 @@
 	if($_SERVER['REQUEST_URI'] == '/uts/'){
 		$home    = "active";
 	}
+	if($_SERVER['REQUEST_URI'] == '/'){
+		$home    = "active";
+	}
 	if(strpos($_SERVER['REQUEST_URI'], 'testimonial') !== false){
 		$testimonial    = "active";
 	}

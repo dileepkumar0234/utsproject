@@ -23,7 +23,7 @@ class ProcessingStatusTable
 		$data = array(
 			'ps_user_id' 	  	       => $uid,				
 			'ps_state' 		           => 0,  
-			'ps_year'                  => date("Y"),
+			'ps_year'                  => date("Y") -1,
 			'ps_added_at' 	           => date('Y-m-d H:i:s'),   
 		);	
 		$insertresult=$this->tableGateway->insert($data);	
@@ -187,5 +187,13 @@ class ProcessingStatusTable
 		$select->where('ps_user_id="'.$uid.'"');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet->current();		
+	}
+	public function statusexistuser($uid){
+		$presentYear = '2016';
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('processing_status.ps_year="'.$presentYear.'"');
+		$select->where('processing_status.ps_user_id="'.$uid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet->count();
 	}
 }

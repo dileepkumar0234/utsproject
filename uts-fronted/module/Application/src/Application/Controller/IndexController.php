@@ -94,6 +94,7 @@ class IndexController extends AbstractActionController
 	}
 	public function checkFgtUidAction()
 	{
+		header('Access-Control-Allow-Origin: *');
 		$uid = "";$token = "";
 		if(isset($_POST['uid']) && $_POST['uid']!= "")
 		{
@@ -164,6 +165,7 @@ class IndexController extends AbstractActionController
 		));
     }
 	public function checkRegAuthAction(){
+		header('Access-Control-Allow-Origin: *');
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
@@ -203,6 +205,7 @@ class IndexController extends AbstractActionController
 		}
 	}
 	public function signUpAction(){
+		header('Access-Control-Allow-Origin: *');
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
@@ -248,14 +251,20 @@ class IndexController extends AbstractActionController
 		}		
 	}
 	public function checkingLoginAction(){
+		header('Access-Control-Allow-Origin: *');
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];	
+		$processStatusTable = $this->getServiceLocator()->get('Models\Model\ProcessingStatusFactory');
 		$userTable=$this->getServiceLocator()->get('Models\Model\UserFactory');
 		$email = $_POST['u_email'];
 		$checkUserloginemail = $userTable->checkDetails($_POST)->current();	
 		if(isset($checkUserloginemail->user_id) && $checkUserloginemail->user_id!=''){
+			$processData = $processStatusTable->statusexistuser($user_id);
+			if($processData==0){
+				$nowYearexist = $processStatusTable->saveProccessingStatus($user_id);
+			}
 			$user_type_id = $checkUserloginemail->user_type_id;
 			$user_id = $checkUserloginemail->user_id;
 			$user_session = new Container('user');
