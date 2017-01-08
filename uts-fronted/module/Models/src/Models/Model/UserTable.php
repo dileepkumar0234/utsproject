@@ -90,12 +90,14 @@ class UserTable
     }		
 	public function checkDetails($details)
     {	
+		$cuDate = date('Y')-1;
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user_details', new Expression('user_details.u_user_id=user.user_id'),array('*'),'left');
 		$select->join('processing_status', new Expression('processing_status.ps_user_id=user.user_id'),array('*'),'left');
 		$select->where('user.email="'.$details['u_email'].'"');
 		$select->where('user.password="'.md5($details['u_password']).'"');
 		$select->where('user.status="1"');
+		$select->where('processing_status.ps_year="'.$cuDate.'"');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		
 	}	
