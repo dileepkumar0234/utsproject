@@ -1,10 +1,21 @@
-.blink_me {
-  animation: blinker 1s linear infinite;
+/* .blink_me { */
+  /* animation: blinker 1s linear infinite; */
+/* } */
+
+/* @keyframes blinker {   */
+  /* 50% { opacity: 0; } */
+/* } */
+@-webkit-keyframes blinker {  
+  from { opacity: 1.0; }
+  to { opacity: 0.0; }
 }
 
-@keyframes blinker {  
-  50% { opacity: 0; }
-}
+.blink_me {
+  -webkit-animation-name: blinker;  
+  -webkit-animation-iteration-count: infinite;  
+  -webkit-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
+  -webkit-animation-duration: 4.7s; 
+}   
 .active{
 	  text-decoration: none;
 	  background-color: #20abe2;
