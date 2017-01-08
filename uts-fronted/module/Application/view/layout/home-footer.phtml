@@ -45,7 +45,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content" >
 				<div class="modal-header" style="border-bottom:1px solid #ddd;background:#189def;color:#fff;border-radius:2px 2px 0 0">
-					<button type="button" class="close" onClick="closeSignup();">&times;</button>
+					<button type="button" class="close" onClick="closeSignupeee();">&times;</button>
 					<h4 class="modal-title">Sign Up</h4>
 				</div>
 				<div class="modal-body">
@@ -276,7 +276,8 @@
 			<div style="margin-top:10px;">
 					<div class="col-md-4"> &nbsp;</div>
 						<div class="col-md-4">
-							<a href="javascript:void(0);" onClick="closeSignUp();"><img class="img-responsive  mar_btn_l20" src="<?php echo $basePath;?>/img/utsadd2.png"></a>
+							<?php $logged = 0; if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ $logged = 1; }else{ $logged = 0; }?>
+							<a href="javascript:void(0);" onClick="closeSignUp('<?php echo $logged; ?>');"><img class="img-responsive  mar_btn_l20" src="<?php echo $basePath;?>/img/utsadd2.png"></a>
 						</div>
 					<div class="col-md-4"> &nbsp;</div>
 			</div>
@@ -593,12 +594,17 @@
 				}
 			});
 		}
-		function closeSignUp(){
-			$('#registerForm').formValidation('resetForm', true);
-			$('#regModal').modal('show');
-			$("#emailChecking").html("");
-			$('#regModal').modal('show');
-			$("#splash_boom").modal('hide');
+		function closeSignupeee(val){
+			if(val == 0){
+				$('#registerForm').formValidation('resetForm', true);
+				$('#regModal').modal('show');
+				$("#emailChecking").html("");
+				$('#regModal').modal('show');
+				$("#splash_boom").modal('hide');
+			}else{
+				window.location=baseUrl+"dashboard";
+			}
+			
 		}
 		</script>
 	</body>
