@@ -10,6 +10,7 @@ return array(
 		'baseUrl' 		=> 	'http://localhost/utsproject/trunk/uts-fronted/',
 		'basePath' 		=> 	'http://localhost/utsproject/trunk/uts-fronted/public',
 		'imageUrl' 		=> 	'http://localhost/utsproject/trunk/uts-fronted/',
+		'downloadUrl' 	=> 	'http://localhost/utsproject/trunk/',
 		'year' 			=> 	2016,
 	),
 	'service_manager' 	=> 	array(

@@ -15,6 +15,7 @@ class TaxDocumentsController extends AbstractActionController
 		$baseUrlArr 	= $baseUrls['urls'];
 		$baseUrl 		= $baseUrlArr['baseUrl'];
 		$basePath 		= $baseUrlArr['basePath'];
+		$downloadUrl 		= $baseUrlArr['downloadUrl'];
 		
 		$uploadPdfsTable 	= $this->getServiceLocator()->get('Models\Model\UploadPdfsFactory');
 		$uploadTypesTable 	= $this->getServiceLocator()->get('Models\Model\UploadTypesFactory');
@@ -62,7 +63,8 @@ class TaxDocumentsController extends AbstractActionController
 			'basePath'  		=>  $basePath,
 			'taxDocuments'  	=>  $taxDocuments,
 			'categories'  		=>  $categories,
-			'user_id'  			=>  $user_id
+			'user_id'  			=>  $user_id,
+			'downloadUrl'       => $downloadUrl,
 		));
 	}
 	public function removeTaxFileAction(){

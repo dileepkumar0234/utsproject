@@ -1,5 +1,5 @@
 
-<?php // echo "<pre>";print_r($_SESSION["user"]);exit; ?><div id="page-wrapper" class="bac_img">
+<?php // echo "<pre>";print_r($this->downloadUrl);exit; ?><div id="page-wrapper" class="bac_img">
 	<div class="container-fluid">
 		<div class="row page_lo">
 			<div class="col-xs-2 col-md-4 text-left">
@@ -39,7 +39,7 @@
 									<?php }else{ ?>
 										<th style="width:100%"><?php echo $category; ?></th>
 									<?php } ?>									
-									<td style="width:100%"><a href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$category.'/'.$file; ?>" download><?php echo $file; ?></a></td>
+									<td style="width:100%"><a href="<?php echo $this->downloadUrl.'uploads/'.$this->user_id.'/'.$category.'/'.$file; ?>" download><?php echo $file; ?></a></td>
 								</tr>
 								<?php } ?>
 							</tbody>
@@ -89,7 +89,7 @@
 							
 							<div class="form-group">
 								<div class="col-lg-6">
-									<p id="existsFile_<?php echo $fileId; ?>"><a style="color:#fff !important" href="<?php echo $this->baseUrl.'uploads/'.$this->user_id.'/'.$name->upt_name.'/'.$file; ?>" download><?php echo $file; ?> &nbsp;&nbsp; <a href="javascript:void(0);" style="color:#ff3349 !important;font-size:20px;padding-left:10px;" onclick="removeFile(<?php echo $fileId; ?>)"><span class="glyphicon glyphicon-trash"></span></a></p>
+									<p id="existsFile_<?php echo $fileId; ?>"><a style="color:#fff !important" href="<?php echo $this->downloadUrl.'uploads/'.$this->user_id.'/'.$name->upt_name.'/'.$file; ?>" download><?php echo $file; ?> &nbsp;&nbsp; <a href="javascript:void(0);" style="color:#ff3349 !important;font-size:20px;padding-left:10px;" onclick="removeFile(<?php echo $fileId; ?>)"><span class="glyphicon glyphicon-trash"></span></a></p>
 								</div>
 							</div>
 							<div class="clearfix"></div>
