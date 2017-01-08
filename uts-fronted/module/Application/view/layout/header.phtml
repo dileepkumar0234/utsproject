@@ -37,7 +37,11 @@
 					<style>.rev{color:#fff;background:transparent;border:none;outline:none!important;-webkit-animation:wiggle 5s linear infinite;animation:wiggle 5s linear infinite;}@-webkit-keyframes wiggle{2%{-webkit-transform:rotate(2deg);transform:rotate(2deg);}4%{-webkit-transform:rotate(-2deg);transform:rotate(-2deg);}6%{-webkit-transform:rotate(2deg);transform:rotate(2deg);}8%{-webkit-transform:rotate(-2deg);transform:rotate(-2deg);}10%{-webkit-transform:rotate(1deg);transform:rotate(1deg);}12%{-webkit-transform:rotate(-1deg);transform:rotate(-1deg);}14%{-webkit-transform:rotate(1deg);transform:rotate(1deg);}16%{-webkit-transform:rotate(-1deg);transform:rotate(-1deg);}18%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}20%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}}@keyframes wiggle{2%{-webkit-transform:rotate(2deg);transform:rotate(2deg);}4%{-webkit-transform:rotate(-2deg);transform:rotate(-2deg);}6%{-webkit-transform:rotate(2deg);transform:rotate(2deg);}8%{-webkit-transform:rotate(-2deg);transform:rotate(-2deg);}10%{-webkit-transform:rotate(1deg);transform:rotate(1deg);}12%{-webkit-transform:rotate(-1deg);transform:rotate(-1deg);}14%{-webkit-transform:rotate(1deg);transform:rotate(1deg);}16%{-webkit-transform:rotate(-1deg);transform:rotate(-1deg);}18%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}20%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}}</style>
 					<div onClick="referFriendPopFun()" class="rev btn_site btn btn-success" style="background-color:#ff9900;">Refer a Friend</div>
 					<div class="btn_site"> File Status : <?php if(isset($_SESSION["user"]["file_name"]) && $_SESSION["user"]["file_name"]!="") { echo $_SESSION["user"]["file_name"]; }else{ echo "Not yet assigned"; }?> </div>
+					<?php if(isset($_SESSION['user']['file_name']) && $_SESSION['user']['file_name']=="Synopsys Pending" || $_SESSION['user']['file_name']=="Payment Pending"){?>
+					<a href="https://www.umpiretaxsolutions.com/services/payment.php"><div class="btn_site" >Make Payment</div></a>
+					<?php } else{?>
 					<div class="btn_site" >Make Payment</div>
+					<?php } ?>
             </ul>
             <?php include('left-menu.phtml'); ?>
         </nav>

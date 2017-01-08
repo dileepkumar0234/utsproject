@@ -670,7 +670,7 @@ function getReferralsList(){
 		dataType:'json',
 		url: baseUrl+'get-referels-info',
 		success: function(data){			
-		$('.tEList').html('<table id="serchList" class="table table-bordered table-striped"><thead><tr><th width="10%">Referral Name</th><th width="10%">Referral Email</th><th width="10%">Referral Phone</th><th width="10%">Referral to Name</th><th width="10%">Referral to Email</th><th width="10%">Referral to Phone</th><th width="40%">Comment</th></tr></thead><tbody></tbody></table>');				
+		$('.tEList').html('<table id="serchList" class="table table-bordered table-striped"><thead><tr><th width="10%">Name</th><th width="10%">Email id</th><th width="10%">Phone Number</th><th width="10%">Referral Name</th><th width="10%">Referral Email id</th><th width="10%">Referral Phone Number</th><th width="40%">Comment</th></tr></thead><tbody></tbody></table>');				
 		var oTable = $('#serchList').dataTable( {
 				aoColumnDefs: [{bSortable: false,
 								aTargets: [ 0 ]

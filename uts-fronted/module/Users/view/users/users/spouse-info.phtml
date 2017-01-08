@@ -16,7 +16,7 @@
 							<td><?php if(isset($this->userInfo->first_name) && $this->userInfo->first_name !=""){ echo $this->userInfo->first_name; }?></td>
 						</tr>
 						<tr>
-						   <th>SSN</th>
+						   <th>SSN/ITIN</th>
 							<td><?php if(isset($this->userInfo->ssn) && $this->userInfo->ssn !=""){ echo $this->userInfo->ssn; }?></td>
 						</tr>
 						<tr>
@@ -88,7 +88,7 @@
 					<input class="form-control" type="text" name="itin" id="itin" value="<?php if(isset($this->userInfo->itin) && $this->userInfo->itin !=""){ echo $this->userInfo->itin; }?>">
 				</div>-->
 				<div class="form-group">
-					<label>Occupation:</label>
+					<label>Relationship:</label>
 					<input class="form-control" type="text" name="occupation" id="occupation" value="<?php if(isset($this->userInfo->occupation) && $this->userInfo->occupation !=""){ echo $this->userInfo->occupation; }?>">
 				</div>
 			<div class="form-group">
