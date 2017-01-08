@@ -117,28 +117,36 @@ class UsersController extends AbstractActionController
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
 		$user_session = new Container('user');
-		if(isset($user_session->user_id) && $user_session->user_id !=""){
-			$userId  = $user_session->user_id;
-		}else{
-			$userId  = "";
-		}
-		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
-		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
-		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
-		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
-		$getUserInfo = $userTable->getUserInfo($userId);
-		if($_POST){
-			$userDetailesTable->saveSpouseData($_POST);
-			return new JsonModel(array(					
-				'output' 	=> 'success',
-			));
-		}else{
-			return new ViewModel(array(					
-				'baseUrl' 	=>  $baseUrl,
-				'basePath'  =>  $basePath,
-				'userInfo'  =>  $getUserInfo,
-			));
-		}
+		// if(isset($user_session->user_id) && $user_session->user_id !=""){
+			// $userId  = $user_session->user_id;
+		// }else{
+			// $userId  = "";
+		// }
+		// $userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
+		// $spouseTable  = $this->getServiceLocator()->get('Models\Model\SpouseFactory');
+		// $userTable    = $this->getServiceLocator()->get('Models\Model\UserFactory');
+		// $spouse_id = '';
+		// if(isset($_POST['hidspouse_id']) && $_POST['hidspouse_id']!=""){
+			// $spouse_id = $_POST['hidspouse_id'];
+		// }
+		// $getUserInfo  = $spouseTable->getSpousesData($userId);
+		// if(isset($getUserInfo->spouse_id) && $getUserInfo->spouse_id!=""){
+			// $spouse_id = $getUserInfo->spouse_id;
+			// if($spouse_id){
+				// $spouseTable->saveSpouseeData($_POST,$spouse_id);
+				// $getUserInfo  = $spouseTable->getSpousesData($userId);
+			// }
+		// }else{
+			// $spouse_id = "";
+			// $spouseTable->saveSpouseeData($_POST,$spouse_id);
+			// $getUserInfo  = $spouseTable->getSpousesData($userId);
+		// }
+		// echo "<pre>";print_r($getUserInfo);exit;
+		// return new ViewModel(array(					
+			// 'baseUrl' 	=>  $baseUrl,
+			// 'basePath'  =>  $basePath,
+			// 'userInfo'  =>  $getUserInfo,
+		// ));
 	}
 	public function empInfoAction(){
 		$baseUrls 	= $this->getServiceLocator()->get('config');

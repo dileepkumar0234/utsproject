@@ -18,6 +18,70 @@ class SpouseTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
+	public function saveSpouseeData($users,$spouse_id)
+    {
+		if(isset($users['fname']) && $users['fname']!=''){
+			$firstName = $users['fname'];
+		}else{
+			$firstName = '';
+		}
+		if(isset($users['lname']) && $users['lname']!=''){
+			$lastName = $users['lname'];
+		}else{
+			$lastName ='';
+		}
+		if(isset($users['occupation']) && $users['occupation']!=''){
+			$occupation = $users['occupation'];
+		}else{
+			$occupation ='';
+		}
+		if(isset($users['dob']) && $users['dob']!=''){
+			$dob = $users['dob'];
+		}else{
+			$dob ='';
+		}
+		if(isset($users['phone']) && $users['phone']!=''){
+			$inputTelephone = $users['phone'];
+		}else{
+			$inputTelephone ='';
+		}
+		if(isset($users['visa_type']) && $users['visa_type']!=''){
+			$visa_type = $users['visa_type'];
+		}else{
+			$visa_type ='';
+		}
+		if(isset($users['ssn']) && $users['ssn']!=''){
+			$ssn = $users['ssn'];
+		}else{
+			$ssn ='';
+		}
+		if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){
+			$userId = $_SESSION['user']['user_id'];
+		}else if(isset($users['hidUserId']) && $users['hidUserId']!=""){
+			$userId = $users['hidUserId'];
+		}
+		$data = array(		 		
+			's_user_id'         => 	$userId,  		
+			'first_name'        => 	$firstName,  		
+			'last_name'         => 	$lastName,  
+			'occupation' 	    => 	$occupation,			
+			'dob'	      	 	=> 	$dob,
+			'phone'	      	 	=> 	$inputTelephone,
+			'visa_type'	      	=> 	$visa_type,
+			'ssn'	      	 	=> 	$ssn,
+			'status'			=>	1,			  	
+		);
+		if(isset($spouse_id) && $spouse_id!=""){
+			$data['updated_at']  =	date('Y-m-d H:i:s');
+			$updateorderid=$this->tableGateway->update($data, array('spouse_id' => $spouse_id));
+			return $updateorderid;
+		}else{
+			$data['added_at']  =	date('Y-m-d H:i:s');
+			$insertresult=$this->tableGateway->insert($data);	
+			return $this->tableGateway->lastInsertValue;
+		}		
+	}
+	
 	public function saveSpouseData($users)
     {
 		if(isset($users['first_name']) && $users['first_name']!=''){
@@ -81,6 +145,7 @@ class SpouseTable
 			return $this->tableGateway->lastInsertValue;
 		}		
 	}
+	
 	public function getData($id){
 		$select = $this->tableGateway->getSql()->select();	
 		$select->where('s_user_id= "'.$id.'"');
@@ -92,6 +157,6 @@ class SpouseTable
 		$select->where('s_user_id = "'.$id.'"');
 		$select->where('status = "1"');
 		$resultSet = $this->tableGateway->selectWith($select);	
-		return $resultSet;		
+		return $resultSet->current();		
 	}
 }
