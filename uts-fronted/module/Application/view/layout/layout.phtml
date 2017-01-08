@@ -246,8 +246,20 @@ $(document).ready(function() {
 	$('#contactForm').formValidation().on('success.form.fv', function(e, data) {	
 		e.preventDefault();
 	});
+    <?php if($_SERVER['REQUEST_URI'] == '/'){ ?>
+		openedSplashPopup();
+	<?php }else if($_SERVER['REQUEST_URI'] == '/utsproject/trunk/uts-fronted/'){?>
+		openedSplashPopup();
+	<?php }else if($_SERVER['REQUEST_URI'] == '/uts/'){?>
+		openedSplashPopup();
+	<?php }?>	
 });
-	
+function closesplash(){
+	$("#splash_boom").modal('hide');	
+}
+function openedSplashPopup(){
+	$("#splash_boom").modal('show');
+}	
 function referFriend(){
 		$('#refMesage').html('');
 		$('#refSuccMesage').html('');

@@ -123,10 +123,12 @@ class UsersController extends AbstractActionController
 			$userId  = "";
 		}
 		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
+		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
+		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$getUserInfo = $userTable->getUserInfo($userId);
 		if($_POST){
-			$userDetailesTable->saveUserSpouseDetails($_POST);
+			$userDetailesTable->saveSpouseData($_POST);
 			return new JsonModel(array(					
 				'output' 	=> 'success',
 			));
