@@ -45,6 +45,13 @@ class SchedulesTimingsTable
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		
 	}
+	public function getTotalInfo($id){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('sc_user_id= "'.$id.'"');
+		$select->order('created_at DESC');
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet;		
+	}
 	public function updateScheduleTime($uid){
 		$data = array( 		
 			'user_status'		    => 2, 

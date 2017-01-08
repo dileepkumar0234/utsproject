@@ -20,6 +20,25 @@ class UsersController extends AbstractActionController
 			'basePath'  		=>  $basePath,
 		));
 	}
+	public function scheduleTaxAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		$scheduleTable  = $this->getServiceLocator()->get('Models\Model\SchedulesTimingsFactory');
+		$user_session = new Container('user');
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
+		$result = $scheduleTable->getTotalInfo($userId);
+		return new ViewModel(array(					
+			'baseUrl' 			=>  $baseUrl,
+			'basePath'  		=>  $basePath,
+			'schData'  			=>  $result,
+		));
+	}
 	public function indexAction(){
 		$user_session 				= new Container('user');
 		$baseUrls 					= $this->getServiceLocator()->get('config');

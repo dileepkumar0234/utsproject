@@ -1,0 +1,45 @@
+<div id="page-wrapper" class="bac_img">
+	<div class="container-fluid">
+		<div class="row page_lo">
+			<div class="col-xs-2 col-md-4 text-left">
+				<div class="btn_site"><a href="<?php echo $this->baseUrl; ?>summary-info"> Schedule Tax Information</a></div>
+			</div>  
+				<?php include('home-menu.phtml'); ?>
+		</div>
+		
+		<div class="row mar_t20 bac_uplo" id="view_tax_documents">
+			<?php if(count($this->schData) != 0){ ?>
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table class="table	">
+							<tbody>
+								<?php foreach($this->schData as $s){ ?>
+								<tr>
+									<th> 									
+										<td>Your appointment has been <?php if($s->user_status=='1') { echo "scheduled "; }else{ echo "Re scheduled "; }?> on <?php echo $s->schedule_dt; ?> @ <?php echo $s->schedule_period; ?> CST </td>
+									</th>
+								</tr>
+								<?php } ?>
+								<th>									
+									<td><b> Note: If you want to Reschedule click on edit option</b> </td>
+								</th>
+							</tbody>
+						</table>
+						<div class="col-lg-12 label_col">
+							<div class="pull-right">
+								<button type="button" class="btn btn-warning btn-md" onclick="showSchUploads()">EDIT</button>
+								<!--<button type="button" class="btn btn-success btn-md">SUBMIT</button>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php }else{ ?>
+				<div class="col-lg-6 ">
+					<div class="table-responsive">
+						<i>No schedules </i>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+</div>

@@ -29,6 +29,16 @@ return array(
 					),
 				),
 			),
+			'schedule-tax' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/schedule-tax',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'scheduleTax',
+					),
+				),
+			),
 			'dashboard' => array(
 				'type' => 'Literal',
 				'options' => array(
