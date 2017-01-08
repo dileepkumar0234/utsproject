@@ -4,7 +4,7 @@
 	$basePath 		= 	$header->headerarray['basePath'];
 	// echo "<pre>";print_r($_SESSION["user"]["user_name"]);exit;
 ?>
-<div class="col-xs-10 col-md-8 text-right btn_pad">
+<div class="col-xs-10 col-md-8 text-right btn_pad user_drop">
 	<div class="btn_site sm-hide">
 		File Number : <?php if(isset($_SESSION["user"]["unique_code"]) && $_SESSION["user"]["unique_code"]!=""){ echo $_SESSION["user"]["unique_code"]; } else { ?> Not yet assigned <?php } ?>
 	</div>

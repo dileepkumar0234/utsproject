@@ -83,6 +83,9 @@ a {
 .btn_pad .btn_site{
 	margin-left:2px 
 }
+.user_drop{
+	margin-top:45px;
+}
 .top-nav .btn_site{
 margin:0px;
 }
@@ -102,6 +105,11 @@ margin:0px;
 }
 .sm-hide{
 	display:none;
+}
+}
+@media only screen and (max-width:320px) {
+	.btn_site {
+    font-size: 11px;
 }
 }	
 
