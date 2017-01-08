@@ -261,6 +261,7 @@ class IndexController extends AbstractActionController
 		$email = $_POST['u_email'];
 		$checkUserloginemail = $userTable->checkDetails($_POST)->current();	
 		if(isset($checkUserloginemail->user_id) && $checkUserloginemail->user_id!=''){
+			$user_id = $checkUserloginemail->user_id;
 			$processData = $processStatusTable->statusexistuser($user_id);
 			if($processData==0){
 				$nowYearexist = $processStatusTable->saveProccessingStatus($user_id);

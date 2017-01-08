@@ -549,8 +549,20 @@ function addMoreDependents(){
 						'<input class="form-control" type="text" name="lname[]" id="lname'+depentsCount+'">'+
 					'</div>'+
 					'<div class="form-group">'+
-						'<label>Occupation:</label>'+
-						'<input class="form-control" type="text" name="occupation[]" id="occupation'+depentsCount+'">'+
+						'<label>Relationship:</label>'+
+						'<select class="form-control" type="text" name="occupation[]" id="occupation'+depentsCount+'">'+
+						'<option value="Aunt">Aunt</option>'+
+						'<option value="Brother">Brother</option>'+
+						'<option value="Daughter">Daughter</option>'+
+						'<option value="Father">Father</option>'+
+						'<option value="Mother">Mother</option>'+
+						'<option value="Nephew">Nephew</option>'+
+						'<option value="Niece">Niece</option>'+
+						'<option value="Son" selected="selected">Son</option>'+
+						'<option value="Sister">Sister</option>'+
+						'<option value="Uncle">Uncle</option>'+
+						'<option value="others">others</option>'+
+						'</select>'+
 					'</div>'+
 					'<div class="form-group">'+
 						'<label>Visa Type:</label>'+

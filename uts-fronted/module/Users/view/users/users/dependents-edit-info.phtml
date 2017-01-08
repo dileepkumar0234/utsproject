@@ -43,8 +43,168 @@
 								<input class="form-control" type="text" name="lname[]" id="lname<?php echo $index; ?>" value="<?php echo $d['last_name']; ?>">
 							</div>
 							<div class="form-group">
-								<label>Occupation:</label>
-								<input class="form-control" type="text" name="occupation[]" id="occupation<?php echo $index; ?>" value="<?php echo $d['occupation']; ?>">
+								<label>Relationship:</label>
+								<select name="occupation[]" id="occupation<?php echo $index; ?>"  class="form-control" >
+									<?php if(isset($d['occupation']) && $d['occupation']!="") { ?>
+											<?php if($d['occupation'] == 'Aunt') { ?>
+												<option value="Aunt" selected="selected">Aunt</option>
+												<option value="Brother">Brother</option>
+												<option value="Daughter">Daughter</option>
+												<option value="Father">Father</option>
+												<option value="Mother">Mother</option>
+												<option value="Nephew">Nephew</option>
+												<option value="Niece">Niece</option>
+												<option value="Son">Son</option>
+												<option value="Sister">Sister</option>
+												<option value="Uncle">Uncle</option>
+												<option value="others">others</option>
+											<?php } else if($d['occupation'] == 'Brother'){?>
+												<option value="Aunt">Aunt</option>
+												<option value="Brother" selected="selected">Brother</option>
+												<option value="Daughter">Daughter</option>
+												<option value="Father">Father</option>
+												<option value="Mother">Mother</option>
+												<option value="Nephew">Nephew</option>
+												<option value="Niece">Niece</option>
+												<option value="Son">Son</option>
+												<option value="Sister">Sister</option>
+												<option value="Uncle">Uncle</option>
+												<option value="others">others</option>
+											<?php }  else if($d['occupation'] == 'Daughter'){?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother" >Brother</option>
+													<option value="Daughter" selected="selected">Daughter</option>
+													<option value="Father">Father</option>
+													<option value="Mother">Mother</option>
+													<option value="Nephew">Nephew</option>
+													<option value="Niece">Niece</option>
+													<option value="Son" >Son</option>
+													<option value="Sister">Sister</option>
+													<option value="Uncle">Uncle</option>
+													<option value="others">others</option>
+											<?php } else if($d['occupation'] == 'Father'){?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother" >Brother</option>
+													<option value="Daughter">Daughter</option>
+													<option value="Father"selected="selected">Father</option>
+													<option value="Mother">Mother</option>
+													<option value="Nephew">Nephew</option>
+													<option value="Niece">Niece</option>
+													<option value="Son" >Son</option>
+													<option value="Sister">Sister</option>
+													<option value="Uncle">Uncle</option>
+													<option value="others">others</option>
+											<?php } else if($d['occupation'] == 'Mother'){?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother" >Brother</option>
+													<option value="Daughter">Daughter</option>
+													<option value="Father">Father</option>
+													<option value="Mother"selected="selected">Mother</option>
+													<option value="Nephew">Nephew</option>
+													<option value="Niece">Niece</option>
+													<option value="Son" >Son</option>
+													<option value="Sister">Sister</option>
+													<option value="Uncle">Uncle</option>
+													<option value="others">others</option>
+											<?php } else if($d['occupation'] == 'Nephew'){?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother" >Brother</option>
+													<option value="Daughter">Daughter</option>
+													<option value="Father">Father</option>
+													<option value="Mother">Mother</option>
+													<option value="Nephew"selected="selected">Nephew</option>
+													<option value="Niece">Niece</option>
+													<option value="Son" >Son</option>
+													<option value="Sister">Sister</option>
+													<option value="Uncle">Uncle</option>
+													<option value="others">others</option>
+											<?php } else if($d['occupation'] == 'Niece'){?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother" >Brother</option>
+													<option value="Daughter">Daughter</option>
+													<option value="Father">Father</option>
+													<option value="Mother">Mother</option>
+													<option value="Nephew">Nephew</option>
+													<option value="Niece"selected="selected">Niece</option>
+													<option value="Son" >Son</option>
+													<option value="Sister">Sister</option>
+													<option value="Uncle">Uncle</option>
+													<option value="others">others</option>
+											<?php } else if($d['occupation'] == 'Son'){?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother" >Brother</option>
+													<option value="Daughter">Daughter</option>
+													<option value="Father">Father</option>
+													<option value="Mother">Mother</option>
+													<option value="Nephew">Nephew</option>
+													<option value="Niece">Niece</option>
+													<option value="Son" selected="selected">Son</option>
+													<option value="Sister">Sister</option>
+													<option value="Uncle">Uncle</option>
+													<option value="others">others</option>
+											<?php } else if($d['occupation'] == 'Sister'){?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother" >Brother</option>
+													<option value="Daughter">Daughter</option>
+													<option value="Father">Father</option>
+													<option value="Mother">Mother</option>
+													<option value="Nephew">Nephew</option>
+													<option value="Niece">Niece</option>
+													<option value="Son" >Son</option>
+													<option value="Sister"selected="selected">Sister</option>
+													<option value="Uncle">Uncle</option>
+													<option value="others">others</option>
+											<?php } else if($d['occupation'] == 'Uncle'){?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother" >Brother</option>
+													<option value="Daughter">Daughter</option>
+													<option value="Father">Father</option>
+													<option value="Mother">Mother</option>
+													<option value="Nephew">Nephew</option>
+													<option value="Niece">Niece</option>
+													<option value="Son" >Son</option>
+													<option value="Sister">Sister</option>
+													<option value="Uncle"selected="selected">Uncle</option>
+													<option value="others">others</option>
+											<?php } else if($d['occupation'] == 'others'){?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother" >Brother</option>
+													<option value="Daughter">Daughter</option>
+													<option value="Father">Father</option>
+													<option value="Mother">Mother</option>
+													<option value="Nephew">Nephew</option>
+													<option value="Niece">Niece</option>
+													<option value="Son" >Son</option>
+													<option value="Sister">Sister</option>
+													<option value="Uncle">Uncle</option>
+													<option value="others"selected="selected">others</option>
+											<?php } else {?>
+													<option value="Aunt">Aunt</option>
+													<option value="Brother">Brother</option>
+													<option value="Daughter">Daughter</option>
+													<option value="Father">Father</option>
+													<option value="Mother">Mother</option>
+													<option value="Nephew">Nephew</option>
+													<option value="Niece">Niece</option>
+													<option value="Son" selected="selected">Son</option>
+													<option value="Sister">Sister</option>
+													<option value="Uncle">Uncle</option>
+													<option value="others">others</option>
+											<?php } ?>
+									<?php } else {?>
+										<option value="Aunt">Aunt</option>
+										<option value="Brother">Brother</option>
+										<option value="Daughter">Daughter</option>
+										<option value="Father">Father</option>
+										<option value="Mother">Mother</option>
+										<option value="Nephew">Nephew</option>
+										<option value="Niece">Niece</option>
+										<option value="Son" selected="selected">Son</option>
+										<option value="Sister">Sister</option>
+										<option value="Uncle">Uncle</option>
+										<option value="others">others</option>
+									<?php } ?>
+								</select>
 							</div>
 							<div class="form-group">
 								<label>Visa Type:</label>
@@ -75,8 +235,21 @@
 								<input class="form-control" type="text" name="lname[]" id="lname1">
 							</div>
 							<div class="form-group">
-								<label>Occupation:</label>
+								<label>Relationship:</label>
 								<input class="form-control" type="text" name="occupation[]" id="occupation1">
+								<select class="form-control" name="occupation[]" id="occupation1">
+									<option value="Aunt">Aunt</option>
+									<option value="Brother">Brother</option>
+									<option value="Daughter">Daughter</option>
+									<option value="Father">Father</option>
+									<option value="Mother">Mother</option>
+									<option value="Nephew">Nephew</option>
+									<option value="Niece">Niece</option>
+									<option value="Son" selected="selected">Son</option>
+									<option value="Sister">Sister</option>
+									<option value="Uncle">Uncle</option>
+									<option value="others">others</option>
+								</select>
 							</div>
 							<div class="form-group">
 								<label>Visa Type:</label>
