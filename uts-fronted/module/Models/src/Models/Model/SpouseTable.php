@@ -57,8 +57,8 @@ class SpouseTable
 		}
 		if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){
 			$userId = $_SESSION['user']['user_id'];
-		}else if(isset($users['hidUserId']) && $users['hidUserId']!=""){
-			$userId = $users['hidUserId'];
+		}else{
+			$userId = null;
 		}
 		$data = array(		 		
 			's_user_id'         => 	$userId,  		
@@ -155,6 +155,13 @@ class SpouseTable
 	public function getSpousesData($id){
 		$select = $this->tableGateway->getSql()->select();	
 		$select->where('s_user_id = "'.$id.'"');
+		$select->where('status = "1"');
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet->current();		
+	}
+	public function checkSpouseId($id){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('spouse_id = "'.$id.'"');
 		$select->where('status = "1"');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet->current();		

@@ -17,7 +17,7 @@
 						</tr>
 						<tr>
 						   <th>SSN</th>
-							<td><?php if(isset($this->userInfo->ssnitin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?></td>
+							<td><?php if(isset($this->userInfo->ssn) && $this->userInfo->ssn !=""){ echo $this->userInfo->ssn; }?></td>
 						</tr>
 						<tr>
 						   <th>DOB</th>
@@ -71,7 +71,7 @@
 				</div>
 				<div class="form-group">
 					<label>SSN / ITIN</label>
-					<input class="form-control" type="text" name="ssn" id="ssn" value="<?php if(isset($this->userInfo->ssnitin) && $this->userInfo->ssnitin !=""){ echo $this->userInfo->ssnitin; }?>">
+					<input class="form-control" type="text" name="ssn" id="ssn" value="<?php if(isset($this->userInfo->ssn) && $this->userInfo->ssn !=""){ echo $this->userInfo->ssn; }?>">
 				</div>
 				<div class="form-group">
 					<label>DOB</label>
