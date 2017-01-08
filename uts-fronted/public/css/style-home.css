@@ -417,6 +417,16 @@ div.adminGroup{
 .mar_btn_l20{
 	margin-left:20%;
 }
+.add_close{
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    position: absolute !important;
+    right: 9px !important;
+    z-index: 0 !important;
+}
 .pad_lf70{
 	padding-left:20px !important;
 }
