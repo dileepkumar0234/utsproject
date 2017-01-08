@@ -69,7 +69,7 @@
 					<?php if(count($this->categories) != 0){
 						foreach($this->categories as $name){
 					?>
-					<div class="col-lg-6 label_col">
+					<div class="col-lg-7 label_col">
 						<div class="form-group" style="background:#ddd;width:100%;padding:6px;border-radius:5px;">
 							<label style="color:#111;margin-top:4px;">
 							<?php if($name->upt_name =="HSA"){?>
@@ -94,8 +94,8 @@
 							</div>
 							<div class="clearfix"></div>
 						<?php }} ?>
-						<div class="form-group">
-							<button type="button" class="btn btn-success btn-md" onclick="addMoreFiles(<?php echo $name->upt_id; ?>)">Add more</button>
+						<div class="form-group pos_ab_add">
+							<button style="height:42px;" type="button" class="btn btn-success btn-md" onclick="addMoreFiles(<?php echo $name->upt_id; ?>)">Add </button>
 						</div>
 						<div class="col-lg-12" id="addMore_<?php echo $name->upt_id; ?>"></div>
 					</div>

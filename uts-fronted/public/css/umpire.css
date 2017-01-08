@@ -4,6 +4,20 @@ a {
 .md-hide {
 	 display: none !important;
 }
+ .rembtn {
+    position: absolute;
+    top: 0;
+    right: -122px;
+    background-color:#f74641;
+    padding: 9px;
+    color: #fff;
+    border-radius: 5px;
+	}
+	.pos_ab_add{
+		position: absolute;
+		top: 0;
+		right: -85px;
+	}
 .btn_site {
 	background-color: #337ab7;
     border-color: #2e6da4;
@@ -83,6 +97,20 @@ a {
 
    /*  start mobile response */
    @media only screen and (max-width:767px) { 
+    .rembtn {
+    position: absolute;
+    top: 0;
+    right: -13px;
+    background-color:#f74641;
+    padding: 7px;
+    color: #fff;
+    border-radius: 5px;
+	}
+	.pos_ab_add{
+		position: absolute;
+		top: 0;
+		right: 5px;
+	}
 .btn_pad .btn_site{
 	margin-left:2px 
 }

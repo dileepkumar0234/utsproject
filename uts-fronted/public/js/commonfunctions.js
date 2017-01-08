@@ -1,6 +1,6 @@
 function addMoreFiles(appendDivId){
 	var filesCount = $('#filesCount').val();
-	$('#addMore_'+appendDivId).append('<div class="form-group" id="filescount-'+filesCount+'"><input class="form-control" type="file" id="taxFile_'+filesCount+'" name="taxfile-'+appendDivId+'[]"> &nbsp;&nbsp;<a href="javascript:void(0);" style="color:red !important" onclick="removeFileInput('+filesCount+')">Remove</a></div>');
+	$('#addMore_'+appendDivId).append('<div class="form-group" id="filescount-'+filesCount+'"><input class="form-control" type="file" id="taxFile_'+filesCount+'" name="taxfile-'+appendDivId+'[]"> &nbsp;&nbsp;<a href="javascript:void(0);"  onclick="removeFileInput('+filesCount+')"><span class="rembtn">Remove</span></a></div>');
 	$('#filesCount').val(parseInt(filesCount)+1);
 }
 function removeFileInput(fileInput){
