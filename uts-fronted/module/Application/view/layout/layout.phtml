@@ -333,4 +333,7 @@ function referFriend(){
 		function forgetSuccess(){
 			window.location = baseUrl;
 		}
+	<?php if(strpos($_SERVER['REQUEST_URI'], 'refereal-list') == true){ ?>
+		getReferralsList();
+	<?php } ?>
 		</script>

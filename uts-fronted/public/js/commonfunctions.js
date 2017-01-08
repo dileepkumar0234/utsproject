@@ -665,4 +665,35 @@ function saveSchduleTime(){
 	}
 }
 
+function getReferralsList(){
+	$(".tEList").html("Please wait loading.....");
+	$.ajax({
+		type:	'GET',
+		dataType:'json',
+		url: baseUrl+'get-referels-info',
+		success: function(data){			
+		$('.tEList').html('<table id="serchList" class="table table-bordered table-striped"><thead><tr><th width="10%">Referral Name</th><th width="10%">Referral Email</th><th width="10%">Referral Phone</th><th width="10%">Referral to Name</th><th width="10%">Referral to Email</th><th width="10%">Referral to Phone</th><th width="40%">Comment</th></tr></thead><tbody></tbody></table>');				
+		var oTable = $('#serchList').dataTable( {
+				aoColumnDefs: [{bSortable: false,
+								aTargets: [ 0 ]
+								}],
+				"bStateSave": true,
+				"bAutoWidth": true,
+				"sRowSelect": "multi",
+				"sPaginationType": "full_numbers",
+				"bProcessing": true,
+				"aaData": data.aaData,
+				"aoColumns": [				
+					{ "mData": "re_on_name" },
+					{ "mData": "re_on_email"},	
+					{ "mData": "rf_on_phone"},	
+					{ "mData": "rf_name"},	
+					{ "mData": "rf_email" },						
+					{ "mData": "rf_phone" },						
+					{ "mData": "rf_comment" },						
+				] 
+			});	
+		}
+	});
+}
 

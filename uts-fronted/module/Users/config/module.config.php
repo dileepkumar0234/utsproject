@@ -49,6 +49,27 @@ return array(
 					),
 				),
 			),
+			//Referrelas
+			'refereal-list' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/refereal-list',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'referealList',
+					),
+				),
+			),
+			'get-referels-info' => array(
+				'type' => 'Literal',
+				'options' => array(
+					'route' => '/get-referels-info',
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'getReferelsInfo',
+					),
+				),
+			),
 			'emp-info' => array(
 				'type' => 'Literal',
 				'options' => array(

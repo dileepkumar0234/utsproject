@@ -111,6 +111,74 @@ class UsersController extends AbstractActionController
 		}
 		
 	}
+	//Referels List
+	
+	
+	public function referealListAction(){
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		//$userId     = 23;
+		$user_session = new Container('user');
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
+		return new ViewModel(array(					
+			'baseUrl' 	=>  $baseUrl,
+			'basePath'  =>  $basePath
+		));
+	}
+	public function getReferelsInfoAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$user_session = new Container('user');
+		if(isset($user_session->user_id) && $user_session->user_id !=""){
+			$userId  = $user_session->user_id;
+		}else{
+			$userId  = "";
+		}
+		$refTable = $this->getServiceLocator()->get('Models\Model\RefferalFriendsFactory');
+		$getShedInfo    = $refTable->getRefInfo($userId);
+			if(count($getShedInfo) > 0 ){
+				$i = 0;
+				$data = array();
+				foreach($getShedInfo as $shedInfo){
+					if($shedInfo->user_name != ""){
+						$name = $shedInfo->user_name;
+					}else{
+						$name = $shedInfo->rf_on_name;
+					}
+					if($shedInfo->email != ""){
+						$email = $shedInfo->email;
+					}else{
+						$email = $shedInfo->rf_on_email;
+					}
+					if($shedInfo->phone != ""){
+						$phone = $shedInfo->phone;
+					}else{
+						$phone = $shedInfo->rf_on_phone;
+					}
+					$data[$i]['rf_name']      = $shedInfo->rf_name;
+					$data[$i]['rf_email']     = $shedInfo->rf_email;
+					$data[$i]['rf_phone']     = $shedInfo->rf_phone;
+					$data[$i]['re_on_name']   = $name;
+					$data[$i]['re_on_email']  = $email;
+					$data[$i]['rf_on_phone']  = $phone;
+					$data[$i]['rf_comment']   = $shedInfo->rf_comment;
+					$i++;
+				}	
+				$datainfo['aaData'] = $data;	
+			}else{ 
+				$datainfo['aaData'] = array();
+			}
+			echo json_encode($datainfo); exit;
+	}
+	//Exit;
 	public function spouseInfoAction(){
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
