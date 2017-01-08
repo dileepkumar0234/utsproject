@@ -97,7 +97,7 @@ class UserTable
 		$select->where('user.email="'.$details['u_email'].'"');
 		$select->where('user.password="'.md5($details['u_password']).'"');
 		$select->where('user.status="1"');
-		$select->where('processing_status.ps_year="'.$cuDate.'"');
+		// $select->where('processing_status.ps_year="'.$cuDate.'"');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		
 	}	

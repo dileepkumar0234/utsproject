@@ -196,4 +196,12 @@ class ProcessingStatusTable
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet->count();
 	}
+	public function statusexistuserfrom($uid){
+		$presentYear = '2016';
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('processing_status.ps_year="'.$presentYear.'"');
+		$select->where('processing_status.ps_user_id="'.$uid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet->current();
+	}
 }

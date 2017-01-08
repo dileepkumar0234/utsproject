@@ -266,6 +266,8 @@ class IndexController extends AbstractActionController
 			if($processData==0){
 				$nowYearexist = $processStatusTable->saveProccessingStatus($user_id);
 			}
+			$dataRes = $processStatusTable->statusexistuserfrom($user_id);
+			$statusRes = $dataRes->ps_state;
 			$user_type_id = $checkUserloginemail->user_type_id;
 			$user_id = $checkUserloginemail->user_id;
 			$user_session = new Container('user');
@@ -275,7 +277,8 @@ class IndexController extends AbstractActionController
 			$user_session->userType	    =	$user_type_id;
 			$user_session->phone	    =	$checkUserloginemail->phone;
 			$status = $checkUserloginemail->ps_state;
-			$statusName = getFileStatusName($status);
+			$statusRes = $dataRes->ps_state;
+			$statusName = getFileStatusName($statusRes);
 			$user_session->file_name	=	$statusName;
 			$user_session->unique_code	=	$checkUserloginemail->unique_code;
 			$user_session->phone	    =	$checkUserloginemail->phone;
