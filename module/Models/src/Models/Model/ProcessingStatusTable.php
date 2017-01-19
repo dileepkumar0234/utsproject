@@ -59,6 +59,9 @@ class ProcessingStatusTable
 		$select->join(array('u' => 'user'), 'assign_user_list.unlists_u_id=u.user_id',array('unlist_id' =>new Expression('u.user_id'),'unlist_name' =>new Expression('u.user_name'),'unlist_email' =>new Expression('u.email')),'left');
 		$select->join(array('ud' => 'user_details'), new Expression('ud.u_user_id=u.user_id'),array('unlist_phone' =>new Expression('ud.phone')),'left');		
 		$select->where('processing_status.ps_state="'.$state.'"');
+		// Added By Dileep 18-1-2017
+		$select->where('processing_status.ps_year="2016"');
+		$select->order('processing_status.ps_id DESC');
 		$select->group('user.user_id');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		// echo "<pre>";print_r($resultSet);exit;
@@ -74,6 +77,8 @@ class ProcessingStatusTable
 		$select->join(array('u' => 'user'), 'assign_user_list.unlists_u_id=u.user_id',array('unlist_id' =>new Expression('u.user_id'),'unlist_name' =>new Expression('u.user_name'),'unlist_email' =>new Expression('u.email')),'left');
 		$select->join(array('ud' => 'user_details'), new Expression('ud.u_user_id=u.user_id'),array('unlist_phone' =>new Expression('ud.phone')),'left');		
 		$select->where('processing_status.ps_state="'.$state.'"');
+		// Added By Dileep 18-1-2017
+		$select->where('processing_status.ps_year="2016"');
 		$select->group('user.user_id');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet->count();		

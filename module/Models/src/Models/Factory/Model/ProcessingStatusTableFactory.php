@@ -16,7 +16,7 @@ class ProcessingStatusTableFactory implements FactoryInterface
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
         $resultSetPrototype->setObjectPrototype(new ProcessingStatus());
-        $tableGateway       = new TableGateway('processing_status', $db,array(),$resultSetPrototype);
+        $tableGateway       = new TableGateway('processing_status',$db,array(),$resultSetPrototype);
         $table              = new ProcessingStatusTable($tableGateway);
         return $table;
     }
