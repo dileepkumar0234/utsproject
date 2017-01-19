@@ -44,7 +44,8 @@ class ContactUsTable
                'c_email'       => $contactEmail, 
                'c_phone'       => $contactPhone, 
                'c_message'     => $contactMessage,
-               'c_created_at'  => date('Y-m-d H:i:s')
+               'c_created_at'  => date('Y-m-d H:i:s'),
+			   'c_year'		   => date('Y')
        );   
 	   $insertresult=$this->tableGateway->insert($data);        
        return $this->tableGateway->lastInsertValue;        

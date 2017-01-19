@@ -65,7 +65,8 @@ class RefferalFriendsTable
 			'rf_phone'	  	      => $rf_phone, 	
 			'rf_comment'	  	  => $rf_comment, 	
 			'added_at' 		      => date('Y-m-d H:i:s'), 			
-			'status' 		      => 1, 			
+			'status' 		      => 1, 
+			'rf_year'			  => date('Y')
 		);	
 		$insertresult=$this->tableGateway->insert($data);	
 		return $this->tableGateway->lastInsertValue;		
@@ -117,7 +118,8 @@ class RefferalFriendsTable
 			'rf_phone'	  	      => $rf_phone, 	
 			'rf_comment'	  	  => $rf_comment, 	
 			'added_at' 		      => date('Y-m-d H:i:s'), 			
-			'status' 		      => 1, 			
+			'status' 		      => 1, 
+			'rf_year'			  => date('Y')
 		);	
 		$insertresult=$this->tableGateway->insert($data);	
 		return $this->tableGateway->lastInsertValue;		

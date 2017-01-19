@@ -1,4 +1,7 @@
-
+/* Naveen 12/28/2016 */
+ALTER TABLE `contact_us` ADD COLUMN `c_year` INT(20) NULL AFTER `c_created_at`;
+ALTER TABLE `referral_friends` ADD COLUMN `rf_year` INT(20) NULL AFTER `status`; 
+/* End */ 
 /* Naveen 12/28/2016 */
 ALTER TABLE 'user' ADD COLUMN `check_newuser` TINYINT NULL AFTER `check_newuser`; 
 /* End */
