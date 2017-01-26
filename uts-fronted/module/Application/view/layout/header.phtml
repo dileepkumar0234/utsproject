@@ -38,7 +38,7 @@
 					<div onClick="referFriendPopFun()" class="rev btn_site btn btn-success" style="background-color:#ff9900;">Refer a Friend</div>
 					<div class="btn_site"> File Status : <?php if(isset($_SESSION["user"]["file_name"]) && $_SESSION["user"]["file_name"]!="") { echo $_SESSION["user"]["file_name"]; }else{ echo "Not yet assigned"; }?> </div>
 					<?php if(isset($_SESSION['user']['file_name']) && $_SESSION['user']['file_name']=="Synopsys Pending" || $_SESSION['user']['file_name']=="Payment Pending"){?>
-					<a href="https://www.umpiretaxsolutions.com/services/payment.php"><div class="btn_site" >Make Payment</div></a>
+					<a href="https://www.umpiretaxsolutions.com/payment.php"><div class="btn_site" >Make Payment</div></a>
 					<?php } else{?>
 					<div class="btn_site" >Make Payment</div>
 					<?php } ?>

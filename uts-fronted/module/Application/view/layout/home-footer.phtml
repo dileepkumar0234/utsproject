@@ -447,15 +447,15 @@
 						type		:   'POST',
 						url			:  	baseUrl+'sign-up?srch='+time,
 						dataType	: 	"json",
-						data:{inputEmail:inputEmail,userpwd:userpwd,inputFirstname:inputFirstname,inputLastname:inputLastname,occupation:occupation},
+						data:{inputEmail:inputEmail,userpwd:userpwd,inputFirstname:inputFirstname,inputLastname:inputLastname,occupation:occupation,phone:phone},
 						success: function(data){
 							$("#loadMes").html("");
 							if(data.output == 'success'){
 								$("#emailChecking").html("");
 								$('#registerForm').formValidation('resetForm', true);
 								$('#regModal').modal('hide');
-								$('#successForgetPopUp').modal('show');
-								$('#message').html('Registration Successfull.\nPlease check your mail box to validate your email id.');
+								$('#successForgetPopUpw').modal('show');
+								$('#messagee').html('Registration Successfull.');
 							}else if(data.output == 'emailexists'){
 								$("#emailChecking").html("Email id already exists");
 							}else if(data.output == 'notsuccess'){

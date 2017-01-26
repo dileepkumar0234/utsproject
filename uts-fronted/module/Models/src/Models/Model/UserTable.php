@@ -41,6 +41,7 @@ class UserTable
 			'date_added' 	           => date('Y-m-d H:i:s'),   
 			'date_updated'	  	       => date('Y-m-d H:i:s'), 	
 			'user_type_id' 		       => 2, 			
+			'check_newuser' 		       => 2, 			
 		);	
 		$insertresult=$this->tableGateway->insert($data);	
 		return $this->tableGateway->lastInsertValue;		

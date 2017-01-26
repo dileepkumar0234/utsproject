@@ -35,7 +35,7 @@ class TaxDocumentsController extends AbstractActionController
 			foreach($_FILES as $taxType=>$taxFiles){
 				foreach($taxFiles['name'] as $key=>$name){
 					$taxId  = explode('-',$taxType); 
-					$path	= "../uploads/".$user_id."/".$taxTypes[$taxId[1]];
+					$path	= "./uploads/".$user_id."/".$taxTypes[$taxId[1]];
 					if(!is_dir($path)) {
 						if(mkdir($path, 0777, true)){
 							if (move_uploaded_file($taxFiles["tmp_name"][$key], $path."/".$name)){
@@ -82,6 +82,7 @@ class TaxDocumentsController extends AbstractActionController
 		));
 	}
 	public function summaryInfoAction(){
+		$user_session 	= new Container('user');
 		$baseUrls 	= $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];

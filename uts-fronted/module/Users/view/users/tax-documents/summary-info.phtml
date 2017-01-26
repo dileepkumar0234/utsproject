@@ -28,7 +28,7 @@
 								<?php foreach($this->taxSummary as $s){ ?>
 								<tr>
 									<th><?php echo $s->synopsys_title; ?></th>
-									<td><a href="<?php echo $this->baseUrl.'synopsys/'.$s->synopsys_file; ?>" download><?php echo $s->synopsys_file; ?></a></td>
+									<td><a href="<?php echo 'https://umpiretaxsolutions.com/synopsys/'.$s->synopsys_user_id.'/'.$s->synopsys_file; ?>" download><?php echo $s->synopsys_file; ?></a></td>
 								</tr>
 								<?php } ?>
 							</tbody>

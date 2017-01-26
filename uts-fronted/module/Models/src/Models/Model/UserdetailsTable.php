@@ -24,6 +24,11 @@ class UserdetailsTable
 		}else{
 			$firstName = '';
 		}
+		if(isset($users['phone']) && $users['phone']!=''){
+			$phone = $users['phone'];
+		}else{
+			$phone = '';
+		}
 		if(isset($users['inputLastname']) && $users['inputLastname']!=''){
 			$lastName = $users['inputLastname'];
 		}else{
@@ -39,6 +44,7 @@ class UserdetailsTable
 			'first_name'        => 	$firstName,  		
 			'last_name'         => 	$lastName,  		
 			'occupation'        => 	$occupation,			  	
+			'phone'             => 	$phone,			  	
 			'status'			=>	1,
 			'date_added'		=>	date('Y-m-d H:i:s'), 
 			'date_updated'		=>	date('Y-m-d H:i:s'), 	

@@ -101,7 +101,7 @@
 							<!--<label class="col-md-3 control-label tex_lef" for="inputEmail">Your Email Id</label>-->
 							<div class="col-md-12">
 								<input type="text" placeholder="Your Email Id" id="yourEmail" name="yourEmail" class="form-control user_login" required data-fv-notempty-message="The email is required" 
-								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
+								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
 								<span id="emailChecking" style="color:red;"></span>
 							</div>
 						</div>
@@ -124,7 +124,7 @@
 							<!--<label class="col-md-3 control-label tex_lef" for="inputEmail">Friend's Email Id</label>-->
 							<div class="col-md-12">
 								<input type="text" placeholder="Friend's Email Id" id="friendEmail" name="friendEmail" class="form-control user_login" required data-fv-notempty-message="The email is required" 
-								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
+								data-fv-regexp="true"  data-fv-regexp-regexp="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$"  data-fv-regexp-message="The email is not a valid">
 								<span id="emailChecking" style="color:red;"></span>
 							</div>
 						</div>
@@ -186,6 +186,23 @@
 		  </div>
 		  <div class="modal-footer mar_t5" style="margin-bottom: 10px;margin-right: 10px;">
 			<button type="button" onclick="forgetSuccess()" class="mar_t5 btn btn-raised btn-info  btn-sm" > OK </button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="successForgetPopUpw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" >
+	  <div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+		  <div class="modal-header" style="border-bottom:1px solid #ddd;background:#189def;color:#fff;border-radius:2px 2px 0 0">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+		  </div>
+		  <div class="modal-body">
+			<p><span id="messagee"></span></p>
+		  </div>
+		  <div class="modal-footer mar_t5" style="margin-bottom: 10px;margin-right: 10px;">
+			<button type="button" onclick="signupSuccess()" class="mar_t5 btn btn-raised btn-info  btn-sm" > OK </button>
 		  </div>
 		</div>
 	  </div>
@@ -281,6 +298,9 @@ function referFriend(){
 		}
 		function forgetSuccess(){
 			window.location = baseUrl;
+		}
+		function signupSuccess(){
+			window.location=baseUrl+"dashboard";
 		}
 	<?php if(strpos($_SERVER['REQUEST_URI'], 'refereal-list') == true){ ?>
 		getReferralsList();

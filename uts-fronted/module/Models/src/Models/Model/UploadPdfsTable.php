@@ -51,7 +51,7 @@ class UploadPdfsTable
 	}
 	public function addTaxUploadPdf($uid,$upt_id,$upload_file)
     {
-		$curYear = date("Y");
+		$curYear = date("Y")-1;
 		$data = array(
 			'up_user_id' 	  	=> $uid, 	
 			'upt_id' 		    => $upt_id,  		 		

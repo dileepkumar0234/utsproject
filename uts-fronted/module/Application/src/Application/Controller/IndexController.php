@@ -210,6 +210,7 @@ class IndexController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];	
+		$processStatusTable = $this->getServiceLocator()->get('Models\Model\ProcessingStatusFactory');
 		$userTable  = $this->getServiceLocator()->get('Models\Model\UserFactory');
 		$userDetailesTable  = $this->getServiceLocator()->get('Models\Model\UserDetailsFactory');
 		if(isset($_POST['inputEmail']) && $_POST['inputEmail']!=""){
@@ -230,7 +231,7 @@ class IndexController extends AbstractActionController
 					global $regSubject;
 					global $regMessage;
 					$url = $baseUrl.'reg-auth?regid='.$uid.'&auth=1';
-					$regMessage = str_replace("<siteUrl>",$url,$regMessage);
+					// $regMessage = str_replace("<siteUrl>",$url,$regMessage);
 					$regMessage = str_replace("<username>",$username,$regMessage);
 					$regMessage = str_replace("<useremail>",$uemail,$regMessage);
 					$regMessage = str_replace("<userpassword>",$upwd,$regMessage);
@@ -238,6 +239,23 @@ class IndexController extends AbstractActionController
 					$headers = "MIME-Version: 1.0" . "\r\n";
 					$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 					$headers .= 'From: <Hello@umpiretaxsolutions.com>' . "\r\n";
+					
+					$uid = $addedid;
+					$updatedid = $userTable->updateUid($uid);
+					$st =0;
+					$addProcessStatus = $processStatusTable->saveProccessingStatus($uid);
+					$checkUserloginemail = $userTable->getUserData($uid);
+					$user_type_id = $checkUserloginemail->user_type_id;
+					$user_id = $checkUserloginemail->user_id;
+					$user_session = new Container('user');
+					$user_session->user_id		=	$user_id;
+					$user_session->email		=	$checkUserloginemail->email;
+					$user_session->user_name	=	ucwords(strtolower($checkUserloginemail->user_name));
+					$user_session->userType	    =	$user_type_id;
+					$status = $checkUserloginemail->ps_state;
+					$statusName = getFileStatusName($status);
+					$user_session->file_name	=	$statusName;
+					$user_session->unique_code	=	$checkUserloginemail->unique_code;
 					mail($to,$regSubject,$regMessage,$headers);
 					return new JsonModel(array(					
 						'output' 	=> 'success'

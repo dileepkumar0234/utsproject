@@ -65,8 +65,7 @@ $regMessage='<body>
                     <p style="color:#666;margin:0;padding-top:5px;line-height:22px;margin-top:5px">Email id: <useremail> </p>
                     <p style="color:#666;margin:0;padding-top:5px;line-height:22px;">Password:	<userpassword> </p> <br/>
 					
-					<p style="color:#666;margin:0;padding-top:5px;line-height:22px;">Click on below link to verify your e-mail id	<br/><br/>
-					<a target="_blank" href="<siteUrl>" ><siteUrl></a></p>
+					
                     <p style="color:#666;margin:0;padding-top:5px;line-height:22px;margin-top:5px">As a next step to the process, we request you to follow the below steps.</p>
 					<ul style="margin-left:40px">
 						<li style="color:#666;margin:0;padding-top:5px;line-height:22px;">
