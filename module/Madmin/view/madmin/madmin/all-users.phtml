@@ -31,7 +31,7 @@
 		dataType:'json',
 		url: '<?php echo $this->baseUrl; ?>/members?sRch=<?php echo time(); ?>',
 		success: function(data){			
-		$('.tEList').html('<table id="serchList" class="table table-bordered table-striped"><thead><tr><th>File Number</th><th>Client Name</th><th>Email Id</th><th>SSN</th><th>File Status</th><th>Assigned</th></tr></thead><tbody></tbody></table>');				
+		$('.tEList').html('<table id="serchList" class="table table-bordered table-striped"><thead><tr><th>File Number</th><th>Client Name</th><th>Email Id</th><th>Phone</th><th>File Status</th><th>Assigned</th></tr></thead><tbody></tbody></table>');				
 		var oTable = $('#serchList').dataTable( {
 				aoColumnDefs: [{bSortable: false,
 								aTargets: [ 0 ]
@@ -46,7 +46,7 @@
 					{ "mData": "file_number" },					
 					{ "mData": "client_name" },
 					{ "mData": "u_email"},	
-					{ "mData": "ssn"},	
+					{ "mData": "phone"},	
 					{ "mData": "file_status" },					
 					{ "mData": "assigned"},						
 				] 

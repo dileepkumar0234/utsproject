@@ -55,7 +55,10 @@ class ContactUsTable
 		return $resultSet;    
 	}
 	public function getCallInfo(){
+		$curYear = date('Y');		
 		$select = $this->tableGateway->getSql()->select();	
+		$select->where('contact_us.c_year= "'.$curYear.'"');	
+		$select->order('contact_us.contact_id DESC');
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet; 
 	}

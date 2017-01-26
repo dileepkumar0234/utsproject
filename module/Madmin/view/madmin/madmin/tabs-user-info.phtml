@@ -250,7 +250,7 @@
 				<?php foreach($this->downloadInfo[$category] as $value){ ?>
 				<tr>
 					<th><?php echo $value; ?></th>
-					<td><a href="<?php echo $this->baseUrl.'/uploads/'.$this->userId.'/'.$category.'/'.$value; ?>" download>Download</a></td>
+					<td><a href="<?php echo 'https://umpiretaxsolutions.com/uploads/'.$this->userId.'/'.$category.'/'.$value; ?>" download>Download</a></td>
 				</tr>
 				<?php } ?>
 			</table>
@@ -296,7 +296,7 @@
 				<tr>
 					<th><?php echo $value->synopsys_title; ?></th>
 					<th><?php echo $value->synopsys_file; ?></th>
-					<td><a href="<?php echo $this->baseUrl.'/synopsys/'.$this->userId.'/'.$value->synopsys_file; ?>" download>Download</a></td>
+					<td><a href="<?php echo 'https://umpiretaxsolutions.com/synopsys/'.$this->userId.'/'.$value->synopsys_file; ?>" download>Download</a></td>
 				</tr>
 				<?php } ?>
 			</table>

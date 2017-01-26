@@ -101,12 +101,16 @@ class RefferalFriendsTable
 	}
 	
 	public function getRefInfo(){
+		$curYear = date('Y');
 		$select = $this->tableGateway->getSql()->select();	
 		$select->join('user', new Expression('user.user_id=referral_friends.rf_user_id'),array('*'),'left');
 		$select->join('user_details', new Expression('user.user_id=user_details.u_user_id'),array('*'),'left');
 		$select->join('processing_status', new Expression('referral_friends.rf_user_id = processing_status.ps_user_id'),array('*'),'left');
+		$select->where('referral_friends.rf_year= "'.$curYear.'"');		
+		$select->group('referral_friends.rf_id');		
 		$select->order('referral_friends.rf_id DESC');
-		$resultSet = $this->tableGateway->selectWith($select);	
+		$resultSet = $this->tableGateway->selectWith($select);
+		// echo "<pre>";print_r($resultSet);exit;
 		return $resultSet;	
 	}
 }

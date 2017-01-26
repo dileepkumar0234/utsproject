@@ -332,7 +332,7 @@ class MadminController extends AbstractActionController
 					$data[$i]['file_number']=$bCData->unique_code;
 					$data[$i]['client_name']=$bCData->user_name;
 					$data[$i]['u_email']= '<a href="'.$baseUrl.'/all-tabs/'.$bCData->user_id.'-'.$bCData->ps_state.'">'.$bCData->email.'</a>';
-					$data[$i]['ssn']= $bCData->ssnitin;
+					$data[$i]['phone']= $bCData->phone;
 					$data[$i]['file_status']= $status;
 					$data[$i]['assigned']= $bCData->client_name;
 					$i++;
@@ -467,7 +467,7 @@ class MadminController extends AbstractActionController
 					$data[$i]['file_number']= '<a href="'.$baseUrl.'/all-tabs/'.$bCData->user_id.'-'.$bCData->ps_state.'">'.$bCData->unique_code.'</a>';
 					$data[$i]['client_name']=$bCData->user_name;
 					$data[$i]['u_email']= '<a href="'.$baseUrl.'/all-tabs/'.$bCData->user_id.'-'.$bCData->ps_state.'">'.$bCData->email .'</a>';
-					$data[$i]['ssn']= $bCData->ssnitin;
+					$data[$i]['phone']= $bCData->phone;
 					$data[$i]['file_status']= $status;
 					if($bCData->ps_state == '0'){
 						$data[$i]['assigned']= $html;
@@ -767,19 +767,19 @@ class MadminController extends AbstractActionController
 		$utsYear 	= $baseUrlArr['utsYear'];
 		$synopsysTable		= $this->getServiceLocator()->get('Models\Model\SynopsysFactory');
 		$name 				= $_FILES["taxUploadFile"]["name"];
-		$newfilenamePath 	= "./synopsys/".$_POST['userId']."/".$name;
+		$newfilenamePath 	= "./../synopsys/".$_POST['userId']."/".$name;
 		$name 				= $name;
-		$path				= "./synopsys/".$_POST['userId'];
-		if(!is_dir($path)) {
-			if(mkdir($path, 0777, true)){
+		$path				= "./../synopsys/".$_POST['userId'];
+		//if(!is_dir($path)) {
+			//if(mkdir($path, 0777, true)){
 				if (move_uploaded_file($_FILES["taxUploadFile"]["tmp_name"], $newfilenamePath)){
 					$synopsysTable->assignSynopsys($_POST['userId'],$name,$_POST['title']);
 					return new JsonModel(array(					
 						'imageName' => 	$name
 					));
 				}
-			}
-		}
+			//}
+		//}
 	}
 	public function pushToStateAction(){
 		$baseUrls 	= $this->getServiceLocator()->get('config');
